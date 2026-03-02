@@ -28,7 +28,7 @@ export function RoleDetailClient({ role }: RoleDetailClientProps) {
   const whatItDoes = locale === 'uk' && role.whatItDoesUa ? role.whatItDoesUa : role.whatItDoes
 
   return (
-    <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-8">
+    <article className="max-w-4xl mx-auto px-4 sm:px-6">
       {/* Header */}
       <div className="mb-8 border-b border-border pb-8">
         <div className="flex items-center gap-3 mb-4">
