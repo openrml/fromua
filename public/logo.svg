@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <rect width="200" height="200" fill="#0f0f0f"/>
+  <text x="100" y="90" font-family="Arial, sans-serif" font-size="40" font-weight="bold" 
+        fill="#ffffff" text-anchor="middle">FROM</text>
+  <text x="100" y="140" font-family="Arial, sans-serif" font-size="40" font-weight="bold" 
+        fill="#FFD700" text-anchor="middle">UA</text>
+</svg>
