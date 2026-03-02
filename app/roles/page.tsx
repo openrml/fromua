@@ -5,7 +5,7 @@ import { RolesPageHeader } from '@/components/roles-page-header'
 export const metadata: Metadata = {
   title: 'Roles Catalog | Каталог ролей',
   description:
-    'Browse all 21 structured AI roles built on the RML 0.9.1 open protocol. Filter by category, archetype, or license.',
+    'Browse all 29 structured AI roles built on the RML 0.9.1 open protocol. Filter by category, archetype, or license.',
 }
 
 // Додаємо статичну генерацію
