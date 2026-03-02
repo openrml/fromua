@@ -2,6 +2,8 @@ name = "fromua"
 compatibility_date = "2026-03-02"
 compatibility_flags = ["nodejs_compat"]
 pages_build_output_dir = ".vercel/output"
+[build]
+command = "npx @cloudflare/next-on-pages@1 --no-build-log"
 
 [vars]
 NODE_VERSION = "20"
