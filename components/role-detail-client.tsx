@@ -48,7 +48,7 @@ export function RoleDetailClient({ role }: RoleDetailClientProps) {
         <h1 className="text-4xl font-bold mb-4">{title}</h1>
         <p className="text-xl text-muted-foreground mb-6">{description}</p>
         
-        <div className="flex flex-wrap gap-4 items-center justify-between">
+        <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
             <div className="flex items-center gap-1">
               <User className="h-4 w-4" />
