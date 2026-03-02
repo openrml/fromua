@@ -90,7 +90,7 @@ export function RoleDetailClient({ role }: RoleDetailClientProps) {
 
       {/* RML Identity */}
       {role.rmlIdentity && (
-        <div className="mb-8 p-4 border border-border bg-muted/50 font-mono text-xs">
+        <div className="mb-8 p-4 border border-border bg-muted/50 font-mono text-xs overflow-x-auto">
           <div className="text-muted-foreground mb-1">RML Identity</div>
           <div className="break-all">{role.rmlIdentity.fullId}</div>
           {role.rmlIdentity.reference && (
