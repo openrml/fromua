@@ -31,7 +31,7 @@ UPDATED: 2026-02-28
 
 📋 STEP 1: BASE INFORMATION
 ─────────────────────────────────────────────────
-Role Name: Anticipatory Grief Support
+Role Name: Підтримка при очікуванні втрати
 Status: Опубліковано (published)
 Version: 0.9.1
 Category: Здоров'я (health)

@@ -31,7 +31,7 @@ UPDATED: 2026-03-02
 
 📋 STEP 1: BASE INFORMATION
 ─────────────────────────────────────────────────
-Role Name: Veteran Reintegration Coach
+Role Name: Коуч реінтеграції ветеранів
 Status: Опубліковано (published)
 Version: 0.9.1
 Category: Розвиток (development)

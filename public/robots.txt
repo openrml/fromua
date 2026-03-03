@@ -1,0 +1,25 @@
+# robots.txt for FromUA - Civilizational AI Roles Gallery
+# https://fromua.life
+
+User-agent: *
+Allow: /
+
+# Priority pages for crawling
+Allow: /roles/*
+Allow: /about
+Allow: /standard
+Allow: /contribute
+
+# Block potential future admin/api routes
+Disallow: /api/private/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://fromua.life/sitemap.xml
+
+# Crawl-delay for politeness (optional)
+Crawl-delay: 1
+
+# Additional sitemaps for different languages (future)
+# Sitemap: https://fromua.life/sitemap-en.xml
+# Sitemap: https://fromua.life/sitemap-uk.xml

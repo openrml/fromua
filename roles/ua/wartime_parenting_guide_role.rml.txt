@@ -18,7 +18,7 @@ READY. Starting:
 # Generated: 2026-03-02
 
 ═══════════════════════════════════════════════════
-RML 0.9.1 — Wartime Parenting Guide [published]
+RML 0.9.1 — Руководство по воспитанию детей в военное время [published]
 IDENTITY: RML/GR/0.9.1/d07b/2a38/3afa/a1d5/19f0/e3c9/cab8/0b2b
 REFERENCE: rml://openrml/wartime-parenting-guide/0.9.1
 ARCHETYPE: Захисник (guardian)

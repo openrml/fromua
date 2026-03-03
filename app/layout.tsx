@@ -23,16 +23,70 @@ export const metadata: Metadata = {
   },
   description:
     'Ukraine learned to live in uncertainty. We turned it into structured AI roles. Open protocol RML 0.9.1 — free forever.',
+  keywords: [
+    // English keywords
+    'AI roles',
+    'RML protocol',
+    'AI assistant',
+    'mental health AI',
+    'crisis support',
+    'Ukraine AI',
+    'structured prompts',
+    'open protocol',
+    'LLM roles',
+    'AI therapy',
+    'psychological support AI',
+    'grief companion',
+    'trauma support',
+    // Ukrainian keywords
+    'AI ролі',
+    'ролі для AI',
+    'AI асистент',
+    'психологічна підтримка',
+    'підтримка в кризі',
+    'ШІ помічник',
+    'протокол RML',
+    'відкритий протокол',
+    'AI психолог',
+    'допомога AI',
+    'структуровані промпти',
+  ],
+  authors: [{ name: 'OpenRML', url: 'https://fromua.life' }],
+  creator: 'OpenRML',
+  publisher: 'FromUA',
   generator: 'v0.app',
   metadataBase: new URL('https://fromua.life'),
+  alternates: {
+    canonical: 'https://fromua.life',
+    languages: {
+      'en': 'https://fromua.life?lang=en',
+      'uk': 'https://fromua.life?lang=uk',
+      'x-default': 'https://fromua.life',
+    },
+  },
   openGraph: {
     type: 'website',
     locale: 'uk_UA',
     alternateLocale: 'en_US',
     siteName: 'FromUA',
+    title: 'FromUA — Civilizational AI Roles Gallery',
+    description: 'Ukraine learned to live in uncertainty. We turned it into structured AI roles. Open protocol RML 0.9.1 — free forever.',
+    url: 'https://fromua.life',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'FromUA - Civilizational AI Roles Gallery',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
+    title: 'FromUA — Civilizational AI Roles Gallery',
+    description: 'Ukraine learned to live in uncertainty. We turned it into structured AI roles. Open protocol RML 0.9.1 — free forever.',
+    images: ['/twitter-card.png'],
+    creator: '@fromua_life',
   },
   icons: {
     icon: [
@@ -42,8 +96,17 @@ export const metadata: Metadata = {
     ],
     apple: ['/apple-touch-icon.png'],
   },
-  openGraph: {
-    images: ['/og-image.png'],
+  manifest: '/site.webmanifest',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 }
 

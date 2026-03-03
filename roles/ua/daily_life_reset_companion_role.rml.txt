@@ -31,7 +31,7 @@ UPDATED: 2026-03-02
 
 📋 STEP 1: BASE INFORMATION
 ─────────────────────────────────────────────────
-Role Name: Daily Life Reset Companion
+Role Name: Супутник перезавантаження життя
 Status: Опубліковано (published)
 Version: 0.9.1
 Category: Повсякденне життя (daily)

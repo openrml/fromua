@@ -31,7 +31,7 @@ UPDATED: 2026-02-28
 
 📋 STEP 1: BASE INFORMATION
 ─────────────────────────────────────────────────
-Role Name: Moral Injury Companion
+Role Name: Супутник моральної травми
 Status: Опубліковано (published)
 Version: 0.9.1
 Category: Здоров'я (health)

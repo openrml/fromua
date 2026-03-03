@@ -1,4 +1,4 @@
-// Auto-generated from RML files on 03.03.2026, 14:32:34
+// Auto-generated from RML files on 03.03.2026, 14:22:14
 // Total roles: 29
 // Errors: 0
 // Warnings: 29
@@ -9,7 +9,7 @@ export const ROLES: Role[] = [
   {
     "slug": "ai-productivity-coach-en",
     "title": "AI Productivity Coach (EN)",
-    "titleUa": "AI Коуч з продуктивності",
+    "titleUa": "AI Productivity Coach",
     "category": "technology",
     "categorySlug": "technology",
     "archetype": "explorer",
@@ -138,7 +138,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never assume technical background — always explain terms. Focus on practical, everyday applications first. Emphasize that AI is a tool to augment human capabilities, not replace them.",
     "sessions": [
       {
-        "id": "1772541154368-mkeqszj",
+        "id": "1772540534126-shkbecc",
         "title": "Introduction to AI — What Is It and How Does It Work?",
         "titleUa": "Знайомство з ШІ — що це і як працює?",
         "tasks": [
@@ -156,7 +156,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154369-xmvls9m",
+        "id": "1772540534126-tj9u3ro",
         "title": "Getting to Know a Text Assistant (ChatGPT/Gemini/Claude)",
         "titleUa": "Знайомство з текстовим помічником (ChatGPT/Gemini/Claude)",
         "tasks": [
@@ -174,7 +174,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154369-e3jvxqx",
+        "id": "1772540534126-yz5ybzg",
         "title": "The Art of the Prompt — How to Get a Good Answer",
         "titleUa": "Мистецтво запиту — як отримати хорошу відповідь",
         "tasks": [
@@ -193,7 +193,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154369-l7mafdf",
+        "id": "1772540534126-ixbbmq5",
         "title": "AI for Working with Text",
         "titleUa": "ШІ для роботи з текстами",
         "tasks": [
@@ -209,7 +209,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154369-l7lpgi7",
+        "id": "1772540534126-pg8bn0y",
         "title": "AI for Research and Learning",
         "titleUa": "ШІ для досліджень та навчання",
         "tasks": [
@@ -228,7 +228,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154369-brz67d8",
+        "id": "1772540534126-m1suuwy",
         "title": "AI for Visual Content",
         "titleUa": "ШІ для візуального контенту",
         "tasks": [
@@ -248,7 +248,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154369-pri8929",
+        "id": "1772540534126-l28uwc2",
         "title": "AI for Organization and Planning",
         "titleUa": "ШІ для організації та планування",
         "tasks": [
@@ -266,7 +266,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154369-b2qylfy",
+        "id": "1772540534126-irsdj10",
         "title": "Automating Routine Tasks",
         "titleUa": "Автоматизація рутинних завдань",
         "tasks": [
@@ -285,7 +285,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154369-i3rteql",
+        "id": "1772540534126-xyekstc",
         "title": "Recognizing \"Hallucinations\" and Fact-Checking",
         "titleUa": "Розпізнавання \"галюцинацій\" та перевірка фактів",
         "tasks": [
@@ -304,7 +304,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154369-ivbkfty",
+        "id": "1772540534126-ajb3alr",
         "title": "Ethics and Privacy",
         "titleUa": "Етика та конфіденційність",
         "tasks": [
@@ -322,7 +322,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154369-jtzlken",
+        "id": "1772540534126-4dwyrb1",
         "title": "Creating Your Own \"Prompt Library\"",
         "titleUa": "Створення власної \"бібліотеки промптів\"",
         "tasks": [
@@ -341,7 +341,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154369-bkad63p",
+        "id": "1772540534126-ncqab5a",
         "title": "Summary — How AI Changed My Productivity",
         "titleUa": "Підсумок — як ШІ змінив мою продуктивність",
         "tasks": [
@@ -448,7 +448,7 @@ export const ROLES: Role[] = [
   {
     "slug": "anticipatory-grief-support-en",
     "title": "Anticipatory Grief Support (EN)",
-    "titleUa": "Підтримка при очікуванні втрати",
+    "titleUa": "Anticipatory Grief Support",
     "category": "health",
     "categorySlug": "health",
     "archetype": "healer",
@@ -576,7 +576,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never force hope. It cannot be given, only found. Respect the depth of despair as a valid human experience. Small steps are enough.",
     "sessions": [
       {
-        "id": "1772541154379-ijt3wt7",
+        "id": "1772540534138-hegtqa9",
         "title": "Darkness Has the Right to Exist",
         "titleUa": "Темрява має право бути",
         "tasks": [
@@ -593,7 +593,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154379-pse2g21",
+        "id": "1772540534138-2dxjp1w",
         "title": "What Is Hope?",
         "titleUa": "Що таке надія?",
         "tasks": [
@@ -610,7 +610,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154379-p5bpn7k",
+        "id": "1772540534138-9spz0pg",
         "title": "Sparks Amidst the Darkness",
         "titleUa": "Іскри серед темряви",
         "tasks": [
@@ -627,7 +627,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154379-ujjjel2",
+        "id": "1772540534138-qtt6c48",
         "title": "The Body Remembers Life",
         "titleUa": "Тіло пам'ятає життя",
         "tasks": [
@@ -642,7 +642,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154379-otqszeb",
+        "id": "1772540534138-ktskvr6",
         "title": "Who Is Around?",
         "titleUa": "Хто поруч?",
         "tasks": [
@@ -659,7 +659,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154379-yb3z46z",
+        "id": "1772540534138-s4f69ql",
         "title": "Past Crises",
         "titleUa": "Минулі кризи",
         "tasks": [
@@ -676,7 +676,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154379-mil1tyt",
+        "id": "1772540534138-7svd8i3",
         "title": "Small Actions Today",
         "titleUa": "Маленькі дії сьогодні",
         "tasks": [
@@ -691,7 +691,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154379-96r7w1n",
+        "id": "1772540534138-3tgbax1",
         "title": "Meaning in the Small",
         "titleUa": "Сенс у маленькому",
         "tasks": [
@@ -708,7 +708,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154379-3buk6gj",
+        "id": "1772540534138-9sujng9",
         "title": "The Future in Small Steps",
         "titleUa": "Майбутнє маленькими кроками",
         "tasks": [
@@ -725,7 +725,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154379-y90zhal",
+        "id": "1772540534138-tdp2ry9",
         "title": "Letter to Yourself",
         "titleUa": "Лист собі",
         "tasks": [
@@ -742,7 +742,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154379-zbyyi0y",
+        "id": "1772540534138-04fizsp",
         "title": "Summary — The Sparks We Found",
         "titleUa": "Підсумок — іскри, які ми знайшли",
         "tasks": [
@@ -848,7 +848,7 @@ export const ROLES: Role[] = [
   {
     "slug": "body-after-trauma-guide-en",
     "title": "Body After Trauma Guide (EN)",
-    "titleUa": "Гід по тілу після травми",
+    "titleUa": "Body After Trauma Guide",
     "category": "health",
     "categorySlug": "health",
     "archetype": "healer",
@@ -976,7 +976,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Always prioritize safety and pacing. Validate that feeling numb is also a valid starting point. Never force body awareness — invite, don't demand.",
     "sessions": [
       {
-        "id": "1772541154385-20jncne",
+        "id": "1772540534143-hqfj79p",
         "title": "Meeting Where You Are",
         "titleUa": "Зустріч там, де ти є",
         "tasks": [
@@ -993,7 +993,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154385-wngh5j9",
+        "id": "1772540534143-frmp0d7",
         "title": "Dual Awareness — The Foundation of Safety",
         "titleUa": "Подвійне усвідомлення — основа безпеки",
         "tasks": [
@@ -1010,7 +1010,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154385-8v6g4ff",
+        "id": "1772540534143-8vsqp30",
         "title": "Grounding Through Supports",
         "titleUa": "Заземлення через опори",
         "tasks": [
@@ -1029,7 +1029,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154385-48ok4xk",
+        "id": "1772540534143-8sup1hi",
         "title": "Body Scan (Safe Approach)",
         "titleUa": "Сканування тіла (безпечне)",
         "tasks": [
@@ -1048,7 +1048,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154385-sxzywkq",
+        "id": "1772540534143-rocejf1",
         "title": "Breath as a Bridge to the Body",
         "titleUa": "Дихання як місток до тіла",
         "tasks": [
@@ -1067,7 +1067,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154385-91evs4q",
+        "id": "1772540534143-ibb9twp",
         "title": "Temperature and Texture",
         "titleUa": "Температура і текстура",
         "tasks": [
@@ -1084,7 +1084,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154385-g3q704o",
+        "id": "1772540534143-tdhnhb8",
         "title": "Body Boundaries",
         "titleUa": "Межі тіла",
         "tasks": [
@@ -1099,7 +1099,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154385-2s8cjcr",
+        "id": "1772540534143-6kq3xas",
         "title": "Movement as Release",
         "titleUa": "Рух як звільнення",
         "tasks": [
@@ -1114,7 +1114,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154385-d8yd0zo",
+        "id": "1772540534143-wf0e9t0",
         "title": "Resource Place in the Body",
         "titleUa": "Ресурсне місце в тілі",
         "tasks": [
@@ -1133,7 +1133,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154385-sxkr02l",
+        "id": "1772540534143-9898z6c",
         "title": "Integration",
         "titleUa": "Інтеграція",
         "tasks": [
@@ -1239,7 +1239,7 @@ export const ROLES: Role[] = [
   {
     "slug": "career-pivot-strategist-wartime-edition-en",
     "title": "Career Pivot Strategist (Wartime Edition) (EN)",
-    "titleUa": "Стратег зміни кар'єри (Воєнна версія)",
+    "titleUa": "Career Pivot Strategist (Wartime Edition)",
     "category": "productivity",
     "categorySlug": "productivity",
     "archetype": "mentor",
@@ -1370,7 +1370,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never compare current career situation to pre-war life. Focus on what's possible now, not on what was lost. Validate that career decisions during war are influenced by safety, family, and survival, not just ambition.",
     "sessions": [
       {
-        "id": "1772541154390-7w3ze5i",
+        "id": "1772540534150-6fnz2f8",
         "title": "Stop and Breathe",
         "titleUa": "Зупинитися і видихнути",
         "tasks": [
@@ -1387,7 +1387,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154390-letkepi",
+        "id": "1772540534150-6aiypdq",
         "title": "Skills Inventory (Everything I Can Do)",
         "titleUa": "Інвентаризація навичок (все, що я вмію)",
         "tasks": [
@@ -1402,7 +1402,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154390-omvizeo",
+        "id": "1772540534150-5e1c9de",
         "title": "What's Needed Now? (Needs Analysis)",
         "titleUa": "Що зараз потрібно? (аналіз потреб)",
         "tasks": [
@@ -1417,7 +1417,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154390-qi6x2tp",
+        "id": "1772540534150-2d7j68j",
         "title": "Adaptation — Transferring Skills",
         "titleUa": "Адаптація — перенесення навичок",
         "tasks": [
@@ -1432,7 +1432,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154390-vd2gjtw",
+        "id": "1772540534150-3c2mqnb",
         "title": "Small Experiments (Hypothesis Testing)",
         "titleUa": "Маленькі експерименти (тестування гіпотез)",
         "tasks": [
@@ -1447,7 +1447,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154390-fpelh93",
+        "id": "1772540534150-zkkbu19",
         "title": "Networking in New Conditions",
         "titleUa": "Мережування в нових умовах",
         "tasks": [
@@ -1464,7 +1464,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154390-gs6gpal",
+        "id": "1772540534150-5jylujv",
         "title": "Meaning and Values — What Matters to Me Now?",
         "titleUa": "Сенс і цінності — що для мене важливо зараз?",
         "tasks": [
@@ -1479,7 +1479,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154390-6zjcpmo",
+        "id": "1772540534150-5upqzwx",
         "title": "Fear and Uncertainty",
         "titleUa": "Страх і невизначеність",
         "tasks": [
@@ -1498,7 +1498,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154390-3hily13",
+        "id": "1772540534150-dje5q13",
         "title": "Imposter Syndrome (\"I Can't Do This\")",
         "titleUa": "Імпостерний синдром (\"я не зможу\")",
         "tasks": [
@@ -1517,7 +1517,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154390-ibuqnsk",
+        "id": "1772540534150-khsqmo9",
         "title": "Resume and Presenting Yourself in New Conditions",
         "titleUa": "Резюме і презентація себе в нових умовах",
         "tasks": [
@@ -1534,7 +1534,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154390-2iu02z5",
+        "id": "1772540534150-xuw8w8k",
         "title": "Balance Between Work and Recovery",
         "titleUa": "Баланс роботи і відновлення",
         "tasks": [
@@ -1551,7 +1551,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154390-yvqr1f4",
+        "id": "1772540534150-bcnjdo7",
         "title": "Summary and Next Steps",
         "titleUa": "Підсумок і наступні кроки",
         "tasks": [
@@ -1659,7 +1659,7 @@ export const ROLES: Role[] = [
   {
     "slug": "caregiver-burnout-preventer-en",
     "title": "Caregiver Burnout Preventer (EN)",
-    "titleUa": "Профілактика вигорання опікунів",
+    "titleUa": "Caregiver Burnout Preventer",
     "category": "health",
     "categorySlug": "health",
     "archetype": "healer",
@@ -1791,7 +1791,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never blame caregivers for feeling exhausted or resentful. Emphasize that self-care is not selfish but essential for sustainable caregiving. Recognize that caregiving is a marathon, not a sprint.",
     "sessions": [
       {
-        "id": "1772541154395-undl2f8",
+        "id": "1772540534155-3uxpzqu",
         "title": "Assessment — Where Am I Now?",
         "titleUa": "Діагностика — де я зараз?",
         "tasks": [
@@ -1806,7 +1806,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154395-m5xfrmw",
+        "id": "1772540534155-ulqmlwe",
         "title": "The Myth of the \"Strong Caregiver\"",
         "titleUa": "Міф про \"сильного доглядальника\"",
         "tasks": [
@@ -1823,7 +1823,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154395-ow9hhh7",
+        "id": "1772540534155-1gfbsee",
         "title": "Setting Boundaries",
         "titleUa": "Встановлення кордонів",
         "tasks": [
@@ -1838,7 +1838,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154395-egx2hzk",
+        "id": "1772540534156-l3rs18l",
         "title": "How to Ask For and Accept Help",
         "titleUa": "Як просити і приймати допомогу",
         "tasks": [
@@ -1855,7 +1855,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154395-wqll8pm",
+        "id": "1772540534156-glv9i5n",
         "title": "Support Networks — You're Not Alone",
         "titleUa": "Мережі підтримки — ти не один",
         "tasks": [
@@ -1872,7 +1872,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154395-4kjt2b5",
+        "id": "1772540534156-6ptn1iw",
         "title": "Respite Care",
         "titleUa": "Відновлювальний догляд (respite care)",
         "tasks": [
@@ -1889,7 +1889,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154395-q5qjgbj",
+        "id": "1772540534156-6mmvih1",
         "title": "Self-Soothing Techniques (Breathing)",
         "titleUa": "Техніки самозаспокоєння (дихання)",
         "tasks": [
@@ -1906,7 +1906,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154395-8vukgmp",
+        "id": "1772540534156-4kqsmx9",
         "title": "Mindfulness and Self-Compassion",
         "titleUa": "Майндфулнес і самоспівчуття",
         "tasks": [
@@ -1921,7 +1921,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154395-20i4hm6",
+        "id": "1772540534156-fqdzs52",
         "title": "Caring for the Body",
         "titleUa": "Турбота про тіло",
         "tasks": [
@@ -1936,7 +1936,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154395-1vuyftv",
+        "id": "1772540534156-03qv4zb",
         "title": "The \"Three Good Things\" Technique",
         "titleUa": "Техніка \"три хороші речі\"",
         "tasks": [
@@ -1953,7 +1953,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154395-apt07dj",
+        "id": "1772540534156-q0xbaq1",
         "title": "When Professional Help Is Needed",
         "titleUa": "Коли потрібна професійна допомога",
         "tasks": [
@@ -2059,7 +2059,7 @@ export const ROLES: Role[] = [
   {
     "slug": "chronic-pain-companion-en",
     "title": "Chronic Pain Companion (EN)",
-    "titleUa": "Супутник при хронічному болю",
+    "titleUa": "Chronic Pain Companion",
     "category": "health",
     "categorySlug": "health",
     "archetype": "healer",
@@ -2190,7 +2190,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never deny or minimize the reality of pain. Emphasize that the goal is not to eliminate pain but to reduce its impact on quality of life. Always encourage consultation with medical professionals for treatment decisions.",
     "sessions": [
       {
-        "id": "1772541154402-0gi80v8",
+        "id": "1772540534161-ax2n9cv",
         "title": "Understanding Your Pain",
         "titleUa": "Розуміння свого болю",
         "tasks": [
@@ -2207,7 +2207,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154402-xv7xmkp",
+        "id": "1772540534161-fsha51k",
         "title": "Pain and Emotions — How Are They Connected?",
         "titleUa": "Біль і емоції — як вони пов'язані?",
         "tasks": [
@@ -2226,7 +2226,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154402-3ez4ca4",
+        "id": "1772540534161-16hgqrn",
         "title": "Getting to Know Your Emotions",
         "titleUa": "Знайомство з емоціями",
         "tasks": [
@@ -2245,7 +2245,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154402-9lw7qm6",
+        "id": "1772540534161-2lwkcgt",
         "title": "Reducing Negative Emotions",
         "titleUa": "Зниження негативних емоцій",
         "tasks": [
@@ -2262,7 +2262,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154402-prbav4v",
+        "id": "1772540534161-mtmt5dn",
         "title": "Enhancing Positive Emotions",
         "titleUa": "Посилення позитивних емоцій",
         "tasks": [
@@ -2281,7 +2281,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154402-d224u3r",
+        "id": "1772540534161-n19rl17",
         "title": "Catastrophizing — The Main Enemy",
         "titleUa": "Катастрофізація — головний ворог",
         "tasks": [
@@ -2298,7 +2298,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154402-tek96di",
+        "id": "1772540534161-m9uilwj",
         "title": "Acceptance — Not Surrender, But Collaboration with Pain",
         "titleUa": "Прийняття — не здача, а співпраця з болем",
         "tasks": [
@@ -2317,7 +2317,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154402-nnf66cr",
+        "id": "1772540534161-dw1nt0t",
         "title": "The Body — Not an Enemy",
         "titleUa": "Тіло — не ворог",
         "tasks": [
@@ -2332,7 +2332,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154402-3ax7490",
+        "id": "1772540534161-2mmkayt",
         "title": "Energy — How Not to Burn Out",
         "titleUa": "Енергія — як не вигоріти",
         "tasks": [
@@ -2347,7 +2347,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154402-yznzjng",
+        "id": "1772540534161-zy4h658",
         "title": "Meaning and Values Despite Pain",
         "titleUa": "Сенс і цінності попри біль",
         "tasks": [
@@ -2453,7 +2453,7 @@ export const ROLES: Role[] = [
   {
     "slug": "community-connection-builder-en",
     "title": "Community Connection Builder (EN)",
-    "titleUa": "Будівничий спільноти - соціальні зв'язки",
+    "titleUa": "Community Connection Builder",
     "category": "relationships",
     "categorySlug": "relationships",
     "archetype": "explorer",
@@ -2583,7 +2583,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never shame for feeling lonely. Validate that building connections takes time and courage. Focus on quality over quantity of relationships.",
     "sessions": [
       {
-        "id": "1772541154407-udt0hdo",
+        "id": "1772540534169-q8omkpf",
         "title": "Understanding Your Loneliness",
         "titleUa": "Розуміння своєї самотності",
         "tasks": [
@@ -2600,7 +2600,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154407-s2v9bih",
+        "id": "1772540534169-dorypqc",
         "title": "Overcoming Negative Thinking",
         "titleUa": "Подолання негативного мислення",
         "tasks": [
@@ -2617,7 +2617,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154407-v8if2xz",
+        "id": "1772540534169-nwipc29",
         "title": "Small Steps — Microconnections",
         "titleUa": "Маленькі кроки — мікрозв'язки",
         "tasks": [
@@ -2634,7 +2634,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154407-xn7418u",
+        "id": "1772540534169-mzh816q",
         "title": "Exploring Interests",
         "titleUa": "Дослідження інтересів",
         "tasks": [
@@ -2651,7 +2651,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154407-8lbgcjp",
+        "id": "1772540534169-xvwd5n6",
         "title": "Volunteering as a Path to Community",
         "titleUa": "Волонтерство як шлях до спільноти",
         "tasks": [
@@ -2668,7 +2668,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154407-22tcj5l",
+        "id": "1772540534169-ba3s0nd",
         "title": "Meet-up Groups — Connecting Through Interests",
         "titleUa": "Meet-up групи — знайомства за інтересами",
         "tasks": [
@@ -2685,7 +2685,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154407-ifuybk1",
+        "id": "1772540534169-numwp7r",
         "title": "Reconnecting with Old Contacts",
         "titleUa": "Відновлення старих зв'язків",
         "tasks": [
@@ -2702,7 +2702,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154407-7pek8i7",
+        "id": "1772540534169-2s77g5d",
         "title": "Social Anxiety — How to Be in New Places",
         "titleUa": "Соціальна тривога — як бути в нових місцях",
         "tasks": [
@@ -2717,7 +2717,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154407-81ma1y7",
+        "id": "1772540534169-am47xua",
         "title": "The 50-Hour Rule",
         "titleUa": "Правило 50 годин",
         "tasks": [
@@ -2734,7 +2734,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154407-x3mgt4x",
+        "id": "1772540534169-62xyixl",
         "title": "Online Communities as a Bridge",
         "titleUa": "Онлайн-спільноти як місток",
         "tasks": [
@@ -2751,7 +2751,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154407-8dt0525",
+        "id": "1772540534169-l8wq2yu",
         "title": "Quality, Not Quantity",
         "titleUa": "Якість, а не кількість",
         "tasks": [
@@ -2768,7 +2768,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154407-bfbnjm8",
+        "id": "1772540534169-hps10dj",
         "title": "Summary — I'm No Longer Alone",
         "titleUa": "Підсумок — я вже не самотній(я)",
         "tasks": [
@@ -2876,7 +2876,7 @@ export const ROLES: Role[] = [
   {
     "slug": "daily-life-reset-companion-en",
     "title": "Daily Life Reset Companion (EN)",
-    "titleUa": "Супутник перезавантаження життя",
+    "titleUa": "Daily Life Reset Companion",
     "category": "daily",
     "categorySlug": "daily",
     "archetype": "guardian",
@@ -3008,7 +3008,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never shame for clutter — it's often a symptom, not a cause. Focus on restoring a sense of control, not achieving perfection. Celebrate every small step.",
     "sessions": [
       {
-        "id": "1772541154411-wo5yjrr",
+        "id": "1772540534174-7ish3qf",
         "title": "Meeting — Where Am I Now?",
         "titleUa": "Зустріч — де я зараз?",
         "tasks": [
@@ -3025,7 +3025,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154411-7gex72x",
+        "id": "1772540534174-8g6xxwo",
         "title": "One-Touch Rule",
         "titleUa": "Правило однієї дії (One-Touch Rule)",
         "tasks": [
@@ -3042,7 +3042,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154411-h6ddf6u",
+        "id": "1772540534174-8swxoql",
         "title": "5-Minute Reset",
         "titleUa": "5-хвилинне перезавантаження",
         "tasks": [
@@ -3059,7 +3059,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154411-kr694y5",
+        "id": "1772540534174-0wpv11y",
         "title": "Mount Vernon Method",
         "titleUa": "Метод Маунт-Вернон (Mount Vernon Method)",
         "tasks": [
@@ -3076,7 +3076,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154411-f93schy",
+        "id": "1772540534174-ntnmko9",
         "title": "Creating Drop Zones",
         "titleUa": "Створення \"зон скидання\" (Drop Zones)",
         "tasks": [
@@ -3093,7 +3093,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154411-z7px2ea",
+        "id": "1772540534174-f0uzjno",
         "title": "Morning Ritual (5 Minutes)",
         "titleUa": "Ранковий ритуал (5 хвилин)",
         "tasks": [
@@ -3110,7 +3110,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154411-jxymoqh",
+        "id": "1772540534174-s6t8seu",
         "title": "\"Task Menu\" Instead of To-Do List",
         "titleUa": "\"Меню справ\" замість списку обов'язків",
         "tasks": [
@@ -3127,7 +3127,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154411-0a0jxk2",
+        "id": "1772540534174-wqksth4",
         "title": "Evening Ritual (5 Minutes)",
         "titleUa": "Вечірній ритуал (5 хвилин)",
         "tasks": [
@@ -3144,7 +3144,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154411-w00xfp4",
+        "id": "1772540534174-29vq4jh",
         "title": "Breathing and Pauses During the Day",
         "titleUa": "Дихання і паузи серед дня",
         "tasks": [
@@ -3161,7 +3161,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154411-pl04bpe",
+        "id": "1772540534174-uw9ggbt",
         "title": "Working with \"Hot Spots\"",
         "titleUa": "Робота з \"гарячими точками\"",
         "tasks": [
@@ -3176,7 +3176,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154411-w78jmo4",
+        "id": "1772540534174-21k7oig",
         "title": "Small Victories",
         "titleUa": "Маленькі перемоги",
         "tasks": [
@@ -3191,7 +3191,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154411-ebkyokk",
+        "id": "1772540534174-hyldh71",
         "title": "Summary — I Control More Than I Thought",
         "titleUa": "Підсумок — я контролюю більше, ніж здавалося",
         "tasks": [
@@ -3298,7 +3298,7 @@ export const ROLES: Role[] = [
   {
     "slug": "digital-safety-privacy-guide-en",
     "title": "Digital Safety & Privacy Guide (EN)",
-    "titleUa": "Гід з цифрової безпеки та приватності",
+    "titleUa": "Digital Safety & Privacy Guide",
     "category": "technology",
     "categorySlug": "technology",
     "archetype": "guardian",
@@ -3431,7 +3431,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never shame for past security mistakes. Focus on progress, not perfection. Always verify recommendations with trusted sources. Adapt advice to Ukrainian wartime context.",
     "sessions": [
       {
-        "id": "1772541154418-7ijq86n",
+        "id": "1772540534178-8eaz4iv",
         "title": "My Digital Shadow — What Do They Know About Me?",
         "titleUa": "Моя цифрова тінь — що про мене знають?",
         "tasks": [
@@ -3450,7 +3450,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154418-jdwksnm",
+        "id": "1772540534178-ixbz0vv",
         "title": "Passwords — The First Line of Defense",
         "titleUa": "Паролі — перший рубіж захисту",
         "tasks": [
@@ -3470,7 +3470,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154418-nzrlly2",
+        "id": "1772540534178-6437ttj",
         "title": "Two-Factor Authentication (2FA) — The Second Lock",
         "titleUa": "Двофакторна автентифікація (2FA) — другий замок",
         "tasks": [
@@ -3489,7 +3489,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154418-6rp8n1f",
+        "id": "1772540534178-go35c3t",
         "title": "Phishing — How Not to Get Fooled",
         "titleUa": "Фішинг — як не дати себе обдурити",
         "tasks": [
@@ -3506,7 +3506,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154418-dgd1k5w",
+        "id": "1772540534178-s70lsna",
         "title": "Social Media — What Can Others See?",
         "titleUa": "Соціальні мережі — що можуть побачити інші?",
         "tasks": [
@@ -3525,7 +3525,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154418-q2qpcpz",
+        "id": "1772540534178-in1zqva",
         "title": "Mobile Phone Security",
         "titleUa": "Безпека мобільного телефону",
         "tasks": [
@@ -3542,7 +3542,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154418-woyk09b",
+        "id": "1772540534178-i3hwve8",
         "title": "Safe Wi-Fi and VPN",
         "titleUa": "Безпечний Wi-Fi та VPN",
         "tasks": [
@@ -3560,7 +3560,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154418-otshnmv",
+        "id": "1772540534178-xu0azld",
         "title": "Backups — The 3-2-1 Rule",
         "titleUa": "Резервне копіювання — правило 3-2-1",
         "tasks": [
@@ -3578,7 +3578,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154418-dqxy47i",
+        "id": "1772540534178-4p9c2oq",
         "title": "Checking for Data Breaches",
         "titleUa": "Перевірка витоків даних",
         "tasks": [
@@ -3595,7 +3595,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154418-vesawvm",
+        "id": "1772540534178-08k02h1",
         "title": "Secure Communication in Wartime",
         "titleUa": "Безпечна комунікація в умовах війни",
         "tasks": [
@@ -3612,7 +3612,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154418-4umbyx9",
+        "id": "1772540534178-ewwautx",
         "title": "What to Do If Your Account Is Hacked?",
         "titleUa": "Що робити, якщо акаунт зламали?",
         "tasks": [
@@ -3626,7 +3626,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154418-trausdr",
+        "id": "1772540534178-jf0lcjp",
         "title": "Summary — My Digital Hygiene",
         "titleUa": "Підсумок — моя цифрова гігієна",
         "tasks": [
@@ -3733,7 +3733,7 @@ export const ROLES: Role[] = [
   {
     "slug": "energy-recovery-strategist-en",
     "title": "Energy Recovery Strategist (EN)",
-    "titleUa": "Стратег відновлення енергії",
+    "titleUa": "Energy Recovery Strategist",
     "category": "productivity",
     "categorySlug": "productivity",
     "archetype": "analyst",
@@ -3863,7 +3863,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never shame for low energy — it's a signal, not a weakness. Focus on sustainable practices, not quick fixes. Recovery is a skill that can be learned.",
     "sessions": [
       {
-        "id": "1772541154423-4nb2oh4",
+        "id": "1772540534184-3x3mvt8",
         "title": "Diagnosis — Where Does My Energy Go?",
         "titleUa": "Діагностика — куди зникає моя енергія?",
         "tasks": [
@@ -3880,7 +3880,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154423-oa27ne4",
+        "id": "1772540534184-ehdnjjp",
         "title": "Energy Audit — A Week of Observation",
         "titleUa": "Енергетичний аудит — тиждень спостережень",
         "tasks": [
@@ -3897,7 +3897,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154423-d58zbpm",
+        "id": "1772540534184-a3fz3oa",
         "title": "Energy Audit Review",
         "titleUa": "Розбір енергетичного аудиту",
         "tasks": [
@@ -3912,7 +3912,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154423-b2c2eo0",
+        "id": "1772540534184-czxphrw",
         "title": "Aligning with Natural Rhythms",
         "titleUa": "Узгодження з природними ритмами",
         "tasks": [
@@ -3931,7 +3931,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154423-xxtscuh",
+        "id": "1772540534184-aesmb8q",
         "title": "The Power of Micro-Breaks",
         "titleUa": "Сила мікроперерв",
         "tasks": [
@@ -3948,7 +3948,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154423-3e6zqup",
+        "id": "1772540534184-z2cr7f2",
         "title": "\"Energy Snacks\" — Movement Instead of Sugar",
         "titleUa": "\"Енергетичні снеки\" — рух замість цукру",
         "tasks": [
@@ -3965,7 +3965,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154423-4dkk49o",
+        "id": "1772540534184-lauxrnu",
         "title": "Breathing for the Nervous System",
         "titleUa": "Дихання для нервової системи",
         "tasks": [
@@ -3982,7 +3982,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154423-cc2e619",
+        "id": "1772540534184-sirj6hf",
         "title": "Recovery Breaks After Exertion",
         "titleUa": "Відновлювальні перерви після навантажень",
         "tasks": [
@@ -3999,7 +3999,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154423-qascxq5",
+        "id": "1772540534184-okdh3s1",
         "title": "Working with \"Hidden\" Drainers",
         "titleUa": "Робота з \"прихованими\" виснажувачами",
         "tasks": [
@@ -4014,7 +4014,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154423-xfe189y",
+        "id": "1772540534184-dypg0y8",
         "title": "Spiritual Energy — Meaning and Values",
         "titleUa": "Духовна енергія — сенс і цінності",
         "tasks": [
@@ -4031,7 +4031,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154423-9fr48s5",
+        "id": "1772540534184-inf73dz",
         "title": "Sustainable Rituals Instead of \"Detoxes\"",
         "titleUa": "Сталі ритуали замість \"детоксів\"",
         "tasks": [
@@ -4050,7 +4050,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154423-n8iyl0o",
+        "id": "1772540534184-6g5bp0y",
         "title": "Summary — A New Energy Map",
         "titleUa": "Підсумок — нова енергетична карта",
         "tasks": [
@@ -4158,7 +4158,7 @@ export const ROLES: Role[] = [
   {
     "slug": "family-stress-mediator-en",
     "title": "Family Stress Mediator (EN)",
-    "titleUa": "Медіатор сімейного стресу",
+    "titleUa": "Family Stress Mediator",
     "category": "relationships",
     "categorySlug": "relationships",
     "archetype": "mentor",
@@ -4281,7 +4281,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never take sides. Focus on communication patterns, not on who is right or wrong. Emphasize that all feelings are valid, but not all behaviors are helpful. Refer to professional family therapy for deep-rooted issues.",
     "sessions": [
       {
-        "id": "1772541154428-q0ybdu8",
+        "id": "1772540534189-pgp8y83",
         "title": "Understanding Conflict",
         "titleUa": "Розуміння конфлікту",
         "tasks": [
@@ -4298,7 +4298,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154428-b4mujna",
+        "id": "1772540534189-9fl3bc7",
         "title": "Mastering \"I-Statements\"",
         "titleUa": "Освоєння «Я-повідомлень»",
         "tasks": [
@@ -4315,7 +4315,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154428-ujujx0m",
+        "id": "1772540534189-f9alu90",
         "title": "How to Argue Constructively",
         "titleUa": "Як правильно сваритися (конструктивний конфлікт)",
         "tasks": [
@@ -4332,7 +4332,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154428-g5iglbv",
+        "id": "1772540534189-6m0eial",
         "title": "Reconciliation After an Argument",
         "titleUa": "Примирення після сварки",
         "tasks": [
@@ -4349,7 +4349,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154428-s98v0js",
+        "id": "1772540534189-utedrcz",
         "title": "Personal Space in Close Quarters",
         "titleUa": "Особистий простір у тісноті",
         "tasks": [
@@ -4366,7 +4366,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154428-dmkx9ml",
+        "id": "1772540534189-yx8pk0l",
         "title": "Family Meetings",
         "titleUa": "Сімейні збори",
         "tasks": [
@@ -4464,7 +4464,7 @@ export const ROLES: Role[] = [
   {
     "slug": "financial-crisis-navigator-en",
     "title": "Financial Crisis Navigator (EN)",
-    "titleUa": "Навігатор у фінансовій кризі",
+    "titleUa": "Financial Crisis Navigator",
     "category": "finance",
     "categorySlug": "finance",
     "archetype": "analyst",
@@ -4592,7 +4592,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never shame or blame for financial situation. Focus on what can be done now, not on past mistakes. Refer to licensed financial advisors for complex investment or legal matters.",
     "sessions": [
       {
-        "id": "1772541154436-uutot31",
+        "id": "1772540534193-1zhzb8y",
         "title": "Stop the Panic — First Step",
         "titleUa": "Зупинити паніку — перший крок",
         "tasks": [
@@ -4611,7 +4611,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154436-njhojbd",
+        "id": "1772540534193-q4dlqe3",
         "title": "Circle of Control",
         "titleUa": "Коло контролю",
         "tasks": [
@@ -4628,7 +4628,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154436-jk1s4eb",
+        "id": "1772540534193-hv63p22",
         "title": "Four Walls (Expense Prioritization)",
         "titleUa": "Чотири стіни (пріоритизація витрат)",
         "tasks": [
@@ -4645,7 +4645,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154436-ctqam8f",
+        "id": "1772540534193-vvkovcu",
         "title": "Crisis Budget",
         "titleUa": "Бюджет на кризовий період",
         "tasks": [
@@ -4664,7 +4664,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154436-8i37lqn",
+        "id": "1772540534193-s48tp4n",
         "title": "Debt — Don't Stay Silent, Communicate",
         "titleUa": "Борги — не мовчати, а говорити",
         "tasks": [
@@ -4681,7 +4681,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154436-y8xwjiq",
+        "id": "1772540534193-xk3m2nv",
         "title": "Where to Find Resources",
         "titleUa": "Де шукати ресурси",
         "tasks": [
@@ -4700,7 +4700,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154436-zrvaycp",
+        "id": "1772540534193-b85au0c",
         "title": "Small Wins (Even $5)",
         "titleUa": "Маленькі перемоги (навіть 50 гривень)",
         "tasks": [
@@ -4715,7 +4715,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154436-559fu2q",
+        "id": "1772540534193-aifmjvc",
         "title": "Anxiety and Money",
         "titleUa": "Тривога і гроші",
         "tasks": [
@@ -4732,7 +4732,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154436-sy3128g",
+        "id": "1772540534193-wnnhvbr",
         "title": "Fear of the Future",
         "titleUa": "Страх майбутнього",
         "tasks": [
@@ -4751,7 +4751,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154436-3fo3cxm",
+        "id": "1772540534193-x2ci0sl",
         "title": "Three-Layer Financial Security",
         "titleUa": "Тришарова фінансова безпека",
         "tasks": [
@@ -4855,7 +4855,7 @@ export const ROLES: Role[] = [
   {
     "slug": "grief-companion-en",
     "title": "Grief Companion (EN)",
-    "titleUa": "Супутник у горі",
+    "titleUa": "Grief Companion",
     "category": "health",
     "categorySlug": "health",
     "archetype": "healer",
@@ -4974,7 +4974,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "This role accompanies, not treats. Grief has no timeline. Never minimize or compare losses. Always emphasize that all feelings are valid.",
     "sessions": [
       {
-        "id": "1772541154441-wdyah4a",
+        "id": "1772540534199-eli66l0",
         "title": "Being Present (First Contact)",
         "titleUa": "Бути поруч (перший контакт)",
         "tasks": [
@@ -4991,7 +4991,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154441-5e99op1",
+        "id": "1772540534199-g2sk8ou",
         "title": "Introduction to Grief Stages",
         "titleUa": "Знайомство зі стадіями горя",
         "tasks": [
@@ -5008,7 +5008,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154441-19s42r0",
+        "id": "1772540534199-1nlexo1",
         "title": "Remembrance Rituals",
         "titleUa": "Ритуали пам'яті",
         "tasks": [
@@ -5025,7 +5025,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154441-4l1x2pr",
+        "id": "1772540534199-m53pq6f",
         "title": "Self-Care in Grief",
         "titleUa": "Турбота про себе в горі",
         "tasks": [
@@ -5119,7 +5119,7 @@ export const ROLES: Role[] = [
   {
     "slug": "grounding-instructor-en",
     "title": "Grounding Instructor (EN)",
-    "titleUa": "Інструктор заземлення",
+    "titleUa": "Grounding Instructor",
     "category": "health",
     "categorySlug": "health",
     "archetype": "healer",
@@ -5238,7 +5238,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Always recommend professional help for serious mental health concerns. For trauma survivors use caution with breath-holding techniques. Prioritize immediate stabilization over teaching.",
     "sessions": [
       {
-        "id": "1772541154448-ucclrb4",
+        "id": "1772540534204-ropm1wy",
         "title": "Immediate Grounding (Crisis Mode)",
         "titleUa": "Негайне заземлення (кризовий режим)",
         "tasks": [
@@ -5255,7 +5255,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154448-9k1x66c",
+        "id": "1772540534204-9c7fw6b",
         "title": "Building Your Grounding Toolkit",
         "titleUa": "Створення вашого набору інструментів заземлення",
         "tasks": [
@@ -5345,7 +5345,7 @@ export const ROLES: Role[] = [
   {
     "slug": "guilt-self-compassion-guide-en",
     "title": "Guilt & Self-Compassion Guide (EN)",
-    "titleUa": "Гід по почуттю провини та самоспівчутті",
+    "titleUa": "Guilt & Self-Compassion Guide",
     "category": "health",
     "categorySlug": "health",
     "archetype": "healer",
@@ -5468,7 +5468,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never minimize guilt or shame. Always distinguish between what was in person's control and what wasn't. Emphasize that guilt can be a compass pointing to values, not a life sentence.",
     "sessions": [
       {
-        "id": "1772541154454-cols21f",
+        "id": "1772540534210-u46i8n5",
         "title": "Meeting Guilt",
         "titleUa": "Знайомство з провиною",
         "tasks": [
@@ -5485,7 +5485,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154454-y2ecdz5",
+        "id": "1772540534210-ek4x75j",
         "title": "The Stories Guilt Tells",
         "titleUa": "Історії, які розповідає провина",
         "tasks": [
@@ -5502,7 +5502,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154454-nar4u9x",
+        "id": "1772540534210-r74qb8q",
         "title": "Needs and Values Behind Guilt",
         "titleUa": "Потреби та цінності за провиною",
         "tasks": [
@@ -5519,7 +5519,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154454-hc0ns37",
+        "id": "1772540534210-uiy9gvq",
         "title": "What Was Under My Control?",
         "titleUa": "Що під моїм контролем?",
         "tasks": [
@@ -5536,7 +5536,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154454-0svqdz5",
+        "id": "1772540534210-qgmqtfa",
         "title": "Self-Compassion Practices",
         "titleUa": "Практики самоспівчуття",
         "tasks": [
@@ -5553,7 +5553,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154454-6c6r7p9",
+        "id": "1772540534210-6m19ef4",
         "title": "Reframing and Actions",
         "titleUa": "Переосмислення та дії",
         "tasks": [
@@ -5651,7 +5651,7 @@ export const ROLES: Role[] = [
   {
     "slug": "healthy-escapism-curator-en",
     "title": "Healthy Escapism Curator (EN)",
-    "titleUa": "Куратор здорового ескапізму",
+    "titleUa": "Healthy Escapism Curator",
     "category": "entertainment",
     "categorySlug": "entertainment",
     "archetype": "explorer",
@@ -5781,7 +5781,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never judge personal preferences — what works for one may not work for another. Focus on conscious choice and balance. Emphasize that healthy escapism is about returning to reality refreshed, not avoiding it permanently.",
     "sessions": [
       {
-        "id": "1772541154459-feu2300",
+        "id": "1772540534216-4jgwt1d",
         "title": "My Escapism Map",
         "titleUa": "Моя карта ескапізму",
         "tasks": [
@@ -5800,7 +5800,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154459-wwj0p1d",
+        "id": "1772540534216-fbpv8n5",
         "title": "Healthy vs Harmful — Where's the Line?",
         "titleUa": "Здоровий vs шкідливий — де межа?",
         "tasks": [
@@ -5817,7 +5817,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154459-23go0ix",
+        "id": "1772540534216-33pld0y",
         "title": "\"Comfort Blanket\" — Safe Space in the Familiar",
         "titleUa": "\"Ковдра комфорту\" — безпечний простір у знайомому",
         "tasks": [
@@ -5834,7 +5834,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154459-bj1c7q2",
+        "id": "1772540534216-az2obz5",
         "title": "\"Gentle Media\" for Sensitive States",
         "titleUa": "\"М'який контент\" (gentle media) для чутливих станів",
         "tasks": [
@@ -5850,7 +5850,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154459-tt0tdll",
+        "id": "1772540534216-tu2b3l0",
         "title": "Cozy Games",
         "titleUa": "Затишні ігри (cozy games)",
         "tasks": [
@@ -5867,7 +5867,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154459-ftk24l5",
+        "id": "1772540534216-hdyeyc5",
         "title": "Micro-Activities for Quick Reset",
         "titleUa": "Мікро-активності для швидкого перезавантаження",
         "tasks": [
@@ -5882,7 +5882,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154459-lian20z",
+        "id": "1772540534216-12bcxrz",
         "title": "Music and Sounds for Different Moods",
         "titleUa": "Музика та звуки для різних настроїв",
         "tasks": [
@@ -5898,7 +5898,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154459-b9q1sv2",
+        "id": "1772540534216-crwjvvl",
         "title": "Podcasts and Audio — \"The Quiet Neighbor\"",
         "titleUa": "Подкасти та аудіо — \"тихий сусід\"",
         "tasks": [
@@ -5911,7 +5911,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154459-z4aavqk",
+        "id": "1772540534216-g95d5yl",
         "title": "Reading for Recovery",
         "titleUa": "Читання для відновлення",
         "tasks": [
@@ -5926,7 +5926,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154459-edtf2ja",
+        "id": "1772540534216-jcuxjlt",
         "title": "Physical Escapism",
         "titleUa": "Фізичний ескапізм",
         "tasks": [
@@ -5943,7 +5943,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154459-5uz64sy",
+        "id": "1772540534216-97h5oaw",
         "title": "Recognizing \"Red Flags\"",
         "titleUa": "Розпізнавання \"червоних прапорців\"",
         "tasks": [
@@ -5959,7 +5959,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154459-p7fnf56",
+        "id": "1772540534216-nsmwn9c",
         "title": "Summary — My Healthy Escapism System",
         "titleUa": "Підсумок — моя система здорового ескапізму",
         "tasks": [
@@ -6067,7 +6067,7 @@ export const ROLES: Role[] = [
   {
     "slug": "hypervigilance-manager-en",
     "title": "Hypervigilance Manager (EN)",
-    "titleUa": "Менеджер гіперпильності",
+    "titleUa": "Hypervigilance Manager",
     "category": "health",
     "categorySlug": "health",
     "archetype": "healer",
@@ -6195,7 +6195,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never suggest closing eyes or reducing environmental awareness without offering alternatives. Always validate that hypervigilance served a protective purpose. Emphasize that safety is learned through experience, not just logic.",
     "sessions": [
       {
-        "id": "1772541154466-xu2vddf",
+        "id": "1772540534225-q2jvrfj",
         "title": "Understanding Hypervigilance",
         "titleUa": "Розуміння гіперпильності",
         "tasks": [
@@ -6212,7 +6212,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154466-uedtt8y",
+        "id": "1772540534225-vwcso1r",
         "title": "Recognizing Safe Environments",
         "titleUa": "Розпізнавання безпечного середовища",
         "tasks": [
@@ -6229,7 +6229,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154466-sw1kua5",
+        "id": "1772540534225-gnlvp6j",
         "title": "5-4-3-2-1 Technique (Adapted)",
         "titleUa": "Техніка 5-4-3-2-1 (адаптована)",
         "tasks": [
@@ -6246,7 +6246,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154466-8jrrwsi",
+        "id": "1772540534225-3jpq70f",
         "title": "Breathing for Nervous System Regulation",
         "titleUa": "Дихання для регуляції нервової системи",
         "tasks": [
@@ -6263,7 +6263,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154466-ttsjtmw",
+        "id": "1772540534225-9z85q2t",
         "title": "Attention Shifting (Situational Refocusing)",
         "titleUa": "Перемикання уваги (ситуативне перефокусування)",
         "tasks": [
@@ -6278,7 +6278,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154466-m646pyg",
+        "id": "1772540534225-45cpkcr",
         "title": "Safety Kit",
         "titleUa": "Набір безпеки (Safety Kit)",
         "tasks": [
@@ -6293,7 +6293,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154466-mm3jkmu",
+        "id": "1772540534225-dy8qsbh",
         "title": "Working with Triggers (Sounds, Crowds, Enclosed Spaces)",
         "titleUa": "Робота з тригерами (звуки, натовп, замкнені простори)",
         "tasks": [
@@ -6310,7 +6310,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154466-0ox82pr",
+        "id": "1772540534225-3kd1b81",
         "title": "The Body as an Ally (Physical Activity)",
         "titleUa": "Тіло — союзник (фізична активність)",
         "tasks": [
@@ -6327,7 +6327,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154466-qnx15pw",
+        "id": "1772540534225-a1xqaue",
         "title": "Sleep Hygiene with Hypervigilance",
         "titleUa": "Гігієна сну при гіперпильності",
         "tasks": [
@@ -6342,7 +6342,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154466-a5gf6p8",
+        "id": "1772540534225-bx766it",
         "title": "Integration and Support",
         "titleUa": "Інтеграція та підтримка",
         "tasks": [
@@ -6450,7 +6450,7 @@ export const ROLES: Role[] = [
   {
     "slug": "income-recovery-planner-en",
     "title": "Income Recovery Planner (EN)",
-    "titleUa": "Планувальник відновлення доходу",
+    "titleUa": "Income Recovery Planner",
     "category": "finance",
     "categorySlug": "finance",
     "archetype": "analyst",
@@ -6579,7 +6579,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never shame for financial situation. Focus on what CAN be done, not on past mistakes. Provide realistic, actionable steps based on current Ukrainian context.",
     "sessions": [
       {
-        "id": "1772541154471-tn9rz54",
+        "id": "1772540534229-nsrowqg",
         "title": "Stop and Acknowledge",
         "titleUa": "Зупинитися і визнати",
         "tasks": [
@@ -6596,7 +6596,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154471-0dtcuh7",
+        "id": "1772540534229-2n5wp7n",
         "title": "Audit — What Do You Have?",
         "titleUa": "Аудит — що в тебе є?",
         "tasks": [
@@ -6613,7 +6613,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154471-yupdvag",
+        "id": "1772540534229-uiplala",
         "title": "Quick Formats — What Can Be Done Right Now?",
         "titleUa": "Швидкі формати — що можна зробити вже зараз?",
         "tasks": [
@@ -6630,7 +6630,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154471-quiamqe",
+        "id": "1772540534229-elnri8s",
         "title": "Government Support — What's Available?",
         "titleUa": "Державна підтримка — що доступно?",
         "tasks": [
@@ -6647,7 +6647,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154471-fvstv20",
+        "id": "1772540534229-43u10ro",
         "title": "Crisis Budget",
         "titleUa": "Бюджет на кризовий період",
         "tasks": [
@@ -6664,7 +6664,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154471-k0evhya",
+        "id": "1772540534229-59fak8p",
         "title": "Debt — Don't Hide, Communicate",
         "titleUa": "Борги — не ховатися, а говорити",
         "tasks": [
@@ -6681,7 +6681,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154471-w9ylaj1",
+        "id": "1772540534229-9lk5et7",
         "title": "Networking — How to Find Work Through People",
         "titleUa": "Мережування — як знайти роботу через людей",
         "tasks": [
@@ -6698,7 +6698,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154471-1uqk16g",
+        "id": "1772540534229-m31kqgm",
         "title": "Short-Term Strategy (3 Months)",
         "titleUa": "Короткострокова стратегія (3 місяці)",
         "tasks": [
@@ -6715,7 +6715,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154471-l4mgbo4",
+        "id": "1772540534229-ftsxfi6",
         "title": "Diversification — Don't Put All Eggs in One Basket",
         "titleUa": "Диверсифікація — не класти всі яйця в один кошик",
         "tasks": [
@@ -6732,7 +6732,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154471-c4zqq3u",
+        "id": "1772540534230-wz3smr0",
         "title": "Emergency Fund — Safety Cushion",
         "titleUa": "Екстрений фонд — подушка безпеки",
         "tasks": [
@@ -6749,7 +6749,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154471-4hezbka",
+        "id": "1772540534230-y4q95eb",
         "title": "Long-Term Strategy (1 Year+)",
         "titleUa": "Довгострокова стратегія (1 рік+)",
         "tasks": [
@@ -6766,7 +6766,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154471-n2w4xau",
+        "id": "1772540534230-w5m7io7",
         "title": "Summary — I'm Not Where I Was",
         "titleUa": "Підсумок — я вже не там, де був",
         "tasks": [
@@ -6874,7 +6874,7 @@ export const ROLES: Role[] = [
   {
     "slug": "long-distance-relationship-sustainer-en",
     "title": "Long-Distance Relationship Sustainer (EN)",
-    "titleUa": "Підтримка відносин на відстані",
+    "titleUa": "Long-Distance Relationship Sustainer",
     "category": "relationships",
     "categorySlug": "relationships",
     "archetype": "mentor",
@@ -7004,7 +7004,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never minimize the pain of separation. Validate that both partners may have different needs for communication and connection. Emphasize that distance can be a catalyst for deeper emotional intimacy if navigated well.",
     "sessions": [
       {
-        "id": "1772541154475-qnasryi",
+        "id": "1772540534235-4mj2ls6",
         "title": "Assessment — Where Are We Now?",
         "titleUa": "Діагностика — де ми зараз?",
         "tasks": [
@@ -7021,7 +7021,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154475-rphn560",
+        "id": "1772540534235-lr1xwef",
         "title": "Shared Vision of the Future",
         "titleUa": "Спільне бачення майбутнього",
         "tasks": [
@@ -7038,7 +7038,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154475-3tjnxl0",
+        "id": "1772540534235-tnhl25n",
         "title": "Time Together — The Art of Being Present",
         "titleUa": "Час разом — мистецтво бути поруч",
         "tasks": [
@@ -7057,7 +7057,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154475-5qeq3ug",
+        "id": "1772540534235-hmu0e90",
         "title": "Before Separation — How to Get Through Goodbyes",
         "titleUa": "Перед розлукою — як пережити прощання",
         "tasks": [
@@ -7076,7 +7076,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154475-wp8jz13",
+        "id": "1772540534235-63s4d3v",
         "title": "Time Apart — Connection Rituals",
         "titleUa": "Час нарізно — ритуали зв'язку",
         "tasks": [
@@ -7091,7 +7091,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154475-0jkvdfi",
+        "id": "1772540534235-bu2u0gw",
         "title": "Communication — Depth vs Frequency",
         "titleUa": "Комунікація — глибина vs частота",
         "tasks": [
@@ -7108,7 +7108,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154475-oevjc01",
+        "id": "1772540534235-p5679yh",
         "title": "Jealousy and Insecurity",
         "titleUa": "Ревнощі та невпевненість",
         "tasks": [
@@ -7129,7 +7129,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154475-45p55pz",
+        "id": "1772540534235-kvt3mn6",
         "title": "Sexual Intimacy at a Distance",
         "titleUa": "Сексуальна інтимність на відстані",
         "tasks": [
@@ -7146,7 +7146,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154475-kxtfi6w",
+        "id": "1772540534235-yi4h0h3",
         "title": "Individual Life — Anchor of Stability",
         "titleUa": "Індивідуальне життя — якір стабільності",
         "tasks": [
@@ -7165,7 +7165,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154475-o2lpkce",
+        "id": "1772540534235-tvhrf5s",
         "title": "Summary and Maintenance Plan",
         "titleUa": "Підсумок і план підтримки",
         "tasks": [
@@ -7271,7 +7271,7 @@ export const ROLES: Role[] = [
   {
     "slug": "meaning-making-guide-after-loss-en",
     "title": "Meaning-Making Guide (After Loss) (EN)",
-    "titleUa": "Гід пошуку сенсу (Після втрати)",
+    "titleUa": "Meaning-Making Guide (After Loss)",
     "category": "development",
     "categorySlug": "development",
     "archetype": "scientist",
@@ -7399,7 +7399,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never rush the search for meaning — it unfolds in its own time. Remember that meaning is found, not invented. The goal is not to \"fix\" the grief but to help the person live with it in a way that honors their loss and their values.",
     "sessions": [
       {
-        "id": "1772541154483-1kt97sj",
+        "id": "1772540534242-c8qjb5l",
         "title": "Space for Pain and Storytelling",
         "titleUa": "Простір для болю і розповіді",
         "tasks": [
@@ -7416,7 +7416,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154483-0gtxrsa",
+        "id": "1772540534242-uq2kv60",
         "title": "When the World Falls Apart",
         "titleUa": "Коли світ розпадається",
         "tasks": [
@@ -7433,7 +7433,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154483-di2y01h",
+        "id": "1772540534242-k5escsf",
         "title": "Three Paths to Meaning (Frankl)",
         "titleUa": "Три шляхи до сенсу (Франкл)",
         "tasks": [
@@ -7448,7 +7448,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154483-cgq2k5f",
+        "id": "1772540534242-2hxhph0",
         "title": "Attitude Toward Suffering",
         "titleUa": "Ставлення до страждання",
         "tasks": [
@@ -7465,7 +7465,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154483-m484lfn",
+        "id": "1772540534242-qbmr7kd",
         "title": "Sense-Making — Why Did This Happen?",
         "titleUa": "Осмислення (sense-making) — чому це сталося?",
         "tasks": [
@@ -7482,7 +7482,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154483-vsc451y",
+        "id": "1772540534242-rrtnyi1",
         "title": "Benefit-Finding — What Has Changed?",
         "titleUa": "Пошук користі (benefit-finding) — що змінилося?",
         "tasks": [
@@ -7499,7 +7499,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154483-d3sl9ff",
+        "id": "1772540534242-hnhgb4p",
         "title": "The Story Continues",
         "titleUa": "Історія, яка триває",
         "tasks": [
@@ -7516,7 +7516,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154483-qqkjm8m",
+        "id": "1772540534242-ufbsjot",
         "title": "Values as a Compass",
         "titleUa": "Цінності як компас",
         "tasks": [
@@ -7533,7 +7533,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154483-cooup9o",
+        "id": "1772540534242-bdznvww",
         "title": "New Rituals",
         "titleUa": "Нові ритуали",
         "tasks": [
@@ -7550,7 +7550,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154483-luokeym",
+        "id": "1772540534242-s12fufr",
         "title": "Life After — Not \"Forgetting,\" But \"Carrying Forward\"",
         "titleUa": "Життя після — не \"забути\", а \"нести далі\"",
         "tasks": [
@@ -7656,7 +7656,7 @@ export const ROLES: Role[] = [
   {
     "slug": "micro-business-launch-guide-en",
     "title": "Micro-Business Launch Guide (EN)",
-    "titleUa": "Гід запуску мікробізнесу",
+    "titleUa": "Micro-Business Launch Guide",
     "category": "finance",
     "categorySlug": "finance",
     "archetype": "analyst",
@@ -7784,7 +7784,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never recommend investments that could put the person at financial risk. Focus on leveraging existing skills and free resources. Encourage testing before scaling.",
     "sessions": [
       {
-        "id": "1772541154487-zl8ifm5",
+        "id": "1772540534247-mi3lxuh",
         "title": "What Can I Do and What Do I Love?",
         "titleUa": "Що я вмію і що люблю?",
         "tasks": [
@@ -7801,7 +7801,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154487-hzydlx5",
+        "id": "1772540534247-aj6ix0a",
         "title": "Which Business Models Suit You?",
         "titleUa": "Які бізнес-моделі підходять саме тобі?",
         "tasks": [
@@ -7816,7 +7816,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154487-40po1z6",
+        "id": "1772540534247-nde2y16",
         "title": "Is There Demand?",
         "titleUa": "Чи є на це попит?",
         "tasks": [
@@ -7833,7 +7833,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154487-cy26wjj",
+        "id": "1772540534247-h0xag2n",
         "title": "Create a \"Kwork\" — Ready-Made Offer",
         "titleUa": "Створюємо \"кворк\" — готову пропозицію",
         "tasks": [
@@ -7852,7 +7852,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154487-1ngdrkk",
+        "id": "1772540534247-q2j5rbs",
         "title": "Additional Options — The Secret to Increasing Profit",
         "titleUa": "Додаткові опції — секрет збільшення прибутку",
         "tasks": [
@@ -7869,7 +7869,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154487-8fdkxu0",
+        "id": "1772540534247-fans91o",
         "title": "Where to Find Clients? (Free Channels)",
         "titleUa": "Де шукати клієнтів? (Безкоштовні канали)",
         "tasks": [
@@ -7888,7 +7888,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154487-dqxlis6",
+        "id": "1772540534247-z624gza",
         "title": "How to Write So They Buy?",
         "titleUa": "Як писати, щоб купували?",
         "tasks": [
@@ -7905,7 +7905,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154487-69222c3",
+        "id": "1772540534247-cgkousu",
         "title": "First Clients — How Not to Be Afraid?",
         "titleUa": "Перші клієнти — як не боятися?",
         "tasks": [
@@ -7922,7 +7922,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154487-wkqj5lz",
+        "id": "1772540534247-dt9b7h3",
         "title": "Reviews — The Freelancer's Currency",
         "titleUa": "Відгуки — валюта фрілансера",
         "tasks": [
@@ -7939,7 +7939,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154487-awx48wb",
+        "id": "1772540534247-aijaek1",
         "title": "Financial Discipline from Day One",
         "titleUa": "Фінансова дисципліна з першого дня",
         "tasks": [
@@ -7956,7 +7956,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154487-nkzd6x5",
+        "id": "1772540534247-h35infa",
         "title": "Scaling — When and How?",
         "titleUa": "Масштабування — коли і як?",
         "tasks": [
@@ -7973,7 +7973,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154487-whezkuh",
+        "id": "1772540534247-1tet2a2",
         "title": "Summary — You're Already on Your Way",
         "titleUa": "Підсумок — ти вже в дорозі",
         "tasks": [
@@ -8079,7 +8079,7 @@ export const ROLES: Role[] = [
   {
     "slug": "moral-injury-companion-en",
     "title": "Moral Injury Companion (EN)",
-    "titleUa": "Супутник моральної травми",
+    "titleUa": "Moral Injury Companion",
     "category": "health",
     "categorySlug": "health",
     "archetype": "healer",
@@ -8210,7 +8210,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never minimize or dismiss moral pain. Distinguish between guilt (I did something bad) and shame (I am bad). Always acknowledge systemic and contextual factors. Moral injury is not a disorder to be cured, but a wound to be tended.",
     "sessions": [
       {
-        "id": "1772541154494-sz8nm37",
+        "id": "1772540534255-rkzvcga",
         "title": "Understanding Moral Injury",
         "titleUa": "Розуміння моральної травми",
         "tasks": [
@@ -8229,7 +8229,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154494-44m2voi",
+        "id": "1772540534255-r71su6k",
         "title": "The Story Without Judgment",
         "titleUa": "Історія без осуду",
         "tasks": [
@@ -8248,7 +8248,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154494-2hvbbf7",
+        "id": "1772540534255-765dsdb",
         "title": "Guilt, Shame, and Their Faces",
         "titleUa": "Провина, сором та їхні обличчя",
         "tasks": [
@@ -8267,7 +8267,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154494-zvjtvx9",
+        "id": "1772540534255-ktamchd",
         "title": "What Was Under Control?",
         "titleUa": "Що було під контролем?",
         "tasks": [
@@ -8286,7 +8286,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154494-fhn40sd",
+        "id": "1772540534255-ual5147",
         "title": "Values as a Compass",
         "titleUa": "Цінності як компас",
         "tasks": [
@@ -8305,7 +8305,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154494-7oxrjef",
+        "id": "1772540534255-lhrwtk1",
         "title": "Loss of Trust",
         "titleUa": "Втрата довіри",
         "tasks": [
@@ -8324,7 +8324,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154494-50is64c",
+        "id": "1772540534255-irpzvpc",
         "title": "Self-Compassion for Moral Pain",
         "titleUa": "Самоспівчуття до морального болю",
         "tasks": [
@@ -8343,7 +8343,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154494-7uvai6v",
+        "id": "1772540534255-2u74lcq",
         "title": "Finding Meaning",
         "titleUa": "Пошук сенсу",
         "tasks": [
@@ -8362,7 +8362,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154494-gw4ut9a",
+        "id": "1772540534255-xe4cgye",
         "title": "Connection with Others",
         "titleUa": "Зв'язок з іншими",
         "tasks": [
@@ -8381,7 +8381,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154494-nvmxxp0",
+        "id": "1772540534255-g9bwpb5",
         "title": "Living with Values Now",
         "titleUa": "Життя з цінностями зараз",
         "tasks": [
@@ -8498,7 +8498,7 @@ export const ROLES: Role[] = [
   {
     "slug": "relocation-adaptation-buddy-en",
     "title": "Relocation & Adaptation Buddy (EN)",
-    "titleUa": "Супутник переїзду та адаптації",
+    "titleUa": "Relocation & Adaptation Buddy",
     "category": "development",
     "categorySlug": "development",
     "archetype": "scientist",
@@ -8619,7 +8619,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never minimize the loss of home. Adaptation takes 1-5 years for social integration and up to 10 years for full psychological integration [citation:3]. Be patient and celebrate small wins.",
     "sessions": [
       {
-        "id": "1772541154500-wbenoc4",
+        "id": "1772540534260-ngzelga",
         "title": "Getting Acquainted and First Steps",
         "titleUa": "Знайомство та перші кроки",
         "tasks": [
@@ -8636,7 +8636,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154500-zwaocqi",
+        "id": "1772540534260-4danbs1",
         "title": "Getting to Know Adaptation Stages",
         "titleUa": "Знайомство з етапами адаптації",
         "tasks": [
@@ -8653,7 +8653,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154500-v0cr5t9",
+        "id": "1772540534260-jrstwfz",
         "title": "Islands of Stability",
         "titleUa": "Острівці стабільності",
         "tasks": [
@@ -8670,7 +8670,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154500-9gvf4zz",
+        "id": "1772540534260-fmquz98",
         "title": "Exploring the Area (Small Steps)",
         "titleUa": "Освоєння території (маленькі кроки)",
         "tasks": [
@@ -8687,7 +8687,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154500-utgz777",
+        "id": "1772540534260-xlnp02o",
         "title": "Social Connections",
         "titleUa": "Соціальні зв'язки",
         "tasks": [
@@ -8706,7 +8706,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154500-qac3429",
+        "id": "1772540534260-lquoqlu",
         "title": "Daily Life and Routine",
         "titleUa": "Побут і рутина",
         "tasks": [
@@ -8804,7 +8804,7 @@ export const ROLES: Role[] = [
   {
     "slug": "remote-work-wellness-coach-en",
     "title": "Remote Work Wellness Coach (EN)",
-    "titleUa": "Коуч благополуччя віддаленої роботи",
+    "titleUa": "Remote Work Wellness Coach",
     "category": "productivity",
     "categorySlug": "productivity",
     "archetype": "mentor",
@@ -8932,7 +8932,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Always consider the safety context — working from a shelter is not the same as working from a home office. Validate that decreased productivity is a normal stress response, not a personal failure.",
     "sessions": [
       {
-        "id": "1772541154505-clf43nx",
+        "id": "1772540534264-6xt2ery",
         "title": "Assessment — Where Am I Now?",
         "titleUa": "Діагностика — де я зараз?",
         "tasks": [
@@ -8949,7 +8949,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154505-2z1bptk",
+        "id": "1772540534264-gwpc73t",
         "title": "Why Boundaries Matter",
         "titleUa": "Чому кордони важливі?",
         "tasks": [
@@ -8966,7 +8966,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154505-loi0nb0",
+        "id": "1772540534264-ddmpfi7",
         "title": "Physical Boundaries in Limited Space",
         "titleUa": "Фізичні кордони в обмеженому просторі",
         "tasks": [
@@ -8981,7 +8981,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154506-v4z5fdx",
+        "id": "1772540534264-xet14ud",
         "title": "Time Boundaries — Schedule and Rituals",
         "titleUa": "Часові кордони — режим і ритуали",
         "tasks": [
@@ -8996,7 +8996,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154506-1feksth",
+        "id": "1772540534264-j3lg4bh",
         "title": "Digital Hygiene",
         "titleUa": "Цифрова гігієна",
         "tasks": [
@@ -9015,7 +9015,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154506-83hgux2",
+        "id": "1772540534264-mcxystc",
         "title": "The Power of Micro-Breaks",
         "titleUa": "Сила мікроперерв",
         "tasks": [
@@ -9032,7 +9032,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154506-k3uj0m5",
+        "id": "1772540534264-4zzw5ih",
         "title": "Combating Isolation",
         "titleUa": "Боротьба з ізоляцією",
         "tasks": [
@@ -9049,7 +9049,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154506-g3v85vk",
+        "id": "1772540534264-de30uqh",
         "title": "Working in Extreme Conditions (Shelter, Disruptions)",
         "titleUa": "Робота в екстремальних умовах (укриття, перебої)",
         "tasks": [
@@ -9068,7 +9068,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154506-9dww34s",
+        "id": "1772540534264-glqgxnp",
         "title": "Communicating with Your Manager About Overload",
         "titleUa": "Комунікація з керівником про перевантаження",
         "tasks": [
@@ -9085,7 +9085,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154506-42q3wo2",
+        "id": "1772540534264-p1lmter",
         "title": "Summary and Maintenance Plan",
         "titleUa": "Підсумок і план підтримки",
         "tasks": [
@@ -9189,7 +9189,7 @@ export const ROLES: Role[] = [
   {
     "slug": "routine-structure-coach-en",
     "title": "Routine & Structure Coach (EN)",
-    "titleUa": "Коуч рутини та структури",
+    "titleUa": "Routine & Structure Coach",
     "category": "productivity",
     "categorySlug": "productivity",
     "archetype": "mentor",
@@ -9311,7 +9311,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Always start smaller than the user thinks they can do. Celebrate effort, not just outcomes. Emphasize that action comes before motivation, not the other way around.",
     "sessions": [
       {
-        "id": "1772541154512-kvft0wo",
+        "id": "1772540534271-9h2otr8",
         "title": "Understanding the Apathy Cycle",
         "titleUa": "Розуміння кола апатії",
         "tasks": [
@@ -9328,7 +9328,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154512-20cltvn",
+        "id": "1772540534271-rqtfg32",
         "title": "Getting to Know Micro-Steps",
         "titleUa": "Знайомство з мікро-кроками",
         "tasks": [
@@ -9345,7 +9345,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154512-96vyn0x",
+        "id": "1772540534271-iwe3jqd",
         "title": "The \"5-Second Rule\"",
         "titleUa": "Техніка \"5 секунд\"",
         "tasks": [
@@ -9362,7 +9362,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154512-3g3no5y",
+        "id": "1772540534271-r0qns98",
         "title": "Types of Activities (Routine, Pleasant, Meaningful)",
         "titleUa": "Типи активностей (рутинні, приємні, значущі)",
         "tasks": [
@@ -9379,7 +9379,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154512-gzh8n3w",
+        "id": "1772540534271-8957uca",
         "title": "Creating a Simple Morning Ritual",
         "titleUa": "Створення найпростішого ранкового ритуалу",
         "tasks": [
@@ -9396,7 +9396,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154512-a1u8qqc",
+        "id": "1772540534271-8vgmx5v",
         "title": "Celebrating Small Victories",
         "titleUa": "Святкування маленьких перемог",
         "tasks": [
@@ -9415,7 +9415,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154512-3u8wwqj",
+        "id": "1772540534271-c4p475u",
         "title": "Working with \"Bad\" Days",
         "titleUa": "Робота з \"поганими\" днями",
         "tasks": [
@@ -9432,7 +9432,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154512-sx7thno",
+        "id": "1772540534271-7zt1cwy",
         "title": "Summary and Next Steps",
         "titleUa": "Підсумок і наступні кроки",
         "tasks": [
@@ -9534,7 +9534,7 @@ export const ROLES: Role[] = [
   {
     "slug": "sleep-hygiene-coach-en",
     "title": "Sleep Hygiene Coach (EN)",
-    "titleUa": "Коуч гігієни сну",
+    "titleUa": "Sleep Hygiene Coach",
     "category": "health",
     "categorySlug": "health",
     "archetype": "scientist",
@@ -9655,7 +9655,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Always acknowledge that perfect sleep may be impossible in wartime — focus on \"better enough\". Prioritize feasible, low-cost interventions. Never recommend sedatives without medical consultation.",
     "sessions": [
       {
-        "id": "1772541154518-727grbc",
+        "id": "1772540534278-ob1ua2p",
         "title": "Assessment and Normalization",
         "titleUa": "Оцінка та нормалізація",
         "tasks": [
@@ -9672,7 +9672,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154518-xb3l1km",
+        "id": "1772540534278-36zz6mf",
         "title": "Environmental Control (Light, Noise, Surface)",
         "titleUa": "Контроль середовища (світло, шум, поверхня)",
         "tasks": [
@@ -9689,7 +9689,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154518-sz63fyo",
+        "id": "1772540534278-48tnbc1",
         "title": "Schedule and Rituals",
         "titleUa": "Режим та ритуали",
         "tasks": [
@@ -9706,7 +9706,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154518-hbhgu3w",
+        "id": "1772540534278-swnb3iw",
         "title": "Relaxation Techniques for Falling Asleep",
         "titleUa": "Техніки релаксації для засинання",
         "tasks": [
@@ -9725,7 +9725,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154518-kb0kkq7",
+        "id": "1772540534278-9777n0y",
         "title": "Working with Anxiety and Nightmares",
         "titleUa": "Робота з тривогою та нічними кошмарами",
         "tasks": [
@@ -9744,7 +9744,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154518-i6yxo6o",
+        "id": "1772540534278-qj3oqki",
         "title": "Body Care (Nutrition, Activity)",
         "titleUa": "Турбота про тіло (харчування, активність)",
         "tasks": [
@@ -9761,7 +9761,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154518-ub46o58",
+        "id": "1772540534278-29pem87",
         "title": "Summary and Support",
         "titleUa": "Підсумок і підтримка",
         "tasks": [
@@ -9861,7 +9861,7 @@ export const ROLES: Role[] = [
   {
     "slug": "triggers-flashbacks-navigator-en",
     "title": "Triggers & Flashbacks Navigator (EN)",
-    "titleUa": "Навігатор тригерів та флешбеків",
+    "titleUa": "Triggers & Flashbacks Navigator",
     "category": "health",
     "categorySlug": "health",
     "archetype": "explorer",
@@ -9987,7 +9987,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Always prioritize immediate safety and stabilization. Never force exposure to triggers. Focus on building agency and predictability.",
     "sessions": [
       {
-        "id": "1772541154522-9b9llxp",
+        "id": "1772540534284-zve2bir",
         "title": "Understanding Flashbacks",
         "titleUa": "Розуміння флешбеків",
         "tasks": [
@@ -10004,7 +10004,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154522-tbp3mu2",
+        "id": "1772540534284-6pm240n",
         "title": "5-4-3-2-1 Grounding Technique",
         "titleUa": "Техніка заземлення 5-4-3-2-1",
         "tasks": [
@@ -10021,7 +10021,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154522-bbujbc9",
+        "id": "1772540534284-llhg4mp",
         "title": "Distinguishing \"Then\" and \"Now\"",
         "titleUa": "Розрізнення \"тоді\" і \"зараз\"",
         "tasks": [
@@ -10038,7 +10038,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154522-u8ukgwq",
+        "id": "1772540534284-yg7piaw",
         "title": "Trigger Map",
         "titleUa": "Карта тригерів",
         "tasks": [
@@ -10055,7 +10055,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154522-1373719",
+        "id": "1772540534284-59lllln",
         "title": "Flashback Action Plan",
         "titleUa": "План дій при флешбеці",
         "tasks": [
@@ -10072,7 +10072,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154522-rq64vcm",
+        "id": "1772540534285-9x15796",
         "title": "Physical Grounding",
         "titleUa": "Фізичне заземлення",
         "tasks": [
@@ -10089,7 +10089,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154522-uexkbbt",
+        "id": "1772540534285-jhzf3bb",
         "title": "Working with Bodily Flashbacks",
         "titleUa": "Робота з тілесними флешбеками",
         "tasks": [
@@ -10106,7 +10106,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154522-awhmdjl",
+        "id": "1772540534285-755o3d7",
         "title": "Safe Place",
         "titleUa": "Безпечне місце",
         "tasks": [
@@ -10125,7 +10125,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154522-gejt77j",
+        "id": "1772540534285-5uywaks",
         "title": "Preparing for Difficult Days",
         "titleUa": "Підготовка до складних днів",
         "tasks": [
@@ -10144,7 +10144,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154522-vzar98o",
+        "id": "1772540534285-5bmicpn",
         "title": "Self-Compassion After Flashbacks",
         "titleUa": "Самоспівчуття після флешбеків",
         "tasks": [
@@ -10252,7 +10252,7 @@ export const ROLES: Role[] = [
   {
     "slug": "veteran-reintegration-coach-en",
     "title": "Veteran Reintegration Coach (EN)",
-    "titleUa": "Коуч реінтеграції ветеранів",
+    "titleUa": "Veteran Reintegration Coach",
     "category": "development",
     "categorySlug": "development",
     "archetype": "leader",
@@ -10384,7 +10384,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Always validate military identity while supporting expansion into civilian identity. Recognize that resilience develops through stages and requires different support at each phase. Never push to \"forget\" the service experience.",
     "sessions": [
       {
-        "id": "1772541154530-3glmvz8",
+        "id": "1772540534290-sj49xlk",
         "title": "Introduction and Transition Map",
         "titleUa": "Знайомство та карта переходу",
         "tasks": [
@@ -10401,7 +10401,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154530-j40obes",
+        "id": "1772540534290-cufagrh",
         "title": "Identity: Military and Civilian",
         "titleUa": "Ідентичність: військовий і цивільний",
         "tasks": [
@@ -10420,7 +10420,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154530-f2lyjex",
+        "id": "1772540534290-dishque",
         "title": "Family: How They Understand Us",
         "titleUa": "Родина: як нас розуміють",
         "tasks": [
@@ -10439,7 +10439,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154530-utz6btn",
+        "id": "1772540534290-hc6uuht",
         "title": "Communicating with Civilians",
         "titleUa": "Спілкування з цивільними",
         "tasks": [
@@ -10458,7 +10458,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154530-rsd9yjo",
+        "id": "1772540534290-mvks6w5",
         "title": "Finding New Purpose (Values, Not Obligation)",
         "titleUa": "Пошук нової мети (цінності, а не обов'язок)",
         "tasks": [
@@ -10475,7 +10475,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154530-e78arx6",
+        "id": "1772540534290-4wb2b5c",
         "title": "Friendship and Comrades",
         "titleUa": "Дружба та побратими",
         "tasks": [
@@ -10494,7 +10494,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154530-pscfelv",
+        "id": "1772540534290-rlqpu1e",
         "title": "Regulation and Flexibility",
         "titleUa": "Регламентація та гнучкість",
         "tasks": [
@@ -10513,7 +10513,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154530-3lls7e1",
+        "id": "1772540534290-pxz7anq",
         "title": "Working with Resentment and Regret",
         "titleUa": "Робота з образою та жалем",
         "tasks": [
@@ -10534,7 +10534,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154530-8sxpsd7",
+        "id": "1772540534290-vtp3tll",
         "title": "Career and Professional Development",
         "titleUa": "Кар'єра та професійний розвиток",
         "tasks": [
@@ -10553,7 +10553,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154530-bl1cvyb",
+        "id": "1772540534290-w0vwjuq",
         "title": "Psychological Support and Self-Help",
         "titleUa": "Психологічна підтримка та самодопомога",
         "tasks": [
@@ -10793,7 +10793,7 @@ export const ROLES: Role[] = [
     "additionalRulesUa": "Never blame parents for their natural reactions to extreme stress. Emphasize that emotional support from parents protects children even when parents themselves are struggling.",
     "sessions": [
       {
-        "id": "1772541154535-ryvj88a",
+        "id": "1772540534294-xgxv45i",
         "title": "Self-Care — Caring for Your Child",
         "titleUa": "Турбота про себе — турбота про дитину",
         "tasks": [
@@ -10812,7 +10812,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154536-hxvonql",
+        "id": "1772540534294-4wmfymx",
         "title": "What's Happening with the Child? (Age-Specific Reactions)",
         "titleUa": "Що відбувається з дитиною? (вікові реакції)",
         "tasks": [
@@ -10831,7 +10831,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154536-1kai0t7",
+        "id": "1772540534294-q1yuqvm",
         "title": "Talking About War (How and When)",
         "titleUa": "Розмови про війну (як і коли)",
         "tasks": [
@@ -10850,7 +10850,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154536-7xty2h0",
+        "id": "1772540534294-jpmki0a",
         "title": "The Power of Routine",
         "titleUa": "Сила рутини",
         "tasks": [
@@ -10869,7 +10869,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154536-ex885h2",
+        "id": "1772540534294-1oyl5i6",
         "title": "Time Together and Physical Closeness",
         "titleUa": "Час разом і фізична близькість",
         "tasks": [
@@ -10886,7 +10886,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154536-fsjvhu1",
+        "id": "1772540534294-y18juqd",
         "title": "Media Hygiene",
         "titleUa": "Медіа-гігієна",
         "tasks": [
@@ -10905,7 +10905,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154536-qhndi7x",
+        "id": "1772540534294-tvt0ywy",
         "title": "When Parents Are in a Stressful Situation",
         "titleUa": "Коли батьки в стресовій ситуації",
         "tasks": [
@@ -10924,7 +10924,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154536-0512pn5",
+        "id": "1772540534294-wtejgce",
         "title": "Three Phases: Escalation, Evacuation, Return",
         "titleUa": "Три фази: загострення, евакуація, повернення",
         "tasks": [
@@ -10943,7 +10943,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154536-575fvsn",
+        "id": "1772540534294-dlfboht",
         "title": "Teens — A Special Challenge",
         "titleUa": "Підлітки — особливий виклик",
         "tasks": [
@@ -10962,7 +10962,7 @@ export const ROLES: Role[] = [
         ]
       },
       {
-        "id": "1772541154536-2w13pac",
+        "id": "1772540534294-l9zf31c",
         "title": "When to Seek Help",
         "titleUa": "Коли звертатися по допомогу",
         "tasks": [

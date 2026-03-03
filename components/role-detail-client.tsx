@@ -4,6 +4,7 @@ import { useLanguage } from '@/components/language-context'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { CopyButton } from '@/components/copy-button'
+import { Breadcrumbs } from '@/components/breadcrumbs'
 import { RoleSessions } from '@/components/role-sessions'
 import { RoleEthics } from '@/components/role-ethics'
 import { RolePersonality } from '@/components/role-personality'
@@ -27,8 +28,19 @@ export function RoleDetailClient({ role }: RoleDetailClientProps) {
   const description = locale === 'uk' ? role.shortDescriptionUa : role.shortDescription
   const whatItDoes = locale === 'uk' && role.whatItDoesUa ? role.whatItDoesUa : role.whatItDoes
 
+  // Breadcrumbs items
+  const breadcrumbItems = [
+    { label: t.nav?.roles || 'Roles', href: '/roles' },
+    { label: title, href: `/roles/${role.slug}` },
+  ]
+
   return (
     <article className="max-w-4xl mx-auto px-4 sm:px-6">
+      {/* Breadcrumbs */}
+      <div className="pt-6">
+        <Breadcrumbs items={breadcrumbItems} />
+      </div>
+
       {/* Header */}
       <div className="mb-8 border-b border-border pb-8">
         <div className="flex items-center gap-3 mb-4">
@@ -77,10 +89,10 @@ export function RoleDetailClient({ role }: RoleDetailClientProps) {
 
         {/* Tags */}
         {role.tags && role.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2 mt-4">
-            <Tag className="h-4 w-4 text-muted-foreground" />
+          <div className="flex flex-wrap gap-2 mt-4 min-w-0">
+            <Tag className="h-4 w-4 text-muted-foreground shrink-0" />
             {role.tags.map(tag => (
-              <Badge key={tag} variant="secondary" className="text-xs">
+              <Badge key={tag} variant="secondary" className="text-xs max-w-full break-words">
                 {tag}
               </Badge>
             ))}
@@ -90,11 +102,11 @@ export function RoleDetailClient({ role }: RoleDetailClientProps) {
 
       {/* RML Identity */}
       {role.rmlIdentity && (
-        <div className="mb-8 p-4 border border-border bg-muted/50 font-mono text-xs overflow-x-auto">
+        <div className="mb-8 p-4 border border-border bg-muted/50 font-mono text-xs">
           <div className="text-muted-foreground mb-1">RML Identity</div>
-          <div className="break-all">{role.rmlIdentity.fullId}</div>
+          <div className="break-words overflow-wrap-anywhere">{role.rmlIdentity.fullId}</div>
           {role.rmlIdentity.reference && (
-            <div className="text-muted-foreground mt-1 break-all">{role.rmlIdentity.reference}</div>
+            <div className="text-muted-foreground mt-1 break-words overflow-wrap-anywhere">{role.rmlIdentity.reference}</div>
           )}
         </div>
       )}
@@ -200,14 +212,14 @@ export function RoleDetailClient({ role }: RoleDetailClientProps) {
           <h2 className="text-2xl font-bold font-mono uppercase tracking-wider mb-6">
             {t.role?.related || 'Related Roles'}
           </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {role.related.map(slug => (
               <Link
                 key={slug}
                 href={`/roles/${slug}`}
-                className="block p-4 border border-border hover:border-foreground transition-colors text-center"
+                className="block p-4 border border-border hover:border-foreground transition-colors text-center min-w-0"
               >
-                <span className="text-sm font-mono">{slug.replace(/-/g, ' ')}</span>
+                <span className="text-sm font-mono break-words">{slug.replace(/-/g, ' ')}</span>
               </Link>
             ))}
           </div>

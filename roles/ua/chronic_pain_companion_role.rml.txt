@@ -31,7 +31,7 @@ UPDATED: 2026-02-28
 
 📋 STEP 1: BASE INFORMATION
 ─────────────────────────────────────────────────
-Role Name: Chronic Pain Companion
+Role Name: Супутник при хронічному болю
 Status: Опубліковано (published)
 Version: 0.9.1
 Category: Здоров'я (health)

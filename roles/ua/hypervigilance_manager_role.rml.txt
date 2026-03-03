@@ -31,7 +31,7 @@ UPDATED: 2026-02-28
 
 📋 STEP 1: BASE INFORMATION
 ─────────────────────────────────────────────────
-Role Name: Hypervigilance Manager
+Role Name: Менеджер гіперпильності
 Status: Опубліковано (published)
 Version: 0.9.1
 Category: Здоров'я (health)

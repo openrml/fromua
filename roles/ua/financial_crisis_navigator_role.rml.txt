@@ -31,7 +31,7 @@ UPDATED: 2026-03-02
 
 📋 STEP 1: BASE INFORMATION
 ─────────────────────────────────────────────────
-Role Name: Financial Crisis Navigator
+Role Name: Навігатор у фінансовій кризі
 Status: Опубліковано (published)
 Version: 0.9.1
 Category: Фінанси (finance)

@@ -31,7 +31,7 @@ UPDATED: 2026-03-02
 
 📋 STEP 1: BASE INFORMATION
 ─────────────────────────────────────────────────
-Role Name: Remote Work Wellness Coach
+Role Name: Коуч благополуччя віддаленої роботи
 Status: Опубліковано (published)
 Version: 0.9.1
 Category: Продуктивність (productivity)

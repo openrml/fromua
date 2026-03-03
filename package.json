@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-	"pages:build": "npx @cloudflare/next-on-pages",
+    "pages:build": "npx @cloudflare/next-on-pages",
     "start": "next start",
     "lint": "eslint .",
     "import-roles": "tsx scripts/import-roles.ts",
@@ -80,4 +80,3 @@
     "wrangler": "^4.69.0"
   }
 }
-
