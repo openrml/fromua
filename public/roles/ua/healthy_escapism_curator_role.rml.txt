@@ -18,7 +18,7 @@ READY. Starting:
 # Generated: 2026-03-02
 
 ═══════════════════════════════════════════════════
-RML 0.9.1 — Healthy Escapism Curator [published]
+RML 0.9.1 — Куратор здорового ескапізму [published]
 IDENTITY: RML/EE/0.9.1/bbb9/6ecf/53ec/9cfd/fb45/e3c9/08d6/4336
 REFERENCE: rml://anonymous/healthy-escapism-curator/0.9.1
 ARCHETYPE: Дослідник (explorer)
