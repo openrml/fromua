@@ -4,13 +4,19 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { useLanguage } from '@/components/language-context'
+import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
 
 export function Nav() {
   const pathname = usePathname()
   const { locale, t, toggleLocale } = useLanguage()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const NAV_LINKS = [
     { href: '/roles', label: t.nav.roles },
+    { href: '/story', label: t.nav.story },
+    { href: '/for', label: t.nav.for },
+    { href: '/why', label: t.nav.why },
     { href: '/about', label: t.nav.about },
     { href: '/standard', label: t.nav.standard },
     { href: '/contribute', label: t.nav.contribute },
@@ -32,14 +38,14 @@ export function Nav() {
           </span>
         </Link>
 
-        {/* Nav links */}
-        <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
+        {/* Desktop Nav links */}
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8" aria-label="Main navigation">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               className={cn(
-                'text-sm font-sans tracking-wide transition-colors',
+                'text-sm font-sans tracking-wide transition-colors whitespace-nowrap',
                 pathname === link.href || pathname.startsWith(link.href + '/')
                   ? 'text-foreground'
                   : 'text-muted-foreground hover:text-foreground'
@@ -50,8 +56,17 @@ export function Nav() {
           ))}
         </nav>
 
-        {/* Right side: language switcher + CTA */}
+        {/* Right side: mobile menu toggle, language switcher + CTA */}
         <div className="flex items-center gap-3">
+          {/* Mobile menu toggle */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 text-foreground hover:bg-accent rounded-md transition-colors"
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+
           {/* Language switcher */}
           <button
             onClick={toggleLocale}
@@ -89,6 +104,39 @@ export function Nav() {
           </a>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-border bg-background">
+          <nav className="flex flex-col px-6 py-4 space-y-3">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={cn(
+                  'text-base font-sans tracking-wide transition-colors py-2',
+                  pathname === link.href || pathname.startsWith(link.href + '/')
+                    ? 'text-foreground font-medium'
+                    : 'text-muted-foreground hover:text-foreground'
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <a
+              href="https://rolesai.life"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 border border-foreground px-4 py-3 text-sm font-mono tracking-widest uppercase text-foreground hover:bg-foreground hover:text-background transition-colors w-fit mt-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {t.nav.createRole}
+              <span aria-hidden="true">↗</span>
+            </a>
+          </nav>
+        </div>
+      )}
     </header>
   )
 }

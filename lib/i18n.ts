@@ -5,6 +5,9 @@ export const TRANSLATIONS = {
     // Nav
     nav: {
       roles: 'Roles',
+      story: 'Story',
+      for: 'For',
+      why: 'Why',
       about: 'About',
       standard: 'Standard',
       contribute: 'Contribute',
@@ -361,6 +364,9 @@ export const TRANSLATIONS = {
   uk: {
     nav: {
       roles: 'Ролі',
+      story: 'Історія',
+      for: 'Для кого',
+      why: 'Чому це працює',
       about: 'Про нас',
       standard: 'Стандарт',
       contribute: 'Долучитись',
