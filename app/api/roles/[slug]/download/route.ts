@@ -20,35 +20,46 @@ export async function GET(req: NextRequest, { params }: RouteParams) {
   // Формируем имя файла
   let fileName: string
   let folder: string
+  let fileUrl: string
+  const origin = req.nextUrl.origin
 
   if (lang === 'uk') {
+    // Для українських ролей: видаляємо '-en', замінюємо дефіси на підкреслення, додаємо _role.rml.txt
     const baseName = slug.replace('-en', '').replace(/-/g, '_')
     fileName = `${baseName}_role.rml.txt`
     folder = 'ua'
+    fileUrl = `${origin}/roles/${folder}/${fileName}`
   } else {
-    const baseName = slug.replace(/-/g, '_')
-    fileName = `${baseName}.rml.txt`
+    // Для англійських ролей: пробуємо різні варіанти
     folder = 'en'
-  }
-
-  // Получаем базовый URL сайта (работает и локально, и на проде)
-  const origin = req.nextUrl.origin
-  const fileUrl = `${origin}/roles/${folder}/${fileName}`
-
-  try {
-    let response = await fetch(fileUrl)
-
-    // Если файл не найден и это английский, пробуем альтернативное имя
-    if (!response.ok && lang === 'en') {
-      const altFileName = slug.replace(/-/g, '_') + '__en__role.rml.txt'
-      const altFileUrl = `${origin}/roles/en/${altFileName}`
-      response = await fetch(altFileUrl)
+    
+    // Варіант 1: простий формат (slug_без_дефісів.rml.txt)
+    const simpleName = slug.replace(/-/g, '_') + '.rml.txt'
+    let response = await fetch(`${origin}/roles/en/${simpleName}`)
+    
+    if (response.ok) {
+      fileName = simpleName
+      fileUrl = `${origin}/roles/en/${simpleName}`
+    } else {
+      // Варіант 2: формат з __en__role
+      const altName = slug.replace(/-/g, '_') + '__en__role.rml.txt'
+      response = await fetch(`${origin}/roles/en/${altName}`)
       
       if (response.ok) {
-        fileName = altFileName
+        fileName = altName
+        fileUrl = `${origin}/roles/en/${altName}`
+      } else {
+        return NextResponse.json({ 
+          error: 'File not found on server',
+          attempted: [`${origin}/roles/en/${simpleName}`, `${origin}/roles/en/${altName}`]
+        }, { status: 404 })
       }
     }
+  }
 
+  try {
+    const response = await fetch(fileUrl)
+    
     if (!response.ok) {
       return NextResponse.json({ error: 'File not found on server' }, { status: 404 })
     }
