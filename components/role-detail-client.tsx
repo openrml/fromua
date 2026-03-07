@@ -3,16 +3,16 @@
 import { useLanguage } from '@/components/language-context'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { CopyButton } from '@/components/copy-button'
 import { Breadcrumbs } from '@/components/breadcrumbs'
 import { RoleSessions } from '@/components/role-sessions'
 import { RoleEthics } from '@/components/role-ethics'
 import { RolePersonality } from '@/components/role-personality'
 import { RoleExpertise } from '@/components/role-expertise'
-import { Download, Calendar, User, Tag, FileText, BookOpen } from 'lucide-react'
+import { Download, Calendar, User, Tag, FileText, BookOpen, Copy, Check } from 'lucide-react'
 import type { Role } from '@/lib/types'
 import Link from 'next/link'
 import { getResearchByRoleSlug } from '@/lib/research'
+import { useState } from 'react'
 
 interface RoleDetailClientProps {
   role: Role
@@ -20,9 +20,30 @@ interface RoleDetailClientProps {
 
 export function RoleDetailClient({ role }: RoleDetailClientProps) {
   const { locale, t } = useLanguage()
+  const [copied, setCopied] = useState(false)
 
   const handleDownload = async () => {
     window.location.href = `/api/roles/${role.slug}/download?lang=${locale}`
+  }
+
+  const handleCopyRML = async () => {
+    try {
+      // Fetch the RML file content
+      const response = await fetch(`/api/roles/${role.slug}/download?lang=${locale}`)
+      if (!response.ok) {
+        throw new Error('Failed to fetch RML content')
+      }
+      const rmlContent = await response.text()
+      
+      // Copy to clipboard
+      await navigator.clipboard.writeText(rmlContent)
+      
+      // Show success feedback
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch (error) {
+      console.error('Failed to copy RML content:', error)
+    }
   }
 
   const title = locale === 'uk' ? role.titleUa : role.title
@@ -80,7 +101,23 @@ export function RoleDetailClient({ role }: RoleDetailClientProps) {
           </div>
           
           <div className="flex gap-2">
-            <CopyButton text={role.identity} />
+            <Button 
+              variant="outline" 
+              onClick={handleCopyRML}
+              disabled={copied}
+            >
+              {copied ? (
+                <>
+                  <Check className="h-4 w-4 mr-2" />
+                  {locale === 'uk' ? 'Скопійовано!' : 'Copied!'}
+                </>
+              ) : (
+                <>
+                  <Copy className="h-4 w-4 mr-2" />
+                  {locale === 'uk' ? 'Копіювати' : 'Copy'}
+                </>
+              )}
+            </Button>
             <Button onClick={handleDownload}>
               <Download className="h-4 w-4 mr-2" />
               {t.role?.download || 'Download'}
