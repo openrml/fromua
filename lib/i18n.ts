@@ -10,6 +10,7 @@ export const TRANSLATIONS = {
       why: 'Why',
       about: 'About',
       standard: 'Standard',
+	  research: 'Research',
       contribute: 'Contribute',
       createRole: 'Create Role',
     },
@@ -370,6 +371,7 @@ export const TRANSLATIONS = {
       about: 'Про нас',
       standard: 'Стандарт',
       contribute: 'Долучитись',
+	  research: 'Дослідження',
       createRole: 'Створити роль',
     },
 

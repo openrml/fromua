@@ -19,6 +19,7 @@ export function Nav() {
     { href: '/why', label: t.nav.why },
     { href: '/about', label: t.nav.about },
     { href: '/standard', label: t.nav.standard },
+	{ href: '/research', label: t.nav.research },
     { href: '/contribute', label: t.nav.contribute },
   ]
 

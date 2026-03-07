@@ -1,0 +1,831 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Collection",
+  "@id": "https://fromua.life/roles-index.json",
+  "name": "FromUA AI Roles Gallery",
+  "alternateName": "OpenRML Roles Catalog",
+  "description": "Complete catalog of AI assistant roles built with RML 0.9.1 protocol. Free, open-source, and ready to use.",
+  "protocol": {
+    "name": "RML",
+    "version": "0.9.1",
+    "fullName": "Role Markup Language",
+    "specification": "https://fromua.life/standard",
+    "documentation": "https://fromua.life/about"
+  },
+  "totalItems": 29,
+  "numberOfCategories": 10,
+  "numberOfArchetypes": 14,
+  "inLanguage": [
+    "en",
+    "uk"
+  ],
+  "license": {
+    "type": "CC-BY-4.0",
+    "name": "Creative Commons Attribution 4.0 International",
+    "url": "https://creativecommons.org/licenses/by/4.0/",
+    "spdxId": "CC-BY-4.0"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "OpenRML",
+    "url": "https://fromua.life",
+    "foundingDate": "2025",
+    "foundingLocation": {
+      "@type": "Country",
+      "name": "Ukraine"
+    }
+  },
+  "datePublished": "2026-03-03",
+  "dateModified": "2026-03-06",
+  "generatedAt": "2026-03-06T19:26:13.803Z",
+  "apiEndpoints": {
+    "index": "https://fromua.life/roles-index.json",
+    "roles": "https://fromua.life/api/roles/[slug]",
+    "download": "https://fromua.life/api/roles/[slug]/download",
+    "sitemap": "https://fromua.life/sitemap.xml"
+  },
+  "categories": [
+    {
+      "name": "mental-health",
+      "count": 9,
+      "roles": [
+        "anticipatory-grief-support-en",
+        "caregiver-burnout-preventer-en",
+        "grief-companion-en",
+        "grounding-instructor-en",
+        "guilt-self-compassion-guide-en",
+        "hypervigilance-manager-en",
+        "meaning-making-guide-after-loss-en",
+        "moral-injury-companion-en",
+        "triggers-flashbacks-navigator-en"
+      ]
+    },
+    {
+      "name": "health",
+      "count": 4,
+      "roles": [
+        "body-after-trauma-guide-en",
+        "chronic-pain-companion-en",
+        "energy-recovery-strategist-en",
+        "sleep-hygiene-coach-en"
+      ]
+    },
+    {
+      "name": "lifestyle",
+      "count": 4,
+      "roles": [
+        "daily-life-reset-companion-en",
+        "healthy-escapism-curator-en",
+        "relocation-adaptation-buddy-en",
+        "routine-structure-coach-en"
+      ]
+    },
+    {
+      "name": "career",
+      "count": 3,
+      "roles": [
+        "career-pivot-strategist-wartime-edition-en",
+        "remote-work-wellness-coach-en",
+        "veteran-reintegration-coach-en"
+      ]
+    },
+    {
+      "name": "technology",
+      "count": 2,
+      "roles": [
+        "ai-productivity-coach-en",
+        "digital-safety-privacy-guide-en"
+      ]
+    },
+    {
+      "name": "relationships",
+      "count": 2,
+      "roles": [
+        "family-stress-mediator-en",
+        "long-distance-relationship-sustainer-en"
+      ]
+    },
+    {
+      "name": "finance",
+      "count": 2,
+      "roles": [
+        "financial-crisis-navigator-en",
+        "income-recovery-planner-en"
+      ]
+    },
+    {
+      "name": "social",
+      "count": 1,
+      "roles": [
+        "community-connection-builder-en"
+      ]
+    },
+    {
+      "name": "business",
+      "count": 1,
+      "roles": [
+        "micro-business-launch-guide-en"
+      ]
+    },
+    {
+      "name": "family",
+      "count": 1,
+      "roles": [
+        "wartime-parenting-guide-en"
+      ]
+    }
+  ],
+  "archetypes": [
+    {
+      "name": "healer",
+      "count": 7,
+      "roles": [
+        "anticipatory-grief-support-en",
+        "body-after-trauma-guide-en",
+        "chronic-pain-companion-en",
+        "energy-recovery-strategist-en",
+        "grief-companion-en",
+        "guilt-self-compassion-guide-en",
+        "moral-injury-companion-en"
+      ]
+    },
+    {
+      "name": "supporter",
+      "count": 4,
+      "roles": [
+        "caregiver-burnout-preventer-en",
+        "daily-life-reset-companion-en",
+        "long-distance-relationship-sustainer-en",
+        "relocation-adaptation-buddy-en"
+      ]
+    },
+    {
+      "name": "coach",
+      "count": 4,
+      "roles": [
+        "remote-work-wellness-coach-en",
+        "routine-structure-coach-en",
+        "sleep-hygiene-coach-en",
+        "veteran-reintegration-coach-en"
+      ]
+    },
+    {
+      "name": "mentor",
+      "count": 2,
+      "roles": [
+        "career-pivot-strategist-wartime-edition-en",
+        "micro-business-launch-guide-en"
+      ]
+    },
+    {
+      "name": "advisor",
+      "count": 2,
+      "roles": [
+        "financial-crisis-navigator-en",
+        "income-recovery-planner-en"
+      ]
+    },
+    {
+      "name": "instructor",
+      "count": 2,
+      "roles": [
+        "grounding-instructor-en",
+        "hypervigilance-manager-en"
+      ]
+    },
+    {
+      "name": "explorer",
+      "count": 1,
+      "roles": [
+        "ai-productivity-coach-en"
+      ]
+    },
+    {
+      "name": "connector",
+      "count": 1,
+      "roles": [
+        "community-connection-builder-en"
+      ]
+    },
+    {
+      "name": "guardian",
+      "count": 1,
+      "roles": [
+        "digital-safety-privacy-guide-en"
+      ]
+    },
+    {
+      "name": "mediator",
+      "count": 1,
+      "roles": [
+        "family-stress-mediator-en"
+      ]
+    },
+    {
+      "name": "curator",
+      "count": 1,
+      "roles": [
+        "healthy-escapism-curator-en"
+      ]
+    },
+    {
+      "name": "philosopher",
+      "count": 1,
+      "roles": [
+        "meaning-making-guide-after-loss-en"
+      ]
+    },
+    {
+      "name": "navigator",
+      "count": 1,
+      "roles": [
+        "triggers-flashbacks-navigator-en"
+      ]
+    },
+    {
+      "name": "guide",
+      "count": 1,
+      "roles": [
+        "wartime-parenting-guide-en"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/ai-productivity-coach-en",
+      "slug": "ai-productivity-coach-en",
+      "category": "technology",
+      "archetype": "explorer",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/ai-productivity-coach-en",
+      "jsonUrl": "https://fromua.life/api/roles/ai-productivity-coach-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/ai-productivity-coach-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/ai-productivity-coach-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/anticipatory-grief-support-en",
+      "slug": "anticipatory-grief-support-en",
+      "category": "mental-health",
+      "archetype": "healer",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/anticipatory-grief-support-en",
+      "jsonUrl": "https://fromua.life/api/roles/anticipatory-grief-support-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/anticipatory-grief-support-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/anticipatory-grief-support-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/body-after-trauma-guide-en",
+      "slug": "body-after-trauma-guide-en",
+      "category": "health",
+      "archetype": "healer",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/body-after-trauma-guide-en",
+      "jsonUrl": "https://fromua.life/api/roles/body-after-trauma-guide-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/body-after-trauma-guide-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/body-after-trauma-guide-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/career-pivot-strategist-wartime-edition-en",
+      "slug": "career-pivot-strategist-wartime-edition-en",
+      "category": "career",
+      "archetype": "mentor",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/career-pivot-strategist-wartime-edition-en",
+      "jsonUrl": "https://fromua.life/api/roles/career-pivot-strategist-wartime-edition-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/career-pivot-strategist-wartime-edition-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/career-pivot-strategist-wartime-edition-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/caregiver-burnout-preventer-en",
+      "slug": "caregiver-burnout-preventer-en",
+      "category": "mental-health",
+      "archetype": "supporter",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/caregiver-burnout-preventer-en",
+      "jsonUrl": "https://fromua.life/api/roles/caregiver-burnout-preventer-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/caregiver-burnout-preventer-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/caregiver-burnout-preventer-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/chronic-pain-companion-en",
+      "slug": "chronic-pain-companion-en",
+      "category": "health",
+      "archetype": "healer",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/chronic-pain-companion-en",
+      "jsonUrl": "https://fromua.life/api/roles/chronic-pain-companion-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/chronic-pain-companion-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/chronic-pain-companion-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/community-connection-builder-en",
+      "slug": "community-connection-builder-en",
+      "category": "social",
+      "archetype": "connector",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/community-connection-builder-en",
+      "jsonUrl": "https://fromua.life/api/roles/community-connection-builder-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/community-connection-builder-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/community-connection-builder-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/daily-life-reset-companion-en",
+      "slug": "daily-life-reset-companion-en",
+      "category": "lifestyle",
+      "archetype": "supporter",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/daily-life-reset-companion-en",
+      "jsonUrl": "https://fromua.life/api/roles/daily-life-reset-companion-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/daily-life-reset-companion-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/daily-life-reset-companion-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/digital-safety-privacy-guide-en",
+      "slug": "digital-safety-privacy-guide-en",
+      "category": "technology",
+      "archetype": "guardian",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/digital-safety-privacy-guide-en",
+      "jsonUrl": "https://fromua.life/api/roles/digital-safety-privacy-guide-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/digital-safety-privacy-guide-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/digital-safety-privacy-guide-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/energy-recovery-strategist-en",
+      "slug": "energy-recovery-strategist-en",
+      "category": "health",
+      "archetype": "healer",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/energy-recovery-strategist-en",
+      "jsonUrl": "https://fromua.life/api/roles/energy-recovery-strategist-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/energy-recovery-strategist-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/energy-recovery-strategist-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/family-stress-mediator-en",
+      "slug": "family-stress-mediator-en",
+      "category": "relationships",
+      "archetype": "mediator",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/family-stress-mediator-en",
+      "jsonUrl": "https://fromua.life/api/roles/family-stress-mediator-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/family-stress-mediator-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/family-stress-mediator-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/financial-crisis-navigator-en",
+      "slug": "financial-crisis-navigator-en",
+      "category": "finance",
+      "archetype": "advisor",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/financial-crisis-navigator-en",
+      "jsonUrl": "https://fromua.life/api/roles/financial-crisis-navigator-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/financial-crisis-navigator-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/financial-crisis-navigator-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/grief-companion-en",
+      "slug": "grief-companion-en",
+      "category": "mental-health",
+      "archetype": "healer",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/grief-companion-en",
+      "jsonUrl": "https://fromua.life/api/roles/grief-companion-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/grief-companion-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/grief-companion-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/grounding-instructor-en",
+      "slug": "grounding-instructor-en",
+      "category": "mental-health",
+      "archetype": "instructor",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/grounding-instructor-en",
+      "jsonUrl": "https://fromua.life/api/roles/grounding-instructor-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/grounding-instructor-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/grounding-instructor-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/guilt-self-compassion-guide-en",
+      "slug": "guilt-self-compassion-guide-en",
+      "category": "mental-health",
+      "archetype": "healer",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/guilt-self-compassion-guide-en",
+      "jsonUrl": "https://fromua.life/api/roles/guilt-self-compassion-guide-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/guilt-self-compassion-guide-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/guilt-self-compassion-guide-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/healthy-escapism-curator-en",
+      "slug": "healthy-escapism-curator-en",
+      "category": "lifestyle",
+      "archetype": "curator",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/healthy-escapism-curator-en",
+      "jsonUrl": "https://fromua.life/api/roles/healthy-escapism-curator-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/healthy-escapism-curator-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/healthy-escapism-curator-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/hypervigilance-manager-en",
+      "slug": "hypervigilance-manager-en",
+      "category": "mental-health",
+      "archetype": "instructor",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/hypervigilance-manager-en",
+      "jsonUrl": "https://fromua.life/api/roles/hypervigilance-manager-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/hypervigilance-manager-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/hypervigilance-manager-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/income-recovery-planner-en",
+      "slug": "income-recovery-planner-en",
+      "category": "finance",
+      "archetype": "advisor",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/income-recovery-planner-en",
+      "jsonUrl": "https://fromua.life/api/roles/income-recovery-planner-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/income-recovery-planner-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/income-recovery-planner-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/long-distance-relationship-sustainer-en",
+      "slug": "long-distance-relationship-sustainer-en",
+      "category": "relationships",
+      "archetype": "supporter",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/long-distance-relationship-sustainer-en",
+      "jsonUrl": "https://fromua.life/api/roles/long-distance-relationship-sustainer-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/long-distance-relationship-sustainer-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/long-distance-relationship-sustainer-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/meaning-making-guide-after-loss-en",
+      "slug": "meaning-making-guide-after-loss-en",
+      "category": "mental-health",
+      "archetype": "philosopher",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/meaning-making-guide-after-loss-en",
+      "jsonUrl": "https://fromua.life/api/roles/meaning-making-guide-after-loss-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/meaning-making-guide-after-loss-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/meaning-making-guide-after-loss-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/micro-business-launch-guide-en",
+      "slug": "micro-business-launch-guide-en",
+      "category": "business",
+      "archetype": "mentor",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/micro-business-launch-guide-en",
+      "jsonUrl": "https://fromua.life/api/roles/micro-business-launch-guide-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/micro-business-launch-guide-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/micro-business-launch-guide-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/moral-injury-companion-en",
+      "slug": "moral-injury-companion-en",
+      "category": "mental-health",
+      "archetype": "healer",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/moral-injury-companion-en",
+      "jsonUrl": "https://fromua.life/api/roles/moral-injury-companion-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/moral-injury-companion-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/moral-injury-companion-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/relocation-adaptation-buddy-en",
+      "slug": "relocation-adaptation-buddy-en",
+      "category": "lifestyle",
+      "archetype": "supporter",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/relocation-adaptation-buddy-en",
+      "jsonUrl": "https://fromua.life/api/roles/relocation-adaptation-buddy-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/relocation-adaptation-buddy-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/relocation-adaptation-buddy-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/remote-work-wellness-coach-en",
+      "slug": "remote-work-wellness-coach-en",
+      "category": "career",
+      "archetype": "coach",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/remote-work-wellness-coach-en",
+      "jsonUrl": "https://fromua.life/api/roles/remote-work-wellness-coach-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/remote-work-wellness-coach-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/remote-work-wellness-coach-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/routine-structure-coach-en",
+      "slug": "routine-structure-coach-en",
+      "category": "lifestyle",
+      "archetype": "coach",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/routine-structure-coach-en",
+      "jsonUrl": "https://fromua.life/api/roles/routine-structure-coach-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/routine-structure-coach-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/routine-structure-coach-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/sleep-hygiene-coach-en",
+      "slug": "sleep-hygiene-coach-en",
+      "category": "health",
+      "archetype": "coach",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/sleep-hygiene-coach-en",
+      "jsonUrl": "https://fromua.life/api/roles/sleep-hygiene-coach-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/sleep-hygiene-coach-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/sleep-hygiene-coach-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/triggers-flashbacks-navigator-en",
+      "slug": "triggers-flashbacks-navigator-en",
+      "category": "mental-health",
+      "archetype": "navigator",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/triggers-flashbacks-navigator-en",
+      "jsonUrl": "https://fromua.life/api/roles/triggers-flashbacks-navigator-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/triggers-flashbacks-navigator-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/triggers-flashbacks-navigator-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/veteran-reintegration-coach-en",
+      "slug": "veteran-reintegration-coach-en",
+      "category": "career",
+      "archetype": "coach",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/veteran-reintegration-coach-en",
+      "jsonUrl": "https://fromua.life/api/roles/veteran-reintegration-coach-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/veteran-reintegration-coach-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/veteran-reintegration-coach-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    },
+    {
+      "@type": "RMLRole",
+      "@id": "https://fromua.life/roles/wartime-parenting-guide-en",
+      "slug": "wartime-parenting-guide-en",
+      "category": "family",
+      "archetype": "guide",
+      "languages": [
+        "uk",
+        "en"
+      ],
+      "htmlUrl": "https://fromua.life/roles/wartime-parenting-guide-en",
+      "jsonUrl": "https://fromua.life/api/roles/wartime-parenting-guide-en",
+      "downloadUrl": {
+        "en": "https://fromua.life/api/roles/wartime-parenting-guide-en/download?lang=en",
+        "uk": "https://fromua.life/api/roles/wartime-parenting-guide-en/download?lang=uk"
+      },
+      "datePublished": "2026-03-03",
+      "dateModified": "2026-03-03"
+    }
+  ],
+  "usage": {
+    "description": "This index provides machine-readable catalog of all AI roles",
+    "examples": {
+      "Get role by slug": "GET https://fromua.life/api/roles/grief-companion-en",
+      "Download RML file": "GET https://fromua.life/api/roles/grief-companion-en/download?lang=en",
+      "List all mental-health roles": "Filter items where category === \"mental-health\""
+    },
+    "integration": {
+      "JavaScript": "fetch('https://fromua.life/roles-index.json').then(r => r.json()).then(data => console.log(data.items))",
+      "Python": "import requests; data = requests.get('https://fromua.life/roles-index.json').json()",
+      "cURL": "curl https://fromua.life/roles-index.json"
+    }
+  },
+  "keywords": [
+    "AI roles",
+    "RML protocol",
+    "AI assistant",
+    "mental health AI",
+    "crisis support",
+    "Ukraine AI",
+    "open protocol",
+    "LLM roles",
+    "structured prompts",
+    "role gallery"
+  ]
+}

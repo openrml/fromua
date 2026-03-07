@@ -1,6 +1,7 @@
 # robots.txt for FromUA - Civilizational AI Roles Gallery
 # https://fromua.life
 
+# General crawlers
 User-agent: *
 Allow: /
 
@@ -10,16 +11,55 @@ Allow: /about
 Allow: /standard
 Allow: /contribute
 
+# API endpoints (JSON data for AI bots)
+Allow: /api/roles/*
+Allow: /roles-index.json
+
 # Block potential future admin/api routes
 Disallow: /api/private/
 Disallow: /admin/
 
-# Sitemap location
+# AI-specific crawlers - Welcome!
+# OpenAI (ChatGPT)
+User-agent: GPTBot
+User-agent: ChatGPT-User
+Allow: /
+Allow: /api/roles/*
+Allow: /roles-index.json
+
+# Anthropic (Claude)
+User-agent: Claude-Web
+User-agent: anthropic-ai
+Allow: /
+Allow: /api/roles/*
+Allow: /roles-index.json
+
+# Google AI (Bard/Gemini)
+User-agent: Google-Extended
+User-agent: Googlebot
+Allow: /
+Allow: /api/roles/*
+Allow: /roles-index.json
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+Allow: /api/roles/*
+Allow: /roles-index.json
+
+# Common Crawl (used for AI training)
+User-agent: CCBot
+Allow: /
+Allow: /api/roles/*
+Allow: /roles-index.json
+
+# Sitemap locations
 Sitemap: https://fromua.life/sitemap.xml
+Sitemap: https://fromua.life/sitemap-en.xml
+Sitemap: https://fromua.life/sitemap-uk.xml
+
+# Machine-readable role index for AI bots
+Sitemap: https://fromua.life/roles-index.json
 
 # Crawl-delay for politeness (optional)
 Crawl-delay: 1
-
-# Additional sitemaps for different languages (future)
-# Sitemap: https://fromua.life/sitemap-en.xml
-# Sitemap: https://fromua.life/sitemap-uk.xml

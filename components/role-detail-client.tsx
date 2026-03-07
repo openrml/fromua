@@ -9,9 +9,10 @@ import { RoleSessions } from '@/components/role-sessions'
 import { RoleEthics } from '@/components/role-ethics'
 import { RolePersonality } from '@/components/role-personality'
 import { RoleExpertise } from '@/components/role-expertise'
-import { Download, Calendar, User, Tag, FileText } from 'lucide-react'
+import { Download, Calendar, User, Tag, FileText, BookOpen } from 'lucide-react'
 import type { Role } from '@/lib/types'
 import Link from 'next/link'
+import { getResearchByRoleSlug } from '@/lib/research'
 
 interface RoleDetailClientProps {
   role: Role
@@ -205,6 +206,40 @@ export function RoleDetailClient({ role }: RoleDetailClientProps) {
           />
         </div>
       )}
+
+      {/* Research Base */}
+      {(() => {
+        const research = getResearchByRoleSlug(role.slug)
+        if (!research) return null
+        
+        return (
+          <div className="mt-12 pt-8 border-t border-border">
+            <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+              <div>
+                <h2 className="text-sm font-mono uppercase tracking-widest text-muted-foreground mb-2">
+                  {locale === 'uk' ? 'Наукова база' : 'Scientific Evidence'}
+                </h2>
+                <h3 className="text-xl font-semibold text-foreground">
+                  {locale === 'uk' ? research.titleUa : research.titleEn}
+                </h3>
+                <p className="mt-2 text-sm text-muted-foreground">
+                  {locale === 'uk' 
+                    ? 'Дослідження, моделі та наукові основи для цієї ролі'
+                    : 'Research, models, and scientific foundations for this role'
+                  }
+                </p>
+              </div>
+              <Link
+                href={`/research/${research.slug}`}
+                className="flex items-center gap-2 border border-foreground px-6 py-3 text-sm font-mono uppercase tracking-widest text-foreground transition-colors hover:bg-foreground hover:text-background whitespace-nowrap"
+              >
+                <BookOpen className="h-4 w-4" />
+                <span>{locale === 'uk' ? 'Читати дослідження' : 'View Research'}</span>
+              </Link>
+            </div>
+          </div>
+        )
+      })()}
 
       {/* Related Roles */}
       {role.related && role.related.length > 0 && (
