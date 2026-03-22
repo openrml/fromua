@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Order in the House – Order in the Mind (Порядок у хаті — порядок у голові)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #ecf0f1 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #3498db;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(52,152,219,0.15);
+        }
+        
+        .source a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #3498db;
+        }
+        
+        .source a:hover {
+            color: #1a5276;
+            border-bottom: 1px solid #1a5276;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #2c3e50;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #3498db;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #3498db;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #2980b9;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #3498db;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Order in the House – Order in the Mind</h1>
+    <p><em>"Порядок у хаті — порядок у голові: коли безлад навколо посилює безлад всередині"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Order in the House – Order in the Mind", яка допомагає людям, чий внутрішній безлад посилюється зовнішнім хаосом, знайти практичні та психологічні інструменти для відновлення порядку. Роль інтегрує дослідження зв'язку безладу з кортизолом, концепцію "ментального навантаження" (mental load), терапевтичні ефекти прибирання та усвідомленого впорядкування простору, з особливим фокусом на український контекст війни, де зовнішній хаос є об'єктивною реальністю.</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика та висновки досліджень</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">501</div>
+            <div class="stat-label">учасників дослідження clutter & well-being</div>
+            <small>(Джерело 1, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">42,793+</div>
+            <div class="stat-label">учасників мета-аналізу очищення та стресу</div>
+            <small>(Джерело 6, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">60</div>
+            <div class="stat-label">подружніх пар у дослідженні кортизолу</div>
+            <small>(Джерело 3, 2010)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">5%</div>
+            <div class="stat-label">часу втрачається через неорганізованість</div>
+            <small>(Джерело 5, Levitin, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">g = 0.315</div>
+            <div class="stat-label">розмір ефекту очищення на психічний стан</div>
+            <small>(Джерело 6, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">g = 0.103-0.331</div>
+            <div class="stat-label">діапазон після корекції публікацій</div>
+            <small>(Джерело 6, 2024)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Безлад (Clutter):</strong> Надлишок речей, які не мають свого місця, створюють візуальний шум і незавершені справи. Дослідження 2025 року (N=501) підтверджує, що безлад корелює зі зниженням психологічного благополуччя, негативним афектом та нижчою задоволеністю життям. Цей зв'язок частково пояснюється зниженням сприйняття краси дому .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Кортизол та безлад:</strong> Новаторське дослідження Саксбі та Репетті (2010) показало, що жінки, які описували свої домівки як "захаращені" або "незавершені", мали менш здоровий денний профіль кортизолу (підвищений рівень) та гірший настрій. Для чоловіків зв'язок був значно слабшим .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Ментальне навантаження (Mental Load / Cognitive Labor):</strong> "Невидима робота" — помічання того, що потрібно зробити, планування, прийняття рішень та моніторинг виконання (Daminger, 2019). Безлад стає "постійним візуальним нагадуванням про список незавершених справ". Дослідження 2024 року в Archives of Women's Mental Health підтвердило зв'язок когнітивної домашньої праці з депресією, стресом, вигоранням та загальним психічним здоров'ям жінок .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Терапевтичне очищення (Therapeutic Cleaning):</strong> Мета-аналіз Лі та ін. (2024), що охопив 230 експериментів та 42,793 учасники, підтвердив, що фізичне очищення має невеликий до помірного ефект (g = 0.315) на зменшення психологічних наслідків стресових подій. Ефект є двобічним: стрес викликає бажання очищатися, а очищення зменшує стрес .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Усвідомлене миття посуду:</strong> Дослідження 2014 року показало, що учасники, які мили посуд усвідомлено (зосереджуючись на відчуттях), повідомили про підвищення позитивних емоцій (натхнення) та зниження негативних (нервозність) .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Ефект "змивання" невдачі:</strong> Дослідження Kaspar (2012) показало, що миття рук після невдачі відновлює оптимізм і зменшує бажання працювати більше. Інші дослідження демонструють, що очищення рук зменшує моральну провину, когнітивний дисонанс та ефект наділеності .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Український контекст:</strong> В умовах війни, коли зовнішній світ сповнений хаосу, невизначеності та загроз, відчуття контролю над власним безпосереднім простором стає критичним якорем стабільності. Дослідження Університету Коннектикуту показує, що в періоди стресу люди звертаються до повторюваних ритуалів, таких як прибирання, щоб відновити відчуття контролю .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Проблема</th>
+                <th>Психологічний/Фізіологічний вплив</th>
+                <th>Джерело</th>
+            </tr>
+            <tr>
+                <td><strong>Безлад (Clutter)</strong></td>
+                <td>Зниження благополуччя, негативний афект, нижча задоволеність життям, зниження сприйняття краси дому</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Кортизол (у жінок)</strong></td>
+                <td>Менш здоровий денний профіль кортизолу, гірший настрій</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Когнітивне навантаження</strong></td>
+                <td>Депресія, стрес, вигорання, погіршення стосунків</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Візуальне перевантаження</strong></td>
+                <td>Зорова кора перевантажується, важко зосередитися (Princeton)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Втрата контролю</strong></td>
+                <td>Підвищення тривожності, відчуття безпорадності</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Home clutter and mental well-being (ScienceDirect, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Home clutter and mental well-being: Exploring moderators and the mediating role of home beauty<br>
+        <strong>Посилання:</strong> <a href="https://www.sciencedirect.com/science/article/pii/S0272494425001550" target="_blank">ScienceDirect</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження 501 дорослого показало, що домашній безлад корелює зі зниженим психологічним благополуччям, більш негативним афектом, нижчою задоволеністю життям та гіршим психічним здоров'ям .</li>
+            <li><strong>Ключовий медіатор:</strong> сприйнята краса дому. Безлад зменшує відчуття краси дому, що частково пояснює його негативний вплив .</li>
+            <li>Взаємозв'язки не були суттєво модеровані демографічними факторами, що свідчить про універсальність впливу .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2 & 4 & 8: Терапевтичний ефект очищення (SPSP / AIS / NIH, 2022)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Washing Away Stress / Actual and Simulated Cleaning Attenuate Effects of Stressful Events<br>
+        <strong>Посилання:</strong> <a href="https://spsp.org/news/character-and-context-blog/millet-grinstein-pauwels-lee-hygiene-stress-reduction" target="_blank">SPSP</a> | <a href="https://www.stress.org/news/new-psychology-research-indicates-that-cleaning-oneself-helps-alleviate-the-anxiety-from-stress-inducing-events/" target="_blank">AIS</a> | <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11925691/" target="_blank">NIH</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Серія експериментів (N=3,066) показала, що як реальне, так і уявне очищення (миття рук, тіла) зменшує залишкову тривогу після стресових подій .</li>
+            <li>Очищення покращує адаптивну серцево-судинну реактивність у стресових соціальних ситуаціях .</li>
+            <li><strong>Механізм:</strong> Фізичний акт відділення (бруду) стає сенсомоторною основою для психологічного відділення від негативного досвіду .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3 & 9: Гендерний аспект, кортизол та ментальне навантаження (UniMelb / Times Free Press, 2025-2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Is Your Messy House Making You Sick? / The mental load behind the mess<br>
+        <strong>Посилання:</strong> <a href="https://arts.unimelb.edu.au/public-humanities-initiative/missperceived/episodes/is-your-messy-house-making-you-sick-clutter-cortisol-and-the-invisible-mental-load" target="_blank">UniMelb</a> | <a href="https://www.timesfreepress.com/news/2026/feb/14/first-things-first-the-mental-load-behind-the-mess/" target="_blank">Chattanooga Times Free Press</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження Саксбі та Репетті (2010) показало, що жінки, які описували свої домівки як "захаращені" або "незавершені", мали менш здоровий профіль кортизолу (вищий рівень) та гірший настрій, на відміну від чоловіків .</li>
+            <li>Концепція "когнітивної праці" (Daminger, 2019): невидима робота з помічання, планування, вирішення та моніторингу домашніх справ .</li>
+            <li>Безлад стає "постійним візуальним нагадуванням про список незавершених справ", що посилює ментальне навантаження .</li>
+            <li>Дослідження 2024 року (Archives of Women's Mental Health) підтвердило зв'язок когнітивної домашньої праці з депресією, стресом, вигоранням та загальним психічним здоров'ям жінок .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Переваги організації простору (National Geographic, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Being organized can actually improve mental health. This is why.<br>
+        <strong>Посилання:</strong> <a href="https://www.nationalgeographic.com/premium/article/organizing-clutter-mental-health" target="_blank">National Geographic</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Неорганізованість пов'язана з погіршенням пам'яті, нездоровими харчовими звичками, підвищеним ризиком розладів настрою та зниженням імпульсного контролю .</li>
+            <li>Левітін (McGill): "Середньостатистична людина втрачає близько 5% часу через неорганізованість" .</li>
+            <li>Феррарі (DePaul): організація зменшує виснаження, підвищує продуктивність та якість життя .</li>
+            <li>Практичні поради: починати з малого, використовувати таймер, не брати речі в руки при сортуванні (це посилює прив'язаність) .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Мета-аналіз фізичного очищення (PubMed/NIH, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Wipe it off: A meta-analytic review of the psychological consequences and antecedents of physical cleansing<br>
+        <strong>Посилання:</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/38358686/" target="_blank">PubMed</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Наймасштабніший мета-аналіз на сьогодні: 129 публікацій, 230 експериментів, 551 ефект, 42,793 учасники .</li>
+            <li>Синтезований розмір ефекту (g) = 0.315 (95% ДІ [0.277, 0.354]) — невеликий до помірного .</li>
+            <li>Ефекти є двобічними: психологічні стани викликають очищення, і очищення змінює психологічні стани .</li>
+            <li>Ефекти є універсальними (спостерігаються не лише в моральній сфері) .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Clutter vs Decor, кортизол та депресія (WellPower, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Decluttering your physical space….and your mind?<br>
+        <strong>Посилання:</strong> <a href="https://www.wellpower.org/blog/declutter/" target="_blank">WellPower</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Підтверджує зв'язок безладу з підвищеним кортизолом, депресивним настроєм та менш відновлювальним сном .</li>
+            <li>Важливе розрізнення: clutter (безлад) vs decor (декор), maximalism vs minimalism .</li>
+            <li>Депресія може призводити до безладу (через безнадію, брак енергії), а не навпаки — важливість контексту .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: Зв'язок психічного здоров'я та прибирання (Taylor Counseling Group, 2022)</h3>
+    <div class="source">
+        <strong>Назва:</strong> How Mental Health and Cleaning Are Connected<br>
+        <strong>Посилання:</strong> <a href="https://taylorcounselinggroup.com/blog/mental-health-and-cleaning/" target="_blank">Taylor Counseling Group</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Прибирання зменшує стрес, підвищує фізичну активність, видаляє бактерії, покращує сон .</li>
+            <li>Дослідження UConn: у періоди стресу люди звертаються до повторюваних ритуалів, таких як прибирання, щоб відновити відчуття контролю .</li>
+            <li>Усвідомлене миття посуду підвищує позитивні емоції (натхнення) та знижує негативні (нервозність) .</li>
+            <li>Миття рук після невдачі відновлює оптимізм (Kaspar, 2012) .</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 9/10</strong> — Критично важливо для створення безпечного, неосудливого простору для людей, які можуть відчувати сором, провину або безпорадність через безлад. Розуміння, що безлад може бути симптомом депресії або хронічного стресу, а не лінощами, є ключовим .</li>
+            <li><strong>Patience: 9/10</strong> — Дуже висока терплячість, оскільки зміна звичок потребує часу. Рекомендується починати з малого — "одна шухляда, одна полиця" .</li>
+            <li><strong>Assertiveness: 5/10</strong> — Помірна наполегливість для заохочення до дій, але без тиску. Важливо не додавати почуття провини за невиконані завдання .</li>
+            <li><strong>Creativity: 8/10</strong> — Висока креативність для пошуку індивідуальних систем організації, що підходять конкретній людині, перетворення прибирання на усвідомлену практику, створення "краси" в домі .</li>
+            <li><strong>Formality: 3/10</strong> — Низька формальність. Тон має бути теплим, підтримуючим, без осуду, як у досвідченого наставника, який розуміє, як важко почати.</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, практичністю та повагою до індивідуальних особливостей та обставин.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від розуміння зв'язку безладу та стресу до практичних кроків з організації простору, усвідомленого прибирання, роботи з ментальним навантаженням та інтеграції нових звичок. Базується на дослідженнях кортизолу , ментального навантаження , терапевтичного очищення  та практичних порадах .</em></p>
+        
+        <p><strong>Сесія 1: Understanding the Link — Why Clutter Affects Your Mind (Розуміння зв'язку)</strong><br>
+        <em>Завдання:</em> Психоосвіта: пояснення зв'язку безладу з кортизолом, настроєм, психологічним благополуччям ; нормалізація досвіду, особливо для жінок, які несуть більше ментальне навантаження ; розвінчування міфу про "лінощі" — безлад може бути симптомом стресу або депресії .<br>
+        <em>Очікувані результати:</em> Розуміння, що реакція на безлад є фізіологічною; зменшення самозвинувачення.<br>
+        <em>Обґрунтування:</em> "Коли багато безладу, ви втрачаєте контроль над фізичним середовищем, що виснажує та може спричинити стрес, депресію або тривогу" .</p>
+        
+        <p><strong>Сесія 2: Starting Small — One Drawer, One Shelf (Початок з малого)</strong><br>
+        <em>Завдання:</em> Визначення однієї маленької зони для організації; використання таймера (15-20 хвилин) ; сортування без фізичного контакту з речами (щоб уникнути емоційної прив'язаності) ; категорії: "залишити", "викинути", "перенести" .<br>
+        <em>Очікувані результати:</em> Перший успіх; відчуття контролю та майстерності .<br>
+        <em>Обґрунтування:</em> "Почніть з малого — однієї шухляди, однієї книжкової полиці. Легко перевантажитись, якщо намагатись охопити всю кімнату" .</p>
+        
+        <p><strong>Сесія 3: Mindful Cleaning — Finding Calm in Routine (Усвідомлене прибирання)</strong><br>
+        <em>Завдання:</em> Перетворення рутинних справ на практику усвідомленості: фокус на відчуттях (тепла вода, запах мила, рухи) ; використання прибирання як способу "перезавантажитись" після стресу ; зв'язок з дослідженнями про терапевтичний ефект очищення .<br>
+        <em>Очікувані результати:</em> Зниження тривоги під час прибирання; підвищення позитивних емоцій .<br>
+        <em>Обґрунтування:</em> "Учасники, які мили посуд усвідомлено, повідомили про підвищення натхнення та зниження нервозності" .</p>
+        
+        <p><strong>Сесія 4: Taming the Mental Load — Sharing the Invisible Work (Приборкання ментального навантаження)</strong><br>
+        <em>Завдання:</em> Ідентифікація "когнітивної праці", яку виконує користувач (помічання, планування, моніторинг) ; переклад конфліктів про безлад на мову потреб ("коли вдома безлад, мій мозок не вимикається"); перехід від "допомоги" до "власності" (кожен член сім'ї повністю відповідає за свої зони) .<br>
+        <em>Очікувані результати:</em> Зменшення ментального навантаження; покращення комунікації в сім'ї.<br>
+        <em>Обґрунтування:</em> "Якщо ментальне навантаження є частиною того, що робить безлад таким стресовим для жінок, то рішення не може полягати в тому, щоб один партнер був менеджером, який роздає завдання" .</p>
+        
+        <p><strong>Сесія 5: Creating Beauty — Your Restorative Space (Створення краси)</strong><br>
+        <em>Завдання:</em> Дослідження концепції "краси дому" як медіатора благополуччя ; створення одного "відновлювального простору" (куточка), де панує порядок і краса саме для цієї людини ; використання принципів максималізму чи мінімалізму залежно від вподобань .<br>
+        <em>Очікувані результати:</em> Підвищення задоволення від дому; відчуття безпеки та спокою .<br>
+        <em>Обґрунтування:</em> "Вплив безладу на благополуччя частково пояснюється зниженням сприйнятої краси дому" .</p>
+        
+        <p><strong>Сесія 6: Building Habits — Sustainable Order (Сталі звички)</strong><br>
+        <em>Завдання:</em> Створення простих щоденних ритуалів (10-хвилинне "скидання" ввечері); визначення "червоних прапорців" (коли безлад є симптомом депресії, а не причиною) ; інтеграція цифрового детоксу та організації; план підтримки.<br>
+        <em>Очікувані результати:</em> Довгострокова стратегія; відчуття стійкості .<br>
+        <em>Обґрунтування:</em> "Коротке щоденне скидання, 10 хвилин після вечері, за участю всіх, може зробити для гармонії більше, ніж один великий суботній прибиральний спринт, який закінчується образою" .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Overwhelmed, Ashamed, Anxious, Exhausted, Guilty, Frustrated, Hopeless, Calm, In-control, Proud, Accomplished, Restored.</p>
+        <p><strong>Hot Memory:</strong> Поточний рівень безладу/стресу, останні спроби щось організувати, що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Улюблені "малі перемоги", визначені "зони власності", ефективні ритуали, прогрес.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія, довгострокові патерни, коморбідні стани (депресія, тривога), дитячий досвід, що допомагало раніше.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не засуджувати за безлад.</strong> Безлад може бути симптомом депресії, тривоги, вигорання, а не особистою невдачею .</li>
+            <li><strong>Не плутати безлад з хордингом (hoarding).</strong> Хординг є психічним розладом, що потребує професійної допомоги .</li>
+            <li><strong>Визнавати гендерну нерівність.</strong> Ментальне навантаження та вплив безладу на кортизол є більшими для жінок .</li>
+            <li><strong>Не перетворювати прибирання на ще одне джерело стресу.</strong> Важливий процес, а не ідеальний результат.</li>
+            <li><strong>Підкреслювати, що мета — функціональний, життєздатний простір, а не "дім з журналу".</strong></li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Симптоми клінічної депресії, що супроводжуються крайнім безладом як симптомом .</li>
+            <li>Підозра на хординг (hoarding disorder) — нав'язливе накопичення, сильний дистрес при спробі позбутися речей .</li>
+            <li>Сильний сімейний конфлікт через безлад, що потребує медіації.</li>
+            <li>Відсутність прогресу після 4-5 сесій або погіршення стану.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides psychoeducation, practical strategies, and emotional support for organizing your space and reducing the mental load. It is based on evidence-based research on the connection between clutter, cortisol, well-being, and the therapeutic effects of mindful cleaning. It is NOT a substitute for professional mental health treatment, therapy, or help for hoarding disorder. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7)."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Order in the House – Order in the Mind" є глибоко етичною та науково-обґрунтованою. Вона інтегрує:</p>
+    <ul>
+        <li><strong>Розуміння біологічного зв'язку:</strong> вплив безладу на кортизол та психологічне благополуччя .</li>
+        <li><strong>Концепцію ментального навантаження:</strong> невидима праця, яка робить безлад "постійним нагадуванням про незавершені справи" .</li>
+        <li><strong>Терапевтичний потенціал прибирання:</strong> мета-аналізи та експерименти підтверджують ефект очищення на зниження стресу .</li>
+        <li><strong>Практичні, доказові методи:</strong> початок з малого, таймер, усвідомленість, розподіл відповідальності .</li>
+        <li>Чіткі етичні межі: не засуджувати, визнавати гендерні аспекти, скеровувати при "червоних прапорцях" (депресія, хординг).</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від розуміння проблеми до створення сталих звичок, що підтримують порядок у хаті та в голові. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не замінює професійну психологічну допомогу. Вона створена, щоб допомогти людям зрозуміти зв'язок між їхнім середовищем та самопочуттям і знайти доступні, науково-обґрунтовані способи відновлення відчуття контролю.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Clutter</span>
+            <span class="badge">Mental Load</span>
+            <span class="badge">Cortisol</span>
+            <span class="badge">Mindful Cleaning</span>
+            <span class="badge">Therapeutic Cleaning</span>
+            <span class="badge">Home Beauty</span>
+            <span class="badge">Cognitive Labor</span>
+        </p>
+    </footer>
+
+</body>
+</html>

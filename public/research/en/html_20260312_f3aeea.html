@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research for OpenRML Role: Lullaby for Adults</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #4a6b7a;
+            border-bottom: 3px solid #5d8c9c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #3a5b6a;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e6f0fa 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #5d8c9c;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #5d8c9c;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(93,140,156,0.15);
+        }
+        
+        .source a {
+            color: #3a5b6a;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #5d8c9c;
+        }
+        
+        .source a:hover {
+            color: #1a3a4a;
+            border-bottom: 1px solid #1a3a4a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #4a6b7a;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #5d8c9c;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #5d8c9c;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #3a5b6a;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #5d8c9c;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Research for OpenRML Role: Lullaby for Adults</h1>
+    <p><em>"Evidence-Based Sleep Support for Adults Using Non-Pharmacological Methods"</em></p>
+    
+    <div class="meta-info">
+        <strong>Date:</strong> March 11, 2026 | 
+        <strong>Researcher:</strong> LLM Role Architect | 
+        <strong>Status:</strong> Final Report
+    </div>
+
+    <h2>1. Research Objective</h2>
+    <p>To create a scientifically grounded, balanced, and ethical OpenRML role "Lullaby for Adults" that helps adults improve sleep quality using evidence-based non-pharmacological methods: Cognitive Behavioral Therapy for Insomnia (CBT-I), relaxation techniques, mindfulness meditation, and stimulus control. The role must address the needs of Ukrainians in the context of war, where sleep disturbances are extremely prevalent due to stress, anxiety, and traumatic experiences.</p>
+
+    <hr>
+
+    <h2>2. Key Statistics: Ukrainian and International Context</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">77.8%</div>
+            <div class="stat-label">Ukrainian military with adjustment disorder have clinical insomnia</div>
+            <small>(Source 5, Centre for Evidence, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">82.5%</div>
+            <div class="stat-label">Ukrainian military with PTSD have clinical insomnia</div>
+            <small>(Source 5, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">86-90%</div>
+            <div class="stat-label">Ukrainian military experience nightmares</div>
+            <small>(Source 5, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">80.6-84.1%</div>
+            <div class="stat-label">meet criteria for Trauma-Associated Sleep Disorder</div>
+            <small>(Source 5, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">6-16%</div>
+            <div class="stat-label">insomnia prevalence in general population (Europe/Canada)</div>
+            <small>(Source 2, Nature, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">2.5x</div>
+            <div class="stat-label">higher TASD risk with clinical insomnia</div>
+            <small>(Source 5, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Terminology: Key Sleep Concepts</h2>
+    
+    <div class="key-concept">
+        <p><strong>Cognitive Behavioral Therapy for Insomnia (CBT-I):</strong> Multi-component therapy including cognitive restructuring (changing inaccurate thoughts about sleep), stimulus control (re-associating bed with sleep), sleep restriction therapy (limiting time in bed to increase sleep efficiency), relaxation therapy, and sleep education .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Trauma-Associated Sleep Disorder (TASD):</strong> A sleep disorder characterized by nightmares, sleep disturbances, and hyperarousal. Prevalent among Ukrainian military personnel .</p>
+    </div>
+    
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Method</th>
+                <th>Description</th>
+                <th>Evidence Base</th>
+            </tr>
+            <tr>
+                <td><strong>CBT-I</strong></td>
+                <td>Multi-component: cognitive restructuring, stimulus control, sleep restriction, relaxation</td>
+                <td>"Treatment standard," strong AASM recommendations, large effects (SMD up to 1.66) </td>
+            </tr>
+            <tr>
+                <td><strong>Mindfulness Interventions</strong></td>
+                <td>MBSR, MBCT, meditation, awareness practices</td>
+                <td>SMD = -0.52 for sleep disturbances; correlation with stress reduction (r=0.74) and depression (r=0.90) </td>
+            </tr>
+            <tr>
+                <td><strong>Relaxation Techniques</strong></td>
+                <td>Progressive muscle relaxation, breathing exercises, meditation</td>
+                <td>0-38% improvement in sleep quality </td>
+            </tr>
+            <tr>
+                <td><strong>Stimulus Control</strong></td>
+                <td>Bed only for sleep and sex; get up if unable to sleep</td>
+                <td>Core CBT-I component, strong recommendations </td>
+            </tr>
+            <tr>
+                <td><strong>FA dCBT-I</strong></td>
+                <td>Fully automated digital CBT-I without therapist</td>
+                <td>SMD = -0.71 (moderate-large effect) </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Sources and Key Findings</h2>
+    <p>The following authoritative sources were analyzed to inform the role (all links were working at the time of writing):</p>
+
+    <h3>📌 Source 1: New Guidelines for Behavioral Treatment of Chronic Insomnia (AASM, Neurology Today, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> New Guidelines for Behavioral Treatment of Chronic Insomnia in Adult Patients<br>
+        <strong>Link:</strong> <a href="https://neurologytoday.aan.com/doi/full/10.1097/01.NT.0000735548.60553.35" target="_blank">https://neurologytoday.aan.com/doi/full/10.1097/01.NT.0000735548.60553.35</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>American Academy of Sleep Medicine (AASM) strongly recommends multi-component Cognitive Behavioral Therapy for Insomnia (CBT-I) for chronic insomnia treatment .</li>
+            <li>Key components: stimulus control (re-associating bed with sleep), sleep restriction therapy (limiting time in bed), relaxation therapy (breathing exercises, progressive muscle relaxation) .</li>
+            <li><strong>Sleep hygiene is NOT recommended as a standalone therapy</strong> .</li>
+            <li>Meta-analysis of nearly 50 studies showed clinically significant improvements in sleep latency and sleep maintenance .</li>
+            <li>CBT-I benefits include long-term results without additional interventions .</li>
+            <li>"CBT-I is not a rigid protocol, but is based on what the patient brings" — importance of individualized approach .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 2: Fully automated digital CBT-I for insomnia (Nature npj Digital Medicine, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Systematic review and meta-analysis on fully automated digital cognitive behavioral therapy for insomnia<br>
+        <strong>Link:</strong> <a href="https://www.nature.com/articles/s41746-025-01514-4" target="_blank">https://www.nature.com/articles/s41746-025-01514-4</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Meta-analysis of 29 RCTs (9,475 participants) showed fully automated digital CBT-I (FA dCBT-I) has <strong>moderate to large effect on insomnia severity</strong> (SMD = -0.71) .</li>
+            <li>Insomnia prevalence: 6-10% by strict criteria, 11-17% by broader criteria .</li>
+            <li>Average program completion rate: 59.33% (range 16.67% to 85.71%) .</li>
+            <li>Adherence is critical for effectiveness .</li>
+            <li>FA dCBT-I is less effective than therapist-guided CBT-I, highlighting advantages of hybrid models .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 3: Mindfulness-Based Interventions for Sleep (Sleep Wake Advisor, 2024)</h3>
+    <div class="source">
+        <strong>Title:</strong> Mindfulness-Based Interventions: Improved Sleep Linked to Psychosocial Factors<br>
+        <strong>Link:</strong> <a href="https://www.sleepwakeadvisor.com/news/mindfulness-based-interventions-sleep-disturbance/" target="_blank">https://www.sleepwakeadvisor.com/news/mindfulness-based-interventions-sleep-disturbance/</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Meta-regression of 40 RCTs (3,537 participants) showed mindfulness interventions significantly improve sleep disturbances (SMD = -0.52) .</li>
+            <li>Most common interventions: Mindfulness-Based Stress Reduction (35%), Mindfulness-Based Cognitive Therapy (5%) .</li>
+            <li><strong>Reduction in sleep disturbances correlated with stress reduction (r=0.74) and depression reduction (r=0.90)</strong> .</li>
+            <li>Mindfulness interventions are effective as transdiagnostic treatments .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 4: Non-pharmacological methods for sleep improvement (DOAJ, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> How to improve your sleep quality? Review of non-pharmacological methods<br>
+        <strong>Link:</strong> <a href="https://doaj.org/article/30d6d66a9b704ea496111c77e17ab4a8" target="_blank">https://doaj.org/article/30d6d66a9b704ea496111c77e17ab4a8</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Review of 24 PubMed articles on non-pharmacological sleep improvement methods .</li>
+            <li>Methods: aromatherapy, physical exercise, mindfulness meditation, music and relaxing sounds, cognitive behavioral therapy .</li>
+            <li>All methods show varying effectiveness depending on sleep parameters (number of awakenings, total duration, subjective quality, ease of falling asleep) .</li>
+            <li>Non-pharmacological methods are effective elements for alleviating sleep disorders, but may be insufficient for complex cases .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 5: Trauma-associated sleep disorder among Ukrainian combatants (Centre for Evidence, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Probable trauma-associated sleep disorder among Ukrainian combatants with stress-related mental disorders<br>
+        <strong>Link:</strong> <a href="https://www.centreforevidence.org/article/20250913-probable-trauma-associated-sleep-disorder-among-ukrainian-combatants-with-stress-related-mental-disorders" target="_blank">https://www.centreforevidence.org/article/20250913-probable-trauma-associated-sleep-disorder-among-ukrainian-combatants-with-stress-related-mental-disorders</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Study of 99 Ukrainian military personnel (36 with adjustment disorder, 63 with PTSD) .</li>
+            <li><strong>Clinical insomnia:</strong> 77.8% (adjustment disorder), 82.5% (PTSD) .</li>
+            <li><strong>Nightmares:</strong> 86.1% (adjustment disorder), 90.5% (PTSD) .</li>
+            <li><strong>Probable Trauma-Associated Sleep Disorder (TASD):</strong> 80.6% (adjustment disorder), 84.1% (PTSD) .</li>
+            <li>Military personnel with clinical insomnia had <strong>2.5 times higher TASD risk</strong> (RR = 2.55) .</li>
+            <li>Insomnia is a key clinical marker for TASD screening .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 6: Behavioural sleep programs for middle-aged adults (Nature Scientific Reports, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Effectiveness of behavioural sleep programs for middle-aged adults on cognition and sleep<br>
+        <strong>Link:</strong> <a href="https://www.nature.com/articles/s41598-025-24009-4" target="_blank">https://www.nature.com/articles/s41598-025-24009-4</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Systematic review of 6 RCTs (969 participants) of behavioral sleep programs for middle-aged adults .</li>
+            <li>Identified 28 behavior change techniques (BCTs) out of 93 possible .</li>
+            <li>Most common BCTs: goal setting, shaping knowledge, regulation, repetition .</li>
+            <li>Key BCT categories associated with positive sleep and cognitive outcomes .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 7: Nurse-Guided Internet-Delivered CBT-I in General Practice (CiNii, 2026)</h3>
+    <div class="source">
+        <strong>Title:</strong> Nurse-Guided Internet-Delivered Cognitive Behavioral Therapy for Insomnia in General Practice<br>
+        <strong>Link:</strong> <a href="https://cir.nii.ac.jp/crid/1360861709562365696?lang=en" target="_blank">https://cir.nii.ac.jp/crid/1360861709562365696?lang=en</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>RCT of 134 patients, comparing nurse-guided I-CBT-I vs treatment as usual .</li>
+            <li><strong>Huge effect on insomnia severity at 8 weeks: Cohen's d = 1.66</strong> .</li>
+            <li>At 26 weeks, effect remained significant: d = 1.02 .</li>
+            <li>Significant effects also on wake after sleep onset, sleep efficiency, sleep quality, and depression .</li>
+            <li>68% of patients completed the program .</li>
+            <li>I-CBT-I allows general practitioners to offer effective insomnia treatment aligned with clinical guidelines .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 8: Mind-Body Interventions Improve Sleep Quality in Older Adults (Sleep Wake Advisor, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Mind-Body Interventions Improve Sleep Quality in Older Adults<br>
+        <strong>Link:</strong> <a href="https://www.sleepwakeadvisor.com/news/mind-body-interventions-improve-older-adult-sleep/" target="_blank">https://www.sleepwakeadvisor.com/news/mind-body-interventions-improve-older-adult-sleep/</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Meta-analysis of 11 RCTs (1,052 participants) of meditation-based mind-body interventions for older adults .</li>
+            <li><strong>Significant improvement in sleep quality:</strong> SMD = -0.66 .</li>
+            <li><strong>Significant improvement in depression:</strong> SMD = -1.60 .</li>
+            <li><strong>Significant improvement in anxiety:</strong> SMD = -1.46 .</li>
+            <li>Effect on stress was not statistically significant .</li>
+            <li>Conclusion: meditation interventions significantly improve sleep quality, depression, and anxiety .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 9: Non-pharmacologic interventions for hospitalized patients (ICHGCP, 2023)</h3>
+    <div class="source">
+        <strong>Title:</strong> Non-pharmacologic interventions to improve the sleep of hospitalized patients: a systematic review<br>
+        <strong>Link:</strong> <a href="https://ichgcp.net/zh/clinical-trials-registry/publications/49936-non-pharmacologic-interventions-to-improve-the-sleep-of-hospitalized-patients-a-systematic-review" target="_blank">https://ichgcp.net/zh/clinical-trials-registry/publications/49936-non-pharmacologic-interventions-to-improve-the-sleep-of-hospitalized-patients-a-systematic-review</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Systematic review of 13 intervention studies (1,154 participants) .</li>
+            <li><strong>Relaxation techniques:</strong> 0-38% improvement in sleep quality .</li>
+            <li><strong>Improved sleep hygiene:</strong> 5% improvement in sleep quantity .</li>
+            <li><strong>Daytime bright light:</strong> 7-18% improvement in sleep quantity .</li>
+            <li>Conclusion: insufficient high-quality evidence, but methods show potential .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 10: The many dimensions of a good night's sleep (Harvard Health, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> The many dimensions of a good night's sleep<br>
+        <strong>Link:</strong> <a href="https://www.health.harvard.edu/heart-health/the-many-dimensions-of-a-good-nights-sleep" target="_blank">https://www.health.harvard.edu/heart-health/the-many-dimensions-of-a-good-nights-sleep</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>American Heart Association added sleep duration to its heart health checklist .</li>
+            <li>Key dimensions of healthy sleep: duration (7-9 hours), continuity, regularity, daytime functioning .</li>
+            <li>"Social jet lag" (irregular schedule) increases cardiovascular disease risk .</li>
+            <li>Recommendation: keep a sleep diary for at least 2 weeks to identify patterns .</li>
+            <li>Avoid caffeine after noon, alcohol before bed, screens one hour before sleep .</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Justification of Key Role Parameters</h2>
+    <p>Based on the sources above, the following decisions were made regarding role configuration:</p>
+
+    <h3>STEP 3: Behavior & Tone (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 9/10</strong> — High empathy is critical for creating a safe space for people with sleep disturbances, especially in the context of trauma. Research shows that therapeutic alliance even in digital formats is key .</li>
+            <li><strong>Patience: 9/10</strong> — Very high patience is needed, as sleep improvements are gradual, especially when working with trauma-associated sleep disorders. "CBT-I is not a rigid protocol, but is based on what the patient brings" .</li>
+            <li><strong>Assertiveness: 5/10</strong> — Moderate assertiveness to gently guide through stimulus control and sleep restriction techniques, which can be challenging, but not push. Sleep restriction therapy may temporarily increase fatigue, requiring a delicate approach .</li>
+            <li><strong>Creativity: 7/10</strong> — Creativity for creating metaphors, personalizing relaxation techniques, adapting exercises to individual needs .</li>
+            <li><strong>Formality: 3/10</strong> — Low formality. A warm, soothing tone, like a lullaby, is important for creating an atmosphere of safety and relaxation .</li>
+        </ul>
+        <p><em>All scores are calibrated to achieve balance between support, scientific grounding, and respect for the user's individual experience.</em></p>
+    </div>
+
+    <h3>STEP 5: Journey Sessions — 6 Sessions</h3>
+    <div class="justification">
+        <p><em>Session Logic: From assessment and understanding of sleep to implementing key CBT-I components and integrating practices for life.</em></p>
+        
+        <p><strong>Session 1: Sleep Assessment & Education</strong><br>
+        <em>Tasks:</em> Assess sleep patterns, identify problems (sleep onset, maintenance, early awakening); psychoeducation about circadian rhythms and sleep physiology; introduce sleep diary; debunk sleep myths.<br>
+        <em>Expected Outcomes:</em> Understanding individual sleep issues, basic knowledge about healthy sleep, start of self-monitoring.<br>
+        <em>Rationale:</em> Sleep assessment and education are the first step in CBT-I. Harvard Health recommends keeping a sleep diary for at least 2 weeks .</p>
+        
+        <p><strong>Session 2: Stimulus Control & Sleep Restriction</strong><br>
+        <em>Tasks:</em> Implement stimulus control (bed only for sleep and sex; get up if unable to sleep); introduce sleep restriction therapy (limit time in bed to increase efficiency); discuss temporary fatigue.<br>
+        <em>Expected Outcomes:</em> Increased bed-sleep association, improved sleep efficiency.<br>
+        <em>Rationale:</em> These are key behavioral components of CBT-I with strong AASM recommendations .</p>
+        
+        <p><strong>Session 3: Relaxation Techniques</strong><br>
+        <em>Tasks:</em> Teach progressive muscle relaxation; breathing exercises (4-7-8, diaphragmatic breathing); safe place visualization; autogenic training.<br>
+        <em>Expected Outcomes:</em> Reduced physical and cognitive arousal before sleep.<br>
+        <em>Rationale:</em> Relaxation techniques are a key CBT-I component and show 0-38% improvement in sleep quality .</p>
+        
+        <p><strong>Session 4: Cognitive Restructuring</strong><br>
+        <em>Tasks:</em> Identify inaccurate thoughts about sleep ("I'll never fall asleep," "I won't be able to function"); challenge these thoughts; replace with more realistic ones; work with nighttime anxious thoughts.<br>
+        <em>Expected Outcomes:</em> Reduced anxiety around sleep, more realistic expectations.<br>
+        <em>Rationale:</em> Cognitive restructuring is an important CBT-I component .</p>
+        
+        <p><strong>Session 5: Mindfulness for Sleep</strong><br>
+        <em>Tasks:</em> Introduce mindfulness meditation before sleep; practice body scan; "watching thoughts" meditation; mindful breathing.<br>
+        <em>Expected Outcomes:</em> Reduced rumination, improved sleep quality, reduced stress.<br>
+        <em>Rationale:</em> Mindfulness interventions show SMD = -0.52 for sleep disturbances and correlate with stress reduction (r=0.74) .</p>
+        
+        <p><strong>Session 6: Integration & Relapse Prevention</strong><br>
+        <em>Tasks:</em> Review progress; create personalized maintenance plan; identify "red flags" (worsening insomnia, nightmares, TASD signs); plan continued practice; integrate techniques into daily life.<br>
+        <em>Expected Outcomes:</em> Long-term healthy sleep maintenance strategy, understanding self-help limits.<br>
+        <em>Rationale:</em> CBT-I benefits include long-term results without additional interventions .</p>
+    </div>
+
+    <h3>STEP 7: Memory System</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Anxious (before sleep), Frustrated (due to inability to sleep), Tired/Fatigued (during the day), Overwhelmed, Scared (due to nightmares), Calm (after relaxation), Restored (after good sleep).</p>
+        <p><strong>Hot Memory:</strong> Current sleep pattern (sleep onset, awakenings), techniques used, emotional state before sleep, nightmares.</p>
+        <p><strong>Warm Memory:</strong> Favorite relaxation techniques, effective strategies, individual insomnia triggers, sleep diary, progress in sleep efficiency.</p>
+        <p><strong>Cold Memory:</strong> Overall sleep history, long-term patterns, comorbid conditions (anxiety, depression, PTSD), TASD risks, what has worked historically.</p>
+    </div>
+
+    <h3>STEP 8: Ethics & Referral</h3>
+    <div class="justification">
+        <p><strong>Ethical Rules:</strong></p>
+        <ul>
+            <li><strong>Do not give medical advice</strong> about sleep medications, dosage changes .</li>
+            <li><strong>Do not diagnose</strong> — the role is not qualified to do so.</li>
+            <li><strong>Warn about temporary fatigue increase</strong> with sleep restriction therapy .</li>
+            <li><strong>Do not use sleep restriction therapy with bipolar disorder or seizures</strong> — may worsen condition .</li>
+            <li><strong>Trauma sensitivity</strong> — many Ukrainians have trauma-associated sleep disorders (TASD) .</li>
+            <li><strong>Do not recommend sleep hygiene as a standalone method</strong> — it is ineffective .</li>
+        </ul>
+        
+        <p><strong>Referral Protocol (Red Flags):</strong></p>
+        <ul>
+            <li><strong>SUICIDAL THOUGHTS OR INTENTIONS</strong> — immediate referral to emergency services.</li>
+            <li>Suspected <strong>Trauma-Associated Sleep Disorder (TASD)</strong>: nightmares + sleep disturbance + hyperarousal (especially in military) .</li>
+            <li>Severe depression or anxiety impairing functioning .</li>
+            <li>Bipolar disorder or seizures — contraindications for sleep restriction therapy .</li>
+            <li>Suspected sleep apnea (loud snoring, breathing pauses, excessive daytime sleepiness).</li>
+            <li>No improvement after 4-5 sessions or worsening condition.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Disclaimer:</strong><br>
+            "This role provides psychoeducation, relaxation techniques, and cognitive-behavioral strategies for sleep improvement based on evidence-based approaches including CBT-I, mindfulness-based interventions, and stimulus control. It is a self-management support tool, NOT a substitute for professional medical advice, diagnosis, or treatment. Sleep disorders can be symptoms of underlying medical or mental health conditions (such as PTSD, depression, or sleep apnea). Always consult with your healthcare provider about persistent sleep problems, especially if you experience daytime sleepiness, loud snoring, or pauses in breathing during sleep. If you are in crisis, have thoughts of harming yourself, or if your sleep problems are accompanied by severe depression or anxiety, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7)."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Conclusion and Next Steps</h2>
+    <p>The developed "Lullaby for Adults" role is balanced and evidence-based. It incorporates:</p>
+    <ul>
+        <li><strong>Gold standard for insomnia treatment:</strong> CBT-I with strong AASM recommendations, including stimulus control, sleep restriction, cognitive restructuring, and relaxation .</li>
+        <li><strong>Additional evidence-based methods:</strong> mindfulness interventions (SMD = -0.52) , relaxation techniques , mind-body interventions (SMD = -0.66) .</li>
+        <li><strong>Specific Ukrainian context:</strong> extremely high rates of sleep disturbances among military personnel (77.8-82.5% insomnia, 86-90% nightmares, 80-84% TASD) .</li>
+        <li>Clear ethical boundaries: no medical advice, no diagnosis, refer for "red flags" (TASD, bipolar disorder, sleep apnea).</li>
+    </ul>
+    
+    <p>The role has a structure of 6 sessions that logically guide the user from sleep assessment to integrating practices into life. All parameters (tone, personality traits, techniques, ethical boundaries) are determined based on evidence-based sources.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ CRITICAL NOTE:</strong> This role does NOT replace medical evaluation for suspected sleep apnea, TASD, or other serious sleep disorders. It is designed to support self-help for moderate sleep disturbances and as a complement to professional treatment.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Report created for the OpenRML project. All links were working at the time of publication (March 11, 2026).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Sleep Health</span>
+            <span class="badge">CBT-I</span>
+            <span class="badge">Mindfulness</span>
+            <span class="badge">Relaxation</span>
+            <span class="badge">Insomnia</span>
+            <span class="badge">TASD</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

@@ -1,10 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { useLanguage } from '@/components/language-context'
+import { useLocale } from '@/components/locale-provider'
 
 export function Hero() {
-  const { t } = useLanguage()
+  const { t, locale } = useLocale()
   const h = t.hero
 
   return (
@@ -45,13 +45,13 @@ export function Hero() {
         {/* CTAs */}
         <div className="mt-10 flex flex-wrap items-center gap-4">
           <Link
-            href="/roles"
+            href={`/${locale}/roles`}
             className="bg-foreground text-background px-8 py-4 text-sm font-mono tracking-widest uppercase hover:opacity-90 transition-opacity"
           >
             {h.exploreRoles}
           </Link>
           <Link
-            href="/about"
+            href={`/${locale}/about`}
             className="border border-foreground text-foreground px-8 py-4 text-sm font-mono tracking-widest uppercase hover:bg-foreground hover:text-background transition-colors"
           >
             {h.readManifesto}

@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Digital Safety Guide (Гід з цифрової безпеки)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #3498db;
+            border-bottom: 3px solid #2980b9;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e8f4fc 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #2980b9;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #2980b9;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(41,128,185,0.15);
+        }
+        
+        .source a {
+            color: #2980b9;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #2980b9;
+        }
+        
+        .source a:hover {
+            color: #1a5276;
+            border-bottom: 1px solid #1a5276;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #3498db;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #2980b9;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #2980b9;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #2980b9;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #2980b9;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2980b9;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #2980b9;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Digital Safety Guide</h1>
+    <p><em>"Гід з цифрової безпеки: коли хочеться безпеки в інтернеті"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Digital Safety Guide", яка допомагає звичайним користувачам підвищити свою цифрову безпеку, захистити особисті дані та орієнтуватися в сучасних кіберзагрозах. Роль має враховувати український контекст, де Україна є однією з п'яти найбільш цільових країн для кібератак у світі [citation:8], та спиратися на міжнародний доказовий досвід у сфері кібергігієни та безпеки.</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">88%</div>
+            <div class="stat-label">зломів у малому бізнесі містять ransomware</div>
+            <small>(LastPass/DBIR, 2025) [citation:1]</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">79%</div>
+            <div class="stat-label">вторгнень є "безмальваревими" (викрадені облікові дані)</div>
+            <small>(CrowdStrike, 2024) [citation:1]</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">60%</div>
+            <div class="stat-label">зломів включають соціальну інженерію</div>
+            <small>(DBIR) [citation:1]</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">442%</div>
+            <div class="stat-label">зростання вішингу (голосовий фішинг) у 2024 році</div>
+            <small>(CrowdStrike) [citation:1]</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">62%</div>
+            <div class="stat-label">організацій стикаються з обходом MFA</div>
+            <small>(Prove Report, 2026) [citation:5]</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">40%</div>
+            <div class="stat-label">людей правильно визначають діпфейки</div>
+            <small>(Prove Report, 2026) [citation:5]</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Кіберстійкість (Cyber Resilience):</strong> Здатність організації або особи готуватися до кібератак, реагувати на них та відновлюватися після них. Ключова філософія 2026 року — "не досконалість, а стійкість". Жодна організація не є невразливою, але стійкі організації швидко відновлюються завдяки надійним резервним копіям, відпрацьованим планам реагування та надійному захисту ідентичності [citation:1].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Правило 3-2-1 резервного копіювання:</strong> Ключова стратегія захисту від ransomware: 3 копії даних, на 2 різних носіях, 1 копія офлайн (або immutable у хмарі). Це перетворює ransomware з "екзистенційної загрози" на "керовану проблему" [citation:1].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Безмальвареві вторгнення (Malware-free intrusions):</strong> Атаки, що використовують легітимні облікові дані та інструменти адміністрування, не потребуючи шкідливого програмного забезпечення. Вони зливаються зі звичайним трафіком, що ускладнює їх виявлення [citation:1].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Підхід "Zero Trust":</strong> Принцип "нікому не довіряй, завжди перевіряй". Кожен доступ до ресурсів має перевірятися, незалежно від того, звідки він походить [citation:1].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Безперервна автентифікація (Continuous Authentication):</strong> 68% організацій не мають безперервної автентифікації, що означає, що системи "перестають працювати після входу". Сучасний підхід вимагає постійної перевірки на основі поведінкових сигналів та ризиків пристрою [citation:5].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Діпфейки та AI-загрози:</strong> Люди правильно визначають діпфейки лише у 40% випадків. 88% організацій очікують сплеску шахрайства з використанням GenAI, але 65% не мають комплексного плану захисту [citation:5].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Український контекст:</strong> Україна входить до п'ятірки країн, які найчастіше стають цілями кібератак. Google відзначає цифрову стійкість України, зокрема використання хмарних технологій, національних AI-моделей (Diia.AI на базі Gemini) та захист державних даних від фізичних та кібератак [citation:8]. SafeBot та інші інструменти допомагають перевіряти посилання на фішингові загрози [citation:8].</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Тип загрози</th>
+                <th>Опис</th>
+                <th>Ключові заходи захисту</th>
+            </tr>
+            <tr>
+                <td><strong>Ransomware</strong></td>
+                <td>Шифрування даних з вимогою викупу; присутній у 88% зломів малого бізнесу [citation:1]</td>
+                <td>Правило 3-2-1, ім'ютабельні копії, захист облікових даних бекапів, тестування відновлення</td>
+            </tr>
+            <tr>
+                <td><strong>Викрадення облікових даних</strong></td>
+                <td>79% вторгнень — "безмальвареві", з використанням легітимних облікових даних [citation:1]</td>
+                <td>MFA (FIDO2/WebAuthn), менеджер паролів, принцип найменших привілеїв</td>
+            </tr>
+            <tr>
+                <td><strong>Соціальна інженерія</strong></td>
+                <td>60% зломів; фішинг, вішинг (+442%), бізнес-компрометація (BEC) [citation:1]</td>
+                <td>Навчання, симуляції фішингу, верифікація платежів поза каналом, DMARC</td>
+            </tr>
+            <tr>
+                <td><strong>Експлойти вразливостей</strong></td>
+                <td>Атаки на невиправлені системи, VPN, edge-пристрої, застарілі CMS/плагіни</td>
+                <td>Патчі для зовнішніх систем (Critical ≤7 днів), інвентаризація, WAF</td>
+            </tr>
+            <tr>
+                <td><strong>Атаки через третіх осіб</strong></td>
+                <td>Кількість зломів через партнерів подвоїлась; 30% інцидентів за участю третіх сторін [citation:1]</td>
+                <td>Оцінка постачальників, вимоги до безпеки в контрактах, обмеження доступу</td>
+            </tr>
+            <tr>
+                <td><strong>AI-загрози та діпфейки</strong></td>
+                <td>40% точність розпізнавання діпфейків; 88% очікують зростання GenAI-шахрайства [citation:5]</td>
+                <td>Підвищена обережність, перевірка через альтернативні канали, обізнаність</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: 26 досліджень зломів — критичні прогалини (LastPass Blog, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> 26 major breach studies expose critical gaps: Your cyber resilience strategy for 2026<br>
+        <strong>Посилання:</strong> <a href="https://blog.lastpass.com/posts/26-major-breach-studies-expose-critical-gaps" target="_blank">LastPass Blog</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Ransomware присутній у 88% зломів малого та середнього бізнесу .</li>
+            <li>79% вторгнень — "безмальвареві", з використанням легітимних облікових даних .</li>
+            <li>442% зростання вішингу (голосового фішингу) у 2024 році .</li>
+            <li>60% зломів включають соціальну інженерію .</li>
+            <li>Кількість зломів через бізнес-партнерів подвоїлась; 30% інцидентів за участю третіх сторін .</li>
+            <li><strong>Ключова філософія:</strong> "Не досконалість, а стійкість" — жодна організація не є невразливою, але стійкі організації швидко відновлюються .</li>
+            <li>Правило 3-2-1 для бекапів перетворює ransomware з екзистенційної загрози на керовану проблему .</li>
+        </ul>
+        <div class="quote">
+            <p>"Надійні, доступні та ім'ютабельні/офлайн бекапи перетворюють ransomware з екзистенційного на керований."</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 2 & 6: Програми навчання AI та кібербезпеці (NJIT/Verizon, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> NJIT to Launch Expanded AI and Cybersecurity Workforce Training in Partnership with Verizon<br>
+        <strong>Посилання:</strong> <a href="https://news.njit.edu/njit-launch-expanded-ai-and-cybersecurity-workforce-training-partnership-verizon" target="_blank">NJIT News</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Програма включає CompTIA A+ (фундаментальні IT-навички) та мікрокредит з AI-грамотності .</li>
+            <li>Запуск Cybersecurity Community of Practice — екосистема для peer-to-peer навчання та менторства .</li>
+            <li>Наголос на етичних та практичних аспектах застосування AI .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Звіт Prove 2026 — провал традиційної ідентифікації в еру AI</h3>
+    <div class="source">
+        <strong>Назва:</strong> Legacy Identity Signals Are Failing in the AI Era: Prove Report<br>
+        <strong>Посилання:</strong> <a href="https://idtechwire.com/legacy-identity-signals-are-failing-in-the-ai-era-prove-report/" target="_blank">ID Tech</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Люди правильно визначають діпфейки лише у 40% випадків .</li>
+            <li>88% організацій очікують сплеску GenAI-шахрайства, але 65% не мають комплексного плану захисту .</li>
+            <li>62% організацій повідомляють про суттєві проблеми з обходом багатофакторної автентифікації (MFA) .</li>
+            <li>68% організацій не мають безперервної автентифікації .</li>
+            <li>70% не використовують поведінкові сигнали під час автентифікації .</li>
+            <li>Необхідність переходу до безперервної, багатосигнальної верифікації .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 8: Український контекст — цифрова стійкість України (Рубрика, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Ukraine among top five global targets of cyberattacks, Google highlights country's digital resilience<br>
+        <strong>Посилання:</strong> <a href="https://rubryka.com/en/2026/02/21/ukrayina-sered-p-yaty-golovnyh-tsilej-kiberatak/" target="_blank">Рубрика</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>Україна входить до п'ятірки країн, які найчастіше стають цілями кібератак у світі</strong> .</li>
+            <li>Diia.AI — перший національний AI-агент, що надає публічні послуги на базі моделі Gemini з повною конфіденційністю даних .</li>
+            <li>Розробка національної великої мовної моделі на базі Gemma з контролем даних на власній інфраструктурі .</li>
+            <li>Перехід уряду на хмарні технології Google захистив державні дані від фізичних та кібератак на інфраструктуру .</li>
+            <li>Запуск SafeBot для швидкої перевірки вебсайтів, посилань, файлів, зображень та QR-кодів на цифрові загрози .</li>
+        </ul>
+        <div class="quote">
+            <p>"Наш досвід цифрової трансформації стає моделлю для демократичного світу, включаючи країни НАТО."</p>
+            <p style="text-align: right;">— Міністерство цифрової трансформації України</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 8/10</strong> — Висока емпатія необхідна для розуміння тривоги користувачів щодо цифрових загроз, особливо в контексті, де Україна є топ-ціллю атак [citation:8]. Важливо не викликати паніку, а навчати спокійно та підтримуюче.</li>
+            <li><strong>Patience: 9/10</strong> — Дуже висока терплячість, оскільки цифрова гігієна потребує поступового формування звичок. Користувачі можуть не одразу впроваджувати складні практики.</li>
+            <li><strong>Assertiveness: 6/10</strong> — Помірна наполегливість для заохочення до впровадження базових заходів (MFA, менеджер паролів), але без тиску, з повагою до рівня комфорту користувача. "Підхід Zero Trust" має впроваджуватися поступово [citation:1].</li>
+            <li><strong>Creativity: 7/10</strong> — Креативність для пояснення складних концепцій простими аналогіями та адаптації рекомендацій до різних життєвих ситуацій.</li>
+            <li><strong>Formality: 5/10</strong> — Помірна формальність. Тон має бути професійним, авторитетним, але доступним, щоб не відлякувати звичайних користувачів складною технічною мовою.</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між професійною експертизою, доступністю та підтримкою користувача.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від розуміння поточних загроз до створення надійної "цифрової фортеці" та формування сталих звичок безпеки. Базується на ключових загрозах 2026 року [citation:1], звіті Prove [citation:5] та українському контексті [citation:8].</em></p>
+        
+        <p><strong>Сесія 1: Understanding the Threat Landscape — Why It Matters (Розуміння ландшафту загроз)</strong><br>
+        <em>Завдання:</em> Психоосвіта: огляд ключових загроз 2026 року (ransomware, викрадення даних, соціальна інженерія, AI-загрози) [citation:1][citation:5]; пояснення, що Україна є топ-ціллю для кібератак [citation:8]; нормалізація того, що безпека — це не досконалість, а стійкість [citation:1].<br>
+        <em>Очікувані результати:</em> Усвідомлення актуальності цифрової безпеки; мотивація до змін.<br>
+        <em>Обґрунтування:</em> "Зростаючий бізнес зараз є прямою ціллю" — розуміння загрози є першим кроком [citation:1].</p>
+        
+        <p><strong>Сесія 2: Fortifying Your First Line of Defense — Passwords and MFA (Зміцнення першої лінії захисту)</strong><br>
+        <em>Завдання:</em> Пояснення "безмальваревих вторгнень" та важливості облікових даних [citation:1]; впровадження менеджера паролів; налаштування MFA (бажано FIDO2/WebAuthn) [citation:1]; розуміння того, що MFA може бути обійдена, але значно підвищує безпеку [citation:5].<br>
+        <em>Очікувані результати:</em> Налаштований менеджер паролів; активована MFA на ключових акаунтах.<br>
+        <em>Обґрунтування:</em> "79% вторгнень — 'безмальвареві', з використанням легітимних облікових даних" [citation:1].</p>
+        
+        <p><strong>Сесія 3: Recognizing and Resisting Social Engineering (Розпізнавання соціальної інженерії)</strong><br>
+        <em>Завдання:</em> Навчання розпізнаванню фішингу, вішингу (+442%) [citation:1], бізнес-компрометації (BEC); практичні вправи з аналізу підозрілих листів та повідомлень; використання SafeBot для перевірки посилань [citation:8]; метод "out-of-band verification" для фінансових змін [citation:1]; розуміння обмеженості людського ока проти діпфейків (40% точність) [citation:5].<br>
+        <em>Очікувані результати:</em> Навички розпізнавання фішингу; звичка перевіряти підозрілі повідомлення.<br>
+        <em>Обґрунтування:</em> "60% зломів включають соціальну інженерію" [citation:1].</p>
+        
+        <p><strong>Сесія 4: Building a Safety Net — Backups and Recovery (Створення резервної мережі)</strong><br>
+        <em>Завдання:</em> Впровадження правила 3-2-1 для резервного копіювання [citation:1]; захист облікових даних для бекапів; тестування відновлення даних; розуміння, що це перетворює ransomware на "керовану проблему" [citation:1].<br>
+        <em>Очікувані результати:</em> Налаштована система бекапів; розуміння важливості тестування відновлення.<br>
+        <em>Обґрунтування:</em> "Надійні, доступні та ім'ютабельні/офлайн бекапи перетворюють ransomware з екзистенційного на керований" [citation:1].</p>
+        
+        <p><strong>Сесія 5: Navigating the Digital World Safely — Privacy and Software Updates (Безпечна навігація)</strong><br>
+        <em>Завдання:</em> Важливість регулярного оновлення ПЗ (особливо зовнішніх систем) [citation:1]; захист конфіденційності в інтернеті; обережність з даними в AI-сервісах [citation:5][citation:8]; використання українських безпечних сервісів (Diia.AI) [citation:8].<br>
+        <em>Очікувані результати:</em> Налаштовані автоматичні оновлення; базові навички захисту приватності.<br>
+        <em>Обґрунтування:</em> "Атаки на зовнішні системи часто відбуваються через невиправлені вразливості" [citation:1].</p>
+        
+        <p><strong>Сесія 6: Creating Your Personal Cyber Resilience Plan (Інтеграція та план стійкості)</strong><br>
+        <em>Завдання:</em> Інтеграція всіх навичок у персоналізований план; створення "playbook" реагування на інциденти [citation:1]; визначення "червоних прапорців" (ознаки компрометації, фінансові втрати, витік даних); план дій при атаці.<br>
+        <em>Очікувані результати:</em> Персоналізований план кіберстійкості; відчуття контролю, а не страху.<br>
+        <em>Обґрунтування:</em> "Кіберстійкість — це здатність готуватися, реагувати та відновлюватися" [citation:1].</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Anxious (about online safety), Overwhelmed, Confused, Skeptical, Empowered, Prepared, Confident, Secure.</p>
+        <p><strong>Hot Memory:</strong> Поточні загрози, про які турбується користувач, нещодавні підозрілі події, що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Впроваджені заходи (MFA, менеджер паролів), налаштовані бекапи, улюблені інструменти перевірки, прогрес.</p>
+        <p><strong>Cold Memory:</strong> Загальний рівень цифрової грамотності, історія безпеки, попередні інциденти, довгострокові патерни.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>Не викликати паніку:</strong> Балансувати серйозність загроз з відчуттям контролю та стійкості [citation:1].</li>
+            <li><strong>Конфіденційність:</strong> Ніколи не просити паролі, особисті дані; не зберігати чутливу інформацію.</li>
+            <li><strong>Прозорість:</strong> Чітко пояснювати, що роль є AI-асистентом, а не професійним консультантом з безпеки.</li>
+            <li><strong>Акцент на діях:</strong> Навчати практичним крокам, а не просто лякати статистикою.</li>
+            <li><strong>Визнання обмежень:</strong> Жоден захід не гарантує 100% безпеки — фокус на стійкості [citation:1].</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>Фактична компрометація:</strong> Користувач повідомляє про злам, витік даних, фінансові втрати — направлення до кіберполіції, банку, служб підтримки.</li>
+            <li><strong>Ознаки переслідування:</strong> Кібербулінг, сталкінг, погрози — направлення до правоохоронних органів.</li>
+            <li><strong>Сильна техно-тривожність:</strong> Коли страх перед цифровими загрозами паралізує нормальне життя.</li>
+            <li><strong>Підозра на шахрайство з великими сумами:</strong> Негайне направлення до банку та кіберполіції.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides educational guidance and practical tips for improving your digital safety and cyber resilience. It is based on current research and best practices in cybersecurity. It is NOT a substitute for professional security consultation, nor does it guarantee complete protection against all threats. If you believe you have been compromised, are experiencing cyber harassment, or have suffered financial fraud, please contact the relevant authorities, your bank, or a professional security expert immediately. In Ukraine, you can report cybercrimes to the Cyber Police."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Digital Safety Guide" є збалансованою та науково-обґрунтованою. Вона інтегрує:</p>
+    <ul>
+        <li><strong>Актуальні загрози 2026 року:</strong> ransomware (88%), безмальвареві вторгнення (79%), соціальна інженерія (60%), атаки через третіх осіб [citation:1].</li>
+        <li><strong>Нові виклики ери AI:</strong> діпфейки (40% розпізнавання), обхід MFA (62%), необхідність безперервної автентифікації [citation:5].</li>
+        <li><strong>Український контекст:</strong> Україна в топ-5 цілей кібератак, успішні кейси цифрової стійкості (Diia.AI, хмарні технології, SafeBot) [citation:8].</li>
+        <li><strong>Практичні заходи:</strong> правило 3-2-1 для бекапів, MFA, менеджери паролів, навчання соціальній інженерії [citation:1].</li>
+        <li>Чіткі етичні межі: не викликати паніку, конфіденційність, скеровування при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від розуміння загроз до створення персонального плану кіберстійкості. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не замінює професійний захист. Її мета — підвищити цифрову грамотність та допомогти користувачам стати більш стійкими до сучасних кіберзагроз, особливо в українському контексті високого ризику [citation:8].</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Digital Safety</span>
+            <span class="badge">Cyber Resilience</span>
+            <span class="badge">MFA</span>
+            <span class="badge">Ransomware</span>
+            <span class="badge">Social Engineering</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

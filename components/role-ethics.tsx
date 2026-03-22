@@ -1,47 +1,41 @@
 'use client'
 
-import { useLanguage } from '@/components/language-context'
+import { useLocale } from '@/components/locale-provider'
 import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'  // ← Додати цей імпорт
+import { Badge } from '@/components/ui/badge'
 import { AlertCircle, AlertTriangle, Ban } from 'lucide-react'
-import { Role } from '@/lib/types'
+import type { EthicalRule, ReferralProtocol } from '@/lib/roles'
 
 interface RoleEthicsProps {
-  ethicalRules: NonNullable<Role['ethicalRules']>
-  referralProtocol?: Role['referralProtocol']
+  ethicalRules: EthicalRule[]
+  referralProtocol?: ReferralProtocol
   disclaimer?: string
   disclaimerUa?: string
 }
 
-export function RoleEthics({ 
-  ethicalRules, 
-  referralProtocol, 
+export function RoleEthics({
+  ethicalRules,
+  referralProtocol,
   disclaimer,
-  disclaimerUa 
+  disclaimerUa,
 }: RoleEthicsProps) {
-  const { locale, t } = useLanguage()
+  const { locale, t } = useLocale()
 
   if (!ethicalRules || ethicalRules.length === 0) return null
 
   const getActionIcon = (action: string) => {
     switch (action) {
-      case 'stop':
-        return <Ban className="h-4 w-4 text-red-500" />
-      case 'refer':
-        return <AlertCircle className="h-4 w-4 text-yellow-500" />
-      default:
-        return <AlertTriangle className="h-4 w-4 text-blue-500" />
+      case 'stop':  return <Ban className="h-4 w-4 text-red-500" />
+      case 'refer': return <AlertCircle className="h-4 w-4 text-yellow-500" />
+      default:      return <AlertTriangle className="h-4 w-4 text-blue-500" />
     }
   }
 
   const getActionColor = (action: string) => {
     switch (action) {
-      case 'stop':
-        return 'border-red-500/20 bg-red-500/5'
-      case 'refer':
-        return 'border-yellow-500/20 bg-yellow-500/5'
-      default:
-        return 'border-blue-500/20 bg-blue-500/5'
+      case 'stop':  return 'border-red-500/20 bg-red-500/5'
+      case 'refer': return 'border-yellow-500/20 bg-yellow-500/5'
+      default:      return 'border-blue-500/20 bg-blue-500/5'
     }
   }
 
@@ -54,12 +48,8 @@ export function RoleEthics({
       <div className="space-y-4">
         {ethicalRules.map((rule, index) => {
           const ruleText = locale === 'uk' && rule.ruleUa ? rule.ruleUa : rule.rule
-          
           return (
-            <Card 
-              key={index}
-              className={`border ${getActionColor(rule.action)}`}
-            >
+            <Card key={index} className={`border ${getActionColor(rule.action)}`}>
               <CardContent className="p-4 flex items-start gap-3">
                 {getActionIcon(rule.action)}
                 <span className="text-sm flex-1">{ruleText}</span>
@@ -77,13 +67,12 @@ export function RoleEthics({
           <h3 className="text-lg font-mono uppercase tracking-wider">
             {t.role?.referralProtocol || 'Referral Protocol'}
           </h3>
-          
           {referralProtocol.triggers && referralProtocol.triggers.length > 0 && (
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">Triggers:</p>
               <ul className="space-y-2">
-                {(locale === 'uk' && referralProtocol.triggersUa 
-                  ? referralProtocol.triggersUa 
+                {(locale === 'uk' && referralProtocol.triggersUa
+                  ? referralProtocol.triggersUa
                   : referralProtocol.triggers
                 ).map((trigger, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm">
@@ -94,14 +83,13 @@ export function RoleEthics({
               </ul>
             </div>
           )}
-          
           {referralProtocol.message && (
             <div className="space-y-2">
               <p className="text-sm text-muted-foreground">Message:</p>
               <Card className="border border-border bg-muted/50">
                 <CardContent className="p-4 text-sm italic">
-                  {locale === 'uk' && referralProtocol.messageUa 
-                    ? referralProtocol.messageUa 
+                  {locale === 'uk' && referralProtocol.messageUa
+                    ? referralProtocol.messageUa
                     : referralProtocol.message}
                 </CardContent>
               </Card>

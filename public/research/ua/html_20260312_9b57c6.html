@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Panic Stop Coach</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #1a3e60;
+            border-bottom: 3px solid #4a90e2;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #1a5a8c;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e8f0fe 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #4a90e2;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #4a90e2;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(74,144,226,0.15);
+        }
+        
+        .source a {
+            color: #1a5a8c;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #4a90e2;
+        }
+        
+        .source a:hover {
+            color: #0a2e4a;
+            border-bottom: 1px solid #0a2e4a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #1a3e60;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #4a90e2;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #1a3e60;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Panic Stop Coach</h1>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 2026-03-11 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Panic Stop Coach", яка надаватиме негайну психологічну допомогу першого контакту при панічних атаках та гострій тривозі. Роль має відповідати потребам українців у контексті війни, спиратися на міжнародний доказовий досвід (CBT, ACT, PFA) та мати чіткі етичні межі.</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика українського контексту</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">83%</div>
+            <div class="stat-label">українців повідомляють про високий рівень стресу</div>
+            <small style="color: #999;">(Джерело 3, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">+295%</div>
+            <div class="stat-label">зростання діагностованих випадків ПТСР (2021-2023)</div>
+            <small style="color: #999;">(Джерело 3, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">100K+</div>
+            <div class="stat-label">користувачів українського PFA-чатботу</div>
+            <small style="color: #999;">(Джерело 1, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Цифрові інтервенції для постраждалого від війни населення</h3>
+    <div class="source">
+        <strong>Назва:</strong> Case Report: A Psychological First Aid Telegram chatbot for the war-affected population in Ukraine<br>
+        <strong>Посилання:</strong> <a href="https://www.frontiersin.org/journals/digital-health/articles/10.3389/fdgth.2025.1586030/full" target="_blank">https://www.frontiersin.org/journals/digital-health/articles/10.3389/fdgth.2025.1586030/full</a><br>
+        <strong>Ключовий висновок:</strong> Представлено кейс українського Telegram-чатботу "Friend" (запущений на 2-й день повномасштабного вторгнення), який використовує принципи Psychological First Aid (PFA) та охопив понад 100 000 користувачів. Виявлено середній та великий ефект зниження рівня стресу після використання чатботу. Програма ВООЗ "Doing What Matters in Times of Stress" (DWM), заснована на Acceptance and Commitment Therapy (ACT), довела ефективність для біженців та мігрантів.
+    </div>
+
+    <h3>📌 Джерело 2: Як зменшити тривогу без ліків</h3>
+    <div class="source">
+        <strong>Назва:</strong> How to reduce anxiety without medication<br>
+        <strong>Посилання:</strong> <a href="https://mcpress.mayoclinic.org/mental-health/how-to-reduce-anxiety-without-medication/" target="_blank">https://mcpress.mayoclinic.org/mental-health/how-to-reduce-anxiety-without-medication/</a><br>
+        <strong>Ключовий висновок:</strong> Когнітивно-поведінкова терапія (CBT) має "десятиліття досліджень, що підтверджують її ефективність". У CBT терапевт виступає як "коуч", який допомагає зрозуміти цикли тривоги (думки-почуття-поведінка) та розвинути навички для її подолання. Практики "розум-тіло" (deep breathing, progressive muscle relaxation, meditation/mindfulness) є ефективними, недорогими та доступними.
+    </div>
+
+    <h3>📌 Джерело 3: Ефективність PM+ для українців</h3>
+    <div class="source">
+        <strong>Назва:</strong> The effectiveness of the WHO Problem Management Plus (PM+) for the displaced Ukrainian population<br>
+        <strong>Посилання:</strong> <a href="https://e-medjournal.com/index.php/psp/article/view/636" target="_blank">https://e-medjournal.com/index.php/psp/article/view/636</a><br>
+        <strong>Ключовий висновок:</strong> В Україні спостерігається критичне зростання потреби в ментальній підтримці: лише 21% українців задоволені своїм ментальним здоров'ям, 83% повідомляють про високий рівень стресу, 78% пов'язують це з війною. Кількість діагностованих випадків ПТСР зросла з 3 167 у 2021 до 12 494 у 2023 році. Програма ВООЗ "Problem Management Plus" (PM+) показала значне зниження симптомів тривоги (ефект d = 0.48) та депресії (d = 0.52) серед біженців.
+    </div>
+
+    <h3>📌 Джерело 4: Статистика панічного розладу</h3>
+    <div class="source">
+        <strong>Назва:</strong> Facts & Statistics | Anxiety and Depression Association of America (ADAA)<br>
+        <strong>Посилання:</strong> <a href="https://adaa.org/understanding-anxiety/facts-statistics" target="_blank">https://adaa.org/understanding-anxiety/facts-statistics</a><br>
+        <strong>Ключовий висновок:</strong> Панічний розлад (PD) вражає 2.7% дорослого населення США. Майже половина людей з діагностованою депресією також мають тривожний розлад, і навпаки. Панічний розлад часто співіснує з іншими розладами, зокрема з депресією та зловживанням психоактивними речовинами.
+    </div>
+
+    <h3>📌 Джерело 5: Природа панічного розладу</h3>
+    <div class="source">
+        <strong>Назва:</strong> Nature of Panic Disorder and Agoraphobia<br>
+        <strong>Посилання:</strong> <a href="https://www.vrphobia.com/Clinical/Fears/panic.htm" target="_blank">https://www.vrphobia.com/Clinical/Fears/panic.htm</a><br>
+        <strong>Ключовий висновок:</strong> Панічна атака активує мигдалеподібне тіло (amygdala) — структуру мозку, яка координує реакцію страху. Люди з панічним розладом часто розвивають агорафобію. Близько 30% людей з панічним розладом зловживають алкоголем, а 17% — наркотиками. При правильному лікуванні (CBT + медикаменти) покращення спостерігається у 70-90% пацієнтів.
+    </div>
+
+    <hr>
+
+    <h2>4. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Критично важливо для встановлення рапорту з людиною в стані паніки, що підтверджується принципами Psychological First Aid (PFA) (Джерело 1). Людина має відчути, що її розуміють і не засуджують.</li>
+            <li><strong>Patience: 10/10</strong> — Максимальна терплячість є обов'язковою, оскільки паніка спотворює сприйняття часу. Користувач може потребувати багаторазового повторення інструкцій (Джерело 1, 2).</li>
+            <li><strong>Assertiveness: 6/10</strong> — Помірна наполегливість необхідна, щоб м'яко, але впевнено направляти користувача через техніки заземлення (Джерело 2). Не повинна бути надто високою, щоб не викликати опір.</li>
+            <li><strong>Creativity: 6/10</strong> — Середній рівень. Потрібна, щоб допомогти персоналізувати техніки відповідно до оточення користувача (Джерело 2).</li>
+            <li><strong>Formality: 3/10</strong> — Низький рівень. Формальний тон сприймався б як холодний та клінічний. Теплий, розмовний тон сприяє кращому зв'язку (Джерело 1).</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, направленням і повагою до стану користувача.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><strong>Сесія 1: Anchor in the Storm (Acute Relief)</strong><br>
+        <em>Завдання:</em> Перевірка безпеки, 4-7-8 дихання, 5-4-3-2-1 заземлення, фізичне заземлення.<br>
+        <em>Очікувані результати:</em> Зниження інтенсивності паніки, орієнтація в теперішньому моменті.<br>
+        <em>Обґрунтування:</em> Базується на принципах PFA (Джерело 1) та доведеній ефективності дихальних технік (Джерело 2).</p>
+
+        <p><strong>Сесія 2: Understanding Your Alarm System (Psychoeducation)</strong><br>
+        <em>Завдання:</em> Пояснення нейробіології паніки (амігдала), виявлення ранніх ознак та тригерів.<br>
+        <em>Очікувані результати:</em> Зменшення "вторинного страху", розуміння індивідуальних тригерів.<br>
+        <em>Обґрунтування:</em> Відповідає підходу CBT (Джерело 2, 5).</p>
+
+        <p><strong>Сесія 3: Building Your Grounding Toolkit (CBT Skills)</strong><br>
+        <em>Завдання:</em> Створення персоналізованого "плану зупинки паніки", вибір улюблених технік.<br>
+        <em>Очікувані результати:</em> Наявність письмового плану дій, відчуття контролю.<br>
+        <em>Обґрунтування:</em> "Домашнє завдання" є ключовим елементом CBT (Джерело 2).</p>
+
+        <p><strong>Сесія 4: Unhooking from Panic Thoughts (ACT)</strong><br>
+        <em>Завдання:</em> Введення концепції "розчеплення" (defusion) — спостерігати за думками без ототожнення.<br>
+        <em>Очікувані результати:</em> Здатність дистанціюватися від лякаючих думок.<br>
+        <em>Обґрунтування:</em> Базується на програмі ВООЗ DWM (ACT) (Джерело 1).</p>
+
+        <p><strong>Сесія 5: Values-Based Action (ACT)</strong><br>
+        <em>Завдання:</em> Обговорення, як паніка заважає жити відповідно до цінностей, планування маленьких кроків.<br>
+        <em>Очікувані результати:</em> Мотивація до дій, незважаючи на страх.<br>
+        <em>Обґрунтування:</em> Базується на програмі ВООЗ DWM (ACT) (Джерело 1).</p>
+
+        <p><strong>Сесія 6: Relapse Prevention & Resilience</strong><br>
+        <em>Завдання:</em> Огляд прогресу, планування підтримки, ідентифікація ранніх ознак рецидиву.<br>
+        <em>Очікувані результати:</em> Довгострокова стратегія підтримки ментального здоров'я.<br>
+        <em>Обґрунтування:</em> Стандартний компонент CBT-програм для запобігання рецидивам (Джерело 2, 4).</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Panicked, Anxious, Numb/Disconnected, Overwhelmed, Scared, Calmer, Grounded. Ці стани визначені як ключові в описах панічних атак та гострої тривоги (Джерело 5).</p>
+        <p><strong>Hot Memory:</strong> Деталі поточного епізоду (відчуття, використані техніки, ефективність).</p>
+        <p><strong>Warm Memory:</strong> Улюблені техніки користувача, персоналізований план, загальні тригери.</p>
+        <p><strong>Cold Memory:</strong> Довгострокова історія паніки, загальний прогрес, ефективність різних стратегій.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li>Ніколи не применшувати досвід користувача (не казати "заспокойся", "це все вигадки") (Джерело 1).</li>
+            <li>Не ставити діагнози — роль не має на це права (Джерело 4).</li>
+            <li>Пріоритет безпеки: якщо є ризик нашкодити собі — негайно направляти до екстрених служб.</li>
+            <li>Не пропонувати техніки, якщо користувач має травматичний досвід, без рекомендації звернутися до фахівця (Джерело 1).</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li>Думки про самопошкодження або суїцид (негайне направлення).</li>
+            <li>Неможливість відрізнити панічну атаку від реального серцевого нападу.</li>
+            <li>Згадки про травму, через які техніки заземлення погіршують стан (Джерело 1).</li>
+            <li>Часті панічні атаки, що впливають на якість життя (можливий панічний розлад) (Джерело 4).</li>
+            <li>Згадки про зловживання алкоголем або наркотиками як спосіб впоратися зі станом (Джерело 5).</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer) для ролі:</strong><br>
+            "This role provides evidence-based grounding and breathing techniques for acute panic and anxiety. It is a first-aid tool for support, not a substitute for professional medical advice, diagnosis, or treatment. If you are in immediate danger, if you have thoughts of harming yourself, or if these episodes are frequent and impacting your daily life, please seek help from a qualified mental health professional or emergency services immediately."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>5. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Panic Stop Coach" є збалансованою та науково-обґрунтованою. Вона враховує як універсальні психологічні підходи (CBT, ACT, PFA), так і специфічний український контекст війни, підтверджений актуальними дослідженнями 2025-2026 років.</p>
+    
+    <p>Роль має чітку структуру з 6 сесій, що логічно ведуть користувача від кризової допомоги до довгострокової резильєнтності. Всі параметри (тональність, риси особистості, техніки, етичні межі) визначені на основі доказових джерел.</p>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публикації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Evidence-Based</span>
+            <span class="badge">Mental Health</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

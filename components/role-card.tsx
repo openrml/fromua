@@ -1,11 +1,11 @@
 'use client'
 
-import { useLanguage } from '@/components/language-context'
+import { useLocale } from '@/components/locale-provider'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Download, ChevronRight } from 'lucide-react'
-import type { Role } from '@/lib/types'
+import { ChevronRight } from 'lucide-react'
+import type { Role } from '@/lib/roles'
 import Link from 'next/link'
 
 interface RoleCardProps {
@@ -14,15 +14,9 @@ interface RoleCardProps {
 }
 
 export function RoleCard({ role, variant = 'default' }: RoleCardProps) {
-  const { locale, t } = useLanguage()
+  const { locale } = useLocale()
 
-  const title = locale === 'uk' ? role.titleUa : role.title
-  const description = locale === 'uk' ? role.shortDescriptionUa : role.shortDescription
-
-  const handleDownload = (e: React.MouseEvent) => {
-    e.preventDefault()
-    window.location.href = `/api/roles/${role.slug}/download?lang=${locale}`
-  }
+  const description = locale === 'uk' && role.descriptionUa ? role.descriptionUa : role.description
 
   if (variant === 'compact') {
     return (
@@ -30,9 +24,9 @@ export function RoleCard({ role, variant = 'default' }: RoleCardProps) {
         <Card className="border border-border hover:border-foreground transition-colors h-full">
           <CardHeader className="p-4">
             <div className="flex items-start justify-between">
-              <h3 className="font-bold line-clamp-2">{title}</h3>
+              <h3 className="font-bold line-clamp-2">{role.title}</h3>
               <Badge variant="outline" className="ml-2 font-mono text-xs">
-                v{role.version}
+                {role.version}
               </Badge>
             </div>
           </CardHeader>
@@ -54,17 +48,10 @@ export function RoleCard({ role, variant = 'default' }: RoleCardProps) {
     <Card className="border border-border hover:border-foreground transition-colors">
       <CardHeader className="p-6">
         <div className="flex items-start justify-between mb-2">
-          <h3 className="text-xl font-bold">{title}</h3>
-          <div className="flex gap-2">
-            {role.responseLength && (
-              <Badge variant="outline" className="font-mono text-xs">
-                {role.responseLength}/7
-              </Badge>
-            )}
-            <Badge variant="outline" className="font-mono text-xs">
-              v{role.version}
-            </Badge>
-          </div>
+          <h3 className="text-xl font-bold">{role.title}</h3>
+          <Badge variant="outline" className="font-mono text-xs">
+            {role.version}
+          </Badge>
         </div>
         <p className="text-sm text-muted-foreground line-clamp-2">{description}</p>
       </CardHeader>
@@ -83,25 +70,13 @@ export function RoleCard({ role, variant = 'default' }: RoleCardProps) {
             </Badge>
           ))}
         </div>
-        
-        {role.sessions && (
-          <p className="text-xs text-muted-foreground">
-            {role.sessions.length} sessions
-            {role.journeyPacing?.maxSessionsPerWeek && 
-              ` • max ${role.journeyPacing.maxSessionsPerWeek}/week`
-            }
-          </p>
-        )}
       </CardContent>
       
       <CardFooter className="p-6 pt-0 flex gap-2">
-        <Button asChild variant="outline" className="flex-1">
+        <Button asChild className="flex-1">
           <Link href={`/roles/${role.slug}`}>
-            View Details
+            {locale === 'uk' ? 'Переглянути' : 'View Details'}
           </Link>
-        </Button>
-        <Button variant="outline" size="icon" onClick={handleDownload}>
-          <Download className="h-4 w-4" />
         </Button>
       </CardFooter>
     </Card>

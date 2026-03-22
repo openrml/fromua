@@ -1,9 +1,9 @@
 'use client'
 
-import { useLanguage } from '@/components/language-context'
+import { useLocale } from '@/components/locale-provider'
 
 export function Philosophy() {
-  const { t } = useLanguage()
+  const { t } = useLocale()
   const p = t.philosophy
 
   return (

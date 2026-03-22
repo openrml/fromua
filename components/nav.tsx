@@ -3,40 +3,41 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
-import { useLanguage } from '@/components/language-context'
+import { useLocale } from '@/components/locale-provider'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 
 export function Nav() {
   const pathname = usePathname()
-  const { locale, t, toggleLocale } = useLanguage()
+  const { locale, t } = useLocale()
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  // Extract path without locale prefix
+  const pathWithoutLocale = pathname.replace(/^\/(en|uk)/, '') || '/'
+  
+  // Toggle locale by switching URL
+  const otherLocale = locale === 'en' ? 'uk' : 'en'
+  const switchLocaleHref = `/${otherLocale}${pathWithoutLocale}`
+
   const NAV_LINKS = [
-    { href: '/roles', label: t.nav.roles },
-    { href: '/story', label: t.nav.story },
-    { href: '/for', label: t.nav.for },
-    { href: '/why', label: t.nav.why },
-    { href: '/about', label: t.nav.about },
-    { href: '/standard', label: t.nav.standard },
-	{ href: '/research', label: t.nav.research },
-    { href: '/contribute', label: t.nav.contribute },
+    { href: `/${locale}`,             label: t.nav.home       },
+    { href: `/${locale}/what-is-ai`,  label: t.nav.whatIsAi  },
+    { href: `/${locale}/for`,         label: t.nav.for        },
+    { href: `/${locale}/how-to-use`,  label: t.nav.howToUse  },
+    { href: `/${locale}/skeptic`,     label: t.nav.skeptic    },
+    { href: `/${locale}/aladdin`,  label: t.nav.philosophy },
   ]
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         {/* Logo */}
-        <Link href="/" className="flex items-baseline gap-0.5 group" aria-label="FromUA home">
-          <span className="text-sm font-mono font-bold tracking-widest text-foreground uppercase">
-            From
-          </span>
-          <span
-            className="text-sm font-mono font-bold tracking-widest uppercase"
-            style={{ color: 'var(--color-highlight)' }}
-          >
-            UA
-          </span>
+        <Link href={`/${locale}`} aria-label="FromUA.Life — Для Життя! Попри Все">
+          <img
+            src="/logo.png"
+            alt="FromUA.Life"
+            style={{ height: '25px', width: 'auto', objectFit: 'contain' }}
+          />
         </Link>
 
         {/* Desktop Nav links */}
@@ -69,8 +70,8 @@ export function Nav() {
           </button>
 
           {/* Language switcher */}
-          <button
-            onClick={toggleLocale}
+          <Link
+            href={switchLocaleHref}
             aria-label={locale === 'en' ? 'Switch to Ukrainian' : 'Switch to English'}
             className="flex items-center border border-border px-3 py-2 font-mono text-xs tracking-widest uppercase text-muted-foreground hover:text-foreground hover:border-foreground transition-colors select-none"
           >
@@ -91,7 +92,7 @@ export function Nav() {
             >
               UA
             </span>
-          </button>
+          </Link>
 
           {/* CTA */}
           <a

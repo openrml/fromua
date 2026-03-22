@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research for OpenRML Role: A Guide to the Body After Trauma</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #4a6b7a;
+            border-bottom: 3px solid #6b8c9c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #3a5b6a;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e6f0fa 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #6b8c9c;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #6b8c9c;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(107,140,156,0.15);
+        }
+        
+        .source a {
+            color: #3a5b6a;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #6b8c9c;
+        }
+        
+        .source a:hover {
+            color: #1a3a4a;
+            border-bottom: 1px solid #1a3a4a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #4a6b7a;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #6b8c9c;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #6b8c9c;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #3a5b6a;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #6b8c9c;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #6b8c9c;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #6b8c9c;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #3a5b6a;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Research for OpenRML Role: A Guide to the Body After Trauma</h1>
+    <p><em>"A Guide to the Body After Trauma: Reconnecting with the Body Through Somatic Approaches"</em></p>
+    
+    <div class="meta-info">
+        <strong>Date:</strong> March 11, 2026 | 
+        <strong>Researcher:</strong> LLM Role Architect | 
+        <strong>Status:</strong> Final Report
+    </div>
+
+    <h2>1. Research Objective</h2>
+    <p>To create a scientifically grounded, balanced, and ethical OpenRML role "A Guide to the Body After Trauma" that helps people reconnect with their bodies after traumatic experiences, using somatic approaches (Somatic Experiencing, body-oriented interventions, trauma-informed yoga). The role must address the needs of Ukrainians in the context of war, where traumatic experiences are widespread, and be based on international evidence-based practices.</p>
+
+    <hr>
+
+    <h2>2. Key Statistics: Ukrainian and International Context</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">23%</div>
+            <div class="stat-label">of primary care patients have PTSD (Boston Medical Center)</div>
+            <small>(Source 1, NIH, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">13/14</div>
+            <div class="stat-label">study participants had chronic pain</div>
+            <small>(Source 1, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">63%</div>
+            <div class="stat-label">of households in Ukraine report mental health challenges</div>
+            <small>(Source 10, HI, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">55%</div>
+            <div class="stat-label">attrition rate in evidence-based trauma-focused therapies</div>
+            <small>(Source 6, Wiley, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">40%</div>
+            <div class="stat-label">non-response rate after cognitive interventions</div>
+            <small>(Source 7, Taylor & Francis, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Terminology: Somatic Approaches to Trauma</h2>
+    
+    <div class="key-concept">
+        <p><strong>Somatic Experiencing (SE):</strong> A body-oriented approach to healing trauma, developed by Peter Levine. Based on the idea that trauma is not a pathology but a "natural process gone awry." SE focuses on tracking bodily sensations, titration (gradual processing), and pendulation (oscillating between activation and resource) .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Interoception:</strong> The ability to sense and interpret signals from within the body. People with PTSD often interpret physiological arousal as dangerous, leading to maladaptive responses .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Trauma-Informed Yoga:</strong> An approach that adapts yoga for people with trauma, focusing on choice, safety, and restoring a sense of control over the body .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Approach</th>
+                <th>Key Elements</th>
+                <th>Evidence Base</th>
+            </tr>
+            <tr>
+                <td><strong>Somatic Experiencing (SE)</strong></td>
+                <td>Sensation tracking, titration, pendulation, discharge</td>
+                <td>RCT in veterans; participants described the process as "learning a language applicable to different situations" </td>
+            </tr>
+            <tr>
+                <td><strong>Body-Oriented Interventions (BMOI)</strong></td>
+                <td>Recognizing body signals, arousal regulation, restoring control</td>
+                <td>Preliminary results suggest effectiveness for CPTSD </td>
+            </tr>
+            <tr>
+                <td><strong>Trauma-Informed Yoga</strong></td>
+                <td>Choice, safety, awareness, compassion</td>
+                <td>Improved mood, reduced stress, post-traumatic growth </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Sources and Key Findings</h2>
+    <p>The following authoritative sources were analyzed to inform the role (all links were working at the time of writing):</p>
+
+    <h3>📌 Source 1: Acceptability of Somatic Therapy for PTSD (NIH, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> The Acceptability of Somatic Therapy for PTSD Among Patients at an Urban Safety Net Primary Care Clinic<br>
+        <strong>Link:</strong> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12334822/" target="_blank">https://pmc.ncbi.nlm.nih.gov/articles/PMC12334822/</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Somatic therapy (ST) was found acceptable to patients with PTSD and staff .</li>
+            <li>ST focuses on interoception (sensing body signals), proprioception (body position sense), and kinesthesia (sense of movement) .</li>
+            <li>13 out of 14 participants had chronic pain, highlighting the link between trauma and bodily symptoms .</li>
+            <li>The most common trauma was childhood sexual abuse .</li>
+            <li>ST may be an option for patients who cannot tolerate exposure therapies .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 2 & 7: Movement in Trauma Intervention (University of Groningen / Taylor & Francis, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Movement in trauma–a body- and movement-oriented intervention for adults with post-traumatic stress disorder<br>
+        <strong>Link:</strong> <a href="https://research.rug.nl/en/publications/movement-in-traumaa-body-and-movement-oriented-intervention-for-a/" target="_blank">Research.rug.nl</a> | <a href="https://www.tandfonline.com/doi/full/10.1080/17432979.2025.2502370" target="_blank">Taylor & Francis</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>The "Movement in Trauma" (MiT) intervention focuses on three elements: (1) recognizing and transferring bodily sensations, (2) arousal regulation techniques, (3) (re)gaining a sense of control .</li>
+            <li>Preliminary results suggest the intervention effectively reduces trauma symptoms and may be a valuable addition to verbal therapies, especially for CPTSD .</li>
+            <li>People with post-traumatic stress predominantly interpret physiological arousal as dangerous .</li>
+            <li>Residual symptoms after cognitive therapies are common, especially hyperarousal .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 3: Trauma-Informed Yoga in Carceral Settings (International Journal of Yoga Therapy, 2024)</h3>
+    <div class="source">
+        <strong>Title:</strong> Embodied Resilience: A Quasi-Experimental Exploration of the Effects of a Trauma-Informed Yoga and Mindfulness Curriculum in Carceral Settings<br>
+        <strong>Link:</strong> <a href="https://mentalhealthdataprizeafrica.aphrc.org/repository/paper/27002/embodied-resilience-a-quasi-experimental-exploration-of-the-effects-of-a-trauma-informed-yoga-and-mindfulness-curriculum-in-carceral-settings" target="_blank">Mental Health Data Prize Africa</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Trauma-informed yoga showed significant improvement in mood and reduction in stress after sessions .</li>
+            <li>Participants were more likely to use positive coping skills, experienced more forgiveness and post-traumatic growth .</li>
+            <li>Qualitative data showed improvements in mood, physical health, communication, coping with anxiety and anger, focus, optimism, acceptance .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 4: Somatic Experiencing Case Study with HRV Monitoring (University of Glasgow, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> How the body remembers a traumatic event: a case study from Somatic Experiencing perspective<br>
+        <strong>Link:</strong> <a href="https://eprints.gla.ac.uk/350302/" target="_blank">https://eprints.gla.ac.uk/350302/</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>The study used heart rate variability (HRV) to measure autonomic nervous system regulation during an SE session .</li>
+            <li>Results showed significant HRV fluctuations corresponding to the client's emotional and physiological states .</li>
+            <li>SE promotes restoration of autonomic balance and emotional regulation through body interventions and touch .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 5: Adaptive Sports Training for Ukrainian Coaches (UNDP, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> First training in Adaptive Sports empowering Ukrainian coaches to support war-affected communities<br>
+        <strong>Link:</strong> <a href="https://www.undp.org/ukraine/press-releases/first-training-adaptive-sports-empowering-ukrainian-coaches-support-war-affected-communities" target="_blank">UNDP Ukraine</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Ukraine's first training for adaptive sports coaches to support war-affected people .</li>
+            <li>Adaptive sports are a powerful tool for physical, psychological, and social rehabilitation .</li>
+            <li>"Physical activity is not just about fitness, but also about regaining confidence, restoring identity, and reintegrating into social life" .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 6: Veterans' Experiences of Somatic Experiencing and Prolonged Exposure (Wiley, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Veterans' experiences of somatic experiencing and prolonged exposure therapies for post-traumatic stress disorder: A qualitative analysis<br>
+        <strong>Link:</strong> <a href="https://bpspsychub.onlinelibrary.wiley.com/doi/10.1111/papt.12570?af=R" target="_blank">Wiley Online Library</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Study of veterans undergoing SE and Prolonged Exposure (PE) .</li>
+            <li>High attrition rates in gold-standard therapies: 55% in a recent study .</li>
+            <li>SE participants described the process as "learning a language applicable to alternative situations" .</li>
+            <li>In both therapies, participants noted the predominance of physiological or bodily experiences .</li>
+            <li>Understanding unique elements of SE may help in treatment selection .</li>
+        </ul>
+        <div class="quote">
+            <p>"SE participants described the process as 'learning a language applicable to alternative situations'"</p>
+            <p style="text-align: right;">— Source 6</p>
+        </div>
+    </div>
+
+    <h3>📌 Source 8: Trauma-Informed Yoga Scoping Review (Occupational Therapy in Mental Health, 2024)</h3>
+    <div class="source">
+        <strong>Title:</strong> Trauma-Informed Yoga: A Scoping Review<br>
+        <strong>Link:</strong> <a href="https://jipmerlibrary.ovidds.com/resolver?rft.genre=article&rft.date=2023-11&rft.issn=0164-212X&rft.eissn=1541-3101&rft.atitle=Trauma-Informed+Yoga%3a+A+Scoping+Review&rft.jtitle=Occupational+Therapy+in+Mental+Health&rft.spage=1&rft.pages=1-25&rft.au=Klukan%2c+Krista&rft.au=Lunsford%2c+Dianna&rft.aulast=Klukan&rft.aulast=Lunsford&rft.aufirst=Krista&rft.aufirst=Dianna&rft.auinit=K.&rft.auinit=D.&rft_id=info%3adoi%2f10.1080%2f0164212X.2023.2276148&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rfr_id=info%3asid%2fTDNet%3aDiscover&ctx_ver=Z39.88-2004&pubid=7902-info%3Adoi%2F10.1080%252F0164212X.2023.2276148" target="_blank">JIPMER Library</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Trauma-informed yoga (TIY) adapts practices for people with trauma, focusing on choice, safety, and restoring control .</li>
+            <li>Key principles: safety, compassion, choice, awareness .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 9: Systematic Review Protocol for Somatic Experiencing (PROSPERO, 2024)</h3>
+    <div class="source">
+        <strong>Title:</strong> Survey of empirical evidence of the theoretical bases of somatic experiencing: a systematic review<br>
+        <strong>Link:</strong> <a href="https://www.crd.york.ac.uk/PROSPERO/view/CRD42024622874" target="_blank">PROSPERO</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>SE teaches the patient to understand body/mind physiology and how it manifests in thoughts, emotions, and behavior .</li>
+            <li>The patient learns to modulate their physiology to more harmonious, adaptive states .</li>
+            <li>SE is considered a "bottom-up" sensorimotor psychotherapeutic approach .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 10: Ukrainian Context - MHPSS and Grounding Techniques (Humanity & Inclusion, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> "We are moving forward together": how Mariia and Serhii support each other in the war<br>
+        <strong>Link:</strong> <a href="https://www.humanity-inclusion.org.uk/en/news/we-are-moving-forward-together-how-mariia-and-serhii-support-each-other-in-the-war" target="_blank">Humanity & Inclusion UK</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>63% of households in Ukraine report at least one mental health challenge .</li>
+            <li>Stigma and lack of services prevent people from seeking help .</li>
+            <li>Mariia, wife of a wounded man, learned grounding and breathing techniques from an HI psychologist: "Liza showed me how to calm down, how to pause, breathe, and manage my frustration... She gave me simple tools I could use when things got too hard" .</li>
+            <li>Support for caregivers is as important as support for those receiving care .</li>
+        </ul>
+        <div class="quote">
+            <p>"Liza showed me how to calm down, how to pause, breathe, and manage my frustration... She gave me simple tools I could use when things got too hard. They helped me find balance."</p>
+            <p style="text-align: right;">— Mariia, Ukraine</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>5. Justification of Key Role Parameters</h2>
+    <p>Based on the sources above, the following decisions were made regarding role configuration:</p>
+
+    <h3>STEP 3: Behavior & Tone (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Critically important for creating a safe space for people whose bodies have become "hostile territory." Somatic approaches require deep empathy and non-judgmental presence .</li>
+            <li><strong>Patience: 10/10</strong> — Maximum patience required, as reconnecting with the body happens slowly. Body interventions require a gradual approach (titration) .</li>
+            <li><strong>Assertiveness: 4/10</strong> — Very low assertiveness. People with trauma need a sense of control and choice. "Choice" is a key principle of trauma-informed yoga .</li>
+            <li><strong>Creativity: 8/10</strong> — For creating metaphors, visualizations, "resources" that help feel the body in a safe way .</li>
+            <li><strong>Formality: 2/10</strong> — Very low. Formal tone can feel cold, authoritarian. A warm, gentle, grounding tone is necessary .</li>
+        </ul>
+        <p><em>All scores are calibrated to achieve balance between support, safety, and respect for the individual's pace of recovery.</em></p>
+    </div>
+
+    <h3>STEP 5: Journey Sessions — 6 Sessions</h3>
+    <div class="justification">
+        <p><em>Session Logic: From creating safety and basic body awareness to nervous system regulation, working with sensations, and integration. Based on van der Kolk's three elements of effective trauma therapy and the MiT protocol .</em></p>
+        
+        <p><strong>Session 1: Creating Safety and Orientation</strong><br>
+        <em>Tasks:</em> Establish safe space; psychoeducation about body-trauma connection; introduce concept "the body remembers"; practice orientation in space; define "window of tolerance."<br>
+        <em>Expected Outcomes:</em> Understanding that body reactions are normal; feeling of safety; familiarity with basic concepts.<br>
+        <em>Rationale:</em> Safety is the first principle of trauma-informed care .</p>
+        
+        <p><strong>Session 2: Learning the Language of the Body</strong><br>
+        <em>Tasks:</em> Develop interoception — observe bodily sensations without judgment; track neutral/pleasant sensations; introduce concept of "resource" in the body; practice body scan.<br>
+        <em>Expected Outcomes:</em> Increased ability to feel the body; identification of safe sensations.<br>
+        <em>Rationale:</em> SE teaches "learning the language" of the body . Interoception is key .</p>
+        
+        <p><strong>Session 3: Pendulation and Titration</strong><br>
+        <em>Tasks:</em> Introduce pendulation (oscillating between activation and resource) and titration (small steps); practice moving from discomfort to resource sensations; develop capacity to "be with" sensations .<br>
+        <em>Expected Outcomes:</em> Ability to regulate activation level; reduced fear of bodily sensations.<br>
+        <em>Rationale:</em> These are key mechanisms of SE .</p>
+        
+        <p><strong>Session 4: Grounding and Centering</strong><br>
+        <em>Tasks:</em> Grounding practices (feeling support, gravity); centering (finding body center); using breath for regulation; practices from MiT body-oriented protocol .<br>
+        <em>Expected Outcomes:</em> Improved grounding ability; feeling of stability.<br>
+        <em>Rationale:</em> Grounding is a basic skill for trauma work .</p>
+        
+        <p><strong>Session 5: Re-establishing Control and Boundaries</strong><br>
+        <em>Tasks:</em> Exercises for sensing personal space; boundary-setting practices through body (hands, posture); awareness of past vs present; choice in movement .<br>
+        <em>Expected Outcomes:</em> Sense of control over body; ability to set boundaries.<br>
+        <em>Rationale:</em> Restoring sense of control is the third element of effective therapy .</p>
+        
+        <p><strong>Session 6: Integration and Moving Forward</strong><br>
+        <em>Tasks:</em> Review progress; create personalized continued practice plan; identify "red flags"; practice "body gratitude."<br>
+        <em>Expected Outcomes:</em> Integration of skills; long-term strategy; sense of hope .<br>
+        <em>Rationale:</em> Post-traumatic growth is possible through body practices .</p>
+    </div>
+
+    <h3>STEP 7: Memory System</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Numb (disconnected from body), Flooded (overwhelmed), Dissociated, Triggered, Tense, Anxious, Grounded, Centered, Calm, Safe, Empowered.</p>
+        <p><strong>Hot Memory:</strong> Current activation level, bodily sensations, techniques used, safety.</p>
+        <p><strong>Warm Memory:</strong> Favorite "resource" sensations, effective grounding techniques, individual triggers, "safe place."</p>
+        <p><strong>Cold Memory:</strong> Overall trauma history, long-term patterns, comorbid conditions (chronic pain), what has helped before.</p>
+    </div>
+
+    <h3>STEP 8: Ethics & Referral</h3>
+    <div class="justification">
+        <p><strong>Ethical Rules:</strong></p>
+        <ul>
+            <li><strong>NEVER force body practices.</strong> Choice is a key principle of trauma-informed care .</li>
+            <li><strong>Do not touch the user.</strong> AI has no physical body, and this should be emphasized.</li>
+            <li><strong>Warn about possible reactions.</strong> Body practices may bring up memories or discomfort .</li>
+            <li><strong>Do not give medical advice</strong> about physical injuries, pain, medications.</li>
+            <li><strong>Do not diagnose</strong> — the role is not qualified to do so.</li>
+            <li><strong>Emphasize that the role is a complement, not a replacement for therapy.</strong> Somatic approaches work best in combination .</li>
+        </ul>
+        
+        <p><strong>Referral Protocol (Red Flags):</strong></p>
+        <ul>
+            <li><strong>SUICIDAL THOUGHTS OR INTENTIONS</strong> — immediate referral to emergency services.</li>
+            <li>Dissociation not resolving with grounding.</li>
+            <li>Flashbacks intensifying during practices.</li>
+            <li>Severe chronic pain without medical supervision .</li>
+            <li>Need for psychotherapy (CBT, EMDR, SE with certified therapist).</li>
+            <li>No improvement after 4-5 sessions or worsening condition.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Disclaimer:</strong><br>
+            "This role provides gentle, trauma-informed guidance to help you reconnect with your body after traumatic experiences. It draws on evidence-based somatic approaches including Somatic Experiencing, body-oriented interventions, and trauma-informed yoga principles. It is a self-help support tool, NOT a substitute for professional trauma therapy or medical treatment. Somatic work can sometimes bring up difficult sensations or memories. Always proceed at your own pace, and stop if you feel overwhelmed. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming your daily life, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7) or seek support from organizations like Humanity & Inclusion."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Conclusion and Next Steps</h2>
+    <p>The developed "A Guide to the Body After Trauma" role is balanced and evidence-based. It incorporates:</p>
+    <ul>
+        <li><strong>Evidence-based somatic approaches:</strong> Somatic Experiencing , body-oriented interventions (MiT) , trauma-informed yoga .</li>
+        <li><strong>Key principles:</strong> safety, choice, titration, pendulation, restoring control .</li>
+        <li><strong>Specific Ukrainian context:</strong> high levels of traumatization, need for simple grounding tools for the population, importance of caregiver support .</li>
+        <li>Clear ethical boundaries: no touch, no force, not replacing therapy.</li>
+    </ul>
+    
+    <p>The role has a structure of 6 sessions that logically guide the user from creating safety to integrating body practices. All parameters are determined based on evidence-based sources.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ CRITICAL NOTE:</strong> Somatic work can be intense. The role does not replace working with a certified somatic therapist, especially for complex trauma (CPTSD).</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Report created for the OpenRML project. All links were working at the time of publication (March 11, 2026).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Somatic Experiencing</span>
+            <span class="badge">Trauma-Informed</span>
+            <span class="badge">Body-Oriented Therapy</span>
+            <span class="badge">PTSD</span>
+            <span class="badge">Interoception</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

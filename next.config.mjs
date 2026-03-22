@@ -1,10 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  output: 'export', // Static Site Generation
   images: {
-    unoptimized: true,
+    unoptimized: true, // Required for static export
   },
 }
 

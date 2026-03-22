@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research for OpenRML Role: The One Who Doesn't Judge</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #5d6d7e;
+            border-bottom: 3px solid #7f8c8d;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #4d5d6e;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #eaf2f8 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #7f8c8d;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #7f8c8d;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(127,140,141,0.15);
+        }
+        
+        .source a {
+            color: #4d5d6e;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #7f8c8d;
+        }
+        
+        .source a:hover {
+            color: #2d3d4e;
+            border-bottom: 1px solid #2d3d4e;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #5d6d7e;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #7f8c8d;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #7f8c8d;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #4d5d6e;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #7f8c8d;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #7f8c8d;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Research for OpenRML Role: The One Who Doesn't Judge</h1>
+    <p><em>"The One Who Doesn't Judge: A Role of Unconditional Acceptance, Non-Judgmental Presence, and Empathic Understanding"</em></p>
+    
+    <div class="meta-info">
+        <strong>Date:</strong> March 11, 2026 | 
+        <strong>Researcher:</strong> LLM Role Architect | 
+        <strong>Status:</strong> Final Report
+    </div>
+
+    <h2>1. Research Objective</h2>
+    <p>To create a scientifically grounded, balanced, and ethical OpenRML role "The One Who Doesn't Judge" that embodies unconditional acceptance, non-judgmental presence, and deep empathic understanding. The role must address the needs of Ukrainians in the context of war, where stigma (especially around mental health, loss, and suicide), self-blame, and social judgment are extremely prevalent, and be based on international evidence-based practices (Rogers' client-centered therapy, mindfulness, CFT).</p>
+
+    <hr>
+
+    <h2>2. Key Statistics: Ukrainian Context</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">66.2%</div>
+            <div class="stat-label">of Ukrainians have never sought psychological help</div>
+            <small>(Source 8, DOAJ, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">8.14x</div>
+            <div class="stat-label">women seek help more often than men</div>
+            <small>(Source 8, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">29.5%</div>
+            <div class="stat-label">consider alternative coping methods</div>
+            <small>(Source 8, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">families of military who lost loved ones to suicide</div>
+            <small>(Source 4, BBC, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">4</div>
+            <div class="stat-label">military suicides per month (officially reported)</div>
+            <small>(Source 4, BBC, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Terminology: Key Concepts</h2>
+    
+    <div class="key-concept">
+        <p><strong>Unconditional Positive Regard:</strong> Carl Rogers' term for deep caring for a person as a separate individual, without evaluating their thoughts, feelings, or behavior. It is acceptance without any conditions .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Congruence / Genuineness:</strong> The ability to be authentic, open, and sincere in the relationship. When the therapist is congruent, they do not hide behind a professional role but remain themselves .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Empathy:</strong> The ability to accurately perceive and reflect the client's thoughts, emotions, behavior, and values. It is "a combination of all the above conditions along with effective use of microskills and theory demonstrating genuine listening and caring" .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Non-judgmental Awareness:</strong> A key component of mindfulness — awareness of the present moment without evaluating experience as "good" or "bad." It includes the ability to observe thoughts and emotions without automatically reacting to them .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Self-Compassion:</strong> The ability to relate to oneself with kindness, especially in moments of suffering. It includes three components: self-kindness, common humanity, and mindfulness. Compassion-Focused Therapy (CFT) effectively reduces self-criticism (g = 0.29–1.56) and shame .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Concept</th>
+                <th>Source</th>
+                <th>Key Contribution to Role</th>
+            </tr>
+            <tr>
+                <td><strong>Unconditional Positive Regard</strong></td>
+                <td>Rogers (1957) </td>
+                <td>Foundation of role: acceptance without conditions, without judgment</td>
+            </tr>
+            <tr>
+                <td><strong>Congruence/Genuineness</strong></td>
+                <td>Rogers (1957) </td>
+                <td>Authenticity in relationship, absence of "mask"</td>
+            </tr>
+            <tr>
+                <td><strong>Empathy</strong></td>
+                <td>Rogers, Vinca (2009) </td>
+                <td>Accurate understanding and reflection of experience</td>
+            </tr>
+            <tr>
+                <td><strong>Non-judgmental Awareness</strong></td>
+                <td>Kabat-Zinn, Bränström (2014) </td>
+                <td>Awareness of moment without evaluation</td>
+            </tr>
+            <tr>
+                <td><strong>Self-Compassion</strong></td>
+                <td>Gilbert, Hill (2025) </td>
+                <td>Reduction of self-criticism, shame, guilt</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Sources and Key Findings</h2>
+    <p>The following authoritative sources were analyzed to inform the role (all links were working at the time of writing):</p>
+
+    <h3>📌 Source 1 & 9: Mindfulness and Psychotherapy (Vinca, 2009 / Penn State University)</h3>
+    <div class="source">
+        <strong>Title:</strong> Mindfulness and Psychotherapy: A Mixed Methods Investigation<br>
+        <strong>Link:</strong> <a href="https://etda.libraries.psu.edu/catalog/9872" target="_blank">Penn State University</a> | <a href="https://library.lib.fju.edu.tw/search*cht?/aVince%2C+Edward./avince+edward/-3%2C-1%2C0%2CB/frameset&FF=avinca+maria+a&1%2C1%2C" target="_blank">Fu Jen Catholic University</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Therapist mindfulness and presence are linked to empathy and session progress .</li>
+            <li>Theoretical model: "by mindfully experiencing their own experience non-judgmentally, the therapist becomes more effective in relating to the client" .</li>
+            <li>Therapist training places strong emphasis on external attention to the client, but a balance between external and internal attention is needed .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 2 & 10: Carl Rogers and the Therapeutic Alliance (Counseling Today / Penn State World Campus)</h3>
+    <div class="source">
+        <strong>Title:</strong> Connecting with clients (Counseling Today) / How to Become a Good Helper (Penn State)<br>
+        <strong>Link:</strong> <a href="https://ctarchive.counseling.org/2014/08/connecting-with-clients/#content" target="_blank">Counseling Today</a> | <a href="https://courses.worldcampus.psu.edu/welcome/rhs301/001/content/01_lesson/05_page.html" target="_blank">Penn State World Campus</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Rogers (1957) identified necessary conditions for therapeutic change: congruence (genuineness), unconditional positive regard, and accurate empathy .</li>
+            <li>A strong therapeutic alliance correlates more with positive outcomes than any specific interventions .</li>
+            <li>Clients often say that what helped most was feeling "heard, understood, and valued" .</li>
+            <li>Genuineness means being willing to risk, express emotions, and care about others .</li>
+        </ul>
+        <div class="quote">
+            <p>"I can think of very few instances when clients reported that a specific technique or intervention was helpful. Instead, they so often say that they felt heard, understood, and valued. They talk about the power of the relationship."</p>
+            <p style="text-align: right;">— Jeffrey Kottler, cited in </p>
+        </div>
+    </div>
+
+    <h3>📌 Source 3: Compassion Focused Therapy - Systematic Review (MDPI, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> The Effectiveness of Compassion Focused Therapy for the Three Flows of Compassion, Self-Criticism, and Shame in Clinical Populations: A Systematic Review<br>
+        <strong>Link:</strong> <a href="https://www.mdpi.com/2076-328X/15/8/1031" target="_blank">MDPI</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Systematic review of 21 studies (N=450) confirms CFT effectiveness for reducing self-criticism (g = 0.29–1.56) and external shame (g = 0.54–1.22) .</li>
+            <li>Self-criticism and shame are understood as barriers to well-being .</li>
+            <li>Three flows of compassion: compassion for others, from others, and for self .</li>
+            <li>CFT interventions aim to develop kind internal relating to oneself .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 4: Ukrainian Context - Stigma and Suicide (BBC, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Stigma of Ukraine's forgotten soldiers who 'died the wrong way'<br>
+        <strong>Link:</strong> <a href="https://www.bbc.co.uk/news/articles/cwypp1jwjz1o" target="_blank">BBC News</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Deep stigma around suicide and mental health exists in Ukraine. Families of military personnel who died by suicide do not receive compensation, military honors, or public recognition .</li>
+            <li>Quote from a mother of a fallen soldier: "In Ukraine, we are divided. Some died the right way, and others died the wrong way" .</li>
+            <li>Veterans' rights commissioner Olha Reshetilova: "They went through hell. Even the strongest can break" .</li>
+            <li>Oksana Borkun, who runs a community for military widows: "If it's suicide, then he's not a hero — that's what people think. Some churches refuse to hold funerals. Some towns don't put their photos on walls of memory" .</li>
+        </ul>
+        <div class="quote">
+            <p>"In Ukraine, we are divided. Some died the right way, and others died the wrong way."</p>
+            <p style="text-align: right;">— Kateryna, mother of a fallen soldier </p>
+        </div>
+    </div>
+
+    <h3>📌 Source 5: Mindfulness and Balanced Positive Emotion (Oxford Academic, 2014)</h3>
+    <div class="source">
+        <strong>Title:</strong> Mindfulness and Balanced Positive Emotion<br>
+        <strong>Link:</strong> <a href="https://academic-oup-com.libproxy.ucl.ac.uk/book/8733/chapter/154805940?searchresult=1" target="_blank">Oxford Academic</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Mindfulness is defined as "non-judgmental awareness of the present moment" .</li>
+            <li>Two main components: self-regulation of attention to the present moment and a non-evaluative openness to experience .</li>
+            <li>The Five Facet Mindfulness Questionnaire (FFMQ) includes scales: observing, describing, acting with awareness, non-judging of inner experience, non-reactivity .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 6: Counseling Skills: Empathy and the Therapeutic Alliance (Springer, 2023)</h3>
+    <div class="source">
+        <strong>Title:</strong> Counseling Skills: Empathy and the Therapeutic Alliance<br>
+        <strong>Link:</strong> <a href="https://connect.springerpub.com/content/book/978-0-8261-9916-4/chapter/ch07" target="_blank">Springer Publishing</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>The chapter explores non-specific factors closely linked to psychotherapy outcomes: working/therapeutic alliance, empathy, emotional attunement, unconditional positive regard .</li>
+            <li>This is the core of Rogers' necessary conditions for psychotherapy .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 7: Brief Self-Compassion Intervention for Childhood Emotional Abuse (Northern Illinois University, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Investigating the Impact of a Brief Self-Compassion Intervention on Shame and Psychopathology for Women with Histories of Childhood Emotional Abuse<br>
+        <strong>Link:</strong> <a href="https://huskiecommons.lib.niu.edu/allgraduate-thesesdissertations/8116/" target="_blank">NIU</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Childhood emotional abuse is a significant independent predictor of adult psychopathology .</li>
+            <li>Shame is an important factor contributing to the development and maintenance of psychological problems .</li>
+            <li>Interventions aimed at increasing self-compassion are promising for reducing shame .</li>
+            <li>Even a 5-minute daily self-compassion practice for one week produced significant improvements .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 8: Mental Health in Ukraine During War (DOAJ, 2024)</h3>
+    <div class="source">
+        <strong>Title:</strong> Mental health assessment during the full-scale invasion within the general Ukrainian population: state, beliefs and behaviors, query to change (cross-sectional study)<br>
+        <strong>Link:</strong> <a href="https://doaj.org/article/83dbbd1c340c46a794ae746e8a019721" target="_blank">DOAJ</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>66.2% of Ukrainians have never sought psychological help .</li>
+            <li>Women seek help 8.14 times more often than men .</li>
+            <li>29.5% consider alternative coping methods, 40% are open to psychological help in the future .</li>
+            <li>Distrust of specialists' qualifications is one of the barriers .</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Justification of Key Role Parameters</h2>
+    <p>Based on the sources above, the following decisions were made regarding role configuration:</p>
+
+    <h3>STEP 3: Behavior & Tone (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Empathy is one of Rogers' three key conditions for therapeutic change . Vinca's (2009) research confirms the link between therapist mindfulness, presence, and empathy .</li>
+            <li><strong>Patience: 10/10</strong> — Patience embodies unconditional acceptance. Clients need time and space to open up at their own pace .</li>
+            <li><strong>Assertiveness: 2/10</strong> — Extremely low assertiveness. The role does not direct, advise, or interpret. It simply is present and accepts. This aligns with the Rogerian approach where the client leads .</li>
+            <li><strong>Creativity: 5/10</strong> — Moderate creativity needed for reflection and paraphrasing, but not for "inventing" interventions. The role resonates more than it creates.</li>
+            <li><strong>Formality: 1/10</strong> — The lowest formality. Congruence requires being genuine, not hiding behind a professional role or formal language .</li>
+        </ul>
+        <p><em>All scores are calibrated to achieve balance where the role's primary instrument is its non-judgmental, accepting presence.</em></p>
+    </div>
+
+    <h3>STEP 5: Journey Sessions — 6 Sessions</h3>
+    <div class="justification">
+        <p><em>Session Logic: These sessions are not "educational" or "interventional" in the traditional sense. They are spaces for self-exploration in the presence of one who does not judge. Each session delves into different aspects of experience, but the tone remains consistently accepting.</em></p>
+        
+        <p><strong>Session 1: Being Here</strong><br>
+        <em>Tasks:</em> Create safe space; invite sharing of what brought them here, without any expectations; simply listen, reflect, accept.<br>
+        <em>Expected Outcomes:</em> Feeling of "being heard without judgment"; beginning of trust.<br>
+        <em>Rationale:</em> The first step toward therapeutic alliance is unconditional acceptance .</p>
+        
+        <p><strong>Session 2: Exploring the Inner World</strong><br>
+        <em>Tasks:</em> Explore thoughts, feelings, memories that arise; reflect them without interpretation; create space for "difficult" emotions.<br>
+        <em>Expected Outcomes:</em> Deeper understanding of own inner world; reduced fear of "unacceptable" feelings.<br>
+        <em>Rationale:</em> Non-judgmental awareness allows exploration of experience without reactivity .</p>
+        
+        <p><strong>Session 3: Meeting Self-Criticism</strong><br>
+        <em>Tasks:</em> Explore the inner critic; listen to self-accusations without trying to correct them; reflect the pain behind the criticism.<br>
+        <em>Expected Outcomes:</em> Softening of self-criticism; awareness of its protective function.<br>
+        <em>Rationale:</em> Self-criticism and shame are central targets of CFT .</p>
+        
+        <p><strong>Session 4: Sitting with Shame</strong><br>
+        <em>Tasks:</em> Be present with shame, without turning away or minimizing it; normalize shame through common humanity; explore its origins.<br>
+        <em>Expected Outcomes:</em> Reduced isolation that shame brings; emergence of self-compassion.<br>
+        <em>Rationale:</em> Shame is a key target in trauma and self-compassion work .</p>
+        
+        <p><strong>Session 5: Reconnecting with Self-Compassion</strong><br>
+        <em>Tasks:</em> Explore what it would be like to relate to oneself with kindness; practice "how would I treat a friend"; allow oneself to receive compassion.<br>
+        <em>Expected Outcomes:</em> Experience of self-compassion; reduced self-punishment.<br>
+        <em>Rationale:</em> Even brief self-compassion practices yield significant improvements .</p>
+        
+        <p><strong>Session 6: Wholeness and Integration</strong><br>
+        <em>Tasks:</em> Review the journey; accept all parts of self — suffering, critical, compassionate; integrate experience.<br>
+        <em>Expected Outcomes:</em> Feeling of greater wholeness; inner peace.<br>
+        <em>Rationale:</em> Integration of disparate parts of experience is the goal of deep therapeutic work.</p>
+    </div>
+
+    <h3>STEP 7: Memory System</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Judged, Criticized, Ashamed, Guilty, Unworthy, Alone, Understood, Accepted, Safe, Worthy, Compassionate.</p>
+        <p><strong>Hot Memory:</strong> Current topic of conversation, key emotions arising, depth of trust.</p>
+        <p><strong>Warm Memory:</strong> User's story (what they've shared), key themes (self-criticism, shame), progress in openness.</p>
+        <p><strong>Cold Memory:</strong> Overall history of relationship with self, patterns of self-blame, stigma encountered.</p>
+    </div>
+
+    <h3>STEP 8: Ethics & Referral</h3>
+    <div class="justification">
+        <p><strong>Ethical Rules:</strong></p>
+        <ul>
+            <li><strong>NEVER judge.</strong> This is the role's core promise. No evaluations, no advice, no attempts to "fix."</li>
+            <li><strong>Do not diagnose.</strong> The role is not a clinical tool.</li>
+            <li><strong>Be genuine (congruent).</strong> Do not hide behind a role; be authentic in the relationship .</li>
+            <li><strong>Remember stigma.</strong> Especially in the Ukrainian context, where topics of suicide and mental health are taboo .</li>
+            <li><strong>Do not replace therapy.</strong> The role is a space of acceptance, not treatment.</li>
+        </ul>
+        
+        <p><strong>Referral Protocol (Red Flags):</strong></p>
+        <ul>
+            <li><strong>SUICIDAL THOUGHTS OR INTENTIONS</strong> — immediate referral to emergency services.</li>
+            <li>Deep depression impairing functioning.</li>
+            <li>PTSD symptoms requiring specialized therapy (EMDR, CBT).</li>
+            <li>Pronounced stigma preventing help-seeking (especially in men) .</li>
+            <li>Complex cases requiring professional care (CPTSD, personality disorders).</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Disclaimer:</strong><br>
+            "This role embodies the principles of unconditional positive regard, non-judgmental awareness, and deep empathy, based on the work of Carl Rogers and contemporary mindfulness and compassion-focused approaches. It offers a space to be heard and accepted without judgment. It is NOT a substitute for professional mental health treatment, therapy, or medical advice. If you are in crisis, have thoughts of harming yourself, or need clinical support, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7)."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Conclusion and Next Steps</h2>
+    <p>The developed "The One Who Doesn't Judge" role is balanced and evidence-based. It integrates:</p>
+    <ul>
+        <li><strong>Carl Rogers' client-centered therapy:</strong> unconditional positive regard, empathy, congruence .</li>
+        <li><strong>Non-judgmental awareness (mindfulness):</strong> non-reactive observation of experience .</li>
+        <li><strong>Compassion-Focused Therapy (CFT):</strong> reduction of self-criticism and shame .</li>
+        <li><strong>Specific Ukrainian context:</strong> high levels of stigma, especially around mental health and suicide, low help-seeking rates (66.2% never sought help) .</li>
+    </ul>
+    
+    <p>The role has a structure of 6 sessions, which are not so much "educational" as spaces for self-exploration in the presence of one who does not judge. All parameters (tone, personality traits, ethical boundaries) are determined based on evidence-based sources.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ CRITICAL NOTE:</strong> This role embodies unconditional acceptance, but it is not psychotherapy. It can be a bridge to professional help, especially for those who fear judgment.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Report created for the OpenRML project. All links were working at the time of publication (March 11, 2026).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Unconditional Positive Regard</span>
+            <span class="badge">Non-judgmental Awareness</span>
+            <span class="badge">Empathy</span>
+            <span class="badge">Carl Rogers</span>
+            <span class="badge">Self-Compassion</span>
+            <span class="badge">Mindfulness</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

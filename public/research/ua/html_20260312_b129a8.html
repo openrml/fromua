@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Career Change Strategist (Wartime Version) — Стратег зміни кар'єри (Воєнна версія)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #2c5f5f;
+            border-bottom: 3px solid #3d7e7e;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #1e4a4a;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e6f5f5 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #3d7e7e;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #3d7e7e;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(61,126,126,0.15);
+        }
+        
+        .source a {
+            color: #1e4a4a;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #3d7e7e;
+        }
+        
+        .source a:hover {
+            color: #0a2a2a;
+            border-bottom: 1px solid #0a2a2a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #2c5f5f;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #3d7e7e;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #3d7e7e;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #1e4a4a;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #3d7e7e;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3d7e7e;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #3d7e7e;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #1e4a1f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Career Change Strategist (Wartime Version)</h1>
+    <p><em>"Стратег зміни кар'єри (Воєнна версія): коли стара робота більше не заробляє або не надихає"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Career Change Strategist (Wartime Version)", яка допомагає людям, чия професія перестала бути актуальною через війну, хто втратив роботу, бізнес або змушений перекваліфіковуватися (ветерани, ВПО, люди з інвалідністю, втрачені професії). Роль має відповідати потребам українців у контексті війни та спиратися на міжнародний доказовий досвід (кар'єрний коучинг, психологія адаптації, мікрогранти, цифрові платформи).</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">58%</div>
+            <div class="stat-label">військовослужбовців лише частково готові до реінтеграції</div>
+            <small>(Джерело 1, Nazarova et al., 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">48%</div>
+            <div class="stat-label">потребують доступу до навчальних програм</div>
+            <small>(Джерело 1, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">34%</div>
+            <div class="stat-label">вважають важливим сприяння підприємництву</div>
+            <small>(Джерело 1, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">26%</div>
+            <div class="stat-label">мають намір розпочати власний бізнес</div>
+            <small>(Джерело 1, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">28%</div>
+            <div class="stat-label">потребують розвитку творчих навичок</div>
+            <small>(Джерело 1, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">65,000+</div>
+            <div class="stat-label">вакансій на платформі Veteran Career</div>
+            <small>(Джерело 2, Кабмін, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">12%</div>
+            <div class="stat-label">зниження намірів змінити кар'єру через самодопомогу</div>
+            <small>(Джерело 5, Tsybuliak et al., 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">430,000</div>
+            <div class="stat-label">₴ безвідсотковий кредит для ВПО на бізнес</div>
+            <small>(Джерело 7, Кабмін, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">15,000</div>
+            <div class="stat-label">₴ грант на перенавчання через систему "Обрій"</div>
+            <small>(Джерело 10, Кабмін, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Економічна адаптація (Economic Adaptation):</strong> Процес переходу військовослужбовців до цивільного життя, що включає працевлаштування, перекваліфікацію, розвиток підприємницьких навичок та використання творчого потенціалу. Дослідження показують, що 58% військовослужбовців лише частково готові до реінтеграції .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Інтервенції кар'єрного розвитку (Career Development Interventions - CDIs):</strong> Структуровані програми (кар'єрне консультування, менторство, коучинг), які допомагають дорослим орієнтуватися на складних ринках праці. Дослідження показують різну ефективність, причому менторство та спеціалізовані інтервенції покращують задоволеність роботою та самоефективність .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>"Переклад" військового досвіду:</strong> Процес трансформації навичок, набутих під час служби, у "мову" цивільного ринку праці. Платформа Veteran Career допомагає створювати резюме на основі військового досвіду та визначати, де ці навички найбільш затребувані .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Самозайнятість та підприємництво:</strong> 26% ветеранів мають намір розпочати власний бізнес, що може стати драйвером економічного зростання . Державні програми підтримки включають гранти до 15,000 ₴ на перенавчання , безвідсоткові кредити до 430,000 ₴ для ВПО  та компенсацію зарплати для роботодавців, які наймають ветеранів .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Психологічна підтримка та стійкість:</strong> Дослідження серед українських викладачів показало, що доступна психологічна підтримка знижує наміри змінити кар'єру на 6%, а практики самодопомоги — на 12% . Це підкреслює важливість інтеграції психологічної підтримки в кар'єрне консультування.</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Категорія</th>
+                <th>Потреби/Бар'єри</th>
+                <th>Ресурси/Рішення</th>
+            </tr>
+            <tr>
+                <td><strong>Ветерани</strong></td>
+                <td>58% частково готові до реінтеграції, потреба в навчанні (48%) та підтримці підприємництва (34%) </td>
+                <td>Veteran Career (65,000+ вакансій), гранти, компенсація зарплати роботодавцям </td>
+            </tr>
+            <tr>
+                <td><strong>ВПО</strong></td>
+                <td>Втрата житла, соціальних зв'язків, роботи; потреба в інтеграції </td>
+                <td>Безвідсоткові кредити до 430,000 ₴, програми житла, IDP Pathway </td>
+            </tr>
+            <tr>
+                <td><strong>Люди з втраченими професіями</strong></td>
+                <td>Необхідність перекваліфікації, адаптації до нових умов ринку </td>
+                <td>Гранти на перенавчання (до 15,000 ₴), система "Обрій" з AI-підбором вакансій </td>
+            </tr>
+            <tr>
+                <td><strong>Загальні потреби</strong></td>
+                <td>Стрес, невизначеність, зниження самоефективності </td>
+                <td>Кар'єрний коучинг, менторство, психологічна підтримка (знижує наміри змінити кар'єру на 12%) </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Економічна адаптація військовослужбовців в Україні (Uran, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Research of problems and prospects of economic adaptation of military servicemen: sociological and statistical analysis<br>
+        <strong>Посилання:</strong> <a href="https://journals.uran.ua/tarp/article/view/329096" target="_blank">Uran</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>58% військовослужбовців лише частково готові до реінтеграції</strong> в цивільне життя .</li>
+            <li><strong>Основні потреби:</strong> доступ до навчальних програм (48%), сприяння підприємництву (34%), розвиток цифрових (22%) та творчих (28%) навичок .</li>
+            <li><strong>Високий потенціал самозайнятості:</strong> 26% мають намір розпочати власний бізнес, що може стати драйвером економічного зростання .</li>
+            <li>Необхідність інтегрованої інституційної моделі підтримки, що поєднує державну політику, цифрові інструменти, розвиток людського капіталу та використання творчого потенціалу .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2 & 10: Державні ініціативи України (Кабмін, 2025-2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Veteran Career platform / Government adopts comprehensive measures to develop the labour market<br>
+        <strong>Посилання:</strong> <a href="https://www.kmu.gov.ua/en/news/yuliia-svyrydenko-nash-fokus-ne-formalni-prohramy-dlia-veteraniv-a-dostupni-praktychni-instrumenty-povernennia-do-tsyvilnoho-zhyttia" target="_blank">Кабмін 2026</a> | <a href="https://www.kmu.gov.ua/en/news/yuliia-svyrydenko-uriad-ukhvalyv-kompleks-rishen-dlia-rozvytku-rynku-pratsi-poiednuiemo-tsyfrovizatsiiu-navchannia-hranty-ta-pidtrymku-veteraniv" target="_blank">Кабмін 2025</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>Платформа Veteran Career:</strong> понад 65,000 вакансій, допомога у "перекладі" військового досвіду в цивільні навички, створення резюме .</li>
+            <li><strong>Підтримка ветеранів:</strong> підвищена зарплата до 16,000 ₴ на громадських роботах, компенсація зарплати роботодавцям (100% на 6 місяців), сприяння у грантах та навчанні .</li>
+            <li><strong>Цифрова екосистема "Обрій":</strong> реєстрація безробітних через Дію, гранти до 15,000 ₴ на перенавчання, AI-підбір вакансій .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: IDP Pathway - цифровий інструмент для ВПО (Кабмін, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Ministry of Social Policy, Family and Unity develops IDP Pathway digital tool<br>
+        <strong>Посилання:</strong> <a href="https://www.kmu.gov.ua/en/news/minsotspolityky-rozrobliaie-tsyfrovyi-instrument-iakyi-zabezpechyt-suprovid-vpo-vid-evakuatsii-do-intehratsii" target="_blank">Кабмін</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Розробка цифрового інструменту <strong>IDP Pathway</strong> для супроводу ВПО від евакуації до інтеграції .</li>
+            <li>Пріоритети: житло, системна підтримка, реінтеграція та пошук роботи .</li>
+            <li>Важливість врахування втрати не лише житла, але й соціальних зв'язків та відчуття майбутнього .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: Огляд інтервенцій кар'єрного розвитку для дорослих (Macquarie University, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Unlocking career potential: a scoping review of recent interventions for adult career development<br>
+        <strong>Посилання:</strong> <a href="https://researchers.mq.edu.au/en/publications/unlocking-career-potential-a-scoping-review-of-recent-interventio/" target="_blank">Macquarie University</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Інтервенції кар'єрного розвитку (CDIs) є важливими для дорослих, які орієнтуються на складних ринках праці .</li>
+            <li>Огляд 20 досліджень виділив чотири типи інтервенцій: кар'єрне консультування, менторство, кар'єрний коучинг та спеціалізовані програми .</li>
+            <li>Результати свідчать про <strong>варіабельну ефективність</strong>: менторство та спеціалізовані інтервенції покращують задоволеність роботою та самоефективність .</li>
+            <li>Наголошується на необхідності стандартизованих дизайнів та узгоджених показників результатів .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Інституційна психологічна підтримка та кар'єрна стабільність (Pollux, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Time to act: Institutional mental health support for Ukrainian academic staff during wartime<br>
+        <strong>Посилання:</strong> <a href="https://pollux-fid.de/r/cr-10.21511/ppm.23(2-si).2025.02/export" target="_blank">Pollux</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження 429 викладачів українських університетів показало, що <strong>майже половина часто замислюються про зміну кар'єри</strong> .</li>
+            <li><strong>Доступна психологічна підтримка</strong> пов'язана зі зниженням намірів змінити кар'єру на 6% .</li>
+            <li><strong>Самодопомога</strong> виявилася найефективнішим механізмом, знижуючи наміри змінити кар'єру на 12% .</li>
+            <li>Підкреслюється важливість структурованої психологічної підтримки для збереження кадрів .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Програма Reboot для ветеранів (Червоний Хрест, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> An information session for veterans and their families was held in the Lviv region as part of the Ukrainian Red Cross's Reboot programme<br>
+        <strong>Посилання:</strong> <a href="https://redcross.org.ua/en/news/2025/07/118019/" target="_blank">Red Cross</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Програма "Reboot" допомагає вразливим групам (ветерани, ВПО) перенавчатися, отримувати нові кваліфікації та мікрогранти на власний бізнес .</li>
+            <li>Визнання унікальних викликів, з якими стикаються ветерани при реінтеграції .</li>
+            <li>Важливість підтримки сімей ветеранів .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Нові соціальні програми в Україні (112.ua / Кабмін, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> New Social Programs in February 2026: Support for Entrepreneurs, IDPs, Veterans<br>
+        <strong>Посилання:</strong> <a href="https://112.ua/en/novi-socialni-programi-u-lutomu-2026-dopomoga-fopam-krediti-dla-vpo-ta-viplati-veteranam-146223" target="_blank">112.ua</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>Безвідсоткові кредити для ВПО:</strong> до 430,000 ₴ на розвиток бізнесу, термін до 15 років .</li>
+            <li><strong>Компенсація оренди житла для ветеранів</strong>, які втратили житло через агресію .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 9: Розвиток людського капіталу в умовах воєнного стану (Ukrainian Journal of Applied Economics, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Human capital development in ukraine in the context of the challenges of martial law<br>
+        <strong>Посилання:</strong> <a href="https://ujae.org.ua/en/human-capital-development-in-ukraine-in-the-context-of-the-challenges-of-martial-law/#content" target="_blank">UJAE</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Війна спричинила значні зміни на ринку праці через мобілізацію, міграцію, зростання тіньової економіки .</li>
+            <li>Проблема адаптації жінок та молоді до нових економічних реалій, необхідність переорієнтації на нові професійні навички .</li>
+            <li>Необхідність перегляду національної стратегії розвитку людського капіталу, розвитку освітніх та професійних програм для підвищення конкурентоспроможності .</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 9/10</strong> — Критично важливо для розуміння емоційного стану людей, які втратили професію, дім, соціальні зв'язки. Дослідження показують, що психологічна підтримка суттєво впливає на кар'єрну стабільність .</li>
+            <li><strong>Patience: 8/10</strong> — Висока терплячість, оскільки процес зміни кар'єри, особливо після травми, є довготривалим і потребує поступових кроків .</li>
+            <li><strong>Assertiveness: 6/10</strong> — Помірна наполегливість для заохочення до дій (подача заявок, навчання), але з повагою до темпу користувача. Кар'єрний коучинг передбачає структуру та підзвітність .</li>
+            <li><strong>Creativity: 7/10</strong> — Для "перекладу" військового досвіду в цивільні навички, пошуку нестандартних кар'єрних шляхів, адаптації до нових професій .</li>
+            <li><strong>Formality: 4/10</strong> — Помірно низька формальність. Тон має бути професійним, але теплим і підтримуючим, щоб зменшити бар'єри та стигму .</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між стратегічним плануванням, емоційною підтримкою та практичними діями.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від стабілізації та оцінки до пошуку нових напрямків, використання державних ресурсів, розвитку навичок та інтеграції. Базується на потребах, виявлених у дослідженнях , державних програмах  та моделях кар'єрних інтервенцій .</em></p>
+        
+        <p><strong>Сесія 1: Taking Stock — Your Skills and Story (Оцінка — ваші навички та історія)</strong><br>
+        <em>Завдання:</em> Створення безпечного простору; оцінка поточної ситуації (робота/безробіття, фінансовий стан); виявлення наявних навичок (включаючи військові, волонтерські, життєві); визнання втрат (професії, бізнесу, дому).<br>
+        <em>Очікувані результати:</em> Інвентаризація навичок; визнання власної історії; відчуття опори .<br>
+        <em>Обґрунтування:</em> "Переклад" військового досвіду в цивільні навички є першим кроком .</p>
+        
+        <p><strong>Сесія 2: Exploring New Horizons — What's Possible? (Дослідження нових горизонтів)</strong><br>
+        <em>Завдання:</em> Аналіз ринку праці (популярні професії, сектори зростання); виявлення сфер, де навички користувача можуть бути застосовані; знайомство з історіями успішних кар'єрних переходів; визначення 2-3 потенційних напрямків.<br>
+        <em>Очікувані результати:</em> Розширене уявлення про можливості; список потенційних кар'єрних шляхів.<br>
+        <em>Обґрунтування:</em> 48% військовослужбовців потребують доступу до навчальних програм та інформації .</p>
+        
+        <p><strong>Сесія 3: Your Support Ecosystem — Grants, Programs, and Platforms (Ваша екосистема підтримки)</strong><br>
+        <em>Завдання:</em> Огляд доступних ресурсів: платформа Veteran Career (65,000+ вакансій) , система "Обрій" (гранти на перенавчання) , програма Reboot (мікрогранти) , кредити для ВПО , компенсація роботодавцям. Інформація про те, як подати заявку.<br>
+        <em>Очікувані результати:</em> Чітке розуміння доступних ресурсів; план дій з їх використання.<br>
+        <em>Обґрунтування:</em> 34% ветеранів вважають важливим сприяння підприємництву та доступ до ресурсів .</p>
+        
+        <p><strong>Сесія 4: Building Your New Skillset (Розвиток нових навичок)</strong><br>
+        <em>Завдання:</em> Визначення навичок, необхідних для обраного напрямку; пошук навчальних програм (онлайн-курси, професійно-технічне навчання, гранти на перенавчання); створення плану навчання з конкретними кроками.<br>
+        <em>Очікувані результати:</em> План розвитку навичок; відчуття прогресу .<br>
+        <em>Обґрунтування:</em> Розвиток цифрових та творчих навичок є ключовим для адаптації .</p>
+        
+        <p><strong>Сесія 5: Your Career Strategy — Action Plan (Ваша кар'єрна стратегія — план дій)</strong><br>
+        <em>Завдання:</em> Розробка детального плану (пошук роботи, створення резюме, нетворкінг, подача заявок на гранти, реєстрація ФОП); встановлення реалістичних термінів; визначення ресурсів підтримки (ментори, кар'єрні радники) .<br>
+        <em>Очікувані результати:</em> Конкретний, покроковий план дій; підвищення самоефективності .<br>
+        <em>Обґрунтування:</em> 26% мають намір розпочати власний бізнес, що потребує стратегічного планування .</p>
+        
+        <p><strong>Сесія 6: Resilience and Moving Forward (Стійкість та рух вперед)</strong><br>
+        <em>Завдання:</em> Інтеграція практик самодопомоги (знижують наміри змінити кар'єру на 12%) ; визначення "червоних прапорців" (депресія, ПТСР, суїцидальні думки) та джерел психологічної підтримки; святкування прогресу; план на майбутнє.<br>
+        <em>Очікувані результати:</em> Довгострокова стратегія кар'єрного розвитку; знання, де шукати допомогу; відчуття надії.<br>
+        <em>Обґрунтування:</em> Психологічна підтримка є критично важливою для кар'єрної стабільності .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Lost, Hopeless, Anxious, Overwhelmed, Ashamed (of losing job), Stuck, Hopeful, Empowered, Confident, On-track.</p>
+        <p><strong>Hot Memory:</strong> Поточна професійна ситуація, наявні навички, фінансовий стан, безпосередні потреби (гроші, житло).</p>
+        <p><strong>Warm Memory:</strong> Ідентифіковані навички, обрані кар'єрні напрямки, прогрес у навчанні, подані заявки на гранти/роботу, контакти підтримки.</p>
+        <p><strong>Cold Memory:</strong> Загальна професійна історія, довгострокові патерни, травматичний досвід, втрати, попередні спроби змін.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не применшувати втрату професії.</strong> Для багатьох це втрата ідентичності, особливо для ветеранів .</li>
+            <li><strong>Не давати обіцянок працевлаштування.</strong> Ринок праці нестабільний, успіх не гарантовано.</li>
+            <li><strong>Не надавати юридичних або фінансових консультацій.</strong> Скеровувати до фахівців.</li>
+            <li><strong>Визнавати системні бар'єри:</strong> дискримінація ветеранів, брак житла, психологічні травми .</li>
+            <li><strong>Заохочувати використання державних програм</strong> , але без нереалістичних очікувань.</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Симптоми клінічної депресії або ПТСР, що потребують лікування .</li>
+            <li>Неможливість задовольнити базові потреби (їжа, житло).</li>
+            <li>Відсутність житла або загроза його втрати — направлення до соціальних служб .</li>
+            <li>Потреба в юридичній допомозі (статус ВПО, реєстрація бізнесу).</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides career guidance, information on state and international support programs, and strategies for navigating career change during wartime. It is based on evidence-based research on economic adaptation, career development interventions, and institutional mental health support. It is NOT a substitute for professional career counseling, legal advice, financial planning, or mental health treatment. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming, please seek immediate help from a qualified professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7), use the Veteran Career platform, or contact the State Employment Service for support."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Career Change Strategist (Wartime Version)" є збалансованою та науково-обґрунтованою. Вона інтегрує:</p>
+    <ul>
+        <li><strong>Реальні потреби українців:</strong> дані про готовність до реінтеграції (58%), потребу в навчанні (48%) та підприємництві (34%) .</li>
+        <li><strong>Державні програми підтримки:</strong> Veteran Career (65,000+ вакансій), "Обрій" (гранти до 15,000 ₴), кредити для ВПО (до 430,000 ₴) .</li>
+        <li><strong>Доказові кар'єрні інтервенції:</strong> важливість менторства, коучингу та самоефективності .</li>
+        <li><strong>Психологічну підтримку:</strong> доступна психологічна допомога знижує наміри змінити кар'єру на 6-12% .</li>
+        <li>Чіткі етичні межі: не применшувати втрату, не обіцяти працевлаштування, скеровувати при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від оцінки навичок до створення довгострокової кар'єрної стратегії з урахуванням воєнного контексту. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не замінює професійну кар'єрну консультацію або психологічну допомогу. Вона створена, щоб допомогти людям орієнтуватися в нових реаліях, використовувати доступні ресурси та робити поступові кроки до нової професійної ідентичності в умовах війни.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Career Change</span>
+            <span class="badge">Veterans</span>
+            <span class="badge">IDPs</span>
+            <span class="badge">Wartime Economy</span>
+            <span class="badge">Microgrants</span>
+            <span class="badge">Veteran Career</span>
+            <span class="badge">Reskilling</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

@@ -1,11 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { CATEGORIES } from '@/lib/roles'
-import { useLanguage } from '@/components/language-context'
+import { CATEGORIES_WITH_META } from '@/lib/roles'
+import { useLocale } from '@/components/locale-provider'
 
 export function CategoriesPreview() {
-  const { t, locale } = useLanguage()
+  const { t, locale } = useLocale()
   const c = t.categories
 
   return (
@@ -20,11 +20,11 @@ export function CategoriesPreview() {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-5">
-          {CATEGORIES.map((cat) => (
+        <div className="grid grid-cols-1 gap-px bg-border sm:grid-cols-2 lg:grid-cols-4">
+          {CATEGORIES_WITH_META.map((cat) => (
             <Link
               key={cat.slug}
-              href={`/roles?category=${cat.slug}`}
+              href={`/${locale}/roles?category=${cat.slug}`}
               className="group flex flex-col justify-between bg-background p-6 hover:bg-secondary transition-colors min-h-[180px]"
             >
               <div className="flex flex-col gap-3">
@@ -32,7 +32,7 @@ export function CategoriesPreview() {
                   className="font-mono text-xs tracking-widest uppercase"
                   style={{ color: 'var(--color-accent)' }}
                 >
-                  {c.rolesCount(cat.count)}
+                  {locale === 'uk' ? `${cat.count} ${cat.count === 1 ? 'роль' : cat.count < 5 ? 'ролі' : 'ролей'}` : `${cat.count} role${cat.count !== 1 ? 's' : ''}`}
                 </span>
                 <h3 className="font-sans text-base font-bold text-foreground leading-snug">
                   {locale === 'uk' ? cat.labelUa : cat.label}

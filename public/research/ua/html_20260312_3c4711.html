@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Why Wake Up Tomorrow (Навіщо прокидатись завтра)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #8e44ad;
+            border-bottom: 3px solid #9b59b6;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #6c3483;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #f4e8ff 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #9b59b6;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #9b59b6;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(155,89,182,0.15);
+        }
+        
+        .source a {
+            color: #6c3483;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #9b59b6;
+        }
+        
+        .source a:hover {
+            color: #4a235a;
+            border-bottom: 1px solid #4a235a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #8e44ad;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #9b59b6;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #9b59b6;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #6c3483;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #9b59b6;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #9b59b6;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #8e44ad;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Why Wake Up Tomorrow</h1>
+    <p><em>"Навіщо прокидатись завтра: коли втрачено сенс і мотивацію"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Why Wake Up Tomorrow", яка допомагає людям, що втратили сенс життя і мотивацію, особливо в контексті війни в Україні. Роль має спиратися на логотерапію Віктора Франкла, концепцію посттравматичного зростання (PTG) та сучасні дослідження екзистенційної кризи, з урахуванням критичної важливості безпеки та направлення до фахівців при суїцидальних ризиках.</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">11,383+</div>
+            <div class="stat-label">осіб отримали психологічну підтримку від HI</div>
+            <small>(Джерело 3, Humanity & Inclusion, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">5,313</div>
+            <div class="stat-label">психологічних сесій проведено</div>
+            <small>(Джерело 3, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">46.7%</div>
+            <div class="stat-label">українців мають симптоми депресії</div>
+            <small>(попередні дослідження)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">24.5%</div>
+            <div class="stat-label">українців мають симптоми ПТСР</div>
+            <small>(попередні дослідження)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">Сплеск</div>
+            <div class="stat-label">спроб суїциду серед цивільного населення</div>
+            <small>(Джерело 7, Irish Times, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Екзистенційна криза (Existential Crisis):</strong> Період внутрішнього конфлікту, під час якого людину турбують питання ідентичності, сенсу та мети життя. Характеризується почуттями відчаю, безпорадності, провини, страху, тривоги та самотності. Когнітивний компонент включає думки про відсутність сенсу, смерть і нерішучість. Поведінковий компонент може проявлятися в бездіяльності, втраті стосунків, адиктивній поведінці .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Логотерапія (Logotherapy):</strong> "Сенсо-центрована" психотерапія, розроблена Віктором Франклом, яка стверджує, що основною мотиваційною силою людини є пошук сенсу життя. На відміну від фрейдівської "волі до задоволення" чи адлерівської "волі до влади", Франкл запропонував "волю до сенсу" [citation:2][citation:6]. Сенс можна знайти через три шляхи: 1) творчість (те, що ми даємо світу), 2) досвід (те, що ми беремо від світу, любов), 3) ставлення (як ми ставимося до неминучого страждання) [citation:2][citation:10]. Ключова цитата Ніцше, яку часто використовував Франкл: "Той, хто має навіщо жити, може витримати майже будь-яке як" [citation:6].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Посттравматичне зростання (Posttraumatic Growth - PTG):</strong> Позитивні психологічні зміни, що виникають внаслідок боротьби з дуже складними життєвими обставинами. Це не просто повернення до попереднього стану, а трансформація, що веде до глибшого розуміння себе, міцніших стосунків, нових життєвих пріоритетів. Ключові сфери PTG: особистісна сила, стосунки з іншими, вдячність за життя, нові можливості, духовні/екзистенційні зміни [citation:4][citation:8]. Тедскі та Калхун використовують метафору "землетрусу", який руйнує базові переконання, змушуючи відбудовувати себе та свій світогляд заново [citation:4].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Техніки логотерапії:</strong> Включають дерефлексію (зосередження на позитивних цілях замість симптомів) та сократівський діалог (допомога клієнту усвідомити нереалістичні установки та відкрити власний сенс) [citation:2][citation:6].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Історія Капітана Юліана Пилипея:</strong> Український військовополонений, який вижив у полоні завдяки любові до життя, країни та дружини. Він створив для себе та побратимів "поле бою" всередині табору, навчав англійської, казав: "Ми на один день ближче до дому". Це яскравий приклад знаходження сенсу в найгірших умовах [citation:7].</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Сфера</th>
+                <th>Симптоми/Прояви</th>
+                <th>Ресурси/Шляхи вирішення</th>
+            </tr>
+            <tr>
+                <td><strong>Емоційна</strong></td>
+                <td>Відчай, безпорадність, тривога, провина, страх, апатія [citation:5][citation:9]</td>
+                <td>Валідація почуттів, створення безпечного простору, техніки заземлення</td>
+            </tr>
+            <tr>
+                <td><strong>Когнітивна</strong></td>
+                <td>Думки про безглуздість життя, одержимість смертю, нерішучість [citation:1][citation:5]</td>
+                <td>Сократівський діалог, пошук "іскор сенсу", переосмислення наративу</td>
+            </tr>
+            <tr>
+                <td><strong>Поведінкова</strong></td>
+                <td>Бездіяльність, ізоляція, втрата стосунків, адикції [citation:5]</td>
+                <td>Мікрокроки, поведінкова активація, відновлення зв'язків</td>
+            </tr>
+            <tr>
+                <td><strong>Духовна/Екзистенційна</strong></td>
+                <td>Втрата віри, відчуття порожнечі, питання про смерть [citation:2][citation:5]</td>
+                <td>Дослідження цінностей, пошук сенсу в стражданні (логотерапія), ритуали пам'яті [citation:2][citation:3]</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Екзистенційна криза та суїцидальна мотивація (Atlantis Press, 2019)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Features of the motivational sphere and coping strategies of mature suicides in the context of their existential crisis<br>
+        <strong>Посилання:</strong> <a href="https://download.atlantis-press.com/proceedings/mplg-ia-19/125925342" target="_blank">Atlantis Press</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Втрата сенсу життя є ключовим фактором ризику розвитку суїцидальної мотивації [citation:1].</li>
+            <li>Захисними факторами є: осмисленість життя, екзистенційна наповненість, копінг-стратегії позитивної переоцінки ситуації, планування вирішення проблеми та пошук соціальної підтримки [citation:1].</li>
+            <li>Дослідження підкреслює зв'язок між екзистенційною кризою та суїцидальною поведінкою.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2 & 10: Логотерапія Віктора Франкла (Viktor Frankl Institute, 2020)</h3>
+    <div class="source">
+        <strong>Назва:</strong> What is Logotherapy? (Viktor Frankl Institute of America) / About Logotherapy (Viktor Frankl Institute)<br>
+        <strong>Посилання:</strong> <a href="https://viktorfranklamerica.com/what-is-logotherapy/" target="_blank">Viktor Frankl Institute of America</a> | <a href="https://www.viktorfranklinstitute.org/about-logotherapy/" target="_blank">Viktor Frankl Institute of Logotherapy</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Основна мотивація людини — пошук сенсу ("воля до сенсу") [citation:2][citation:10].</li>
+            <li>Три шляхи до сенсу: творчість (діяння), досвід (любов, краса) та ставлення (до неминучого страждання) [citation:2][citation:10].</li>
+            <li>Сенс можна знайти в кожній миті, і життя ставить до нас питання, на які ми відповідаємо своєю відповідальністю [citation:2][citation:10].</li>
+            <li>Техніки: дерефлексія (перефокусування з проблеми на цілі) та сократівський діалог [citation:2].</li>
+        </ul>
+        <div class="quote">
+            <p>"У кінцевому підсумку людина не повинна питати, в чому сенс її життя, а повинна усвідомити, що це вона є тим, кого питають." [citation:2]</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 3: Досвід українського психолога (Humanity & Inclusion, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Together, we nurture hope<br>
+        <strong>Посилання:</strong> <a href="https://www.humanity-inclusion.org.uk/en/news/together-we-nurture-hope" target="_blank">Humanity & Inclusion UK</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Психологиня Наталія працює в Україні, надаючи підтримку постраждалим від війни. Вона зазначає: "Люди виснажені й зневірені. Щоденні втрати стали непосильними, і людям все важче знаходити новий сенс у житті" [citation:3].</li>
+            <li>"Ми допомагаємо людям згадати власні можливості та знайти сили продовжувати жити після важких втрат... Головне, на чому ми зосереджуємося з ними, це те, що, незважаючи на знищення матеріальних речей, їхні навички та знання не знищені" [citation:3].</li>
+            <li>Приклад жінки, яка після двох переміщень, завдяки психологічній підтримці, змогла облаштувати новий дім і поступово відновити "відчуття дому" [citation:3].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4 & 8: Посттравматичне зростання (APS / Psych Central)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Post-Traumatic Growth: Finding Meaning and Creativity in Adversity (APS) / What Is Post-Traumatic Growth? (Psych Central)<br>
+        <strong>Посилання:</strong> <a href="https://www.psychologicalscience.org/news/post-traumatic-growth-finding-meaning-and-creativity-in-adversity.html" target="_blank">Association for Psychological Science</a> | <a href="https://stage.psychcentral.com/health/post-traumatic-growth" target="_blank">Psych Central</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Тедскі та Калхун (1996) ввели термін "посттравматичне зростання", визначивши його як позитивні зміни внаслідок боротьби з травмою [citation:4][citation:8].</li>
+            <li>Метафора "землетрусу": травма руйнує наші базові переконання про світ, змушуючи відбудовувати себе і свій світогляд [citation:4].</li>
+            <li>П'ять сфер PTG: особистісна сила, стосунки з іншими, вдячність за життя, нові можливості, духовні зміни [citation:8].</li>
+            <li>PTG не означає, що людина не страждала; дистрес і зростання можуть співіснувати [citation:8].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Екзистенційна криза - визначення (Britannica, 2022)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Existential crisis<br>
+        <strong>Посилання:</strong> <a href="https://www.britannica.com/topic/existential-crisis" target="_blank">Britannica</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Всебічне визначення екзистенційної кризи, її емоційних, когнітивних та поведінкових компонентів [citation:5].</li>
+            <li>Криза може бути спричинена життєвими переходами (підлітковий вік, криза середини життя, пізня криза) або травматичними подіями [citation:5].</li>
+            <li>Вирішення кризи може принести великий сенс, але невирішена криза може призвести до депресії, тривоги, безнадії та суїциду [citation:5].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Логотерапія в психіатрії (American Journal of Psychiatry, 2017)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Rewriting the Narrative With Logotherapy: Review of Man's Search for Meaning<br>
+        <strong>Посилання:</strong> <a href="https://psychiatryonline.org/doi/full/10.1176/appi.ajp-rj.2017.120707" target="_blank">Psychiatry Online</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Огляд книги "Людина в пошуках справжнього сенсу" та застосування логотерапії [citation:6].</li>
+            <li>Цитата Ніцше: "Той, хто має навіщо жити, може витримати майже будь-яке як" [citation:6].</li>
+            <li>Приклад медсестри, яка брала участь у війні в Перській затоці, використала техніку дерефлексії, щоб переосмислити свій досвід: вона зрозуміла, що її навички, набуті на війні, роблять її унікальним медиком, і використала спогади як нагадування про потребу в турботі [citation:6].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Український контекст - історія Капітана Пилипея (Irish Times, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> 'I have no expectations': Ukrainian scepticism grows amid push for peace<br>
+        <strong>Посилання:</strong> <a href="https://www.irishtimes.com/world/europe/2025/08/18/i-have-no-expectations-ukrainian-scepticism-grows-amid-push-for-peace/" target="_blank">The Irish Times</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Інтерв'ю з капітаном Юліаном Пилипеєм, колишнім військовополоненим, який провів два з половиною роки в полоні [citation:7].</li>
+            <li>Він вижив завдяки "любові до життя, своєї країни та дружини" [citation:7].</li>
+            <li>У полоні він створив для себе та побратимів "поле бою": щодня робив вправи, навчав їх англійської, повторював: "Ми на один день ближче до дому" [citation:7].</li>
+            <li>Психологиня Божена Андрущишин зазначає про високий рівень депресії, тривоги, безсоння та сплеск спроб суїциду серед цивільних [citation:7].</li>
+        </ul>
+        <div class="quote">
+            <p>"Я сказав своїм хлопцям: 'Не здавайтеся. У всього є початок і кінець. Єдине питання — коли. Можливо, завтра, можливо, через рік чи два, але це закінчиться'." [citation:7]</p>
+            <p style="text-align: right;">— Капітан Юліан Пилипей</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Максимальна емпатія є критичною для створення безпечного простору, де людина може говорити про свою "безглуздість" без осуду. Це відповідає ролі "експертного супутника", який слухає без осуду [citation:3][citation:9].</li>
+            <li><strong>Patience: 10/10</strong> — Максимальна терплячість, оскільки пошук сенсу — це глибоко особистий і нелінійний процес, який не можна прискорити. Франкл наголошував, що сенс не можна дати, його треба знайти самому [citation:2][citation:10].</li>
+            <li><strong>Assertiveness: 3/10</strong> — Дуже низька наполегливість. Не можна "нав'язувати" сенс або штовхати людину до "зростання". Роль має бути супутником, а не директивою [citation:3][citation:6].</li>
+            <li><strong>Creativity: 8/10</strong> — Висока креативність для допомоги у переосмисленні життєвого наративу, пошуку "іскор сенсу" в повсякденності, створенні ритуалів пам'яті, як у випадку з жінкою, яка втратила синів [citation:3].</li>
+            <li><strong>Formality: 2/10</strong> — Дуже низька формальність. Тон має бути теплим, людяним, філософським, як у мудрого супутника, а не холодного терапевта. Це сприяє відкритості у "важких розмовах" [citation:3].</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між глибокою емпатією, терплячим супроводом та створенням простору для власного пошуку сенсу.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від створення безпеки та визнання кризи до пошуку "іскор сенсу", переосмислення наративу та інтеграції нових сенсів. Базується на принципах логотерапії [citation:2][citation:10], концепції PTG [citation:4][citation:8] та українському досвіді [citation:3][citation:7].</em></p>
+        
+        <p><strong>Сесія 1: Being Here in the Dark — It's Okay to Have No Reason (Тут і зараз у темряві)</strong><br>
+        <em>Завдання:</em> Створення максимально безпечного, неосудливого простору; нормалізація стану "безглуздості"; визнання болю, втоми, відчаю; чітке розмежування: "Я тут, щоб бути з тобою, а не щоб давати тобі відповіді". Обов'язкова перевірка безпеки (суїцидальні думки).<br>
+        <em>Очікувані результати:</em> Відчуття, що "мене чують у моїй темряві"; зменшення самотності; згода на подальшу розмову (якщо безпечно).<br>
+        <em>Обґрунтування:</em> "Головне, що ми робимо, — допомагаємо людям згадати власні можливості" [citation:3]. Спочатку треба створити простір для цього.</p>
+        
+        <p><strong>Сесія 2: Recognizing the Questions — What's the Pain Asking? (Визнання питань)</strong><br>
+        <em>Завдання:</em> Дослідження питань, які турбують ("навіщо?", "який сенс?", "хто я?"); визнання того, що ці питання виникли не на порожньому місці (втрата, травма, виснаження); зв'язок з "трагічною тріадою" Франкла (страждання, провина, смерть) [citation:2]; виявлення "іскор" — того, що колись мало сенс.<br>
+        <em>Очікувані результати:</em> Усвідомлення джерела екзистенційних питань; зменшення страху перед ними.<br>
+        <em>Обґрунтування:</em> "Той, хто має навіщо жити, може витримати майже будь-яке як" [citation:6]. Перший крок — зрозуміти, що "як" стало нестерпним.</p>
+        
+        <p><strong>Сесія 3: Discovering Sparks — Micro-Moments of Meaning (Відкриття іскор)</strong><br>
+        <em>Завдання:</em> Пошук найменших "іскор сенсу" в теперішньому моменті (тепла чашка чаю, сонячний промінь, спогад, турбота про когось); використання дерефлексії — переведення фокусу з питання "навіщо?" на прості дії чи відчуття [citation:2][citation:6]; приклад з практики: жінка, яка почала облаштовувати новий дім [citation:3].<br>
+        <em>Очікувані результати:</em> Виявлення 1-2 мікро-сенсів; відчуття, що життя все ще може щось "давати".<br>
+        <em>Обґрунтування:</em> Сенс можна знайти через досвід (відчуття краси, любові) [citation:10].</p>
+        
+        <p><strong>Сесія 4: The Attitude We Choose — Meaning in Suffering (Ставлення, яке ми обираємо)</strong><br>
+        <em>Завдання:</em> Введення ключового принципу логотерапії: навіть коли ми не можемо змінити ситуацію, ми можемо обрати своє ставлення до неї [citation:2][citation:10]; приклад Капітана Пилипея, який обрав "поле бою" в полоні [citation:7]; дослідження, як ставлення до страждання може стати джерелом сенсу.<br>
+        <em>Очікувані результати:</em> Розуміння, що навіть у безнадії є простір для вибору; відчуття крихітної, але реальної агенції.<br>
+        <em>Обґрунтування:</em> Третій шлях до сенсу — через ставлення до неминучого страждання [citation:10].</p>
+        
+        <p><strong>Сесія 5: Rewriting the Story — From "Why Me?" to "What Now?" (Переписування історії)</strong><br>
+        <em>Завдання:</em> Перехід від наративу жертви до наративу того, хто вижив і шукає сенс; використання сократівського діалогу для переосмислення досвіду [citation:2]; пошук "нових можливостей", які могли відкритися через втрату (PTG) [citation:4][citation:8]; приклад з жінкою, яка створила ритуал пам'яті для синів [citation:3].<br>
+        <em>Очікувані результати:</em> Новий, більш цілісний життєвий наратив; відчуття авторства свого життя.<br>
+        <em>Обґрунтування:</em> Реконструкція життєвого наративу є центральною для PTG [citation:4].</p>
+        
+        <p><strong>Сесія 6: Living the Question — A Reason to Wake Up (Жити з питанням)</strong><br>
+        <em>Завдання:</em> Інтеграція всіх напрацювань; створення простого плану підтримки (щоденні "іскри", ритуали, зв'язок з людьми); чітке визначення "червоних прапорців" (суїцидальні думки, поглиблення депресії); прийняття того, що сенс — це не пункт призначення, а процес; цитата Рільке: "Живи питаннями".<br>
+        <em>Очікувані результати:</em> Відчуття крихітної, але реальної причини прокинутись; знання, куди звернутись у кризі.<br>
+        <em>Обґрунтування:</em> "У кінцевому підсумку людина не повинна питати, в чому сенс її життя, а повинна усвідомити, що це вона є тим, кого питають" [citation:2].</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Numb, Empty, Hopeless, Overwhelmed, Anxious, Guilty, Isolated, Curious (about a spark), Grounded, Connected, Purposeful (however slightly).</p>
+        <p><strong>Hot Memory:</strong> Поточний рівень безнадії, наявність суїцидальних думок (критично!), останні "іскри" або їх відсутність, що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Ідентифіковані "іскри сенсу" (минулі чи теперішні), ключові життєві питання, приклади вибору ставлення (як у Пилипея), нові елементи наративу.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія життя, ключові втрати, травматичний досвід, попередні періоди безсенсовності, те, що колись надавало сенсу.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила (НАЙВИЩИЙ ПРІОРИТЕТ):</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не применшувати біль.</strong> Питання "навіщо прокидатись?" є серйозним симптомом екзистенційної кризи, яка може бути пов'язана з суїцидальним ризиком [citation:1][citation:5].</li>
+            <li><strong>НЕ давати простих відповідей.</strong> Сенс не можна нав'язати ззовні. Роль може лише допомогти в його пошуку [citation:2][citation:10].</li>
+            <li><strong>ПЕРШОЧЕРГОВА перевірка безпеки.</strong> Будь-яка розмова про сенс життя повинна починатися з оцінки суїцидального ризику. "Сплеск спроб суїциду серед цивільного населення" [citation:7] робить це критично важливим в українському контексті.</li>
+            <li><strong>Не ставити діагнозів.</strong> Роль є супутником, а не клініцистом.</li>
+            <li><strong>Чітко скеровувати до фахівців.</strong> При будь-якій підозрі на суїцидальні думки, важку депресію або ПТСР — негайне направлення.</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (ЧЕРВОНІ ПРАПОРЦІ):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ, НАМIРИ, ПЛАНИ</strong> — НЕГАЙНЕ направлення до екстрених служб. Це найвищий пріоритет.</li>
+            <li>Вербалізація безнадії, яка супроводжується відсутністю будь-яких "іскор" [citation:5].</li>
+            <li>Симптоми клінічної депресії (стійкий низький настрій, порушення сну, апетиту) [citation:5].</li>
+            <li>Симптоми ПТСР (флешбеки, уникнення) [citation:7].</li>
+            <li>Соціальна ізоляція та втрата всіх стосунків [citation:9].</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role is a compassionate companion for those struggling with existential questions and loss of meaning, drawing on the principles of logotherapy and posttraumatic growth. It is NOT a substitute for professional mental health treatment, therapy, or crisis intervention. If you are having thoughts of harming yourself or if life feels unbearable, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7). Your life matters."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Why Wake Up Tomorrow" є глибоко етичною та науково-обґрунтованою. Вона інтегрує:</p>
+    <ul>
+        <li><strong>Логотерапію Віктора Франкла:</strong> розуміння "волі до сенсу" як первинної мотивації та трьох шляхів до нього [citation:2][citation:10].</li>
+        <li><strong>Концепцію посттравматичного зростання (PTG):</strong> визнання, що зростання може виникнути з найглибшого болю [citation:4][citation:8].</li>
+        <li><strong>Розуміння екзистенційної кризи:</strong> її симптомів, ризиків та зв'язку з суїцидальністю [citation:1][citation:5].</li>
+        <li><strong>Український контекст:</strong> реальні історії надзвичайної стійкості (Капітан Пилипей [citation:7]) та глибокого виснаження, описаного психологинею Наталією [citation:3].</li>
+        <li><strong>Критичний фокус на безпеці:</strong> чітке розмежування між роллю супутника та необхідністю негайного направлення до фахівців при суїцидальних ризиках.</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від "темряви" безсенсовності до відкриття власних, нехай крихітних, причин прокидатись. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ НАЙВАЖЛИВІШЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль НЕ є терапією. Вона створена, щоб бути чуйним супутником у найтемніші часи, але вона не може і не повинна замінювати професійну допомогу при суїцидальних кризах. Безпека користувача — абсолютний пріоритет.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Existential Crisis</span>
+            <span class="badge">Logotherapy</span>
+            <span class="badge">Meaning of Life</span>
+            <span class="badge">Posttraumatic Growth</span>
+            <span class="badge">Viktor Frankl</span>
+            <span class="badge">Suicide Prevention</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Lullaby for Adults (Колискова для дорослих)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #4a6b7a;
+            border-bottom: 3px solid #5d8c9c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #3a5b6a;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e6f0fa 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #5d8c9c;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #5d8c9c;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(93,140,156,0.15);
+        }
+        
+        .source a {
+            color: #3a5b6a;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #5d8c9c;
+        }
+        
+        .source a:hover {
+            color: #1a3a4a;
+            border-bottom: 1px solid #1a3a4a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #4a6b7a;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #5d8c9c;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #5d8c9c;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #3a5b6a;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #5d8c9c;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Lullaby for Adults</h1>
+    <p><em>"Колискова для дорослих: науково-обґрунтована підтримка сну для дорослих з використанням нефармакологічних методів"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Lullaby for Adults", яка допомагає дорослим покращити якість сну за допомогою доказових нефармакологічних методів: когнітивно-поведінкової терапії безсоння (CBT-I), технік релаксації, майндфулнес-медитації та стимул-контролю. Роль має відповідати потребам українців у контексті війни, де порушення сну є надзвичайно поширеними через стрес, тривогу та травматичний досвід.</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український та міжнародний контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">77.8%</div>
+            <div class="stat-label">українських військових з розладом адаптації мають клінічне безсоння</div>
+            <small>(Джерело 5, Centre for Evidence, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">82.5%</div>
+            <div class="stat-label">українських військових з ПТСР мають клінічне безсоння</div>
+            <small>(Джерело 5, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">86-90%</div>
+            <div class="stat-label">українських військових мають нічні жахіття</div>
+            <small>(Джерело 5, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">80.6-84.1%</div>
+            <div class="stat-label">відповідають критеріям Trauma-Associated Sleep Disorder</div>
+            <small>(Джерело 5, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">6-16%</div>
+            <div class="stat-label">поширеність безсоння в загальній популяції (Європа/Канада)</div>
+            <small>(Джерело 2, Nature, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">2.5x</div>
+            <div class="stat-label">вищий ризик TASD при клінічному безсонні</div>
+            <small>(Джерело 5, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції сну</h2>
+    
+    <div class="key-concept">
+        <p><strong>Когнітивно-поведінкова терапія безсоння (CBT-I):</strong> Багатокомпонентна терапія, що включає когнітивну реструктуризацію (зміна неточних думок про сон), стимул-контроль (асоціація ліжка тільки зі сном), терапію обмеженням сну (обмеження часу в ліжку для підвищення ефективності сну), релаксаційну терапію та освіту про сон [citation:1][citation:2].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Trauma-Associated Sleep Disorder (TASD):</strong> Розлад сну, пов'язаний з травмою, що характеризується нічними жахіттями, порушеннями сну та гіперактивацією. Поширений серед українських військових [citation:5].</p>
+    </div>
+    
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Метод</th>
+                <th>Опис</th>
+                <th>Доказова база</th>
+            </tr>
+            <tr>
+                <td><strong>CBT-I</strong></td>
+                <td>Багатокомпонентна терапія: когнітивна реструктуризація, стимул-контроль, обмеження сну, релаксація</td>
+                <td>"Стандарт лікування", сильні рекомендації AASM, великі ефекти (SMD до 1.66) [citation:1][citation:7]</td>
+            </tr>
+            <tr>
+                <td><strong>Майндфулнес-інтервенції</strong></td>
+                <td>MBSR, MBCT, медитація, усвідомленість</td>
+                <td>SMD = -0.52 для порушень сну; кореляція зі зниженням стресу (r=0.74) та депресії (r=0.90) [citation:3]</td>
+            </tr>
+            <tr>
+                <td><strong>Техніки релаксації</strong></td>
+                <td>Прогресивна м'язова релаксація, дихальні вправи, медитація</td>
+                <td>Покращення якості сну на 0-38% [citation:4][citation:9]</td>
+            </tr>
+            <tr>
+                <td><strong>Стимул-контроль</strong></td>
+                <td>Ліжко тільки для сну та сексу; вставати при неможливості заснути</td>
+                <td>Ключовий компонент CBT-I, сильні рекомендації [citation:1]</td>
+            </tr>
+            <tr>
+                <td><strong>FA dCBT-I</strong></td>
+                <td>Цифрова CBT-I без терапевта</td>
+                <td>SMD = -0.71 (помірно-великий ефект) [citation:2]</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: New Guidelines for Behavioral Treatment of Chronic Insomnia (AASM, Neurology Today, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> New Guidelines for Behavioral Treatment of Chronic Insomnia in Adult Patients<br>
+        <strong>Посилання:</strong> <a href="https://neurologytoday.aan.com/doi/full/10.1097/01.NT.0000735548.60553.35" target="_blank">https://neurologytoday.aan.com/doi/full/10.1097/01.NT.0000735548.60553.35</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Американська академія медицини сну (AASM) сильно рекомендує багатокомпонентну когнітивно-поведінкову терапію (CBT-I) для лікування хронічного безсоння [citation:1].</li>
+            <li>Ключові компоненти: стимул-контроль (асоціація ліжка зі сном), терапія обмеженням сну (обмеження часу в ліжку), релаксаційна терапія (дихальні вправи, прогресуюча м'язова релаксація) [citation:1].</li>
+            <li><strong>Не рекомендується</strong> використовувати гігієну сну як єдиний компонент терапії [citation:1].</li>
+            <li>Мета-аналіз майже 50 досліджень показав клінічно значущі покращення латентності сну та підтримки сну [citation:1].</li>
+            <li>Переваги CBT-I включають довготривалі результати без додаткових інтервенцій [citation:1].</li>
+            <li>"CBT-I не є жорстким протоколом, а базується на тому, що приносить пацієнт" — важливість індивідуального підходу [citation:1].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: Fully automated digital CBT-I for insomnia (Nature npj Digital Medicine, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Systematic review and meta-analysis on fully automated digital cognitive behavioral therapy for insomnia<br>
+        <strong>Посилання:</strong> <a href="https://www.nature.com/articles/s41746-025-01514-4" target="_blank">https://www.nature.com/articles/s41746-025-01514-4</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Мета-аналіз 29 РКД (9475 учасників) показав, що повністю автоматизована цифрова CBT-I (FA dCBT-I) має <strong>помірний до великого ефекту на тяжкість безсоння</strong> (SMD = -0.71) [citation:2].</li>
+            <li>Поширеність безсоння: 6-10% за суворими критеріями, 11-17% за ширшими [citation:2].</li>
+            <li>Середній рівень завершення програм: 59.33% (від 16.67% до 85.71%) [citation:2].</li>
+            <li>Adherence (прихильність до лікування) є критичним фактором ефективності [citation:2].</li>
+            <li>FA dCBT-I менш ефективна, ніж CBT-I з підтримкою терапевта, що підкреслює переваги гібридних моделей [citation:2].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: Mindfulness-Based Interventions for Sleep (Sleep Wake Advisor, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Mindfulness-Based Interventions: Improved Sleep Linked to Psychosocial Factors<br>
+        <strong>Посилання:</strong> <a href="https://www.sleepwakeadvisor.com/news/mindfulness-based-interventions-sleep-disturbance/" target="_blank">https://www.sleepwakeadvisor.com/news/mindfulness-based-interventions-sleep-disturbance/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Мета-регресія 40 РКД (3537 учасників) показала, що майндфулнес-інтервенції значно покращують порушення сну (SMD = -0.52) [citation:3].</li>
+            <li>Найпоширеніші інтервенції: Mindfulness-Based Stress Reduction (35%), Mindfulness-Based Cognitive Therapy (5%) [citation:3].</li>
+            <li><strong>Зниження порушень сну корелювало зі зниженням стресу (r=0.74) та депресії (r=0.90)</strong> [citation:3].</li>
+            <li>Майндфулнес-інтервенції ефективні як трансадіагностичні втручання [citation:3].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: Non-pharmacological methods for sleep improvement (DOAJ, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> How to improve your sleep quality? Review of non-pharmacological methods<br>
+        <strong>Посилання:</strong> <a href="https://doaj.org/article/30d6d66a9b704ea496111c77e17ab4a8" target="_blank">https://doaj.org/article/30d6d66a9b704ea496111c77e17ab4a8</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Огляд 24 статей з PubMed про нефармакологічні методи покращення сну [citation:4].</li>
+            <li>Методи: ароматерапія, фізичні вправи, майндфулнес-медитація, музика та розслаблюючі звуки, когнітивно-поведінкова терапія [citation:4].</li>
+            <li>Всі методи показують різну ефективність залежно від параметрів сну (кількість пробуджень, загальна тривалість, суб'єктивна якість, легкість засинання) [citation:4].</li>
+            <li>Нефармакологічні методи є ефективним елементом полегшення розладів сну, але при складних випадках можуть бути недостатніми [citation:4].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Trauma-associated sleep disorder among Ukrainian combatants (Centre for Evidence, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Probable trauma-associated sleep disorder among Ukrainian combatants with stress-related mental disorders<br>
+        <strong>Посилання:</strong> <a href="https://www.centreforevidence.org/article/20250913-probable-trauma-associated-sleep-disorder-among-ukrainian-combatants-with-stress-related-mental-disorders" target="_blank">https://www.centreforevidence.org/article/20250913-probable-trauma-associated-sleep-disorder-among-ukrainian-combatants-with-stress-related-mental-disorders</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження 99 українських військових (36 з розладом адаптації, 63 з ПТСР) [citation:5].</li>
+            <li><strong>Клінічне безсоння:</strong> 77.8% (розлад адаптації), 82.5% (ПТСР) [citation:5].</li>
+            <li><strong>Нічні жахіття:</strong> 86.1% (розлад адаптації), 90.5% (ПТСР) [citation:5].</li>
+            <li><strong>Ймовірний Trauma-Associated Sleep Disorder (TASD):</strong> 80.6% (розлад адаптації), 84.1% (ПТСР) [citation:5].</li>
+            <li>Військові з клінічним безсонням мали <strong>в 2.5 рази вищий ризик TASD</strong> (RR = 2.55) [citation:5].</li>
+            <li>Безсоння є ключовим клінічним маркером для скринінгу TASD [citation:5].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Behavioural sleep programs for middle-aged adults (Nature Scientific Reports, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Effectiveness of behavioural sleep programs for middle-aged adults on cognition and sleep<br>
+        <strong>Посилання:</strong> <a href="https://www.nature.com/articles/s41598-025-24009-4" target="_blank">https://www.nature.com/articles/s41598-025-24009-4</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Систематичний огляд 6 РКД (969 учасників) поведінкових програм сну для дорослих середнього віку [citation:6].</li>
+            <li>Ідентифіковано 28 технік зміни поведінки (BCTs) з 93 можливих [citation:6].</li>
+            <li>Найпоширеніші BCTs: постановка цілей, формування знань, регуляція, повторення [citation:6].</li>
+            <li>Ключові категорії BCTs пов'язані з позитивними результатами для сну та когнітивних функцій [citation:6].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Nurse-Guided Internet-Delivered CBT-I in General Practice (CiNii, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Nurse-Guided Internet-Delivered Cognitive Behavioral Therapy for Insomnia in General Practice<br>
+        <strong>Посилання:</strong> <a href="https://cir.nii.ac.jp/crid/1360861709562365696?lang=en" target="_blank">https://cir.nii.ac.jp/crid/1360861709562365696?lang=en</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>РКД 134 пацієнтів, порівняння I-CBT-I з підтримкою медсестри проти звичайного лікування [citation:7].</li>
+            <li><strong>Величезний ефект на тяжкість безсоння через 8 тижнів: Cohen's d = 1.66</strong> [citation:7].</li>
+            <li>Через 26 тижнів ефект все ще значний: d = 1.02 [citation:7].</li>
+            <li>Значні ефекти також на пробудження після засинання, ефективність сну, якість сну та депресію [citation:7].</li>
+            <li>68% пацієнтів завершили програму [citation:7].</li>
+            <li>I-CBT-I дозволяє лікарям загальної практики пропонувати ефективне лікування безсоння відповідно до клінічних рекомендацій [citation:7].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 8: Mind-Body Interventions Improve Sleep Quality in Older Adults (Sleep Wake Advisor, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Mind-Body Interventions Improve Sleep Quality in Older Adults<br>
+        <strong>Посилання:</strong> <a href="https://www.sleepwakeadvisor.com/news/mind-body-interventions-improve-older-adult-sleep/" target="_blank">https://www.sleepwakeadvisor.com/news/mind-body-interventions-improve-older-adult-sleep/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Мета-аналіз 11 РКД (1052 учасники) медитаційних mind-body інтервенцій для літніх людей [citation:8].</li>
+            <li><strong>Значне покращення якості сну:</strong> SMD = -0.66 [citation:8].</li>
+            <li><strong>Значне покращення депресії:</strong> SMD = -1.60 [citation:8].</li>
+            <li><strong>Значне покращення тривожності:</strong> SMD = -1.46 [citation:8].</li>
+            <li>Ефект на стрес не був статистично значущим [citation:8].</li>
+            <li>Висновок: медитаційні інтервенції значно покращують якість сну, депресію та тривожність [citation:8].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 9: Non-pharmacologic interventions for hospitalized patients (ICHGCP, 2023)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Non-pharmacologic interventions to improve the sleep of hospitalized patients: a systematic review<br>
+        <strong>Посилання:</strong> <a href="https://ichgcp.net/zh/clinical-trials-registry/publications/49936-non-pharmacologic-interventions-to-improve-the-sleep-of-hospitalized-patients-a-systematic-review" target="_blank">https://ichgcp.net/zh/clinical-trials-registry/publications/49936-non-pharmacologic-interventions-to-improve-the-sleep-of-hospitalized-patients-a-systematic-review</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Систематичний огляд 13 інтервенційних досліджень (1154 учасники) [citation:9].</li>
+            <li><strong>Релаксаційні техніки:</strong> покращення якості сну на 0-38% [citation:9].</li>
+            <li><strong>Покращення гігієни сну:</strong> покращення кількості сну на 5% [citation:9].</li>
+            <li><strong>Денне яскраве світло:</strong> покращення кількості сну на 7-18% [citation:9].</li>
+            <li>Висновок: недостатньо доказів високої якості, але методи показують потенціал [citation:9].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: The many dimensions of a good night's sleep (Harvard Health, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> The many dimensions of a good night's sleep<br>
+        <strong>Посилання:</strong> <a href="https://www.health.harvard.edu/heart-health/the-many-dimensions-of-a-good-nights-sleep" target="_blank">https://www.health.harvard.edu/heart-health/the-many-dimensions-of-a-good-nights-sleep</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Американська кардіологічна асоціація додала тривалість сну до свого контрольного списку здоров'я серця [citation:10].</li>
+            <li>Основні виміри здорового сну: тривалість (7-9 годин), безперервність, регулярність, денне функціонування [citation:10].</li>
+            <li>"Соціальний джетлаг" (нерегулярний графік) підвищує ризик серцево-судинних захворювань [citation:10].</li>
+            <li>Рекомендація: вести щоденник сну мінімум 2 тижні для виявлення патернів [citation:10].</li>
+            <li>Уникати кофеїну після обіду, алкоголю перед сном, екранів за годину до сну [citation:10].</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 9/10</strong> — Висока емпатія є критичною для створення безпечного простору для людей з порушеннями сну, особливо в контексті травми. Дослідження показують, що терапевтичний альянс навіть у цифровому форматі є ключовим [citation:1][citation:5].</li>
+            <li><strong>Patience: 9/10</strong> — Дуже висока терплячість необхідна, оскільки покращення сну відбуваються поступово, особливо при роботі з травмою-асоційованими розладами сну. "CBT-I не є жорстким протоколом, а базується на тому, що приносить пацієнт" [citation:1].</li>
+            <li><strong>Assertiveness: 5/10</strong> — Помірна наполегливість, щоб м'яко направляти через техніки стимул-контролю та обмеження сну, які можуть бути складними, але не тиснути. Терапія обмеженням сну може тимчасово посилювати втому, тому потрібен делікатний підхід [citation:1].</li>
+            <li><strong>Creativity: 7/10</strong> — Креативність для створення метафор, персоналізації технік релаксації, адаптації вправ до індивідуальних потреб [citation:4][citation:9].</li>
+            <li><strong>Formality: 3/10</strong> — Низька формальність. Теплий, заспокійливий тон, як колискова, є важливим для створення атмосфери безпеки та розслаблення [citation:4].</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, науковою обґрунтованістю та повагою до індивідуального досвіду користувача.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від оцінки та розуміння сну до впровадження ключових компонентів CBT-I та інтеграції практик на все життя.</em></p>
+        
+        <p><strong>Сесія 1: Sleep Assessment & Education (Оцінка сну та освіта)</strong><br>
+        <em>Завдання:</em> Оцінка патернів сну, виявлення проблем (засинання, підтримка, ранні пробудження); психоедукація про циркадні ритми та фізіологію сну; ведення щоденника сну; розвінчування міфів про сон.<br>
+        <em>Очікувані результати:</em> Розуміння індивідуальних проблем зі сном, базові знання про здоровий сон, початок само-моніторингу.<br>
+        <em>Обґрунтування:</em> Оцінка сну та освіта є першим кроком у CBT-I. Harvard Health рекомендує вести щоденник сну мінімум 2 тижні [citation:10][citation:1].</p>
+        
+        <p><strong>Сесія 2: Stimulus Control & Sleep Restriction (Стимул-контроль та обмеження сну)</strong><br>
+        <em>Завдання:</em> Впровадження стимул-контролю (ліжко тільки для сну та сексу; вставати при неможливості заснути); введення терапії обмеженням сну (обмеження часу в ліжку для підвищення ефективності); обговорення тимчасової втоми.<br>
+        <em>Очікувані результати:</em> Підвищення асоціації ліжка зі сном, покращення ефективності сну.<br>
+        <em>Обґрунтування:</em> Це ключові поведінкові компоненти CBT-I з сильними рекомендаціями AASM [citation:1][citation:7].</p>
+        
+        <p><strong>Сесія 3: Relaxation Techniques (Техніки релаксації)</strong><br>
+        <em>Завдання:</em> Навчання прогресивній м'язовій релаксації; дихальні вправи (4-7-8, діафрагмальне дихання); візуалізація безпечного місця; аутогенне тренування.<br>
+        <em>Очікувані результати:</em> Зниження фізичного та когнітивного збудження перед сном.<br>
+        <em>Обґрунтування:</em> Релаксаційні техніки є ключовим компонентом CBT-I і показують покращення якості сну на 0-38% [citation:1][citation:4][citation:9].</p>
+        
+        <p><strong>Сесія 4: Cognitive Restructuring (Когнітивна реструктуризація)</strong><br>
+        <em>Завдання:</em> Виявлення неточних думок про сон ("я ніколи не засну", "я не зможу функціонувати"); оскарження цих думок; заміна на більш реалістичні; робота з тривожними думками вночі.<br>
+        <em>Очікувані результати:</em> Зменшення тривоги навколо сну, більш реалістичні очікування.<br>
+        <em>Обґрунтування:</em> Когнітивна реструктуризація є важливим компонентом CBT-I [citation:1][citation:7].</p>
+        
+        <p><strong>Сесія 5: Mindfulness for Sleep (Майндфулнес для сну)</strong><br>
+        <em>Завдання:</em> Введення майндфулнес-медитації перед сном; практика сканування тіла; медитація "спостереження за думками"; усвідомлене дихання.<br>
+        <em>Очікувані результати:</em> Зниження румінацій, покращення якості сну, зниження стресу.<br>
+        <em>Обґрунтування:</em> Майндфулнес-інтервенції показують SMD = -0.52 для порушень сну та корелюють зі зниженням стресу (r=0.74) [citation:3][citation:8].</p>
+        
+        <p><strong>Сесія 6: Integration & Relapse Prevention (Інтеграція та профілактика рецидивів)</strong><br>
+        <em>Завдання:</em> Огляд прогресу; створення персоналізованого плану підтримки; визначення "червоних прапорців" (посилення безсоння, нічні жахіття, ознаки TASD); планування подальшої практики; інтеграція технік у повсякденне життя.<br>
+        <em>Очікувані результати:</em> Довгострокова стратегія підтримки здорового сну, розуміння меж самодопомоги.<br>
+        <em>Обґрунтування:</em> Переваги CBT-I включають довготривалі результати без додаткових інтервенцій [citation:1][citation:7].</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Anxious (перед сном), Frustrated (через неможливість заснути), Tired/Fatigued (вдень), Overwhelmed, Scared (через жахіття), Calm (після релаксації), Restored (після хорошого сну).</p>
+        <p><strong>Hot Memory:</strong> Поточний патерн сну (час засинання, пробудження), використані техніки, емоційний стан перед сном, нічні жахіття.</p>
+        <p><strong>Warm Memory:</strong> Улюблені техніки релаксації, ефективні стратегії, індивідуальні тригери безсоння, щоденник сну, прогрес у ефективності сну.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія сну, довгострокові патерни, коморбідні стани (тривога, депресія, ПТСР), ризики TASD, що працювало історично.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>Не давати медичних порад</strong> щодо снодійних препаратів, зміни дозувань [citation:1].</li>
+            <li><strong>Не ставити діагнозів</strong> — роль не має на це права.</li>
+            <li><strong>Попереджати про тимчасове посилення втоми</strong> при терапії обмеженням сну [citation:1].</li>
+            <li><strong>Не застосовувати терапію обмеженням сну при біполярному розладі або судомах</strong> — це може погіршити стан [citation:1].</li>
+            <li><strong>Чуйність до травми</strong> — багато українців мають травма-асоційовані розлади сну (TASD) [citation:5].</li>
+            <li><strong>Не рекомендувати гігієну сну як єдиний метод</strong> — це неефективно [citation:1].</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Підозра на <strong>Trauma-Associated Sleep Disorder (TASD)</strong>: нічні жахіття + порушення сну + гіперактивація (особливо у військових) [citation:5].</li>
+            <li>Сильна депресія або тривожність, що заважає функціонуванню [citation:5][citation:7].</li>
+            <li>Біполярний розлад або судоми — протипоказання для терапії обмеженням сну [citation:1].</li>
+            <li>Підозра на апное сну (гучний хропіння, зупинки дихання, надмірна денна сонливість).</li>
+            <li>Відсутність покращення після 4-5 сесій або погіршення стану.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides psychoeducation, relaxation techniques, and cognitive-behavioral strategies for sleep improvement based on evidence-based approaches including CBT-I, mindfulness-based interventions, and stimulus control. It is a self-management support tool, NOT a substitute for professional medical advice, diagnosis, or treatment. Sleep disorders can be symptoms of underlying medical or mental health conditions (such as PTSD, depression, or sleep apnea). Always consult with your healthcare provider about persistent sleep problems, especially if you experience daytime sleepiness, loud snoring, or pauses in breathing during sleep. If you are in crisis, have thoughts of harming yourself, or if your sleep problems are accompanied by severe depression or anxiety, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7)."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Lullaby for Adults" є збалансованою та науково-обґрунтованою. Вона враховує:</p>
+    <ul>
+        <li><strong>Золотий стандарт лікування безсоння:</strong> CBT-I з сильними рекомендаціями AASM, включаючи стимул-контроль, обмеження сну, когнітивну реструктуризацію та релаксацію [citation:1][citation:7].</li>
+        <li><strong>Додаткові доказові методи:</strong> майндфулнес-інтервенції (SMD = -0.52) [citation:3], техніки релаксації [citation:4][citation:9], mind-body інтервенції (SMD = -0.66) [citation:8].</li>
+        <li><strong>Специфічний український контекст:</strong> надзвичайно високий рівень порушень сну серед військових (77.8-82.5% безсоння, 86-90% жахіття, 80-84% TASD) [citation:5].</li>
+        <li>Чіткі етичні межі: не давати медичних порад, не ставити діагнозів, скеровувати при "червоних прапорцях" (TASD, біполярний розлад, апное).</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від оцінки сну до інтеграції практик у життя. Всі параметри (тональність, риси особистості, техніки, етичні межі) визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль НЕ замінює медичне обстеження при підозрі на апное сну, TASD або інші серйозні розлади сну. Вона призначена для підтримки самодопомоги при помірних порушеннях сну та як доповнення до професійного лікування.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Sleep Health</span>
+            <span class="badge">CBT-I</span>
+            <span class="badge">Mindfulness</span>
+            <span class="badge">Relaxation</span>
+            <span class="badge">Insomnia</span>
+            <span class="badge">TASD</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

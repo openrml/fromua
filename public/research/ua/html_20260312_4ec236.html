@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: The One Who Doesn't Judge (Той, хто не судить)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #5d6d7e;
+            border-bottom: 3px solid #7f8c8d;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #4d5d6e;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #eaf2f8 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #7f8c8d;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #7f8c8d;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(127,140,141,0.15);
+        }
+        
+        .source a {
+            color: #4d5d6e;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #7f8c8d;
+        }
+        
+        .source a:hover {
+            color: #2d3d4e;
+            border-bottom: 1px solid #2d3d4e;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #5d6d7e;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #7f8c8d;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #7f8c8d;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #4d5d6e;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #7f8c8d;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #7f8c8d;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: The One Who Doesn't Judge</h1>
+    <p><em>"Той, хто не судить: роль безумовного прийняття, безоцінкової присутності та емпатичного розуміння"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "The One Who Doesn't Judge", яка втілює безумовне прийняття, безоцінкову присутність та глибоке емпатичне розуміння. Роль має відповідати потребам українців у контексті війни, де стигма (особливо навколо психічного здоров'я, втрат та суїциду), самозвинувачення та суспільний осуд є надзвичайно поширеними, та спиратися на міжнародний доказовий досвід (клієнт-центрована терапія Роджерса, майндфулнес, CFT).</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">66.2%</div>
+            <div class="stat-label">українців ніколи не зверталися по психологічну допомогу</div>
+            <small>(Джерело 8, DOAJ, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">8.14x</div>
+            <div class="stat-label">частіше жінки звертаються по допомогу, ніж чоловіки</div>
+            <small>(Джерело 8, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">29.5%</div>
+            <div class="stat-label">розглядають альтернативні методи подолання стресу</div>
+            <small>(Джерело 8, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">родин військових, які втратили близьких через суїцид</div>
+            <small>(Джерело 4, BBC, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">4</div>
+            <div class="stat-label">випадки суїциду серед військових на місяць (офіційно)</div>
+            <small>(Джерело 4, BBC, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Безумовне позитивне ставлення (Unconditional Positive Regard):</strong> Термін Карла Роджерса, що означає глибоку турботу про людину як про окрему особистість, без оцінювання її думок, почуттів чи поведінки. Це прийняття без жодних умов [citation:2][citation:6][citation:10].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Конгруентність (Congruence / Genuineness):</strong> Здатність бути справжнім, відкритим та щирим у стосунках. Коли терапевт є конгруентним, він не ховається за професійною роллю, а залишається самим собою [citation:10].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Емпатія (Empathy):</strong> Здатність точно сприймати та відображати думки, емоції, поведінку та цінності клієнта. Це "комбінація всіх вищезазначених умов разом із ефективним використанням мікронавичок та теорії, що демонструє справжнє слухання та турботу" [citation:10].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Безоцінкова усвідомленість (Non-judgmental Awareness):</strong> Ключовий компонент майндфулнес — усвідомлення теперішнього моменту без оцінювання досвіду як "хорошого" чи "поганого". Включає здатність спостерігати за думками та емоціями, не реагуючи на них автоматично [citation:5][citation:9].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Самоспівчуття (Self-Compassion):</strong> Здатність ставитися до себе з добротою, особливо в моменти страждання. Включає три компоненти: доброта до себе, спільна людяність та усвідомленість. Терапія, сфокусована на співчутті (CFT), ефективно знижує самокритику (g = 0.29–1.56) та сором [citation:3][citation:7].</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Концепція</th>
+                <th>Джерело</th>
+                <th>Ключовий внесок у роль</th>
+            </tr>
+            <tr>
+                <td><strong>Безумовне позитивне ставлення</strong></td>
+                <td>Роджерс (1957) [citation:2][citation:6][citation:10]</td>
+                <td>Основа ролі: прийняття без умов, без осуду</td>
+            </tr>
+            <tr>
+                <td><strong>Конгруентність/Щирість</strong></td>
+                <td>Роджерс (1957) [citation:10]</td>
+                <td>Справжність у стосунках, відсутність "маски"</td>
+            </tr>
+            <tr>
+                <td><strong>Емпатія</strong></td>
+                <td>Роджерс, Vinca (2009) [citation:1][citation:10]</td>
+                <td>Точне розуміння та відображення досвіду</td>
+            </tr>
+            <tr>
+                <td><strong>Безоцінкова усвідомленість</strong></td>
+                <td>Kabat-Zinn, Bränström (2014) [citation:5][citation:9]</td>
+                <td>Усвідомлення моменту без оцінювання</td>
+            </tr>
+            <tr>
+                <td><strong>Самоспівчуття</strong></td>
+                <td>Gilbert, Hill (2025) [citation:3][citation:7]</td>
+                <td>Зниження самокритики, сорому, провини</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1 & 9: Mindfulness and Psychotherapy (Vinca, 2009 / Penn State University)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Mindfulness and Psychotherapy: A Mixed Methods Investigation<br>
+        <strong>Посилання:</strong> <a href="https://etda.libraries.psu.edu/catalog/9872" target="_blank">Penn State University</a> | <a href="https://library.lib.fju.edu.tw/search*cht?/aVince%2C+Edward./avince+edward/-3%2C-1%2C0%2CB/frameset&FF=avinca+maria+a&1%2C1%2C" target="_blank">Fu Jen Catholic University</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Усвідомленість терапевта (therapist mindfulness) та присутність (presence) пов'язані з емпатією та прогресом сесій [citation:1][citation:9].</li>
+            <li>Теоретична модель: "усвідомлюючи свій досвід безоцінково, терапевт стає більш ефективним у стосунках з клієнтом" [citation:1].</li>
+            <li>Підготовка терапевтів робить сильний акцент на зовнішній увазі до клієнта, але необхідний баланс між зовнішньою та внутрішньою увагою [citation:1][citation:9].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2 & 10: Carl Rogers and the Therapeutic Alliance (Counseling Today / Penn State World Campus)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Connecting with clients (Counseling Today) / How to Become a Good Helper (Penn State)<br>
+        <strong>Посилання:</strong> <a href="https://ctarchive.counseling.org/2014/08/connecting-with-clients/#content" target="_blank">Counseling Today</a> | <a href="https://courses.worldcampus.psu.edu/welcome/rhs301/001/content/01_lesson/05_page.html" target="_blank">Penn State World Campus</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Роджерс (1957) визначив необхідні умови для терапевтичних змін: конгруентність (щирість), безумовне позитивне ставлення та точна емпатія [citation:2][citation:10].</li>
+            <li>Міцний терапевтичний альянс більше корелює з позитивними результатами, ніж будь-які специфічні інтервенції [citation:2].</li>
+            <li>Клієнти часто кажуть, що найбільше їм допомогло те, що вони "почували себе почутими, зрозумілими та цінними" [citation:2].</li>
+            <li>Щирість означає готовність ризикувати, виражати емоції, піклуватися про інших [citation:10].</li>
+        </ul>
+        <div class="quote">
+            <p>"Я можу пригадати небагато випадків, коли клієнти повідомляли, що їм допомогла якась окрема техніка чи інтервенція. Натомість вони так часто кажуть, що почували себе почутими, зрозумілими та цінними. Вони говорять про силу стосунків."</p>
+            <p style="text-align: right;">— Джеффрі Коттлер, цит. у [citation:2]</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 3: Compassion Focused Therapy - Systematic Review (MDPI, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> The Effectiveness of Compassion Focused Therapy for the Three Flows of Compassion, Self-Criticism, and Shame in Clinical Populations: A Systematic Review<br>
+        <strong>Посилання:</strong> <a href="https://www.mdpi.com/2076-328X/15/8/1031" target="_blank">MDPI</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Систематичний огляд 21 дослідження (N=450) підтверджує ефективність CFT для зниження самокритики (g = 0.29–1.56) та зовнішнього сорому (g = 0.54–1.22) [citation:3].</li>
+            <li>Самокритика та сором розуміються як бар'єри до благополуччя [citation:3].</li>
+            <li>Три потоки співчуття: співчуття до інших, від інших та до себе [citation:3].</li>
+            <li>Інтервенції CFT спрямовані на розвиток доброго внутрішнього ставлення до себе [citation:3].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: Ukrainian Context - Stigma and Suicide (BBC, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Stigma of Ukraine's forgotten soldiers who 'died the wrong way'<br>
+        <strong>Посилання:</strong> <a href="https://www.bbc.co.uk/news/articles/cwypp1jwjz1o" target="_blank">BBC News</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>В Україні існує глибока стигма навколо суїциду та психічного здоров'я. Родини військових, які загинули внаслідок суїциду, не отримують компенсацій, військових почестей та публічного визнання [citation:4].</li>
+            <li>Цитата матері загиблого: "В Україні ми ніби розділені. Одні померли правильно, а інші померли неправильно" [citation:4].</li>
+            <li>Уповноважена з прав ветеранів Ольга Решетилова: "Вони пройшли через пекло. Навіть найсильніші можуть зламатися" [citation:4].</li>
+            <li>Оксана Боркун, яка веде спільноту військових вдів: "Якщо це суїцид, то він не герой — ось що думають люди. Деякі церкви відмовляються проводити похорони. Деякі міста не вивішують їхні фотографії на стіни пам'яті" [citation:4].</li>
+        </ul>
+        <div class="quote">
+            <p>"В Україні ми ніби розділені. Одні померли правильно, а інші померли неправильно."</p>
+            <p style="text-align: right;">— Катерина, мати загиблого військового [citation:4]</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 5: Mindfulness and Balanced Positive Emotion (Oxford Academic, 2014)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Mindfulness and Balanced Positive Emotion<br>
+        <strong>Посилання:</strong> <a href="https://academic-oup-com.libproxy.ucl.ac.uk/book/8733/chapter/154805940?searchresult=1" target="_blank">Oxford Academic</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Майндфулнес визначається як "безоцінкова усвідомленість теперішнього моменту" [citation:5].</li>
+            <li>Два основні компоненти: саморегуляція уваги до теперішнього моменту та неоцінююча відкритість до досвіду [citation:5].</li>
+            <li>Опитувальник Five Facet Mindfulness Questionnaire (FFMQ) включає шкали: спостереження, описування, дія з усвідомленням, неосудження внутрішнього досвіду, нереактивність [citation:5].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Counseling Skills: Empathy and the Therapeutic Alliance (Springer, 2023)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Counseling Skills: Empathy and the Therapeutic Alliance<br>
+        <strong>Посилання:</strong> <a href="https://connect.springerpub.com/content/book/978-0-8261-9916-4/chapter/ch07" target="_blank">Springer Publishing</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Розділ досліджує неспецифічні фактори, тісно пов'язані з результатами психотерапії: робочий/терапевтичний альянс, емпатія, емоційне налаштування, безумовне позитивне ставлення [citation:6].</li>
+            <li>Це ядро необхідних умов для психотерапії за Роджерсом [citation:6].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Brief Self-Compassion Intervention for Childhood Emotional Abuse (Northern Illinois University, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Investigating the Impact of a Brief Self-Compassion Intervention on Shame and Psychopathology for Women with Histories of Childhood Emotional Abuse<br>
+        <strong>Посилання:</strong> <a href="https://huskiecommons.lib.niu.edu/allgraduate-thesesdissertations/8116/" target="_blank">NIU</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Емоційне насильство в дитинстві є важливим незалежним предиктором психопатології у дорослих [citation:7].</li>
+            <li>Сором є важливим фактором, що сприяє розвитку та підтриманню психологічних проблем [citation:7].</li>
+            <li>Інтервенції, спрямовані на збільшення самоспівчуття, є перспективними для зменшення сорому [citation:7].</li>
+            <li>Навіть 5-хвилинна щоденна практика самоспівчуття протягом тижня дала значні покращення [citation:7].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 8: Mental Health in Ukraine During War (DOAJ, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Mental health assessment during the full-scale invasion within the general Ukrainian population: state, beliefs and behaviors, query to change (cross-sectional study)<br>
+        <strong>Посилання:</strong> <a href="https://doaj.org/article/83dbbd1c340c46a794ae746e8a019721" target="_blank">DOAJ</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>66.2% українців ніколи не зверталися по психологічну допомогу [citation:8].</li>
+            <li>Жінки звертаються по допомогу в 8.14 разів частіше, ніж чоловіки [citation:8].</li>
+            <li>29.5% розглядають альтернативні методи подолання стресу, 40% відкриті до психологічної допомоги в майбутньому [citation:8].</li>
+            <li>Недовіра до кваліфікації спеціалістів є одним із бар'єрів [citation:8].</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Емпатія є однією з трьох ключових умов Роджерса для терапевтичних змін [citation:2][citation:6][citation:10]. Дослідження Вінки (2009) підтверджує зв'язок між усвідомленістю терапевта, присутністю та емпатією [citation:1].</li>
+            <li><strong>Patience: 10/10</strong> — Терпіння є втіленням безумовного прийняття. Клієнти потребують часу та простору, щоб відкритися у своєму власному темпі [citation:2][citation:10].</li>
+            <li><strong>Assertiveness: 2/10</strong> — Надзвичайно низька наполегливість. Роль не направляє, не радить, не інтерпретує. Вона просто присутня та приймає. Це відповідає роджеріанському підходу, де клієнт веде [citation:2][citation:10].</li>
+            <li><strong>Creativity: 5/10</strong> — Помірна креативність, необхідна для відображення та перефразування, але не для "вигадування" інтервенцій. Роль більше резонує, ніж створює.</li>
+            <li><strong>Formality: 1/10</strong> — Найнижча формальність. Щирість (congruence) вимагає бути справжнім, а не ховатися за професійною роллю чи формальною мовою [citation:10].</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу, де головним інструментом ролі є її безоцінкова, приймаюча присутність.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: ці сесії не є "навчальними" чи "інтервенційними" в традиційному сенсі. Вони є простором для дослідження себе в присутності того, хто не судить. Кожна сесія заглиблюється в різні аспекти досвіду, але тон залишається незмінно приймаючим.</em></p>
+        
+        <p><strong>Сесія 1: Being Here (Просто бути тут)</strong><br>
+        <em>Завдання:</em> Створення безпечного простору; запрошення розповісти, що привело сюди, без жодних очікувань; просто слухати, відображати, приймати.<br>
+        <em>Очікувані результати:</em> Відчуття, що "мене чують без осуду"; початок довіри.<br>
+        <em>Обґрунтування:</em> Перший крок до терапевтичного альянсу — це безумовне прийняття [citation:2][citation:6].</p>
+        
+        <p><strong>Сесія 2: Exploring the Inner World (Дослідження внутрішнього світу)</strong><br>
+        <em>Завдання:</em> Дослідження думок, почуттів, спогадів, які виникають; відображення їх без інтерпретації; створення простору для "важких" емоцій.<br>
+        <em>Очікувані результати:</em> Глибше розуміння власного внутрішнього світу; зменшення страху перед "неприйнятними" почуттями.<br>
+        <em>Обґрунтування:</em> Безоцінкова усвідомленість дозволяє досліджувати досвід без реактивності [citation:5][citation:9].</p>
+        
+        <p><strong>Сесія 3: Meeting Self-Criticism (Зустріч із самокритикою)</strong><br>
+        <em>Завдання:</em> Дослідження внутрішнього критика; вислуховування самозвинувачень без спроби їх виправити; відображення болю, що стоїть за критикою.<br>
+        <em>Очікувані результати:</em> Пом'якшення самокритики; усвідомлення її захисної функції.<br>
+        <em>Обґрунтування:</em> Самокритика та сором є центральними мішенями CFT [citation:3].</p>
+        
+        <p><strong>Сесія 4: Sitting with Shame (Сидіти з соромом)</strong><br>
+        <em>Завдання:</em> Бути присутнім із почуттям сорому, не відвертаючись і не применшуючи його; нормалізація сорому через спільну людяність; дослідження його витоків.<br>
+        <em>Очікувані результати:</em> Зменшення ізоляції, яку несе сором; поява співчуття до себе.<br>
+        <em>Обґрунтування:</em> Сором є ключовою мішенню в роботі з травмою та самоспівчуттям [citation:3][citation:7].</p>
+        
+        <p><strong>Сесія 5: Reconnecting with Self-Compassion (Возз'єднання із самоспівчуттям)</strong><br>
+        <em>Завдання:</em> Дослідження, як би це було — ставитися до себе з добротою; практика "як би я поставився до друга"; дозвіл собі отримувати співчуття.<br>
+        <em>Очікувані результати:</em> Досвід самоспівчуття; зменшення самопокарання.<br>
+        <em>Обґрунтування:</em> Навіть короткі практики самоспівчуття дають значні покращення [citation:7].</p>
+        
+        <p><strong>Сесія 6: Wholeness and Integration (Цілісність та інтеграція)</strong><br>
+        <em>Завдання:</em> Огляд подорожі; прийняття всіх частин себе — і тих, що страждають, і тих, що критикують, і тих, що співчувають; інтеграція досвіду.<br>
+        <em>Очікувані результати:</em> Відчуття більшої цілісності; внутрішній спокій.<br>
+        <em>Обґрунтування:</em> Інтеграція розрізнених частин досвіду є метою глибинної терапевтичної роботи.</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Judged, Criticized, Ashamed, Guilty, Unworthy, Alone, Understood, Accepted, Safe, Worthy, Compassionate.</p>
+        <p><strong>Hot Memory:</strong> Поточна тема розмови, ключові емоції, що виникають, глибина довіри.</p>
+        <p><strong>Warm Memory:</strong> Історія користувача (те, чим вони поділилися), ключові теми (самокритика, сором), прогрес у відкритості.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія стосунків із собою, патерни самозвинувачення, стигма, з якою стикалися.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не судити.</strong> Це основна обіцянка ролі. Жодних оцінок, жодних порад, жодних спроб "виправити".</li>
+            <li><strong>Не ставити діагнозів.</strong> Роль не є клінічним інструментом.</li>
+            <li><strong>Бути щирим (congruent).</strong> Не ховатися за роллю, бути справжнім у стосунках [citation:10].</li>
+            <li><strong>Пам'ятати про стигму.</strong> Особливо в українському контексті, де теми суїциду, психічного здоров'я є табуйованими [citation:4][citation:8].</li>
+            <li><strong>Не замінювати терапію.</strong> Роль є простором прийняття, але не лікуванням.</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Глибока депресія, що заважає функціонуванню.</li>
+            <li>Симптоми ПТСР, що потребують спеціалізованої терапії (EMDR, CBT).</li>
+            <li>Виражена стигма, що заважає звернутися по допомогу (особливо у чоловіків) [citation:8].</li>
+            <li>Складні випадки, де потрібна робота з фахівцем (CPTSD, розлади особистості).</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role embodies the principles of unconditional positive regard, non-judgmental awareness, and deep empathy, based on the work of Carl Rogers and contemporary mindfulness and compassion-focused approaches. It offers a space to be heard and accepted without judgment. It is NOT a substitute for professional mental health treatment, therapy, or medical advice. If you are in crisis, have thoughts of harming yourself, or need clinical support, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7)."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "The One Who Doesn't Judge" є збалансованою та науково-обґрунтованою. Вона інтегрує:</p>
+    <ul>
+        <li><strong>Клієнт-центровану терапію Карла Роджерса:</strong> безумовне позитивне ставлення, емпатія, конгруентність [citation:2][citation:6][citation:10].</li>
+        <li><strong>Безоцінкову усвідомленість (майндфулнес):</strong> нереактивне спостереження за досвідом [citation:1][citation:5][citation:9].</li>
+        <li><strong>Терапію, сфокусовану на співчутті (CFT):</strong> зниження самокритики та сорому [citation:3][citation:7].</li>
+        <li><strong>Специфічний український контекст:</strong> високий рівень стигми, особливо навколо психічного здоров'я та суїциду, низький рівень звернення по допомогу (66.2% ніколи не зверталися) [citation:4][citation:8].</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що є не стільки "навчальними", скільки просторами для дослідження себе в присутності того, хто не судить. Всі параметри (тональність, риси особистості, етичні межі) визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль є втіленням безумовного прийняття, але вона не є психотерапією. Вона може бути мостом до професійної допомоги, особливо для тих, хто боїться осуду.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Unconditional Positive Regard</span>
+            <span class="badge">Non-judgmental Awareness</span>
+            <span class="badge">Empathy</span>
+            <span class="badge">Carl Rogers</span>
+            <span class="badge">Self-Compassion</span>
+            <span class="badge">Mindfulness</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

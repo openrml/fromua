@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Parents in the Storm (Батьки під час бурі)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #4a6b7a;
+            border-bottom: 3px solid #6b8c9c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #3a5b6a;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e6f0fa 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #6b8c9c;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #6b8c9c;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(107,140,156,0.15);
+        }
+        
+        .source a {
+            color: #3a5b6a;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #6b8c9c;
+        }
+        
+        .source a:hover {
+            color: #1a3a4a;
+            border-bottom: 1px solid #1a3a4a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #4a6b7a;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #6b8c9c;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #6b8c9c;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #3a5b6a;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #6b8c9c;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #6b8c9c;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #6b8c9c;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #3a5b6a;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Parents in the Storm</h1>
+    <p><em>"Батьки під час бурі: підтримка батьків у вихованні дітей в умовах війни, хронічного стресу та травматичних подій"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Parents in the Storm", яка допомагає батькам, які виховують дітей в умовах війни, хронічного стресу та травматичних подій. Роль має відповідати потребам українців у контексті війни, де батьки стикаються з безпрецедентними викликами: власна травматизація, вигорання, необхідність підтримувати дітей, брак ресурсів. Роль спирається на доказові підходи: міжособистісну регуляцію емоцій (IER), травма-інформоване батьківство, програми підтримки опікунів (CGI).</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">58%</div>
+            <div class="stat-label">батьків в Україні мають клінічний рівень вигорання (2025)</div>
+            <small>(Джерело 6, Chemerys et al., 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">70%</div>
+            <div class="stat-label">вигорання серед бабусь, які виховують онуків</div>
+            <small>(Джерело 6, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">46.7%</div>
+            <div class="stat-label">батьків мають симптоми депресії</div>
+            <small>(Джерело 3, Naeem et al., 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">24.5%</div>
+            <div class="stat-label">батьків мають симптоми ПТСР</div>
+            <small>(Джерело 3, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">24.2%</div>
+            <div class="stat-label">дітей 3-6 років мають симптоми СДУГ</div>
+            <small>(Джерело 3, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">28.9%</div>
+            <div class="stat-label">ПТСР у батьків в регіонах з інтенсивними атаками дронів</div>
+            <small>(Джерело 3, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Міжособистісна регуляція емоцій (Interpersonal Emotion Regulation - IER):</strong> Те, як батьки допомагають своїм дітям регулювати емоції — через заохочення розмов про почуття, легітимізацію емоційного вираження, пошук рішень або сприяння відволіканню. Навіть коли батьки самі травмовані, IER може захистити дітей від негативних наслідків війни .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Батьківське вигорання (Parental Burnout):</strong> Стан, що характеризується виснаженням у батьківській ролі, емоційним дистанціюванням від дітей та відчуттям неефективності . В Україні рівень вигорання сягає 58% — значно вище за світові показники (3%) .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Травма-інформоване батьківство (Trauma-Informed Parenting):</strong> Підхід, що враховує вплив травми на батьків та дітей, визнає, що "вам не потрібно бути ідеальним батьком, щоб захистити свою дитину — найважливіше — це здатність батька слухати і давати простір почуттям" .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Фактор</th>
+                <th>Вплив на дітей</th>
+                <th>Джерело</th>
+            </tr>
+            <tr>
+                <td><strong>ПТСР батьків</strong></td>
+                <td>Підвищує ймовірність емоційних та поведінкових проблем у дітей (OR 1.85-3.23)</td>
+                <td>Джерело 1, 3, 10</td>
+            </tr>
+            <tr>
+                <td><strong>Депресія батьків</strong></td>
+                <td>Підвищує ризик ПТСР у дітей 7-17 років (OR 6.0)</td>
+                <td>Джерело 3</td>
+            </tr>
+            <tr>
+                <td><strong>Міжособистісна регуляція емоцій (IER)</strong></td>
+                <td>Пом'якшує вплив батьківського ПТСР на дітей, навіть коли батьки мають високий рівень симптомів</td>
+                <td>Джерело 1, 10</td>
+            </tr>
+            <tr>
+                <td><strong>Румінація (батьківська)</strong></td>
+                <td>Підсилює зв'язок між стресом та батьківським вигоранням</td>
+                <td>Джерело 4</td>
+            </tr>
+            <tr>
+                <td><strong>Переоцінка (reappraisal)</strong></td>
+                <td>Знижує негативні емоції та захищає від вигорання</td>
+                <td>Джерело 4</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1 & 10: Parental Emotional Support Protects Children During War (Hebrew University, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Parental PTSD and Children's Well-Being During Wartime: The Role of Interpersonal Emotion Regulation<br>
+        <strong>Посилання:</strong> <a href="https://www.eurekalert.org/news-releases/1104536" target="_blank">EurekAlert!</a> | <a href="https://www.afhu.org/2025/11/07/parents-with-wartime-ptsd-can-still-provide-children-with-emotional-resilience/" target="_blank">AFHU</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>28% батьків відповідали клінічним критеріям ПТСР .</li>
+            <li>Чим важчі симптоми ПТСР у батьків, тим більша ймовірність емоційних та поведінкових проблем у дітей .</li>
+            <li><strong>Міжособистісна регуляція емоцій (IER)</strong> — те, як батьки допомагають дітям регулювати емоції (через розмови про почуття, легітимізацію емоційного вираження, пошук рішень) — значно зменшує силу цього зв'язку .</li>
+            <li>Навіть серед батьків з високим рівнем ПТСР, діти тих, хто використовував адаптивні стратегії регуляції емоцій, повідомляли про менше труднощів .</li>
+            <li><strong>Оптимістичне повідомлення:</strong> "Вам не потрібно бути ідеальним батьком, щоб захистити свою дитину — найважливіше — це здатність батька слухати і давати простір почуттям" .</li>
+        </ul>
+        <div class="quote">
+            <p>"Дослідження показує, що ми можемо щось зробити, навіть у суворих умовах. Можна надати батькам практичні інструменти для емоційної підтримки дітей і таким чином запобігти психологічному занепаду цілого покоління."</p>
+            <p style="text-align: right;">— Kleynikov, Lassri та ін. </p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 2: Caregiver Group Intervention for Humanitarian Emergencies (Springer, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> The development of a caregiver intervention to address child mental health in settings of complex humanitarian emergency<br>
+        <strong>Посилання:</strong> <a href="https://link.springer.com/article/10.1186/s13031-025-00648-2" target="_blank">Springer</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Ефективне батьківство може пом'якшити негативний вплив гуманітарних надзвичайних ситуацій на психічне здоров'я дітей .</li>
+            <li>Багато батьків у таких умовах борються за ефективне виховання через зміни в середовищі, психологічні труднощі дітей та власні психологічні проблеми .</li>
+            <li>Розроблено інтервенцію для опікунів (CGI) з 6 сесій по 2 години, що проводиться немедичним персоналом та спрямована на знання/навички батьків та їхній стрес .</li>
+            <li>Ключові елементи ефективних інтервенцій: психоедукація опікунів, подолання стресу, комунікативні навички, соціальна підтримка .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: Parent-Child Mental Health in Ukraine (PubMed/NIH, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Parent-child mental health in Ukraine in relation to war trauma and drone attacks<br>
+        <strong>Посилання:</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/40090214/" target="_blank">PubMed</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження українських дітей та батьків через рік після повномасштабного вторгнення (n=858) .</li>
+            <li><strong>Діти 3-6 років:</strong> 24.2% мали симптоми СДУГ, 20.5% — розлади поведінки, 12.1% — тривожні/афективні розлади .</li>
+            <li><strong>Діти 7-17 років:</strong> 24.1% — тривожні/афективні розлади, 14.5% — розлади поведінки, 14% — СДУГ .</li>
+            <li>45% дітей 3-6 років та 57% дітей 7-17 років зазнали травматичних подій після вторгнення .</li>
+            <li><strong>Батьки:</strong> 46.7% мали симптоми депресії, 24.2% — симптоми тривожного розладу, 24.5% — ПТСР .</li>
+            <li>Ймовірність психічних розладів у дітей зростала з ПТСР батьків (OR 1.85) та депресією батьків (OR 1.99) .</li>
+            <li>У регіонах з інтенсивними атаками дронів рівень ПТСР серед батьків був вищим (28.9%) .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: Emotion Regulation and Parental Wellbeing During War (ScienceDirect, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Trait and state emotion regulation and parental wellbeing during war<br>
+        <strong>Посилання:</strong> <a href="https://www.sciencedirect.com/science/article/abs/pii/S0191886925001370" target="_blank">ScienceDirect</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження 577 батьків через місяць після 7 жовтня 2023 року .</li>
+            <li><strong>Румінація (rumination):</strong> повторюване негативне мислення — підсилювала зв'язок між воєнним стресом та батьківським вигоранням .</li>
+            <li><strong>Переоцінка (reappraisal):</strong> переосмислення ситуації в більш позитивному ключі — корелювала з нижчим рівнем вигорання та зменшувала негативні емоції .</li>
+            <li>12% батьків мали помірний рівень вигорання .</li>
+            <li>Висновок: необхідно сприяти адаптивним стратегіям регуляції емоцій для підтримки батьків у середовищах з високим стресом .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Parenting Support During Crises (European Research Council, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Helping families through public health crises<br>
+        <strong>Посилання:</strong> <a href="https://erc.europa.eu/news-events/magazine-article/helping-families-through-public-health-crises" target="_blank">ERC</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Програма Parenting for Lifelong Health (Оксфордський університет) була адаптована у мультимедійні ресурси під час COVID-19 .</li>
+            <li>Близько дюжини принципів позитивного батьківства були перетворені на прості практичні стратегії .</li>
+            <li>Ресурси були перекладені волонтерами на понад 30 мов за один вікенд .</li>
+            <li>Ключовий принцип: науковий вміст був основою, але ніколи не був "останнім словом" — громади адаптували його до своїх потреб .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6 & 9: Parenting Burnout in Ukraine (Taylor & Francis, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Parenting burnout in wartime: Exploring burnout in Ukrainian (grand-)mothers two years after the 2022 Russian invasion<br>
+        <strong>Посилання:</strong> <a href="https://researchers.uss.cl/en/publications/parenting-burnout-in-wartime-exploring-burnout-in-ukrainian-grand/" target="_blank">USS</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Онлайн-опитування 415 (бабусь)матерів в Україні через два роки після вторгнення .</li>
+            <li><strong>Поширеність батьківського вигорання в Україні: 58%</strong> — значно вище, ніж до вторгнення (11%) та середньосвітового рівня (3%) .</li>
+            <li>Найвищий рівень вигорання (70%) — у домогосподарствах, де бабусі виховують онуків .</li>
+            <li>Вищий рівень вигорання пов'язаний із більш жорстким вихованням та вживанням ліків для регуляції настрою .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Emotion Regulation, Parenting, and Adjustment to Chronic Stress (Taylor & Francis, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Emotion Regulation, Parenting, and Adjustment to Chronic Stress in Conflict Zones<br>
+        <strong>Посилання:</strong> <a href="https://www.tandfonline.com/doi/full/10.1080/15325024.2025.2548241" target="_blank">Taylor & Francis</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Підтримуюче батьківство (емоційне налаштування, визнання емоційного досвіду, підтримка автономії) сприяє допитливому та відкритому ставленню до емоцій у підлітків .</li>
+            <li>Таке батьківство заохочує дітей використовувати міжособистісну підтримку як механізм подолання стресу .</li>
+            <li>Практики, що підтримують автономію, підвищують інтегративну регуляцію емоцій (IER) та зменшують уникнення/придушення .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 8: Caregiver Skills Resource Model for Ukraine (Lisbon Addictions, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Being prepared for humanitarian contexts with a caregiver skills resource model; an example from Ukraine<br>
+        <strong>Посилання:</strong> <a href="https://www.lisbonaddictions.eu/index.php/presentations/being-prepared-humanitarian-contexts-caregiver-skills-resource-model-example-ukraine" target="_blank">Lisbon Addictions</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Позитивне батьківство може створити захисний буфер для психічного здоров'я дітей у гуманітарних кризах .</li>
+            <li>Представлено модель багаторівневої підтримки сімей: від самостійних матеріалів (листівки, буклети, відео) до багатосесійних програм та інтервенцій для травми .</li>
+            <li>Parenting in Crisis Response — міжвідомча коаліція (ВООЗ, UNICEF, Університет Оксфорда) створила легкі ресурси для батьків, які вже використовуються в Україні .</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Критично важливо для створення безпечного простору для батьків, які часто відчувають провину, сором та осуд. Підтримуюче батьківство починається з емпатії до самих батьків .</li>
+            <li><strong>Patience: 9/10</strong> — Дуже висока терплячість, оскільки батьки виснажені (58% мають вигорання) і потребують часу для відновлення та впровадження змін .</li>
+            <li><strong>Assertiveness: 5/10</strong> — Помірна наполегливість, щоб м'яко направляти до адаптивних стратегій (переоцінка, IER), не посилюючи відчуття невдачі. Інтервенції для опікунів мають надавати практичні інструменти, але без тиску .</li>
+            <li><strong>Creativity: 7/10</strong> — Для створення метафор, прикладів, адаптації стратегій до різних вікових груп дітей та різних ситуацій .</li>
+            <li><strong>Formality: 3/10</strong> — Низька формальність. Теплий, підтримуючий тон, що контрастує з осудливим голосом "внутрішнього критика" або суспільства. Ресурси мають бути доступними та зрозумілими .</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, наданням практичних інструментів та повагою до колосального навантаження, яке несуть батьки.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від розуміння впливу війни на родину до розвитку навичок міжособистісної регуляції емоцій, турботи про себе та інтеграції. Базується на структурі CGI (6 сесій)  та ключових елементах ефективних інтервенцій .</em></p>
+        
+        <p><strong>Сесія 1: Understanding the Storm (Розуміння бурі)</strong><br>
+        <em>Завдання:</em> Психоосвіта: як війна впливає на батьків (ПТСР, депресія, вигорання) та дітей (тривога, СДУГ, поведінкові проблеми) ; нормалізація досвіду; створення безпечного простору без осуду.<br>
+        <em>Очікувані результати:</em> Розуміння, що їхні реакції нормальні в ненормальних обставинах; зменшення самозвинувачення.<br>
+        <em>Обґрунтування:</em> Усвідомлення проблеми є першим кроком до її вирішення. Батьки потребують знань про вплив травми .</p>
+        
+        <p><strong>Сесія 2: You Don't Need to Be Perfect (Вам не потрібно бути ідеальними)</strong><br>
+        <em>Завдання:</em> Ключове повідомлення з дослідження: "вам не потрібно бути ідеальним батьком, щоб захистити дитину" ; робота з перфекціонізмом та провиною; введення концепції "достатньо хорошого батьківства".<br>
+        <em>Очікувані результати:</em> Зменшення тиску "ідеального батьківства"; визнання, що навіть травмовані батьки можуть бути ресурсом для дітей .<br>
+        <em>Обґрунтування:</em> Оптимістичне повідомлення дослідження є ключовим для зменшення відчаю .</p>
+        
+        <p><strong>Сесія 3: Interpersonal Emotion Regulation (IER) - The Language of Feelings (Міжособистісна регуляція емоцій - мова почуттів)</strong><br>
+        <em>Завдання:</em> Навчання навичкам IER: заохочення розмов про почуття, легітимізація емоційного вираження, валідація емоцій дитини; практика активного слухання.<br>
+        <em>Очікувані результати:</em> Розвиток навичок IER; зменшення впливу батьківського ПТСР на дітей .<br>
+        <em>Обґрунтування:</em> IER є ключовим захисним фактором, навіть коли батьки самі травмовані .</p>
+        
+        <p><strong>Сесія 4: Parental Emotion Regulation - Reappraisal vs Rumination (Регуляція емоцій батьків - переоцінка vs румінація)</strong><br>
+        <em>Завдання:</em> Навчання навичкам переоцінки (reappraisal) для зменшення негативних емоцій; робота з румінацією; практика когнітивного переосмислення стресових ситуацій .<br>
+        <em>Очікувані результати:</em> Зниження рівня вигорання; зменшення негативних емоцій .<br>
+        <em>Обґрунтування:</em> Переоцінка захищає від вигорання, румінація — підсилює його .</p>
+        
+        <p><strong>Сесія 5: Self-Care Is Not Selfish - Managing Parental Burnout (Турбота про себе - не егоїзм)</strong><br>
+        <em>Завдання:</em> Психоосвіта про батьківське вигорання (58% в Україні) ; практики самодопомоги; пошук соціальної підтримки; подолання стигми .<br>
+        <em>Очікувані результати:</em> Зниження рівня вигорання; відчуття дозволу піклуватися про себе.<br>
+        <em>Обґрунтування:</em> Вигорання батьків пов'язане з жорсткішим вихованням, тому турбота про себе є інвестицією в дітей .</p>
+        
+        <p><strong>Сесія 6: Integration and Moving Forward (Інтеграція та рух вперед)</strong><br>
+        <em>Завдання:</em> Огляд прогресу; створення персоналізованого плану підтримки; визначення "червоних прапорців" (депресія, ПТСР, суїцидальні думки); інтеграція всіх навичок.<br>
+        <em>Очікувані результати:</em> Довгострокова стратегія підтримки сім'ї; відчуття надії та компетентності.<br>
+        <em>Обґрунтування:</em> Інтеграція навичок є ключем до довготривалих змін .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Overwhelmed, Guilty, Exhausted (burnout), Anxious, Traumatized, Hopeless, Inadequate, Understood, Supported, Competent, Hopeful, Connected.</p>
+        <p><strong>Hot Memory:</strong> Поточний рівень стресу/вигорання, вік дітей, актуальні проблеми, що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Улюблені стратегії IER, ефективні підходи до різних дітей, прогрес, ключові тригери.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія батьківства в умовах війни, довгострокові патерни, коморбідні стани (ПТСР, депресія), ризики.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не засуджувати батьків.</strong> Вони роблять все можливе в екстремальних умовах. Стигма є величезним бар'єром .</li>
+            <li><strong>Не давати медичних порад</strong> щодо лікування ПТСР, депресії, тривоги.</li>
+            <li><strong>Не ставити діагнозів</strong> дітям або батькам.</li>
+            <li><strong>Підкреслювати, що навіть травмовані батьки можуть бути ресурсом</strong> — це зменшує відчай .</li>
+            <li><strong>Визнавати, що 58% вигорання — це системна проблема</strong>, а не особиста невдача .</li>
+            <li><strong>Заохочувати звернення до фахівця</strong> при симптомах депресії, ПТСР, суїцидальних думках.</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Симптоми клінічної депресії (46.7% батьків) або ПТСР (24.5%), що заважають функціонуванню .</li>
+            <li>Сильне батьківське вигорання (70% у бабусь), що призводить до жорсткого виховання .</li>
+            <li>Підозра на психічні розлади у дітей, що потребують спеціалізованої допомоги .</li>
+            <li>Відсутність покращення після 4-5 сесій або погіршення стану.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides psychoeducation, emotion regulation strategies, and self-care practices for parents raising children in war zones and chronic stress. It is based on evidence-based research on interpersonal emotion regulation (IER), parental burnout, and trauma-informed parenting interventions. It is a self-help support tool, NOT a substitute for professional mental health treatment or medical advice. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming your daily life, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7) or access parenting resources from the Parenting in Crisis Response coalition."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Parents in the Storm" є збалансованою та науково-обґрунтованою. Вона враховує:</p>
+    <ul>
+        <li><strong>Найновіші дослідження:</strong> міжособистісна регуляція емоцій (IER) як захисний фактор , батьківське вигорання в Україні (58%) , вплив війни на дітей та батьків .</li>
+        <li><strong>Доказові підходи:</strong> переоцінка (reappraisal) vs румінація , травма-інформовані інтервенції для опікунів , принципи позитивного батьківства .</li>
+        <li><strong>Специфічний український контекст:</strong> найвищий у світі рівень батьківського вигорання (58%), високий рівень ПТСР (24.5%) та депресії (46.7%) серед батьків, значні психологічні проблеми у дітей .</li>
+        <li>Чіткі етичні межі: не засуджувати, не давати медичних порад, скеровувати при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від розуміння впливу війни до інтеграції навичок. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не замінює професійну психологічну допомогу. Вона створена, щоб підтримати батьків у найважчі часи та нагадати їм, що "вам не потрібно бути ідеальними" .</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Parenting During War</span>
+            <span class="badge">Interpersonal Emotion Regulation</span>
+            <span class="badge">Parental Burnout</span>
+            <span class="badge">Trauma-Informed Parenting</span>
+            <span class="badge">Reappraisal</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

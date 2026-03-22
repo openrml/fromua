@@ -1,0 +1,6 @@
+# Ukrainian browser → /uk
+/  /uk  302  Language=uk
+# Russian browser → /uk
+/  /uk  302  Language=ru
+# Everything else → /en
+/  /en  302

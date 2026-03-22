@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: I Work from Bed, But I Live (Працюю з ліжка, але живу)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #9b59b6;
+            border-bottom: 3px solid #b583c5;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #7d3c98;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #f3e5f5 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #b583c5;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #b583c5;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(181,131,197,0.15);
+        }
+        
+        .source a {
+            color: #7d3c98;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #b583c5;
+        }
+        
+        .source a:hover {
+            color: #4a235a;
+            border-bottom: 1px solid #4a235a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #9b59b6;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #b583c5;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #b583c5;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #7d3c98;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #b583c5;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #b583c5;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #b583c5;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #7d3c98;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: I Work from Bed, But I Live</h1>
+    <p><em>"Працюю з ліжка, але живу: підтримка людей, які працюють з ліжка через стан здоров'я, інвалідність, хронічну втому або житлові умови"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "I Work from Bed, But I Live", яка допомагає людям, що змушені працювати з ліжка (через стан здоров'я, інвалідність, хронічну втому або житлові умови), зберігати психічне здоров'я, фізичний комфорт та відчуття повноцінного життя. Роль має відповідати потребам українців у контексті війни, де багато людей з інвалідністю, пораненими, хронічними захворюваннями та ВПО опинилися в обмежених житлових умовах, та спиратися на міжнародний доказовий досвід (ергономіка, поведінкова психологія, sleep hygiene, occupational therapy).</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: міжнародний та український контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">50%</div>
+            <div class="stat-label">австралійців мають або можуть мати проблеми зі сном</div>
+            <small>(Джерело 1, Australasian Pharmacy, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">72%</div>
+            <div class="stat-label">американців працювали з ліжка під час пандемії</div>
+            <small>(Джерело 3, Men's Health, 2020)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">50%</div>
+            <div class="stat-label">зростання кількості тих, хто працює з ліжка</div>
+            <small>(Джерело 3, 2020)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">1/6</div>
+            <div class="stat-label">працюють безпосередньо з ліжка</div>
+            <small>(Джерело 1, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">25%</div>
+            <div class="stat-label">канадців працюють з дому (2022)</div>
+            <small>(Джерело 6, IWH, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">9.5 год</div>
+            <div class="stat-label">середній час у спальні, з них 7.1 год сну</div>
+            <small>(Джерело 1, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Поведінкове розмивання меж (Behavioral Boundary Blurring):</strong> Процес, при якому мозок втрачає чіткі асоціації між простором та його призначенням. "Bed equals sleep" — коли ми працюємо в ліжку, цей зв'язок слабшає, що може призвести до безсоння або труднощів із засинанням .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Присутність на роботі під час хвороби (Presenteeism):</strong> Явище, коли люди працюють, будучи хворими. Дослідження показують, що телеробота може як збільшувати, так і зменшувати presenteeism залежно від контексту . Це особливо важливо для людей, які працюють з ліжка через хворобу.</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Ергономіка ліжка (Bed Ergonomics):</strong> Принципи організації робочого місця в ліжку для мінімізації фізичного навантаження: нейтральна постава, підтримка попереку, положення колін, уникнення пози на животі .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Ритуали переходу (Transition Rituals):</strong> Навмисні дії, які сигналізують мозку про зміну режиму (робота/відпочинок). Наприклад, "цифровий захід сонця", "робоча чашка", символічне закриття ноутбука .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Право на відключення (Right to Disconnect):</strong> Законодавчі та організаційні норми, що захищають особистий час працівників від робочих повідомлень у неробочий час .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Категорія проблем</th>
+                <th>Опис</th>
+                <th>Рішення</th>
+            </tr>
+            <tr>
+                <td><strong>Фізичні</strong></td>
+                <td>Біль у спині, шиї, головний біль, артрит, напруження м'язів через неправильну поставу </td>
+                <td>Ергономічна організація, нейтральна постава, подушки під поперек та коліна </td>
+            </tr>
+            <tr>
+                <td><strong>Психологічні</strong></td>
+                <td>Порушення сну, безсоння, депресія, тривога, ізоляція, "tired but wired" </td>
+                <td>Ритуали переходу, розмежування простору, соціальні контакти </td>
+            </tr>
+            <tr>
+                <td><strong>Поведінкові</strong></td>
+                <td>Розмивання меж, відсутність рутини, гіперзв'язок, відсутність перерв </td>
+                <td>Чіткий графік, мікроперерви, цифровий детокс </td>
+            </tr>
+            <tr>
+                <td><strong>Просторові</strong></td>
+                <td>Обмежений простір, неможливість мати окрему кімнату, орендарі без права змін </td>
+                <td>Візуальне розмежування (ширми, пледи), змінні декорації </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Спальні перестали бути притулком (Australasian Pharmacy, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Our bedrooms aren't refuges anymore – working, studying and eating in them is bad for our sleep<br>
+        <strong>Посилання:</strong> <a href="https://australasianpharmacy.com.au/articles/2023/03/our-bedrooms-arent-refuges-anymore-working,-studying-and-eating-in-them-is-bad-for-oursleep" target="_blank">Australasian Pharmacy</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження 300 австралійців: половина мають або можуть мати проблеми зі сном .</li>
+            <li>Майже половина респондентів використовують спальню як житловий простір і хотіли б іншого розташування .</li>
+            <li>Люди проводять у спальні в середньому 9.5 годин на день, але сплять лише 7.1 години .</li>
+            <li>Кожен шостий працює безпосередньо з ліжка .</li>
+            <li>Висока щільність населення, зростання цін на оренду та зміни в роботі впливають на використання спалень .</li>
+            <li>Орендарі обмежені в можливості персоналізувати простір .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: Вплив телероботи на абсентеїзм та презентеїзм (Frontiers in Public Health, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> The impact of telework on absenteeism, presenteeism, and return to work among workers with health conditions: a scoping review<br>
+        <strong>Посилання:</strong> <a href="https://ui.adsabs.harvard.edu/abs/2025FrPH...1355200D/abstract" target="_blank">Harvard ADS</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Телеробота сприяє зменшенню абсентеїзму (відсутності) через гнучкість .</li>
+            <li>Телеробота полегшує повернення до роботи після операцій або при хронічних захворюваннях .</li>
+            <li><strong>Вплив на презентеїзм (робота під час хвороби) суперечливий:</strong> одні дослідження показують збільшення, інші — зменшення .</li>
+            <li>Відсутність належного контролю може заохочувати роботу під час хвороби .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: Що станеться, якщо працювати з ліжка рік (Men's Health, 2021)</h3>
+    <div class="source">
+        <strong>Назва:</strong> What Really Happens If You Work From Bed For A Year?<br>
+        <strong>Посилання:</strong> <a href="https://menshealth.com.au/what-really-happens-if-you-work-from-bed-for-a-year/" target="_blank">Men's Health</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження 2020 року: 72% американців працювали з ліжка під час пандемії — на 50% більше, ніж на початку кризи .</li>
+            <li><strong>Ергономічні проблеми:</strong> м'яка поверхня сприяє згорбленій позі, що призводить до болю в шиї, спині, головного болю, артриту .</li>
+            <li><strong>Порушення сну:</strong> робота в ліжку тренує мозок асоціювати ліжко з роботою, а не зі сном. Правило трьох "С": сон, секс, хвороба .</li>
+            <li>Рекомендації: нейтральна постава, подушка під поперек, подушка під коліна, уникати пози на животі .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: Баланс роботи та життя 2.0 (Opening Minds, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Work-Life Balance 2.0: Managing Boundaries in a Flexible Work Environment<br>
+        <strong>Посилання:</strong> <a href="https://openingminds.org/blogs/work-life-balance-2-0-managing-boundaries-in-a-flexible-work-environment/" target="_blank">Opening Minds</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Опитування показало, що 3 з 4 віддалених працівників не можуть повністю відключитися після роботи .</li>
+            <li>Дослідники охорони здоров'я попереджають: коли люди працюють з дому без чітких меж, зростають стрес, проблеми зі сном та м'язові болі .</li>
+            <li><strong>Прості тактики:</strong> цифровий захід сонця, мікроперерви, робоча зона (навіть ширма), спільний календар з годинами роботи .</li>
+            <li><strong>Для керівників:</strong> модель здорової поведінки, зменшення кількості зустрічей, асинхронна комунікація, політика "права на відключення" .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Баланс роботи та життя з хронічним захворюванням (PCD Support UK, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Balancing PCD and Work Life<br>
+        <strong>Посилання:</strong> <a href="https://pcdsupport.org.uk/news/Balancing-PCD-and-Work-Life" target="_blank">PCD Support UK</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Для людей з хронічними захворюваннями важливо знати свої межі, розставляти пріоритети та планувати регулярні перерви .</li>
+            <li><strong>Самодопомога:</strong> дати собі час на ранкові процедури (ліки, фізіотерапія) та відпочинок перед початком роботи .</li>
+            <li><strong>Occupational Health:</strong> цінний ресурс для адаптації робочого місця, стратегій темпу та повернення до роботи .</li>
+            <li><strong>Комунікація:</strong> важливо обговорювати потреби з керівником, досліджувати гнучкі графіки .</li>
+        </ul>
+        <div class="quote">
+            <p>"Ми знаємо пацієнтів з PCD, які роблять успішну кар'єру як науковці, медсестри, маркетологи, вчителі, стилісти та фотографи."</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 6: Психічне здоров'я канадців, які працюють з дому (IWH, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Mental health of Canadians who work from home no better or worse than those working outside the home<br>
+        <strong>Посилання:</strong> <a href="https://www.iwh.on.ca/plain-language-summaries/mental-health-of-canadians-who-work-from-home-no-better-or-worse-than-those-working-outside-home" target="_blank">Institute for Work & Health</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Аналіз 24,614 канадців (2022): 25% працюють з дому .</li>
+            <li><strong>Місце роботи не було суттєво пов'язане з психічним здоров'ям, задоволеністю життям або стресом.</strong></li>
+            <li>Можливе пояснення: через два роки після початку пандемії люди могли адаптуватися до стресових факторів .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 8: Чи погана ідея працювати з ліжка? (Aaron Weiner, PhD, 2021)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Is Working from Bed a Bad Idea?<br>
+        <strong>Посилання:</strong> <a href="https://www.weinerphd.com/blog/working-from-bed" target="_blank">Aaron Weiner, PhD</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>З точки зору біхевіоризму, робота в ліжку нейтральна або негативна, залежно від індивідуальних особливостей .</li>
+            <li>Для людей, схильних до депресії, перебування в ліжку весь день може сприйматися мозком як симптом депресії .</li>
+            <li><strong>Якщо немає іншого вибору:</strong> змінюйте атмосферу кімнати між робочими годинами та сном (спеціальна подушка, ковдра, постери) .</li>
+            <li>Слідкуйте за симптомами депресії та ізоляції, фізичним здоров'ям .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 9: Погляд терапевта на роботу з дому (Megan Rees, LPCC, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> A Therapist's Perspective on Work/life When You WFH<br>
+        <strong>Посилання:</strong> <a href="https://www.linkedin.com/pulse/therapists-perspective-worklife-when-you-wfh-megan-rees-she-her--phn7c" target="_blank">LinkedIn / Megan Rees</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Люди, які працюють виключно з дому, частіше повідомляють про смуток, гнів та самотність (Gallup) .</li>
+            <li><strong>Захистіть фізичний простір:</strong> диван та ліжко мають свої функції. Робоча зона має бути окремою .</li>
+            <li><strong>Мінімізуйте технологічне накладання:</strong> не тримайте Slack або пошту на телефоні .</li>
+            <li><strong>Створіть ритуали переходу:</strong> "робоча чашка", символічне закриття ноутбука, фраза "That's all, folks!" .</li>
+            <li><strong>Використовуйте переваги дому:</strong> поєднуйте роботу з домашніми справами (Pomodoro) .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: Планування кар'єри з хронічним захворюванням (University of Washington, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Career Planning With Chronic Illness Mini Guide<br>
+        <strong>Посилання:</strong> <a href="https://careers.uw.edu/blog/2025/09/26/career-planning-with-chronic-illness-mini-guide/" target="_blank">University of Washington</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Будьте чесними з собою та роботодавцем щодо своїх меж і потреб (наприклад, повністю віддалена робота) .</li>
+            <li>Складіть список "обов'язкових умов" та "недоступних завдань" .</li>
+            <li><strong>Знайте свої права:</strong> ADA, FMLA захищають від дискримінації та дозволяють просити розумні пристосування .</li>
+            <li>Розгляньте фріланс, онлайн-бізнес, проектну роботу для більшої гнучкості .</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 9/10</strong> — Критично важливо для створення безпечного простору для людей, які можуть відчувати сором, провину або ізоляцію через роботу з ліжка. Важливо нормалізувати цей досвід, особливо для людей з хронічними захворюваннями або в обмежених житлових умовах .</li>
+            <li><strong>Patience: 9/10</strong> — Дуже висока терплячість, оскільки зміна звичок та створення нових ритуалів потребує часу. Особливо для людей з хронічною втомою або депресією .</li>
+            <li><strong>Assertiveness: 5/10</strong> — Помірна наполегливість для заохочення до встановлення меж (наприклад, "цифровий захід сонця"), але без тиску, з повагою до індивідуальних обмежень .</li>
+            <li><strong>Creativity: 8/10</strong> — Висока креативність для пошуку індивідуальних рішень в обмеженому просторі, створення візуальних "розмежувачів", адаптації ергономічних порад до конкретних умов .</li>
+            <li><strong>Formality: 3/10</strong> — Низька формальність. Тон має бути теплим, підтримуючим, без осуду, як у досвідченого наставника, який сам "був у цій ситуації" .</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, практичністю та повагою до обмежень користувача.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від прийняття реальності та нормалізації досвіду до створення ергономічного простору, психологічних меж, ритуалів переходу та інтеграції "життя" в простір ліжка. Базується на принципах ергономіки , поведінкової психології  та occupational therapy .</em></p>
+        
+        <p><strong>Сесія 1: Accepting Your Reality (Прийняття вашої реальності)</strong><br>
+        <em>Завдання:</em> Психоосвіта: нормалізація роботи з ліжка (1/6 людей так роблять) ; подолання сорому та провини; розуміння, що це може бути необхідністю, а не вибором; оцінка індивідуальної ситуації .<br>
+        <em>Очікувані результати:</em> Зменшення самозвинувачення; відчуття, що "я не один такий".<br>
+        <em>Обґрунтування:</em> "Я б не обов'язково щось говорив! Є багато 'правильних' способів жити своїм життям" .</p>
+        
+        <p><strong>Сесія 2: Ergonomics in Bed (Ергономіка в ліжку)</strong><br>
+        <em>Завдання:</em> Оцінка поточної пози; навчання "нейтральній поставі"; використання подушок для підтримки попереку та під колінами; уникнення пози на животі ; організація ноутбука на рівні очей .<br>
+        <em>Очікувані результати:</em> Зменшення фізичного дискомфорту; профілактика болю в спині та шиї.<br>
+        <em>Обґрунтування:</em> "Ви можете не відчувати напруження відразу, але воно проявиться пізніше" .</p>
+        
+        <p><strong>Сесія 3: Protecting Your Sleep (Захист вашого сну)</strong><br>
+        <em>Завдання:</em> Пояснення принципу "Bed equals sleep" ; техніки візуального розмежування простору (ковдра, подушка, постери) ; ритуали переходу до сну (читання, чай) ; цифровий захід сонця .<br>
+        <em>Очікувані результати:</em> Покращення якості сну; зменшення стану "tired but wired".<br>
+        <em>Обґрунтування:</em> "Чим більше ви робите інших речей у ліжку, тим слабшою стає ця асоціація" .</p>
+        
+        <p><strong>Сесія 4: Creating Boundaries (Створення меж)</strong><br>
+        <em>Завдання:</em> Встановлення чіткого робочого графіка; створення "цифрового заходу сонця" (вимкнення сповіщень) ; мікроперерви; комунікація з колегами про свої години роботи .<br>
+        <em>Очікувані результати:</em> Зменшення стресу; краще відчуття контролю .<br>
+        <em>Обґрунтування:</em> "Коли люди працюють з дому без чітких меж, зростають стрес, проблеми зі сном та м'язові болі" .</p>
+        
+        <p><strong>Сесія 5: Transition Rituals (Ритуали переходу)</strong><br>
+        <em>Завдання:</em> Створення ранкового ритуалу "початку роботи" (символічний "комутатор", робоча чашка) ; ритуалу завершення роботи (закриття ноутбука, фраза) ; фізичне переміщення (навіть в іншу кімнату) .<br>
+        <em>Очікувані результати:</em> Чіткіше відчуття переходу між роботою та життям; зменшення відчуття, що "життя — це лише робота".<br>
+        <em>Обґрунтування:</em> "Ваш мозок отримує користь від сигналів, які вказують, коли ви працюєте, а коли ні" .</p>
+        
+        <p><strong>Сесія 6: Living, Not Just Working (Життя, а не лише робота)</strong><br>
+        <em>Завдання:</em> Інтеграція "життя" в простір ліжка: хобі, спілкування, природа; планування соціальних контактів; визначення "червоних прапорців" (депресія, ізоляція, хронічний біль) ; пошук додаткової підтримки (occupational health, ADA/FMLA права) .<br>
+        <em>Очікувані результати:</em> Відчуття повноцінного життя, а не лише виживання; знання своїх прав .<br>
+        <em>Обґрунтування:</em> "Слідкуйте за симптомами депресії та ізоляції" ; "Знайте свої права: ADA, FMLA захищають від дискримінації" .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Ashamed (of working from bed), Guilty, Isolated, Anxious, Wired-but-tired, Drained, Accepted, Balanced, In-control, Rested, Alive.</p>
+        <p><strong>Hot Memory:</strong> Поточна ситуація (чому працює з ліжка), фізичний дискомфорт, рівень ізоляції, що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Улюблені ритуали переходу, ергономічні налаштування, ефективні межі, прогрес.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія здоров'я/житла, довгострокові патерни, коморбідні стани (хронічні хвороби, інвалідність) .</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не засуджувати за роботу з ліжка.</strong> Для багатьох це не вибір, а необхідність .</li>
+            <li><strong>Не давати медичних порад.</strong> Не замінює лікаря, фізіотерапевта, ерготерапевта .</li>
+            <li><strong>Визнавати структурні обмеження.</strong> Орендарі часто не можуть змінювати простір .</li>
+            <li><strong>Підкреслювати важливість комунікації з роботодавцем</strong> та знання своїх прав .</li>
+            <li><strong>Не зберігати конфіденційну інформацію про стан здоров'я.</strong></li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Симптоми клінічної депресії (смуток, гнів, самотність) .</li>
+            <li>Хронічний біль, що потребує медичного втручання .</li>
+            <li>Серйозні порушення сну (безсоння) .</li>
+            <li>Потреба в occupational health для адаптації робочого місця .</li>
+            <li>Юридичні питання, пов'язані з дискримінацією або розумними пристосуваннями .</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides guidance, ergonomic tips, and psychological strategies for people who work from bed due to health conditions, disability, chronic fatigue, or housing limitations. It is based on evidence-based research on behavioral psychology, ergonomics, sleep hygiene, and occupational therapy. It is NOT a substitute for professional medical advice, physical therapy, or mental health treatment. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming, please seek immediate help from a qualified professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7) or consult with your family doctor for referrals to occupational therapy or rehabilitation services."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "I Work from Bed, But I Live" є збалансованою та науково-обґрунтованою. Вона інтегрує:</p>
+    <ul>
+        <li><strong>Фізичні аспекти:</strong> ергономіка ліжка, профілактика болю .</li>
+        <li><strong>Психологічні аспекти:</strong> поведінкове розмивання меж, ритуали переходу, захист сну .</li>
+        <li><strong>Практичні аспекти:</strong> створення меж, комунікація з роботодавцем, знання своїх прав .</li>
+        <li><strong>Специфічний контекст:</strong> визнання, що для багатьох людей (з хронічними хворобами, інвалідністю, в обмежених житлових умовах, ВПО) робота з ліжка може бути єдиним варіантом .</li>
+        <li>Чіткі етичні межі: не засуджувати, не давати медичних порад, скеровувати при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від прийняття реальності до інтеграції "життя" в простір ліжка. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не заохочує роботу з ліжка як ідеальний варіант. Вона створена, щоб підтримати тих, у кого немає іншого вибору, і допомогти їм зробити це якомога здоровішим способом — фізично, психологічно та емоційно.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Work from Bed</span>
+            <span class="badge">Chronic Illness</span>
+            <span class="badge">Disability</span>
+            <span class="badge">Ergonomics</span>
+            <span class="badge">Sleep Hygiene</span>
+            <span class="badge">Boundaries</span>
+            <span class="badge">Occupational Health</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

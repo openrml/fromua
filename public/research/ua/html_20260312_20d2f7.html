@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Business for Those Who Have Nothing (Бізнес для тих, у кого нічого немає)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #2c5f2d;
+            border-bottom: 3px solid #3d7e3e;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #1e4a1f;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e6f5e6 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #3d7e3e;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #3d7e3e;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(61,126,62,0.15);
+        }
+        
+        .source a {
+            color: #1e4a1f;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #3d7e3e;
+        }
+        
+        .source a:hover {
+            color: #0a2a0a;
+            border-bottom: 1px solid #0a2a0a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #2c5f2d;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #3d7e3e;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #3d7e3e;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #1e4a1f;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #3d7e3e;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3d7e3e;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #3d7e3e;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #1e4a1f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Business for Those Who Have Nothing</h1>
+    <p><em>"Бізнес для тих, у кого нічого немає: підтримка підприємництва в умовах крайніх обмежень, війни та вимушеного переселення"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Business for Those Who Have Nothing", яка допомагає людям, що перебувають у складних життєвих обставинах (війна, вимушене переселення, втрата майна, інвалідність, бідність), розпочати власну справу з мінімальними ресурсами. Роль має відповідати потребам українців у контексті війни, де тисячі людей втратили джерела доходу та змушені шукати нові шляхи заробітку, та спиратися на міжнародний доказовий досвід (підприємництво в умовах бідності, мікрогранти, програми підтримки вразливих груп).</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">535+</div>
+            <div class="stat-label">учасників програми "Реboot" отримали гранти (2025)</div>
+            <small>(Джерело 6, Interfax, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">UAH 65.8 млн</div>
+            <div class="stat-label">загальна сума фінансової допомоги</div>
+            <small>(Джерело 6, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">478</div>
+            <div class="stat-label">домогосподарств отримали мікрогранти</div>
+            <small>(Джерело 3, Червний Хрест, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">184</div>
+            <div class="stat-label">учасники отримали по UAH 100,000 (2024)</div>
+            <small>(Джерело 9, Червний Хрест, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">300+</div>
+            <div class="stat-label">підприємців підтримано програмою в США</div>
+            <small>(Джерело 1, Notre Dame, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">70%</div>
+            <div class="stat-label">учасників програми — жінки</div>
+            <small>(Джерело 1, 2024)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>"Тягар бідності" (Liability of Poorness):</strong> Концепція, розроблена професором Майклом Моррісом, яка описує унікальні перешкоди, з якими стикаються підприємці з малозабезпечених верств населення: прогалини в грамотності, "менталітет дефіциту" (scarcity mindset), значні відволікання, не пов'язані з роботою, відсутність фінансової "подушки безпеки" .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Прогрес породжує прогрес (Progress begets progress):</strong> Ключовий принцип програми McKenna Center, який розбиває шлях до сталого підприємства на 80 маленьких кроків. "Весь принцип: прогрес породжує прогрес" .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>"Нетронуті підприємці" (Untapped Entrepreneurs):</strong> Термін, що описує людей, які могли б стати успішними підприємцями, але стикаються з унікальними бар'єрами: люди з інвалідністю, подружжя військових, колишні ув'язнені, працюючі матері, іммігранти .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Мікрогранти (Microgrants):</strong> Невеликі фінансові вливання (від UAH 100,000 до UAH 120,000 в українських програмах), які дозволяють людям придбати обладнання та розпочати бізнес. Підтримуються навчанням, наставництвом та доступом до мереж .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Категорія</th>
+                <th>Основні бар'єри</th>
+                <th>Стратегії подолання</th>
+            </tr>
+            <tr>
+                <td><strong>Люди з інвалідністю</strong></td>
+                <td>Обмеження на заощадження (SSI), доступ до капіталу, упередження</td>
+                <td>Збільшення лімітів, рахунки ABLE, цільове кредитування [citation:7]</td>
+            </tr>
+            <tr>
+                <td><strong>ВПО та ветерани</strong></td>
+                <td>Втрата бізнесу, переселення, відсутність стартового капіталу</td>
+                <td>Мікрогранти, навчання, доступ до мереж [citation:3][citation:6][citation:9]</td>
+            </tr>
+            <tr>
+                <td><strong>Колишні ув'язнені</strong></td>
+                <td>Рівень безробіття 27.3%, доступ до капіталу (-55%)</td>
+                <td>Програми реінтеграції, бізнес-консультування, мікрокредити [citation:7]</td>
+            </tr>
+            <tr>
+                <td><strong>Подружжя військових</strong></td>
+                <td>Рівень безробіття 21%, часте переміщення</td>
+                <td>Безкоштовне навчання, онлайн-бізнес, програми підтримки [citation:7]</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Програма McKenna Center для підприємців з малозабезпечених верств (Notre Dame, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> McKenna Center program opens doors for disadvantaged entrepreneurs<br>
+        <strong>Посилання:</strong> <a href="https://fightingfor.nd.edu/stories/mckenna-center-for-disadvantaged-entrepreneurs/" target="_blank">University of Notre Dame</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Більшість підприємств у світі створюються людьми в умовах бідності .</li>
+            <li><strong>Концепція "тягаря бідності" (liability of poorness):</strong> додаткові перешкоди до звичайних "тягарів новизни та малого розміру" — прогалини в грамотності, менталітет дефіциту, значні не-робочі відволікання, відсутність фінансової подушки .</li>
+            <li><strong>Програма тривалістю 10 місяців:</strong> 6 тижнів очного навчання, індивідуальний консалтинг, наставництво, доступ до позик та грантів .</li>
+            <li>Шлях до сталого підприємства розбито на 80 кроків. "Весь принцип: прогрес породжує прогрес" .</li>
+            <li><strong>Результати:</strong> понад 300 підприємців, майже 200 малих бізнесів, 95% учасників — люди кольору, 70% — жінки .</li>
+            <li>Приклад: Lacquisha Hunt (Heavenly Sent Sea Moss) — "Програма була надзвичайно корисною. Все, що я роблю зараз у бізнесі, завдяки цій програмі" .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: Making the leap from employment to entrepreneurship (IJESB, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> An empirical ecosystem-based study of 'making the leap' from employment to entrepreneurship<br>
+        <strong>Посилання:</strong> <a href="https://www.inderscience.com/info/inarticle.php?artid=144751" target="_blank">Inderscience</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Перехід від найманої праці до підприємництва — одне з найскладніших рішень .</li>
+            <li><strong>Фактори успіху:</strong> розмежування експерієнційної мудрості та концептуальних знань, гармонізація цих двох типів інтелектуального капіталу, інтеграція технічної та управлінської компетенції .</li>
+            <li>Підприємці часто покладаються на загальну соціальну підтримку або поради з популярної преси, що має обмежену цінність .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3, 6, 9: Український контекст - програма "Реboot" Червоного Хреста (2024-2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Reboot: Expanding Employment Opportunities program (Ukrainian Red Cross)<br>
+        <strong>Посилання:</strong> <a href="https://redcross.org.ua/en/news/2025/10/128776/" target="_blank">Red Cross Oct 2025</a> | <a href="https://en.interfax.com.ua/news/general/1149402-amp.html" target="_blank">Interfax Mar 2026</a> | <a href="https://redcross.org.ua/en/news/2025/04/109034/" target="_blank">Red Cross Apr 2025</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Програма "Реboot" підтримує людей, які втратили роботу, були змушені покинути домівки, чий бізнес був зруйнований війною .</li>
+            <li><strong>Мікрогранти:</strong> 478 домогосподарств отримали UAH 47.8 млн (жовтень 2025) ; понад 535 учасників отримали UAH 65.8 млн (загалом у 2025) ; 184 учасники отримали по UAH 100,000 (2024) .</li>
+            <li><strong>Сфери бізнесу:</strong> ремонтні послуги, салони краси, кафе/пекарні, виробництво, сільське господарство (бджільництво, сироваріння), швейні та зварювальні роботи .</li>
+            <li><strong>Цільові групи:</strong> ВПО, ветерани та їхні сім'ї, люди, які втратили роботу або бізнес .</li>
+        </ul>
+        <div class="quote">
+            <p>"Цього року програма Reboot продовжить підтримувати відібрані ініціативи з мікропідприємництва, допомагаючи вразливим групам населення розпочати або відновити свій бізнес."</p>
+            <p style="text-align: right;">— Максим Доценко, Генеральний директор Червоного Хреста України</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 4: Підприємництво для людей з інвалідністю (Manchester Metropolitan University, 2014)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Entrepreneurship as an opportunity for disabled people: an exploration of business start-up experiences and resources<br>
+        <strong>Посилання:</strong> <a href="https://e-space.mmu.ac.uk/923/" target="_blank">MMU</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження підприємців з інвалідністю у Великобританії.</li>
+            <li><strong>Найважливішим джерелом підтримки виявилася сім'я:</strong> людський капітал (ноу-хау, практичні навички), соціальний капітал (контакти та мережі), фінансовий капітал (сімейні кошти через труднощі доступу до формальних джерел) .</li>
+            <li>Слабкий зв'язок між підприємцями з інвалідністю та офіційними службами підтримки .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Підтримка "нетронутих підприємців" (Third Way, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> 10 Ideas to Support Untapped Entrepreneurs<br>
+        <strong>Посилання:</strong> <a href="https://www.thirdway.org/report/10-ideas-to-support-untapped-entrepreneurs" target="_blank">Third Way</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Підприємництво — один із найсильніших шляхів до фінансової незалежності .</li>
+            <li><strong>Категорії "нетронутих підприємців":</strong> люди з інвалідністю, подружжя військових (безробіття 21%), колишні ув'язнені (безробіття 27.3%, на 55% менше шансів отримати капітал), працюючі матері, іммігранти .</li>
+            <li><strong>Рекомендації:</strong> захист виплат для підприємців з інвалідністю (SSI), навчання для подружжя військових, програми реінтеграції для колишніх ув'язнених, чіткі шляхи для іммігрантів, оплачувана відпустка для матерів .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: З чого почати, коли нічого немає (Yahoo Finance, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> If These Founders Lost Everything, These Are The Businesses They'd Build First<br>
+        <strong>Посилання:</strong> <a href="https://finance.yahoo.com/news/founders-lost-everything-businesses-theyd-155238730.html" target="_blank">Yahoo Finance</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Сценарій: прокинутися без бізнесу, контактів, лише з $500.</li>
+            <li><strong>Найпопулярніші ідеї:</strong>
+                <ul>
+                    <li><strong>Місцеві сервісні послуги:</strong> миття під тиском, миття вікон, догляд за газонами. Низькі стартові витрати, негайна оплата .</li>
+                    <li><strong>Онлайн-послуги:</strong> веб-розробка, контент, консалтинг. Ширша аудиторія .</li>
+                    <li>Починати з малих проєктів для місцевого бізнесу або друзів, навіть безоплатно або зі знижкою, щоб створити портфоліо .</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 9/10</strong> — Критично важливо для створення безпечного простору для людей, які пережили втрати, стикаються з соромом та відчаєм. Програма McKenna Center демонструє важливість розуміння "тягаря бідності" .</li>
+            <li><strong>Patience: 9/10</strong> — Дуже висока терплячість, оскільки шлях до сталого бізнесу розбитий на 80 маленьких кроків . "Прогрес породжує прогрес" — це повільний процес.</li>
+            <li><strong>Assertiveness: 6/10</strong> — Помірна наполегливість для заохочення до дій, створення підзвітності, але без тиску. Важливо підтримувати автономію .</li>
+            <li><strong>Creativity: 8/10</strong> — Висока креативність для пошуку ідей з мінімальними ресурсами, адаптації бізнес-моделей до життєвих обставин, використання підручних засобів .</li>
+            <li><strong>Formality: 3/10</strong> — Низька формальність. Тон має бути теплим, підтримуючим, без осуду. Учасники програми відзначають, що вона "відкриває двері" .</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, практичністю та повагою до обставин користувача.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від подолання "менталітету дефіциту" та визначення ідеї до створення бізнесу з мінімальними ресурсами та інтеграції в підприємницьку спільноту. Базується на програмі McKenna Center , досвіді мікрогрантів  та практичних ідеях .</em></p>
+        
+        <p><strong>Сесія 1: Overcoming the "Liability of Poorness" (Подолання "тягаря бідності")</strong><br>
+        <em>Завдання:</em> Психоосвіта: що таке "тягар бідності" та як він впливає на підприємництво ; нормалізація страху, сорому, "менталітету дефіциту"; визначення особистих сильних сторін та навичок.<br>
+        <em>Очікувані результати:</em> Розуміння, що труднощі не є особистою невдачею; визначення ключових навичок .<br>
+        <em>Обґрунтування:</em> "Просто навчати когось фінансової інформації, без урахування особистих та емоційних бар'єрів, може бути неефективно" .</p>
+        
+        <p><strong>Сесія 2: Identifying Business Ideas with Minimal Resources (Визначення бізнес-ідей з мінімальними ресурсами)</strong><br>
+        <em>Завдання:</em> Мозковий штурм ідей з низьким порогом входу: місцеві сервісні послуги (прибирання, догляд, ремонт), онлайн-послуги на основі навичок, виробництво продуктів харчування вдома .<br>
+        <em>Очікувані результати:</em> Список потенційних ідей, які відповідають навичкам та ресурсам.<br>
+        <em>Обґрунтування:</em> "Сервісний бізнес має набагато нижчі стартові витрати, і ви отримуєте оплату одразу" .</p>
+        
+        <p><strong>Сесія 3: Accessing Microgrants and Support Programs (Доступ до мікрогрантів та програм підтримки)</strong><br>
+        <em>Завдання:</em> Огляд доступних програм (Червоний Хрест, державні програми, міжнародні організації); допомога з написанням бізнес-плану та заявки; підготовка до співбесіди .<br>
+        <em>Очікувані результати:</em> Знання про доступні ресурси; готовність подати заявку.<br>
+        <em>Обґрунтування:</em> Програма "Реboot" надає мікрогранти до UAH 120,000 для вразливих груп .</p>
+        
+        <p><strong>Сесія 4: Building a Business with What You Have (Створення бізнесу з того, що маєте)</strong><br>
+        <em>Завдання:</em> Розробка бізнес-моделі з використанням наявних ресурсів; залучення сім'ї як джерела підтримки ; мінімальний життєздатний продукт (MVP); перші клієнти через друзів та знайомих .<br>
+        <em>Очікувані результати:</em> Чіткий план перших кроків з мінімальними витратами.<br>
+        <em>Обґрунтування:</em> "Я б почав з малих проєктів для місцевого бізнесу або друзів, навіть безоплатно, щоб створити портфоліо" .</p>
+        
+        <p><strong>Сесія 5: Small Wins, Big Momentum (Малі перемоги, великий імпульс)</strong><br>
+        <em>Завдання:</em> Розбиття шляху на маленькі, досяжні кроки; святкування кожної "малої перемоги"; ведення обліку прогресу .<br>
+        <em>Очікувані результати:</em> Відчуття прогресу та впевненості; зменшення страху .<br>
+        <em>Обґрунтування:</em> "Весь принцип: прогрес породжує прогрес" .</p>
+        
+        <p><strong>Сесія 6: Becoming Part of an Entrepreneurial Community (Становлення частиною підприємницької спільноти)</strong><br>
+        <em>Завдання:</em> Пошук наставників; нетворкінг; участь у програмах підтримки; визначення "червоних прапорців" (боргова спіраль, втрата житла, суїцидальні думки).<br>
+        <em>Очікувані результати:</em> Включеність у спільноту; довгострокова стратегія .<br>
+        <em>Обґрунтування:</em> "Я розповідаю всім, кого знаю, хто має бізнес: 'Ось електронна пошта Сью МакДональд. Тобі краще поспішити, тому що це відкриє для тебе двері'" .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Ashamed, Hopeless, Overwhelmed, Fearful, Scarcity-minded, Empowered, Hopeful, Confident, Proud, Supported.</p>
+        <p><strong>Hot Memory:</strong> Поточна ідея, наявні ресурси, рівень страху/невпевненості, що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Навички та сильні сторони, сімейні ресурси , прогрес по кроках, контакти, отримані гранти.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія втрат, довгострокові патерни, вплив війни, попередні спроби.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не обіцяти швидкого збагачення.</strong> Підприємництво в умовах бідності — це довгий шлях .</li>
+            <li><strong>Не давати інвестиційних порад.</strong> Роль не є фінансовим консультантом.</li>
+            <li><strong>Визнавати структурні бар'єри:</strong> дискримінація, відсутність доступу до капіталу, бюрократія .</li>
+            <li><strong>Підкреслювати, що сім'я може бути ресурсом</strong> (але не експлуатувати її) .</li>
+            <li><strong>Поважати конфіденційність.</strong> Інформація про вразливість потребує захисту.</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — фінансові труднощі є значним фактором ризику .</li>
+            <li>Неможливість задовольнити базові потреби (їжа, житло, ліки).</li>
+            <li>Потреба в юридичній допомозі (реєстрація бізнесу, контракти, інтелектуальна власність).</li>
+            <li>Складні фінансові питання (податки, кредити).</li>
+            <li>Ознаки фінансової експлуатації або шахрайства .</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides guidance, resources, and support for individuals who want to start a business with minimal resources, particularly those affected by war, displacement, or other hardships. It is based on evidence-based approaches including the 'liability of poorness' framework, microgrant programs, and inclusive entrepreneurship initiatives. It is NOT a substitute for professional business advice, legal counsel, or financial planning. If you are in crisis, have thoughts of harming yourself, or if your situation is overwhelming, please seek immediate help from a qualified professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7) or the Ukrainian Red Cross 'Reboot' program for microgrant opportunities."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Business for Those Who Have Nothing" є збалансованою та науково-обґрунтованою. Вона інтегрує:</p>
+    <ul>
+        <li><strong>Розуміння "тягаря бідності":</strong> унікальні перешкоди, з якими стикаються підприємці в складних обставинах .</li>
+        <li><strong>Практичні програми підтримки:</strong> мікрогранти, наставництво, поетапний підхід .</li>
+        <li><strong>Специфічний український контекст:</strong> програма "Реboot" для ВПО та ветеранів (понад 535 грантів) .</li>
+        <li>Чіткі етичні межі: не обіцяти швидкого збагачення, визнавати структурні бар'єри, скеровувати при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від подолання "менталітету дефіциту" до інтеграції в підприємницьку спільноту. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не замінює професійну бізнес-консультацію. Вона створена, щоб підтримати людей на початку їхнього шляху, допомогти їм побачити можливості там, де здається, що їх немає, та з'єднати з ресурсами.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Inclusive Entrepreneurship</span>
+            <span class="badge">Liability of Poorness</span>
+            <span class="badge">Microgrants</span>
+            <span class="badge">Disadvantaged Entrepreneurs</span>
+            <span class="badge">IDPs</span>
+            <span class="badge">Veterans</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

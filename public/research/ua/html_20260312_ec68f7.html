@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Digital Body Armor (Цифровий бронежилет)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #34495e;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #ecf0f1 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #34495e;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #34495e;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(52,73,94,0.15);
+        }
+        
+        .source a {
+            color: #34495e;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #34495e;
+        }
+        
+        .source a:hover {
+            color: #1a252f;
+            border-bottom: 1px solid #1a252f;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #2c3e50;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #34495e;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #34495e;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #34495e;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #34495e;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #34495e;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #34495e;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Digital Body Armor</h1>
+    <p><em>"Цифровий бронежилет: коли треба захистити телефон"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Digital Body Armor", яка допомагає звичайним користувачам захистити свої мобільні телефони від сучасних кіберзагроз: шкідливого ПЗ, фішингу, крадіжки даних, злому через NFC, шпигунського ПЗ та інших небезпек. Роль має враховувати український контекст, де мобільна безпека є критичною через війну, активне використання месенджерів та ризики стеження .</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: ландшафт загроз 2026</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">85%</div>
+            <div class="stat-label">зростання атак на мобільні пристрої (Verizon, 2025)</div>
+            <small>(Джерело 7, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">67%</div>
+            <div class="stat-label">зростання Android-малварі (Zscaler, 2025)</div>
+            <small>(Джерело 7, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">38%</div>
+            <div class="stat-label">стрибок загроз Android за квартал (Kaspersky, 2025)</div>
+            <small>(Джерело 1, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">44,000+</div>
+            <div class="stat-label">NFC-атак за квартал (Kaspersky, 2025)</div>
+            <small>(Джерело 1, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">63%</div>
+            <div class="stat-label">фахівців вважають AI-фішинг головною загрозою</div>
+            <small>(Джерело 7, ISACA, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">200+</div>
+            <div class="stat-label">чипсетів уразливі до zero-day CVE-2026-21385</div>
+            <small>(Джерело 3, 2026)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Sideloading (завантаження зі сторонніх джерел):</strong> Встановлення додатків через APK-файли замість офіційного магазину. Шахраї маскують шкідливі файли під "party_pics.jpg.apk" та поширюють через месенджери . Після встановлення малвар може розсилати себе контактам жертви та красти дані (ClayRat Trojan) .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>NFC-атаки (NFC relay attacks):</strong> Шахраї переконують жертву завантажити додаток, "піднести банківську картку до телефону" та ввести PIN — картку скомпрометовано . "Зворотній NFC-релей" змушує жертву покласти готівку в банкомат через телефон, що імітує картку шахрая . Понад 44,000 таких атак за квартал .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Zero-day у чипсетах Qualcomm:</strong> CVE-2026-21385 — уразливість переповнення пам'яті в графічних компонентах, що дозволяє зловмиснику отримати повний контроль над пристроєм. Активно експлуатується в дикій природі, ймовірно, державними хакерами . Виправлення контролюються OEM-виробниками та операторами, що створює "вікно вразливості" від днів до місяців .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>AI-фішинг та діпфейки:</strong> Generative AI дозволяє створювати безліч варіацій фішингових повідомлень, включаючи SMS-фішинг (smishing), голосовий фішинг (vishing) та QR-код фішинг . 63% фахівців вважають AI-фішинг головною загрозою . Samsung впроваджує "Suspected Voice Phishing Call Alert" для виявлення таких дзвінків .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Троян у коробці (Triada):</strong> Складне шкідливе ПЗ, яке вбудоване прямо в прошивку дешевих пристроїв ще до першого ввімкнення. Краде токени доступу, паролі, перехоплює SMS, використовує телефон як проксі . Єдиний спосіб позбутися — перепрошивка .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Український контекст:</strong> Telegram використовується "ворогом для вербування терористів, координації їхніх дій та здійснення терактів" . Російська ФСБ звинувачує Telegram у наданні даних українським спецслужбам . Це створює додаткові ризики для українських користувачів.</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Android Theft Protection Features:</strong> Нові функції Android 16+: Identity Check (вимагає біометрію для критичних дій поза довіреними місцями), Remote Lock (блокування через android.com/lock), Theft Detection Lock (AI виявляє спробу крадіжки) . У Бразилії ці функції ввімкнені за замовчуванням .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Категорія загрози</th>
+                <th>Приклади</th>
+                <th>Захист</th>
+            </tr>
+            <tr>
+                <td><strong>Sideloading & APK-малвар</strong></td>
+                <td>ClayRat Trojan, фейкові AI-додатки, поширення через месенджери </td>
+                <td>Не встановлювати APK з месенджерів, використовувати безпекові рішення (Kaspersky) </td>
+            </tr>
+            <tr>
+                <td><strong>NFC-шахрайство</strong></td>
+                <td>Прямі та зворотні NFC-релеї, підробка мобільних гаманців </td>
+                <td>Ніколи не прикладати картку до телефону, не вводити PIN у додатки </td>
+            </tr>
+            <tr>
+                <td><strong>Zero-day у прошивці</strong></td>
+                <td>CVE-2026-21385 (Qualcomm), контрольований державними хакерами </td>
+                <td>Встановлювати патчі, розуміти затримки від OEM/операторів </td>
+            </tr>
+            <tr>
+                <td><strong>AI-фішинг</strong></td>
+                <td>Глибокі фейки, smishing, vishing, QR-фішинг </td>
+                <td>Перевіряти джерела, використовувати функції виявлення фішингу </td>
+            </tr>
+            <tr>
+                <td><strong>Джейлбрейк/рутинг</strong></td>
+                <td>Обхід обмежень безпеки, встановлення неавторизованого ПЗ </td>
+                <td>Не джейлбрейкати пристрій </td>
+            </tr>
+            <tr>
+                <td><strong>Шкідливі VPN</strong></td>
+                <td>Підробні VPN-сервіси, що шпигують за користувачами </td>
+                <td>Обирати платні VPN від відомих компаній </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: The perfect storm of Android threats (Kaspersky, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> The perfect storm of Android threats: NFC relay attacks, pre-installed Trojans, and other nasties<br>
+        <strong>Посилання:</strong> <a href="https://www.kaspersky.com/blog/growing-2026-android-threats-and-protection/55191/" target="_blank">Kaspersky Official Blog</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Кількість виявлених Android-загроз зросла майже вдвічі; у третьому кварталі 2025 року детекти зросли на 38% .</li>
+            <li>Trojan-banker Mamont атакував у 36 разів більше користувачів у Росії; глобально категорія зросла майже вчетверо .</li>
+            <li>Зловмисники поширюють шкідливі APK через месенджери (Telegram, WhatsApp) з назвами на кшталт "party_pics.jpg.apk" .</li>
+            <li>ClayRat Trojan поширюється через групи та фейкові сайти, краде історію чатів, дзвінків, робить фото через фронтальну камеру .</li>
+            <li><strong>NFC-атаки:</strong> понад 44,000 атак за квартал; прямий NFC-релей (прикласти картку до телефону) та зворотний (покласти готівку в банкомат через телефон) .</li>
+            <li>Троян Triada вбудований у прошивку дешевих пристроїв; єдиний вихід — перепрошивка .</li>
+            <li>Шахрайські VPN-сервіси шпигують за користувачами, використовують слабке шифрування .</li>
+        </ul>
+        <div class="quote">
+            <p>"Надійні, доступні та ім'ютабельні/офлайн бекапи перетворюють ransomware з екзистенційного на керований."</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 2 & 10: Загальні принципи безпеки мобільних пристроїв (InfoSec HK / Startpage)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Protecting Mobile Devices (InfoSec HK) / The Ten Commandments of Mobile Device Security (Startpage)<br>
+        <strong>Посилання:</strong> <a href="https://www.infosec.gov.hk/en/best-practices/person/protecting-mobile-devices" target="_blank">InfoSec HK</a> | <a href="https://blog.s1-sp.com/privacy-please/featured-article/the-ten-commandments-of-mobile-device-security" target="_blank">Startpage Blog</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Використовувати двофакторну автентифікацію для облікових записів з чутливими даними .</li>
+            <li>Не залишати пристрій без нагляду .</li>
+            <li>Не відкривати посилання з підозрілих джерел .</li>
+            <li>Бути обережним з публічними Wi-Fi; уникати доступу до чутливих даних без належного захисту .</li>
+            <li>Оцінювати ризики перед синхронізацією з хмарними сервісами; використовувати шифрування для бекапів .</li>
+            <li>Оновлювати ПЗ, патчі, прошивку .</li>
+            <li><strong>10 заповідей:</strong> біометрія + пароль, оновлення, тільки офіційні джерела, перевірка дозволів, уникати незахищеного Wi-Fi, бекапи на локальний диск, вимикати Bluetooth/Wi-Fi, використовувати аліаси email, шифровані месенджери, VPN .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: Zero-day у чипсетах Android під активною атакою (Computer Weekly, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Zero-day in Android phone chips under active attack<br>
+        <strong>Посилання:</strong> <a href="https://www.computerweekly.com/news/366639578/Zero-day-in-Android-phone-chips-under-active-attack" target="_blank">Computer Weekly</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Уразливість CVE-2026-21385 (переповнення пам'яті в чипсетах Qualcomm) активно експлуатується як zero-day .</li>
+            <li>Впливає на понад 200 чипсетів .</li>
+            <li>Ймовірно, використовується державними хакерами для стеження .</li>
+            <li><strong>Ключова проблема:</strong> хоча Google випустив патч, OEM-виробники та оператори контролюють, коли патч дійде до пристроїв — "розрив може тривати від днів до місяців" .</li>
+            <li>CISA додала вразливість до каталогу відомих експлуатованих вразливостей .</li>
+        </ul>
+        <div class="quote">
+            <p>"У корпоративних середовищах цей розрив може тривати від днів до місяців – і протягом цього вікна вразливість є публічною, а пристрій залишається незахищеним."</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 5: Український контекст — Telegram та безпека (Anadolu Ajansı, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Ukraine official proposes restricting Telegram to protect lives and national security<br>
+        <strong>Посилання:</strong> <a href="https://www.aa.com.tr/en/asia-pacific/ukraine-official-proposes-restricting-telegram-to-protect-lives-and-national-security/3837773?amp=1" target="_blank">Anadolu Ajansı</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Заступниця голови Офісу Президента України Ірина Верещук запропонувала обмежити використання Telegram та інших "анонімних платформ" в Україні .</li>
+            <li>Цитата: "Ми знову бачимо, що ворог систематично використовує Telegram для вербування терористів, координації їхніх дій та здійснення терористичних актів" .</li>
+            <li>Російська ФСБ звинуватила Telegram у наданні інформації українським військовим та розвідці .</li>
+            <li>Це створює унікальний контекст загроз для українських користувачів .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Android Theft Protection Features (Google Security Blog, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> New Android Theft Protection Feature Updates: Smarter, Stronger<br>
+        <strong>Посилання:</strong> <a href="https://security.googleblog.com/2026/01/" target="_blank">Google Online Security Blog</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>Identity Check:</strong> вимагає використання біометрії при виконанні певних дій поза довіреними місцями (поширено на всі додатки, що використовують Biometric Prompt) .</li>
+            <li><strong>Remote Lock:</strong> блокування пристрою з будь-якого веб-браузера через android.com/lock, навіть якщо функцію не ввімкнено заздалегідь .</li>
+            <li><strong>Theft Detection Lock:</strong> використовує AI для визначення руху, що може вказувати на "виривання телефону з рук", і блокує екран .</li>
+            <li>У Бразилії ці функції ввімкнені за замовчуванням на нових пристроях .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Mobile device security in 2026 — 5 threats enterprises can't ignore (Samsung, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Mobile device security in 2026: 5 threats enterprises can't ignore<br>
+        <strong>Посилання:</strong> <a href="https://insights.samsung.com/2026/01/28/mobile-device-security-in-2026-5-threats-enterprises-cant-ignore/" target="_blank">Samsung Business Insights</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>85% зростання атак на мобільні пристрої</strong> (Verizon Mobile Security Index 2025) .</li>
+            <li><strong>67% зростання Android-малварі</strong> (Zscaler, 2025) .</li>
+            <li><strong>AI-driven social engineering:</strong> 63% фахівців вважають це головною загрозою (ISACA) .</li>
+            <li>RatON: поєднує NFC-релеї з RAT та overlay-атаками для автоматизації виведення грошей .</li>
+            <li>Samsung Knox Vault, Auto Blocker, Secure Boot для захисту .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 8: 6 Privacy Tweaks for Android (TweakTown, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> 6 Privacy Tweaks You Should Make on Your Android Phone<br>
+        <strong>Посилання:</strong> <a href="https://www.tweaktown.com/guides/11345/6-privacy-tweaks-you-should-make-on-your-android-phone/index.html" target="_blank">TweakTown</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Регулярно перевіряти дозволи додатків (Settings → Security & Privacy → Permissions used in last 24 hours) .</li>
+            <li>Встановлювати доступ до локації "Allow only while using the app" .</li>
+            <li>Вимкнути персоналізацію реклами (Delete advertising ID / Opt Out of Ads Personalization) .</li>
+            <li>Налаштувати біометрію (відбиток пальця, розпізнавання обличчя) .</li>
+            <li>Використовувати Private DNS (наприклад, dns.google або 1.1.1.1) .</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 8/10</strong> — Висока емпатія необхідна для розуміння тривоги користувачів щодо безпеки їхніх телефонів, особливо в українському контексті, де загрози реальні та актуальні . Важливо не викликати паніку, а навчати спокійно.</li>
+            <li><strong>Patience: 9/10</strong> — Дуже висока терплячість, оскільки впровадження звичок безпеки потребує часу, повторення та поступового навчання. Користувачі можуть не одразу розуміти складні концепції.</li>
+            <li><strong>Assertiveness: 6/10</strong> — Помірна наполегливість для заохочення до впровадження критичних заходів (оновлення, не встановлювати APK з месенджерів), але без тиску, з повагою до рівня комфорту користувача.</li>
+            <li><strong>Creativity: 7/10</strong> — Креативність для пояснення складних технічних концепцій простими аналогіями ("цифровий бронежилет") та адаптації рекомендацій до різних моделей телефонів.</li>
+            <li><strong>Formality: 5/10</strong> — Помірна формальність. Тон має бути професійним, авторитетним, але доступним, щоб не відлякувати звичайних користувачів складною технічною мовою.</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між професійною експертизою, доступністю та підтримкою користувача.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від базового захисту до проактивної безпеки та реагування на інциденти. Базується на ключових загрозах 2026 року , функціях Android , "10 заповідях" мобільної безпеки  та українському контексті .</em></p>
+        
+        <p><strong>Сесія 1: The Foundation — Passwords, Biometrics, and Lock Screen (Основа)</strong><br>
+        <em>Завдання:</em> Налаштування надійного пароля/пін-коду; додавання біометрії (відбиток пальця, обличчя); налаштування блокування екрану; приховування сповіщень на заблокованому екрані .<br>
+        <em>Очікувані результати:</em> Базова безпека пристрою; ускладнення доступу для зловмисників.<br>
+        <em>Обґрунтування:</em> "Перша лінія захисту проти сторонніх очей" .</p>
+        
+        <p><strong>Сесія 2: Fortifying Against Malware — Safe App Habits (Захист від малварі)</strong><br>
+        <em>Завдання:</em> Пояснення небезпеки sideloading та APK з месенджерів ; навчання розпізнаванню фейкових додатків; встановлення безпекового рішення (Kaspersky) ; увімкнення Google Play Protect; налаштування Auto Blocker (на Samsung) .<br>
+        <em>Очікувані результати:</em> Розуміння ризиків; захист від шкідливого ПЗ.<br>
+        <em>Обґрунтування:</em> "Кількість Android-загроз зросла майже вдвічі" .</p>
+        
+        <p><strong>Сесія 3: Privacy Control — Permissions, Location, and Tracking (Контроль конфіденційності)</strong><br>
+        <em>Завдання:</em> Регулярна перевірка дозволів ("Permissions used in last 24 hours") ; встановлення локації "Allow only while using the app" ; вимкнення персоналізації реклами (видалення рекламного ID) ; використання Private DNS .<br>
+        <em>Очікувані результати:</em> Зменшення відстеження; контроль над даними.<br>
+        <em>Обґрунтування:</em> "Додатки люблять отримувати доступ туди, куди не треба" .</p>
+        
+        <p><strong>Сесія 4: Network Security — Wi-Fi, Bluetooth, and VPN (Мережева безпека)</strong><br>
+        <em>Завдання:</em> Вимкнення Wi-Fi/Bluetooth, коли не використовуються ; обережність з публічними мережами ; використання надійного VPN (платного, відомого) ; налаштування Private DNS для шифрування запитів .<br>
+        <em>Очікувані результати:</em> Захист від перехоплення даних; безпечніший інтернет-серфінг.<br>
+        <em>Обґрунтування:</em> "Публічний Wi-Fi — як громадський басейн; ви не знаєте, хто там плаває" .</p>
+        
+        <p><strong>Сесія 5: Advanced Threats — NFC, Zero-days, and Theft Protection (Складні загрози)</strong><br>
+        <em>Завдання:</em> Пояснення NFC-атак (ніколи не прикладати картку до телефону) ; налаштування Identity Check (Android 16+) ; увімкнення Theft Detection Lock та Remote Lock ; розуміння оновлень безпеки та затримок від виробників .<br>
+        <em>Очікувані результати:</em> Захист від сучасних атак; готовність до крадіжки.<br>
+        <em>Обґрунтування:</em> "Понад 44,000 NFC-атак за квартал" .</p>
+        
+        <p><strong>Сесія 6: Ukrainian Context — Messenger Risks and Digital Resilience (Український контекст)</strong><br>
+        <em>Завдання:</em> Обговорення специфічних ризиків для українців (використання Telegram ворогом) ; використання шифрованих месенджерів (Signal) ; обережність з посиланнями; створення "плану реагування" на випадок злому; визначення "червоних прапорців".<br>
+        <em>Очікувані результати:</em> Розуміння локальних загроз; персоналізований план безпеки.<br>
+        <em>Обґрунтування:</em> "Ворог систематично використовує Telegram для вербування терористів та координації атак" .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Anxious (about phone security), Overwhelmed, Confused, Skeptical, Empowered, Prepared, Confident, Secure.</p>
+        <p><strong>Hot Memory:</strong> Поточні загрози, про які турбується користувач, нещодавні підозрілі події, що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Впроваджені заходи (біометрія, Private DNS, налаштування локації), улюблені інструменти безпеки, прогрес.</p>
+        <p><strong>Cold Memory:</strong> Загальний рівень цифрової грамотності, історія безпеки, попередні інциденти, довгострокові патерни.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>Не викликати паніку:</strong> Балансувати серйозність загроз з відчуттям контролю .</li>
+            <li><strong>Конфіденційність:</strong> Ніколи не просити паролі, особисті дані; не зберігати чутливу інформацію.</li>
+            <li><strong>Прозорість:</strong> Чітко пояснювати, що роль є AI-асистентом, а не професійним консультантом з безпеки.</li>
+            <li><strong>Акцент на діях:</strong> Навчати практичним крокам, а не просто лякати статистикою.</li>
+            <li><strong>Визнання обмежень:</strong> Жоден захід не гарантує 100% безпеки .</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>Фактична компрометація:</strong> Користувач повідомляє про злам, витік даних, фінансові втрати — направлення до кіберполіції, банку.</li>
+            <li><strong>Шахрайство з NFC:</strong> Якщо користувач уже приклав картку до телефону та ввів PIN — негайне звернення до банку.</li>
+            <li><strong>Підозра на стеження:</strong> Якщо користувач вважає, що його телефон використовується для шпигунства (в контексті війни).</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides educational guidance and practical tips for improving your mobile device security. It is based on current research and best practices in cybersecurity. It is NOT a substitute for professional security consultation, nor does it guarantee complete protection against all threats. If you believe you have been compromised, have suffered financial fraud, or are experiencing cyber harassment, please contact the relevant authorities, your bank, or a professional security expert immediately. In Ukraine, you can report cybercrimes to the Cyber Police."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Digital Body Armor" є збалансованою та науково-обґрунтованою. Вона інтегрує:</p>
+    <ul>
+        <li><strong>Актуальні загрози 2026 року:</strong> sideloading-малвар (+38%), NFC-атаки (44,000+), zero-day у Qualcomm, AI-фішинг .</li>
+        <li><strong>Функції безпеки Android:</strong> Identity Check, Theft Detection Lock, Remote Lock, Private DNS .</li>
+        <li><strong>Базові принципи:</strong> 10 заповідей мобільної безпеки, контроль дозволів, безпечні мережі .</li>
+        <li><strong>Український контекст:</strong> ризики використання Telegram, державне стеження, необхідність підвищеної обережності .</li>
+        <li>Чіткі етичні межі: не викликати паніку, конфіденційність, скеровування при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від базового захисту до розуміння складних загроз та українського контексту. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не замінює професійний захист. Її мета — підвищити цифрову грамотність та допомогти користувачам захистити свої телефони в умовах сучасних загроз, особливо в українському контексті високого ризику .</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Mobile Security</span>
+            <span class="badge">Android</span>
+            <span class="badge">NFC Attacks</span>
+            <span class="badge">Zero-day</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

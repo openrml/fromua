@@ -1,11 +1,11 @@
 'use client'
 
-import { useLanguage } from '@/components/language-context'
+import { useLocale } from '@/components/locale-provider'
 import { Card, CardContent } from '@/components/ui/card'
-import { Role } from '@/lib/types'
+import type { Personality } from '@/lib/roles'
 
 interface RolePersonalityProps {
-  personality: NonNullable<Role['personality']>
+  personality: Personality
   tone?: string
   emotionalRange?: string
   greeting?: string
@@ -19,7 +19,7 @@ export function RolePersonality({
   greeting,
   greetingUa 
 }: RolePersonalityProps) {
-  const { locale, t } = useLanguage()
+  const { locale, t } = useLocale()
 
   const traits = [
     { key: 'creativity', label: 'Creativity' },
@@ -50,12 +50,12 @@ export function RolePersonality({
           <div key={key} className="space-y-2">
             <div className="flex justify-between text-sm">
               <span className="font-mono">{label}</span>
-              <span className="text-muted-foreground">{personality[key]}/10</span>
+              <span className="text-muted-foreground">{personality[key] ?? 0}/10</span>
             </div>
             <div className="h-2 border border-border bg-background">
               <div 
                 className="h-full bg-foreground transition-all"
-                style={{ width: `${(personality[key] / 10) * 100}%` }}
+                style={{ width: `${((personality[key] ?? 0) / 10) * 100}%` }}
               />
             </div>
           </div>

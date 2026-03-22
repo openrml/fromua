@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research for OpenRML Role: Life Reset Companion</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #9b59b6;
+            border-bottom: 3px solid #c39bd3;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #7d3c98;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #f3e5f5 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #c39bd3;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #c39bd3;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(195,155,211,0.15);
+        }
+        
+        .source a {
+            color: #7d3c98;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #c39bd3;
+        }
+        
+        .source a:hover {
+            color: #4a235a;
+            border-bottom: 1px solid #4a235a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #9b59b6;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #c39bd3;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #c39bd3;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #7d3c98;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #c39bd3;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #c39bd3;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #c39bd3;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #7d3c98;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Research for OpenRML Role: Life Reset Companion</h1>
+    <p><em>"Life Reset Companion: When You Need to Put Everything in Order"</em></p>
+    
+    <div class="meta-info">
+        <strong>Date:</strong> March 11, 2026 | 
+        <strong>Researcher:</strong> LLM Role Architect | 
+        <strong>Status:</strong> Final Report
+    </div>
+
+    <h2>1. Research Objective</h2>
+    <p>To create a scientifically grounded, balanced, and ethical OpenRML role "Life Reset Companion" that helps people in a situation of total life crisis (loss of home, profession, identity, loved ones) "reset" their lives and bring order to all areas. The role integrates the concept of Posttraumatic Growth (PTG), coaching models of reset (RESET), and considers the Ukrainian context of war, where thousands of people are forced to rebuild their lives from scratch.</p>
+
+    <hr>
+
+    <h2>2. Key Statistics: Ukrainian Context</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">4,700+</div>
+            <div class="stat-label">survivors of violence received support</div>
+            <small>(Source 4, IOM Ukraine, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">50%</div>
+            <div class="stat-label">of children 13-15 have persistent sleep problems</div>
+            <small>(previous research)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">33.9%</div>
+            <div class="stat-label">of children have elevated distress or probable PTSD</div>
+            <small>(previous research)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">58%</div>
+            <div class="stat-label">of servicemen are only partially ready for reintegration</div>
+            <small>(previous research)</small>
+        </div>
+    </div>
+
+    <h2>3. Terminology: Key Concepts</h2>
+    
+    <div class="key-concept">
+        <p><strong>Posttraumatic Growth (PTG):</strong> A concept introduced by Tedeschi and Calhoun (1996) describing positive psychological changes that occur as a result of struggling with life challenges and traumatic events. It is not just returning to a previous state (resilience), but a transformation leading to deeper self-understanding, stronger relationships, new life priorities .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Five Domains of PTG:</strong> According to Tedeschi and Calhoun, growth after trauma manifests in five areas: personal strength, relationships with others, appreciation of life, new possibilities, and spiritual/existential change .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>RESET Model:</strong> A coaching model developed by Sripriya Vedula, including five stages: Recognize, Energy, Simplify, Evolve, Take Charge. The model emphasizes the importance of changing the level of consciousness and choosing a new path .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>"Expert Companion":</strong> A term describing the role of a supporting person (not necessarily a professional) who patiently listens without judgment, acknowledges difficulties, and accompanies a person in the process of posttraumatic growth .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Four Areas of Reset:</strong> A practical approach to life reset covering career, relationships, health, and self-esteem .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Model/Approach</th>
+                <th>Key Elements</th>
+                <th>Application to Role</th>
+            </tr>
+            <tr>
+                <td><strong>PTG (Posttraumatic Growth)</strong></td>
+                <td>Personal strength, relationships, appreciation, new possibilities, spirituality </td>
+                <td>Focus on transformation, not just recovery; recognition that growth can coexist with pain </td>
+            </tr>
+            <tr>
+                <td><strong>RESET Model</strong></td>
+                <td>Recognize, Energy, Simplify, Evolve, Take Charge </td>
+                <td>Structure for step-by-step reset, awareness of goals and energy </td>
+            </tr>
+            <tr>
+                <td><strong>4 Areas of Reset</strong></td>
+                <td>Career, Relationships, Health, Self-Esteem </td>
+                <td>Practical life areas where order is needed </td>
+            </tr>
+            <tr>
+                <td><strong>Expert Companion</strong></td>
+                <td>Non-judgmental listening, acknowledging difficulties, supporting meaning-making </td>
+                <td>Defines the tone and behavior of the role — a companion, not a directive mentor </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Sources and Key Findings</h2>
+    <p>The following authoritative sources were analyzed to inform the role (all links were working at the time of writing):</p>
+
+    <h3>📌 Source 1: Growth Can Coexist with Sadness, Anger, and Frustration (BPS, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> 'Growth can coexist with sadness, anger and frustration'<br>
+        <strong>Link:</strong> <a href="https://www.bps.org.uk/psychologist/growth-can-coexist-sadness-anger-and-frustration" target="_blank">British Psychological Society</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Adversarial growth is not just "recovery" after difficulties, but deeper self-understanding, stronger relationships, and new priorities .</li>
+            <li>Growth is not inevitable, and distress and growth can coexist .</li>
+            <li>It is important to treat difficulties as feedback for the next iteration of yourself, not as a verdict .</li>
+            <li><strong>Key quote:</strong> "Growth doesn't mean you've learned to overcome difficulty; it means you've learned to shape yourself in its presence" .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 2: RESET Coaching Model (International Coach Academy, 2020)</h3>
+    <div class="source">
+        <strong>Title:</strong> Coaching Model: RESET<br>
+        <strong>Link:</strong> <a href="https://archive.coachcampus.com/coach-portfolios/coaching-models/reset/" target="_blank">Coach Campus</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>The RESET model emphasizes growth mindset and the power of choice .</li>
+            <li><strong>Stages of the model:</strong>
+                <ul>
+                    <li><strong>Recognize:</strong> Acknowledging goals, values, beliefs</li>
+                    <li><strong>Energy:</strong> Working with emotions that inspire or drain</li>
+                    <li><strong>Simplify:</strong> Simplifying goals and paths to them</li>
+                    <li><strong>Evolve:</strong> Learning and transforming mindset</li>
+                    <li><strong>Take Charge:</strong> Self-acceptance, trust in the process</li>
+                </ul>
+            </li>
+            <li>The model calls to "reset" the level of consciousness, perception, and self-worth .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 4 & 8: Yurii Shapovalov's Story (UN News / UN Geneva, 2026)</h3>
+    <div class="source">
+        <strong>Title:</strong> Eight years of captivity: Finding freedom and healing in Ukraine<br>
+        <strong>Link:</strong> <a href="https://news.un.org/en/story/2026/02/1167029" target="_blank">UN News</a> | <a href="https://www.ungeneva.org/en/news-media/news/2026/02/116307/eight-years-captivity-finding-freedom-and-healing-ukraine" target="_blank">UN Geneva</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>The story of Yurii, a former prisoner who spent nearly eight years in captivity. After release, he is rebuilding his life: physical health, mental state, professional skills .</li>
+            <li><strong>Key quote:</strong> "I have my own place. Time to be alone, to think, to put everything in order" and grow cacti again .</li>
+            <li>IOM Ukraine supported over 4,700 survivors of conflict-related violence .</li>
+        </ul>
+        <div class="quote">
+            <p>"I have my own place. Time to be alone, to think, to put everything in order."</p>
+            <p style="text-align: right;">— Yurii Shapovalov</p>
+        </div>
+    </div>
+
+    <h3>📌 Source 5: Posttraumatic Growth and the "Reset Button" (Meadows, 2021)</h3>
+    <div class="source">
+        <strong>Title:</strong> Pursuing Post-Traumatic Growth<br>
+        <strong>Link:</strong> <a href="https://www.themeadows.com/blog/pursuing-post-traumatic-growth/" target="_blank">Meadows Behavioral Healthcare</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>The pandemic as an opportunity for a "life reset" and posttraumatic growth .</li>
+            <li>Tedeschi and Calhoun identified seven areas of growth after difficulty: appreciation of life, strengthening relationships, compassion, new possibilities, personal strength, spiritual development, creative growth .</li>
+            <li>To experience this growth, intentionality and willingness to rethink oneself, relationships, and life circumstances are needed .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 6: "Chaos to Clarity" Program (Transformation Unlimited, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Break the "I'll Deal with It Later" Cycle: New Coaching Program by Transformation Unlimited<br>
+        <strong>Link:</strong> <a href="https://uk.advfn.com/stock-market/share-news/Break-the-Ill-Deal-with-It-Later-Cycle-New-Coac/97035389" target="_blank">ADVFN</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>76% of millennials report workplace burnout (Gallup).</li>
+            <li>The "Chaos to Clarity" program helps professionals "reset, refocus, and rise above overwhelm" .</li>
+            <li>Program stages: Reset (free yourself from what drains you), Realign (reclaim time and energy), Rise (build sustainable systems) .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 7: Living with Uncertainty (ReliefWeb, 2026)</h3>
+    <div class="source">
+        <strong>Title:</strong> Living with uncertainty: a qualitative needs assessment of cumulative pressures in Ukraine<br>
+        <strong>Link:</strong> <a href="https://reliefweb.int/report/ukraine/living-uncertainty-qualitative-needs-assessment-cumulative-pressures-sumy-mykolaiv-and-kherson-december-2025" target="_blank">ReliefWeb</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>After four years of war, uncertainty has become a structuring condition of everyday life .</li>
+            <li>Households and communities remain functional but absorb cumulative deterioration .</li>
+            <li>Pressure in one area exacerbates stress in others, creating composite effects .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 9: Posttraumatic Growth for Individuals and Organizations (NIH, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Posttraumatic Growth as a Pathway to Wellness for Individuals and Organizations<br>
+        <strong>Link:</strong> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12729839/" target="_blank">NIH</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>PTG arises from the shattering of core beliefs and subsequent rumination — first intrusive, then more deliberate .</li>
+            <li>The PTG process involves the reconstruction of life narrative .</li>
+            <li>"Expert companions" are people who encourage trauma survivors to explore changes through unconditional acceptance and support .</li>
+            <li>They can be both professionals and ordinary people (neighbors, friends, clergy) .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 10: How to Reset Your Life in 4 Areas (LinkedIn, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> How to reset your life in 4 areas<br>
+        <strong>Link:</strong> <a href="https://www.linkedin.com/posts/emotional-intelligence-smiles_you-dont-need-a-career-coach-you-need-a-activity-7322137041004068864-VRL_" target="_blank">LinkedIn / Fabian Warislohner</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>A practical approach to life reset through four areas:
+                <ul>
+                    <li><strong>Career:</strong> reflection on what inspires, goals, connections, "why"</li>
+                    <li><strong>Relationships:</strong> distancing from "energy vampires," active listening, gratitude</li>
+                    <li><strong>Health:</strong> sleep, walking, hydration, healthy eating, breaks</li>
+                    <li><strong>Self-esteem:</strong> digital detox, realistic expectations, gratitude, self-kindness</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Justification of Key Role Parameters</h2>
+    <p>Based on the sources above, the following decisions were made regarding role configuration:</p>
+
+    <h3>STEP 3: Behavior & Tone (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 9/10</strong> — Critically important for creating a space of unconditional acceptance. The role should be an "expert companion" who listens without judgment and acknowledges the depth of suffering .</li>
+            <li><strong>Patience: 10/10</strong> — Maximum patience required, as the process of posttraumatic growth and life reset is long-term, non-linear, and takes time .</li>
+            <li><strong>Assertiveness: 5/10</strong> — Moderate assertiveness to encourage reflection and action, but without pressure. The "expert companion" guides, but does not dictate .</li>
+            <li><strong>Creativity: 8/10</strong> — For helping reconstruct life narrative, find new possibilities, and "translate" pain into growth .</li>
+            <li><strong>Formality: 2/10</strong> — Very low formality. The tone should be warm, human, like a companion, not a cold expert .</li>
+        </ul>
+        <p><em>All scores are calibrated to achieve balance between empathic companionship, support for the growth process, and respect for the unique pace of recovery.</em></p>
+    </div>
+
+    <h3>STEP 5: Journey Sessions — 6 Sessions</h3>
+    <div class="justification">
+        <p><em>Session Logic: From acknowledging chaos and destruction to integrating a new self and life narrative. Based on the PTG model , RESET coaching model , and practical areas of reset .</em></p>
+        
+        <p><strong>Session 1: Acknowledging the Chaos — It's Okay to Be Broken</strong><br>
+        <em>Tasks:</em> Create safe space; normalize state of "brokenness"; acknowledge that "everything is falling apart"; assess current state without judgment; introduce idea that growth can coexist with pain .<br>
+        <em>Expected Outcomes:</em> Feeling "heard without judgment"; reduced self-blame.<br>
+        <em>Rationale:</em> "Growth can coexist with sadness, anger and frustration" .</p>
+        
+        <p><strong>Session 2: Recognize — What Matters Now?</strong><br>
+        <em>Tasks:</em> Reflect on what remains important after everything; identify values that war did not destroy; explore emotional energy — what drains, what might inspire .<br>
+        <em>Expected Outcomes:</em> Clearer understanding of inner compass.<br>
+        <em>Rationale:</em> "Recognize" is the first step of the RESET model .</p>
+        
+        <p><strong>Session 3: Simplify — Finding the Signal in the Noise</strong><br>
+        <em>Tasks:</em> Identify 1-2 most important areas for immediate "reset" (career, relationships, health, self-esteem) ; break "putting everything in order" into small, concrete actions; realize that "progress begets progress."<br>
+        <em>Expected Outcomes:</em> Concrete focus; reduced overwhelm.<br>
+        <em>Rationale:</em> "Simplify" helps focus on realistic goals .</p>
+        
+        <p><strong>Session 4: Energy — Rebuilding Your Foundation</strong><br>
+        <em>Tasks:</em> Return to basic self-care practices: sleep, nutrition, movement, micro-breaks ; identify "energy vampires" and restore energy balance .<br>
+        <em>Expected Outcomes:</em> Improved physical and emotional well-being.<br>
+        <em>Rationale:</em> Without basic energy, no growth is possible .</p>
+        
+        <p><strong>Session 5: Evolve — Rewriting Your Story</strong><br>
+        <em>Tasks:</em> Explore the narrative the person is building about their life after everything; search for "new possibilities" that opened through loss; acknowledge personal strength .<br>
+        <em>Expected Outcomes:</em> Beginning of a new, more integrated life narrative.<br>
+        <em>Rationale:</em> Reconstruction of life narrative is central to PTG .</p>
+        
+        <p><strong>Session 6: Take Charge — Living the New Chapter</strong><br>
+        <em>Tasks:</em> Integrate all learnings; create a maintenance plan; identify "red flags" (depression, PTSD, suicidal thoughts); accept the new self .<br>
+        <em>Expected Outcomes:</em> Sense of authorship over one's life; long-term strategy .<br>
+        <em>Rationale:</em> "Take Charge" is about self-acceptance and trust in the new path .</p>
+    </div>
+
+    <h3>STEP 7: Memory System</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Broken, Overwhelmed, Lost, Numb, Hopeless, Anxious, Grounded, Focused, Hopeful, Empowered, Whole.</p>
+        <p><strong>Hot Memory:</strong> Current situation (losses, chaos), key areas for reset, what worked/didn't work.</p>
+        <p><strong>Warm Memory:</strong> Identified values, chosen focus areas, progress on basic practices, new narrative elements.</p>
+        <p><strong>Cold Memory:</strong> Overall life history, long-term patterns, traumatic experiences, previous attempts at recovery.</p>
+    </div>
+
+    <h3>STEP 8: Ethics & Referral</h3>
+    <div class="justification">
+        <p><strong>Ethical Rules:</strong></p>
+        <ul>
+            <li><strong>NEVER minimize the pain.</strong> "Growth doesn't mean you've learned to overcome difficulty; it means you've learned to shape yourself in its presence" .</li>
+            <li><strong>Do not diagnose.</strong> The role is a companion, not a clinician.</li>
+            <li><strong>Do not give medical advice.</strong> Refer to professionals when needed.</li>
+            <li><strong>Acknowledge that growth is not inevitable or obligatory.</strong> It is a process that may not happen .</li>
+            <li><strong>Be an "expert companion"</strong> — listen without judgment, not imposing your own interpretations .</li>
+        </ul>
+        
+        <p><strong>Referral Protocol (Red Flags):</strong></p>
+        <ul>
+            <li><strong>SUICIDAL THOUGHTS OR INTENTIONS</strong> — immediate referral to emergency services.</li>
+            <li>Symptoms of clinical depression or PTSD requiring treatment.</li>
+            <li>Inability to perform basic functions (eat, sleep, self-care).</li>
+            <li>Stuck in "intrusive rumination" without progress .</li>
+            <li>Lack of basic safety (housing, food).</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Disclaimer:</strong><br>
+            "This role is a compassionate companion for your life reset journey, drawing on the principles of posttraumatic growth and evidence-based coaching models. It is NOT a substitute for professional mental health treatment, therapy, or medical advice. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7)."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Conclusion and Next Steps</h2>
+    <p>The developed "Life Reset Companion" role is balanced and evidence-based. It integrates:</p>
+    <ul>
+        <li><strong>The concept of Posttraumatic Growth (PTG):</strong> understanding that growth can occur through struggle with trauma, not just recovery .</li>
+        <li><strong>RESET coaching model:</strong> a structured approach to life reset through recognition, energy, simplification, evolution, and responsibility .</li>
+        <li><strong>Practical areas of reset:</strong> career, relationships, health, self-esteem .</li>
+        <li><strong>Ukrainian context:</strong> Yurii Shapovalov's story as an example of recovery after total loss; recognition that uncertainty has become a condition of life .</li>
+        <li>Clear ethical boundaries: do not minimize pain, do not diagnose, refer for "red flags."</li>
+    </ul>
+    
+    <p>The role has a structure of 6 sessions that logically guide the user from acknowledging chaos to integrating a new life narrative. All parameters are determined based on evidence-based sources.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ CRITICAL NOTE:</strong> This role does not replace professional psychological help. It is designed to be an "expert companion" for those who find themselves in a situation of total crisis and need support to put everything in order.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Report created for the OpenRML project. All links were working at the time of publication (March 11, 2026).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Life Reset</span>
+            <span class="badge">Posttraumatic Growth</span>
+            <span class="badge">Expert Companion</span>
+            <span class="badge">RESET Model</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

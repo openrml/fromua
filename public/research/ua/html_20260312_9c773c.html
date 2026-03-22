@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Inhabiting a New World (Обживання нового світу)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #16a085;
+            border-bottom: 3px solid #1abc9c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #117a65;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e8f8f5 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #1abc9c;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #1abc9c;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(26,188,156,0.15);
+        }
+        
+        .source a {
+            color: #117a65;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #1abc9c;
+        }
+        
+        .source a:hover {
+            color: #0a4d3f;
+            border-bottom: 1px solid #0a4d3f;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #16a085;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #1abc9c;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #1abc9c;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #117a65;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #1abc9c;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #1abc9c;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #1abc9c;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #16a085;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Inhabiting a New World</h1>
+    <p><em>"Обживання нового світу: коли нове місто/країна не стає домом"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Inhabiting a New World", яка допомагає людям, що через вимушене переселення (війна, евакуація) опинилися в новому місці, подолати прірву між фізичною присутністю та відчуттям "дому". Роль інтегрує дослідження формування прив'язаності до місця (place attachment), ностальгії, адаптації та інтеграції, з особливим фокусом на українських біженців та ВПО.</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">6 млн+</div>
+            <div class="stat-label">українських біженців за кордоном</div>
+            <small>(Джерело 6, WHO, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">3.5 млн+</div>
+            <div class="stat-label">внутрішньо переміщених осіб (ВПО)</div>
+            <small>(Джерело 6, WHO, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">1,016</div>
+            <div class="stat-label">учасників дослідження українських біженців у Польщі</div>
+            <small>(Джерело 1, Wnuk et al., 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">↓</div>
+            <div class="stat-label">сильна прив'язаність до дому пов'язана з вищим ПТСР</div>
+            <small>(Джерело 1, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">↑</div>
+            <div class="stat-label">прив'язаність до нового місця пов'язана зі зростанням</div>
+            <small>(Джерело 1, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Прив'язаність до місця (Place Attachment):</strong> Емоційний зв'язок між людиною та конкретним місцем. Дослідження українських біженців у Польщі (N=1,016) показало дилему: сильна прив'язаність до рідного міста в Україні була пов'язана з вищими симптомами ПТСР та нижчою задоволеністю життям. Натомість прив'язаність до нового місця проживання в Польщі позитивно корелювала із задоволеністю життям та посттравматичним зростанням (PTG) [citation:1].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Терапевтичний альянс з біженцями (Therapeutic Alliance):</strong> Огляд 20 досліджень (2014-2024) показує унікальні виклики: культурні та мовні відмінності, динаміка влади, недовіра через травму. Присутність перекладача трансформує альянс у тріадні стосунки. Рекомендації включають гнучкі терапевтичні межі, інтеграцію адвокації, безперервність допомоги [citation:5].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Акультуративний стрес (Acculturative Stress):</strong> Іммігранти стикаються з проблемами: збереження/зміна культурної ідентичності, конфлікти цінностей, мовний бар'єр, житло, робота. Типові реакції: дистрес, ностальгія, депресія, психосоматика, соціальна дезадаптація [citation:2].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Три типи близькості (Three Proximities):</strong> Дослідження у Фінляндії виділяє просторово-часову, афективну та позиційну близькість. Вони переплетені та впливають на відчуття безпеки та комфорту. Важливо створювати "місця радості", де переселенці можуть відчувати приналежність [citation:3].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Приналежність у русі (Belonging on the Move):</strong> Приналежність формується в русі між місцями. Включає спогади про минуле, щоденні рутини в новій країні та очікування майбутніх транснаціональних зв'язків [citation:9].</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Фактор</th>
+                <th>Вплив на адаптацію</th>
+                <th>Джерело</th>
+            </tr>
+            <tr>
+                <td><strong>Прив'язаність до старого місця</strong></td>
+                <td>Може бути "прокляттям" — пов'язана з вищим ПТСР, нижчою задоволеністю життям</td>
+                <td>[citation:1]</td>
+            </tr>
+            <tr>
+                <td><strong>Прив'язаність до нового місця</strong></td>
+                <td>"Зцілення" — пов'язана з вищою задоволеністю життям та PTG</td>
+                <td>[citation:1]</td>
+            </tr>
+            <tr>
+                <td><strong>Сприйнята схожість місць</strong></td>
+                <td>Чим більше схожості, тим сильніша прив'язаність до нового місця</td>
+                <td>[citation:1]</td>
+            </tr>
+            <tr>
+                <td><strong>Терапевтичний альянс</strong></td>
+                <td>Ключовий для позитивних результатів, але ускладнений мовними та культурними бар'єрами</td>
+                <td>[citation:5]</td>
+            </tr>
+            <tr>
+                <td><strong>Типи близькості</strong></td>
+                <td>Просторово-часова, афективна та позиційна близькість визначають відчуття дому</td>
+                <td>[citation:3]</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Place attachment and well-being after forced displacement (Wiley, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Place cure or place curse? Place attachment and well-being after forced displacement<br>
+        <strong>Посилання:</strong> <a href="https://iaap-journals.onlinelibrary.wiley.com/doi/abs/10.1111/aphw.70089" target="_blank">Wiley Online Library</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження українських біженців у Польщі (N=1,016).</li>
+            <li><strong>Сильна прив'язаність до рідного міста в Україні була пов'язана з вищими симптомами ПТСР та нижчою задоволеністю життям.</strong></li>
+            <li><strong>Прив'язаність до нового місця проживання в Польщі була позитивно пов'язана із задоволеністю життям та посттравматичним зростанням (PTG).</strong></li>
+            <li>Прив'язаність до старого місця негативно корелювала з прив'язаністю до нового.</li>
+            <li><strong>Чим більш схожими сприймалися два місця, тим сильнішою була прив'язаність до нового.</strong></li>
+            <li>Прив'язаність до місця може бути як ресурсом, так і фактором ризику.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: Acculturative stress and homesickness (Cambridge University Press, 2006)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Individual Differences in Acculturative Stress Reactions: Determinants of Homesickness and Psychosocial Maladjustment<br>
+        <strong>Посилання:</strong> <a href="https://core-varnish-new.prod.aop.cambridge.org:443/core/books/abs/psychological-aspects-of-geographical-moves/individual-differences-in-acculturative-stress-reactions-determinants-of-homesickness-and-psychosocial-maladjustment/758ED789907F893BDE8FD62311DBFF72" target="_blank">Cambridge Core</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Іммігранти стикаються з проблемами: збереження/зміна культурної ідентичності, конфлікти цінностей, пошук житла, мова, робота.</li>
+            <li><strong>Типові реакції на акультуративний стрес:</strong> дистрес, ностальгія, депресивні реакції (з відчуженням та безнадією), психосоматичні скарги, психосоціальна дезадаптація.</li>
+            <li>Ностальгія є частою реакцією, тісно пов'язаною з процесами акультурації.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: Proximities and place attachment in forced migrants' lives (Wiley, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Traversing Terrains of Proximities and Place Attachment in Forced Migrants' Lives in Finland<br>
+        <strong>Посилання:</strong> <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/psp.70233" target="_blank">Wiley Online Library</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження 10 учасників (walking interviews).</li>
+            <li><strong>Три типи близькості формують прив'язаність до місця:</strong> просторово-часова (spatio-temporal), афективна (affective), позиційна (positional).</li>
+            <li>Ці три типи тісно переплетені та впливають на те, наскільки безпечним, комфортним і близьким відчувається місце.</li>
+            <li>Необхідно створювати "місця радості", де вимушені мігранти можуть відчувати приналежність та контроль над власним життям.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: Mobile Centres for refugee support (European Commission, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Mobile Centres delivering integrated support in rural and underserved areas<br>
+        <strong>Посилання:</strong> <a href="https://european-social-fund-plus.ec.europa.eu/en/social-innovation-match/case-study/mobile-centres-delivering-integrated-support-rural-and" target="_blank">Europa</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Мобільні центри для українських біженців у сільських районах Європи.</li>
+            <li><strong>Місцезнаходження є критичним фактором інтеграції.</strong> Відсутність доступу до послуг посилює соціальну ізоляцію, затримує інтеграцію на ринку праці та погіршує психоемоційний стан.</li>
+            <li>Інтегрована підтримка включає: вивчення мови, консультування з працевлаштування, психосоціальну підтримку, залучення до громади.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Therapeutic alliance in refugee MHPSS (PubMed, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> The Therapeutic Alliance in Refugee Mental Health and Psychosocial Support: A Narrative Review<br>
+        <strong>Посилання:</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/40317432/" target="_blank">PubMed</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Огляд 20 досліджень (2014-2024).</li>
+            <li><strong>Унікальні виклики при роботі з біженцями:</strong> культурні та мовні відмінності, динаміка влади, недовіра через травму.</li>
+            <li>Присутність перекладача трансформує діадичний альянс у тріадний, що створює як переваги, так і складнощі.</li>
+            <li><strong>Рекомендації для зміцнення альянсу:</strong> гнучкі терапевтичні межі, інтеграція адвокації, безперервність допомоги, спеціалізоване навчання для провайдерів та перекладачів.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: WHO on Ukraine's health response (WHO, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> 1000 days of war in Ukraine: resilience in health response, recovery and reform efforts<br>
+        <strong>Посилання:</strong> <a href="https://www.who.int/europe/news-room/18-11-2024-1000-days-of-war-in-ukraine--resilience-in-health-response--recovery-and-reform-efforts-despite-attacks-and-ongoing-challenges" target="_blank">WHO Europe</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>6 млн українських біженців за кордоном, 3.5 млн ВПО всередині країни.</strong></li>
+            <li>Війна посилила потреби в ментальному здоров'ї, травма-терапії.</li>
+            <li>Інвестиції в стійкі медичні заклади та громадську інфраструктуру допомагають мешканцям залишатися в своїх громадах, сприяючи стабільності.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Ukrainian refugees' adaptation (Biblioteka Nauki, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Ukrainian refugees' adaptation to and integration with new societies and communities in the context of migration policy management<br>
+        <strong>Посилання:</strong> <a href="https://bibliotekanauki.pl/articles/62469122" target="_blank">Biblioteka Nauki</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження українських біженців (грудень 2022 - березень 2023).</li>
+            <li><strong>Необхідність холістичного підходу до міграційної політики</strong>, що враховує взаємозв'язок фінансових, соціальних, освітніх та психологічних факторів.</li>
+            <li>Рекомендації включають прискорення програм фінансової допомоги, освітні ініціативи, підтримку бізнесу.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 9: Belonging on the Move (DOAJ, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Belonging on the Move: A Multi-Method Exploration of Embodied Affect, Place Attachment, and Transnational Mobility in Migrant Lives in Norway<br>
+        <strong>Посилання:</strong> <a href="https://doaj.org/article/06d77454151c4ca9b56b975dd4e6d9ce" target="_blank">DOAJ</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Приналежність (belonging) розвивається у взаємодії фізичного середовища, особистих та сімейних стосунків, соціального та культурного контексту.</li>
+            <li>Мігранти узгоджують відчуття приналежності "в русі" — через спогади про минуле, щоденні рутини в новій країні та очікування майбутніх транснаціональних зв'язків.</li>
+            <li>Рух та прив'язаність до місця співіснують і постійно змінюють одне одного.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: Social innovation for Ukrainian refugees (ESN, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Social innovation guided by community care and co-production – the ECSILI pilot<br>
+        <strong>Посилання:</strong> <a href="https://www.esn-eu.org/news/social-innovation-guided-community-care-and-co-production-ecsili-pilot" target="_blank">European Social Network</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Проєкт ECSILI у Варшаві та Араді для інтеграції українських біженців.</li>
+            <li><strong>Принцип спільного виробництва (co-production):</strong> залучення людей, яких це стосується, до всіх етапів — від створення до оцінки послуг.</li>
+            <li>Індивідуальні плани у Варшаві враховують не лише потреби, а й бажання біженців (наприклад, курси для підвищення кваліфікації, психосоціальна підтримка).</li>
+            <li>В Араді біженці визначили мовні курси як першочергову потребу.</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Критично важливо для створення безпечного простору для людей, які пережили вимушене переселення. Дослідження підкреслюють важливість терапевтичного альянсу, ускладненого культурними бар'єрами та травмою [citation:5]. Максимальна емпатія є основою.</li>
+            <li><strong>Patience: 9/10</strong> — Дуже висока терплячість, оскільки формування нової прив'язаності до місця — це довготривалий процес, що потребує "проживання" нового простору через щоденні рутини [citation:3][citation:9].</li>
+            <li><strong>Assertiveness: 4/10</strong> — Низька наполегливість. Не можна тиснути, змушувати "полюбити" нове місце. Роль має бути супутником, який підтримує, а не директором [citation:5].</li>
+            <li><strong>Creativity: 8/10</strong> — Висока креативність для допомоги у пошуку "схожості" між старим і новим місцем [citation:1], створенні нових рутин, ритуалів, "місць радості" [citation:3], поєднанні спогадів з теперішнім [citation:9].</li>
+            <li><strong>Formality: 3/10</strong> — Низька формальність. Тон має бути теплим, людяним, без осуду, враховуючи, що багато біженців стикаються з бюрократією та відчуженням [citation:4][citation:10].</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між глибокою емпатією, терплячим супроводом та повагою до унікального темпу "обживання" нового світу.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від визнання втрати та сумування за старим до поступового "обживання" нового через тілесний досвід, рутини, зв'язки та інтеграцію минулого і теперішнього. Базується на дослідженнях place attachment [citation:1], типів близькості [citation:3] та приналежності в русі [citation:9].</em></p>
+        
+        <p><strong>Сесія 1: Honoring What Was Lost (Вшанування втраченого)</strong><br>
+        <em>Завдання:</em> Створення безпечного простору; визнання болю втрати дому, людей, ідентичності; нормалізація сумування та ностальгії [citation:2]; пояснення, що сильна прив'язаність до старого місця може бути болісною, але це нормально [citation:1].<br>
+        <em>Очікувані результати:</em> Відчуття, що їхній біль визнано; зменшення самозвинувачення за те, що "не можуть забути старе".<br>
+        <em>Обґрунтування:</em> "Прив'язаність до місця може бути як ресурсом, так і фактором ризику" [citation:1]. Спочатку треба визнати біль.</p>
+        
+        <p><strong>Сесія 2: Finding Familiarity in the New (Пошук знайомого в новому)</strong><br>
+        <em>Завдання:</em> Дослідження того, що в новому місці може нагадувати старе (архітектура, природа, запахи, звуки); використання ідеї "сприйнятої схожості" як фактора, що полегшує прив'язаність [citation:1]; створення "куточка дому" в новому просторі.<br>
+        <em>Очікувані результати:</em> Виявлення 2-3 елементів схожості; відчуття, що нове місце не таке чуже.<br>
+        <em>Обґрунтування:</em> "Чим більш схожими сприймаються два місця, тим сильніша прив'язаність до нового" [citation:1].</p>
+        
+        <p><strong>Сесія 3: Embodied Presence — Walking the New Ground (Тілесна присутність)</strong><br>
+        <em>Завдання:</em> Дослідження просторово-часової та афективної близькості через тілесний досвід [citation:3]; практика усвідомлених прогулянок новим районом; звернення уваги на відчуття (сонце, вітер, звуки); створення нових "тілесних" маркерів безпеки.<br>
+        <em>Очікувані результати:</em> Відчуття більшої присутності в тілі та просторі; зменшення відчуття "відірваності".<br>
+        <em>Обґрунтування:</em> "Приналежність розвивається через тілесний афект — сенсорний та емоційний досвід від щоденних рутин та взаємодії з місцем" [citation:3][citation:9].</p>
+        
+        <p><strong>Сесія 4: Small Routines, Small Roots (Маленькі рутини — маленьке коріння)</strong><br>
+        <em>Завдання:</em> Виявлення та створення нових щоденних рутин: улюблена кав'ярня, ранкова прогулянка, бібліотека, ринок. Це створює "позиційну близькість" — відчуття контролю та передбачуваності [citation:3].<br>
+        <em>Очікувані результати:</em> Список маленьких рутин; відчуття, що нове місце починає "відповідати".<br>
+        <em>Обґрунтування:</em> "Щоденні рутини в новій країні" формують приналежність [citation:9].</p>
+        
+        <p><strong>Сесія 5: Weaving Connections (Тканина зв'язків)</strong><br>
+        <em>Завдання:</em> Дослідження соціальних зв'язків (інші переселенці, місцеві, волонтери); участь у громадських активностях (Mobile Centres, ECSILI) [citation:4][citation:10]; подолання мовного бар'єру; робота з перекладачами як частина "тріадного альянсу" [citation:5].<br>
+        <em>Очікувані результати:</em> Ідентифікація 1-2 соціальних контактів; план участі в активності.<br>
+        <em>Обґрунтування:</em> "Приналежність розвивається у взаємодії з особистими та сімейними стосунками, соціальним та культурним контекстом" [citation:9].</p>
+        
+        <p><strong>Сесія 6: Living Between Worlds — Integration (Життя між світами)</strong><br>
+        <em>Завдання:</em> Інтеграція минулого і теперішнього: створення "ритуалу пам'яті" про старий дім і одночасно планування майбутнього в новому місці; визнання, що приналежність може бути "в русі" [citation:9]; визначення "червоних прапорців" (депресія, ізоляція, суїцидальні думки).<br>
+        <em>Очікувані результати:</em> Відчуття цілісності (не потрібно "вибирати" між старим і новим); довгостроковий план; знання ресурсів допомоги.<br>
+        <em>Обґрунтування:</em> "Мігранти узгоджують відчуття приналежності через спогади про минуле, щоденні рутини в новій країні та очікування майбутніх зв'язків" [citation:9].</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Homesick, Lost, Displaced, Grieving, Anxious, Isolated, Curious, Grounded, Connected, Familiar, At-home (however slightly).</p>
+        <p><strong>Hot Memory:</strong> Поточний рівень ностальгії/відчуження, тригери (новини з дому), що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Елементи схожості між старим і новим, улюблені рутини, створені "куточки дому", соціальні контакти, прогрес.</p>
+        <p><strong>Cold Memory:</strong> Історія втрат, довгострокові патерни адаптації, культурний бекграунд, минулий досвід переселень.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не знецінювати біль втрати дому.</strong> "Прив'язаність до старого місця" може бути глибоким джерелом страждання [citation:1].</li>
+            <li><strong>Не змушувати "полюбити" нове місце.</strong> Це природний процес, який не можна прискорити.</li>
+            <li><strong>Визнавати структурні бар'єри:</strong> бюрократія, мовний бар'єр, доступ до послуг [citation:4][citation:7].</li>
+            <li><strong>Поважати культурні відмінності</strong> та роль перекладача [citation:5].</li>
+            <li><strong>Заохочувати участь у спільному виробництві послуг (co-production)</strong> — це повертає агентність [citation:10].</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Симптоми клінічної депресії або ПТСР, що потребують лікування [citation:1].</li>
+            <li>Соціальна ізоляція, неможливість виходити з дому.</li>
+            <li>Відсутність базових потреб (житло, їжа) — направлення до соціальних служб [citation:4][citation:6].</li>
+            <li>Юридичні питання (статус біженця, документи).</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role is a compassionate companion for those navigating the difficult journey of making a new place feel like home after forced displacement. It draws on research on place attachment, acculturative stress, and refugee mental health. It is NOT a substitute for professional mental health treatment, therapy, or legal advice. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7) or local social services for displaced persons."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Inhabiting a New World" є глибоко етичною та науково-обґрунтованою. Вона інтегрує:</p>
+    <ul>
+        <li><strong>Найновіші дослідження place attachment:</strong> розуміння "прокляття" старої прив'язаності та "зцілення" через нову [citation:1].</li>
+        <li><strong>Концепцію трьох типів близькості:</strong> просторово-часової, афективної та позиційної [citation:3].</li>
+        <li><strong>Розуміння приналежності в русі:</strong> поєднання спогадів, теперішніх рутин та майбутніх зв'язків [citation:9].</li>
+        <li><strong>Принципи інтегрованої підтримки:</strong> мобільні центри, спільне виробництво послуг [citation:4][citation:10].</li>
+        <li><strong>Український контекст:</strong> масова вимушена міграція (6 млн біженців, 3.5 млн ВПО) [citation:6] та специфічні виклики адаптації [citation:7].</li>
+        <li>Чіткі етичні межі: не знецінювати втрату, не змушувати "полюбити" нове, скеровувати при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від визнання втрати до інтеграції минулого і теперішнього в новому "світі". Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не замінює професійну психологічну допомогу. Вона створена, щоб бути чуйним супутником у довгому процесі "обживання" нового світу після втрати дому.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Place Attachment</span>
+            <span class="badge">Forced Displacement</span>
+            <span class="badge">Ukrainian Refugees</span>
+            <span class="badge">IDPs</span>
+            <span class="badge">Belonging</span>
+            <span class="badge">Acculturative Stress</span>
+            <span class="badge">Therapeutic Alliance</span>
+        </p>
+    </footer>
+
+</body>
+</html>

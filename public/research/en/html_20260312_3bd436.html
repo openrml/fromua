@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research for OpenRML Role: Parents in the Storm</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #4a6b7a;
+            border-bottom: 3px solid #6b8c9c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #3a5b6a;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e6f0fa 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #6b8c9c;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #6b8c9c;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(107,140,156,0.15);
+        }
+        
+        .source a {
+            color: #3a5b6a;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #6b8c9c;
+        }
+        
+        .source a:hover {
+            color: #1a3a4a;
+            border-bottom: 1px solid #1a3a4a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #4a6b7a;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #6b8c9c;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #6b8c9c;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #3a5b6a;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #6b8c9c;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #6b8c9c;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #6b8c9c;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #3a5b6a;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Research for OpenRML Role: Parents in the Storm</h1>
+    <p><em>"Parents in the Storm: Supporting Parents Raising Children in Conditions of War, Chronic Stress, and Traumatic Events"</em></p>
+    
+    <div class="meta-info">
+        <strong>Date:</strong> March 11, 2026 | 
+        <strong>Researcher:</strong> LLM Role Architect | 
+        <strong>Status:</strong> Final Report
+    </div>
+
+    <h2>1. Research Objective</h2>
+    <p>To create a scientifically grounded, balanced, and ethical OpenRML role "Parents in the Storm" that helps parents raising children in conditions of war, chronic stress, and traumatic events. The role must address the needs of Ukrainians in the context of war, where parents face unprecedented challenges: their own traumatization, burnout, the need to support children, and lack of resources. The role is based on evidence-based approaches: Interpersonal Emotion Regulation (IER), trauma-informed parenting, and caregiver support programs (CGI).</p>
+
+    <hr>
+
+    <h2>2. Key Statistics: Ukrainian Context</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">58%</div>
+            <div class="stat-label">of parents in Ukraine have clinical-level burnout (2025)</div>
+            <small>(Source 6, Chemerys et al., 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">70%</div>
+            <div class="stat-label">burnout among grandmothers raising grandchildren</div>
+            <small>(Source 6, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">46.7%</div>
+            <div class="stat-label">of parents have depression symptoms</div>
+            <small>(Source 3, Naeem et al., 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">24.5%</div>
+            <div class="stat-label">of parents have PTSD symptoms</div>
+            <small>(Source 3, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">24.2%</div>
+            <div class="stat-label">of children aged 3-6 have ADHD symptoms</div>
+            <small>(Source 3, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">28.9%</div>
+            <div class="stat-label">PTSD in parents in regions with intensive drone attacks</div>
+            <small>(Source 3, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Terminology: Key Concepts</h2>
+    
+    <div class="key-concept">
+        <p><strong>Interpersonal Emotion Regulation (IER):</strong> How parents help their children regulate emotions — by encouraging conversations about feelings, legitimizing emotional expression, seeking solutions, or promoting distraction. Even when parents are themselves traumatized, IER can protect children from the negative effects of war .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Parental Burnout:</strong> A state characterized by exhaustion in the parental role, emotional distancing from children, and a feeling of ineffectiveness . In Ukraine, burnout levels reach 58% — significantly higher than global rates (3%) .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Trauma-Informed Parenting:</strong> An approach that considers the impact of trauma on both parents and children, recognizing that "you don't need to be a perfect parent to protect your child — the most important thing is the parent's ability to listen and give space to feelings" .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Factor</th>
+                <th>Impact on Children</th>
+                <th>Source</th>
+            </tr>
+            <tr>
+                <td><strong>Parental PTSD</strong></td>
+                <td>Increases likelihood of emotional and behavioral problems in children (OR 1.85-3.23)</td>
+                <td>Source 1, 3, 10</td>
+            </tr>
+            <tr>
+                <td><strong>Parental Depression</strong></td>
+                <td>Increases PTSD risk in children 7-17 years (OR 6.0)</td>
+                <td>Source 3</td>
+            </tr>
+            <tr>
+                <td><strong>Interpersonal Emotion Regulation (IER)</strong></td>
+                <td>Buffers the impact of parental PTSD on children, even when parents have high symptom levels</td>
+                <td>Source 1, 10</td>
+            </tr>
+            <tr>
+                <td><strong>Rumination (parental)</strong></td>
+                <td>Strengthens the link between stress and parental burnout</td>
+                <td>Source 4</td>
+            </tr>
+            <tr>
+                <td><strong>Reappraisal</strong></td>
+                <td>Reduces negative emotions and protects against burnout</td>
+                <td>Source 4</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Sources and Key Findings</h2>
+    <p>The following authoritative sources were analyzed to inform the role (all links were working at the time of writing):</p>
+
+    <h3>📌 Source 1 & 10: Parental Emotional Support Protects Children During War (Hebrew University, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Parental PTSD and Children's Well-Being During Wartime: The Role of Interpersonal Emotion Regulation<br>
+        <strong>Link:</strong> <a href="https://www.eurekalert.org/news-releases/1104536" target="_blank">EurekAlert!</a> | <a href="https://www.afhu.org/2025/11/07/parents-with-wartime-ptsd-can-still-provide-children-with-emotional-resilience/" target="_blank">AFHU</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>28% of parents met clinical criteria for PTSD .</li>
+            <li>The more severe the parents' PTSD symptoms, the greater the likelihood of emotional and behavioral problems in children .</li>
+            <li><strong>Interpersonal Emotion Regulation (IER)</strong> — how parents help children regulate emotions (through talking about feelings, legitimizing emotional expression, seeking solutions) — significantly reduces the strength of this link .</li>
+            <li>Even among parents with high PTSD levels, children of those who used adaptive emotion regulation strategies reported fewer difficulties .</li>
+            <li><strong>Optimistic message:</strong> "You don't need to be a perfect parent to protect your child — the most important thing is the parent's ability to listen and give space to feelings" .</li>
+        </ul>
+        <div class="quote">
+            <p>"The study shows that we can do something, even under harsh conditions. We can provide parents with practical tools for emotional support of children and thus prevent the psychological decline of an entire generation."</p>
+            <p style="text-align: right;">— Kleynikov, Lassri et al. </p>
+        </div>
+    </div>
+
+    <h3>📌 Source 2: Caregiver Group Intervention for Humanitarian Emergencies (Springer, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> The development of a caregiver intervention to address child mental health in settings of complex humanitarian emergency<br>
+        <strong>Link:</strong> <a href="https://link.springer.com/article/10.1186/s13031-025-00648-2" target="_blank">Springer</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Effective parenting can buffer the negative impact of humanitarian emergencies on children's mental health .</li>
+            <li>Many parents in such settings struggle to parent effectively due to environmental changes, children's psychological difficulties, and their own psychological problems .</li>
+            <li>A 6-session (2 hours each) Caregiver Intervention (CGI) was developed, delivered by non-specialists, targeting parents' knowledge/skills and their stress .</li>
+            <li>Key elements of effective interventions: caregiver psychoeducation, stress management, communication skills, social support .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 3: Parent-Child Mental Health in Ukraine (PubMed/NIH, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Parent-child mental health in Ukraine in relation to war trauma and drone attacks<br>
+        <strong>Link:</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/40090214/" target="_blank">PubMed</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Study of Ukrainian children and parents one year after the full-scale invasion (n=858) .</li>
+            <li><strong>Children 3-6 years:</strong> 24.2% had ADHD symptoms, 20.5% — conduct disorders, 12.1% — anxiety/affective disorders .</li>
+            <li><strong>Children 7-17 years:</strong> 24.1% — anxiety/affective disorders, 14.5% — conduct disorders, 14% — ADHD .</li>
+            <li>45% of children 3-6 years and 57% of children 7-17 years experienced traumatic events after the invasion .</li>
+            <li><strong>Parents:</strong> 46.7% had depression symptoms, 24.2% — anxiety symptoms, 24.5% — PTSD .</li>
+            <li>Likelihood of mental disorders in children increased with parental PTSD (OR 1.85) and parental depression (OR 1.99) .</li>
+            <li>In regions with intensive drone attacks, parental PTSD rates were higher (28.9%) .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 4: Emotion Regulation and Parental Wellbeing During War (ScienceDirect, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Trait and state emotion regulation and parental wellbeing during war<br>
+        <strong>Link:</strong> <a href="https://www.sciencedirect.com/science/article/abs/pii/S0191886925001370" target="_blank">ScienceDirect</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Study of 577 parents one month after October 7, 2023 .</li>
+            <li><strong>Rumination:</strong> repetitive negative thinking — strengthened the link between war stress and parental burnout .</li>
+            <li><strong>Reappraisal:</strong> reinterpreting the situation in a more positive light — correlated with lower burnout levels and reduced negative emotions .</li>
+            <li>12% of parents had moderate burnout levels .</li>
+            <li>Conclusion: need to promote adaptive emotion regulation strategies to support parents in high-stress environments .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 5: Parenting Support During Crises (European Research Council, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Helping families through public health crises<br>
+        <strong>Link:</strong> <a href="https://erc.europa.eu/news-events/magazine-article/helping-families-through-public-health-crises" target="_blank">ERC</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>The Parenting for Lifelong Health program (Oxford University) was adapted into multimedia resources during COVID-19 .</li>
+            <li>About a dozen positive parenting principles were turned into simple practical strategies .</li>
+            <li>Resources were translated by volunteers into over 30 languages in one weekend .</li>
+            <li>Key principle: scientific content was the foundation but never the "last word" — communities adapted it to their needs .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 6 & 9: Parenting Burnout in Ukraine (Taylor & Francis, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Parenting burnout in wartime: Exploring burnout in Ukrainian (grand-)mothers two years after the 2022 Russian invasion<br>
+        <strong>Link:</strong> <a href="https://researchers.uss.cl/en/publications/parenting-burnout-in-wartime-exploring-burnout-in-ukrainian-grand/" target="_blank">USS</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Online survey of 415 (grand)mothers in Ukraine two years after the invasion .</li>
+            <li><strong>Prevalence of parental burnout in Ukraine: 58%</strong> — significantly higher than pre-invasion levels (11%) and global average (3%) .</li>
+            <li>Highest burnout levels (70%) — in households where grandmothers are raising grandchildren .</li>
+            <li>Higher burnout levels associated with harsher parenting and medication use for mood regulation .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 7: Emotion Regulation, Parenting, and Adjustment to Chronic Stress (Taylor & Francis, 2025)</h3>
+    <div class="source">
+        <strong>Title:</strong> Emotion Regulation, Parenting, and Adjustment to Chronic Stress in Conflict Zones<br>
+        <strong>Link:</strong> <a href="https://www.tandfonline.com/doi/full/10.1080/15325024.2025.2548241" target="_blank">Taylor & Francis</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Supportive parenting (emotional attunement, acknowledgment of emotional experience, support for autonomy) promotes curious and open attitudes toward emotions in adolescents .</li>
+            <li>Such parenting encourages children to use interpersonal support as a coping mechanism .</li>
+            <li>Autonomy-supportive practices increase integrative emotion regulation and reduce avoidance/suppression .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 8: Caregiver Skills Resource Model for Ukraine (Lisbon Addictions, 2024)</h3>
+    <div class="source">
+        <strong>Title:</strong> Being prepared for humanitarian contexts with a caregiver skills resource model; an example from Ukraine<br>
+        <strong>Link:</strong> <a href="https://www.lisbonaddictions.eu/index.php/presentations/being-prepared-humanitarian-contexts-caregiver-skills-resource-model-example-ukraine" target="_blank">Lisbon Addictions</a><br>
+        <strong>Key Findings:</strong>
+        <ul>
+            <li>Positive parenting can create a protective buffer for children's mental health in humanitarian crises .</li>
+            <li>Presented a multi-level family support model: from self-help materials (flyers, booklets, videos) to multi-session programs and trauma-focused interventions .</li>
+            <li>Parenting in Crisis Response — an inter-agency coalition (WHO, UNICEF, Oxford University) created light-touch resources for parents already being used in Ukraine .</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Justification of Key Role Parameters</h2>
+    <p>Based on the sources above, the following decisions were made regarding role configuration:</p>
+
+    <h3>STEP 3: Behavior & Tone (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Critically important for creating a safe space for parents who often experience guilt, shame, and judgment. Supportive parenting begins with empathy toward the parents themselves .</li>
+            <li><strong>Patience: 9/10</strong> — Very high patience required, as parents are exhausted (58% have burnout) and need time to recover and implement changes .</li>
+            <li><strong>Assertiveness: 5/10</strong> — Moderate assertiveness to gently guide toward adaptive strategies (reappraisal, IER), without increasing feelings of failure. Caregiver interventions should provide practical tools, but without pressure .</li>
+            <li><strong>Creativity: 7/10</strong> — For creating metaphors, examples, adapting strategies to different age groups and different situations .</li>
+            <li><strong>Formality: 3/10</strong> — Low formality. A warm, supportive tone that contrasts with the judgmental voice of the "inner critic" or society. Resources should be accessible and understandable .</li>
+        </ul>
+        <p><em>All scores are calibrated to achieve balance between support, provision of practical tools, and respect for the enormous burden parents carry.</em></p>
+    </div>
+
+    <h3>STEP 5: Journey Sessions — 6 Sessions</h3>
+    <div class="justification">
+        <p><em>Session Logic: From understanding the impact of war on the family to developing interpersonal emotion regulation skills, self-care, and integration. Based on the CGI 6-session structure  and key elements of effective interventions .</em></p>
+        
+        <p><strong>Session 1: Understanding the Storm</strong><br>
+        <em>Tasks:</em> Psychoeducation: how war affects parents (PTSD, depression, burnout) and children (anxiety, ADHD, behavioral problems) ; normalize experience; create safe space without judgment.<br>
+        <em>Expected Outcomes:</em> Understanding that their reactions are normal in abnormal circumstances; reduced self-blame.<br>
+        <em>Rationale:</em> Awareness is the first step toward change. Parents need knowledge about trauma impact .</p>
+        
+        <p><strong>Session 2: You Don't Need to Be Perfect</strong><br>
+        <em>Tasks:</em> Key research message: "you don't need to be a perfect parent to protect your child" ; work with perfectionism and guilt; introduce concept of "good enough parenting."<br>
+        <em>Expected Outcomes:</em> Reduced pressure for "perfect parenting"; recognition that even traumatized parents can be a resource for children .<br>
+        <em>Rationale:</em> The optimistic research message is key to reducing despair .</p>
+        
+        <p><strong>Session 3: Interpersonal Emotion Regulation (IER) - The Language of Feelings</strong><br>
+        <em>Tasks:</em> Teach IER skills: encouraging conversations about feelings, legitimizing emotional expression, validating child's emotions; practice active listening.<br>
+        <em>Expected Outcomes:</em> Development of IER skills; reduced impact of parental PTSD on children .<br>
+        <em>Rationale:</em> IER is a key protective factor, even when parents are themselves traumatized .</p>
+        
+        <p><strong>Session 4: Parental Emotion Regulation - Reappraisal vs Rumination</strong><br>
+        <em>Tasks:</em> Teach reappraisal skills to reduce negative emotions; work with rumination; practice cognitive reframing of stressful situations .<br>
+        <em>Expected Outcomes:</em> Reduced burnout levels; decreased negative emotions .<br>
+        <em>Rationale:</em> Reappraisal protects against burnout, rumination strengthens it .</p>
+        
+        <p><strong>Session 5: Self-Care Is Not Selfish - Managing Parental Burnout</strong><br>
+        <em>Tasks:</em> Psychoeducation about parental burnout (58% in Ukraine) ; self-care practices; seeking social support; overcoming stigma .<br>
+        <em>Expected Outcomes:</em> Reduced burnout levels; feeling permission to care for oneself.<br>
+        <em>Rationale:</em> Parental burnout is associated with harsher parenting, so self-care is an investment in children .</p>
+        
+        <p><strong>Session 6: Integration and Moving Forward</strong><br>
+        <em>Tasks:</em> Review progress; create personalized support plan; identify "red flags" (depression, PTSD, suicidal thoughts); integrate all skills.<br>
+        <em>Expected Outcomes:</em> Long-term family support strategy; feeling of hope and competence.<br>
+        <em>Rationale:</em> Integration of skills is key to lasting change .</p>
+    </div>
+
+    <h3>STEP 7: Memory System</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Overwhelmed, Guilty, Exhausted (burnout), Anxious, Traumatized, Hopeless, Inadequate, Understood, Supported, Competent, Hopeful, Connected.</p>
+        <p><strong>Hot Memory:</strong> Current stress/burnout level, children's ages, current problems, what worked/didn't work.</p>
+        <p><strong>Warm Memory:</strong> Favorite IER strategies, effective approaches for different children, progress, key triggers.</p>
+        <p><strong>Cold Memory:</strong> Overall parenting history during war, long-term patterns, comorbid conditions (PTSD, depression), risks.</p>
+    </div>
+
+    <h3>STEP 8: Ethics & Referral</h3>
+    <div class="justification">
+        <p><strong>Ethical Rules:</strong></p>
+        <ul>
+            <li><strong>NEVER judge parents.</strong> They are doing their best in extreme conditions. Stigma is a huge barrier .</li>
+            <li><strong>Do not give medical advice</strong> about treating PTSD, depression, anxiety.</li>
+            <li><strong>Do not diagnose</strong> children or parents.</li>
+            <li><strong>Emphasize that even traumatized parents can be a resource</strong> — this reduces despair .</li>
+            <li><strong>Acknowledge that 58% burnout is a systemic problem</strong>, not personal failure .</li>
+            <li><strong>Encourage professional help</strong> for symptoms of depression, PTSD, suicidal thoughts.</li>
+        </ul>
+        
+        <p><strong>Referral Protocol (Red Flags):</strong></p>
+        <ul>
+            <li><strong>SUICIDAL THOUGHTS OR INTENTIONS</strong> — immediate referral to emergency services.</li>
+            <li>Symptoms of clinical depression (46.7% of parents) or PTSD (24.5%) impairing functioning .</li>
+            <li>Severe parental burnout (70% in grandmothers) leading to harsh parenting .</li>
+            <li>Suspected mental disorders in children requiring specialized care .</li>
+            <li>No improvement after 4-5 sessions or worsening condition.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Disclaimer:</strong><br>
+            "This role provides psychoeducation, emotion regulation strategies, and self-care practices for parents raising children in war zones and chronic stress. It is based on evidence-based research on interpersonal emotion regulation (IER), parental burnout, and trauma-informed parenting interventions. It is a self-help support tool, NOT a substitute for professional mental health treatment or medical advice. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming your daily life, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7) or access parenting resources from the Parenting in Crisis Response coalition."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Conclusion and Next Steps</h2>
+    <p>The developed "Parents in the Storm" role is balanced and evidence-based. It incorporates:</p>
+    <ul>
+        <li><strong>Latest research:</strong> Interpersonal Emotion Regulation (IER) as a protective factor , parental burnout in Ukraine (58%) , impact of war on children and parents .</li>
+        <li><strong>Evidence-based approaches:</strong> reappraisal vs rumination , trauma-informed caregiver interventions , positive parenting principles .</li>
+        <li><strong>Specific Ukrainian context:</strong> world's highest parental burnout rates (58%), high PTSD (24.5%) and depression (46.7%) among parents, significant psychological problems in children .</li>
+        <li>Clear ethical boundaries: no judgment, no medical advice, refer for "red flags."</li>
+    </ul>
+    
+    <p>The role has a structure of 6 sessions that logically guide the user from understanding the impact of war to integrating skills. All parameters are determined based on evidence-based sources.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ CRITICAL NOTE:</strong> This role does not replace professional psychological help. It is designed to support parents in the hardest times and remind them that "you don't need to be perfect" .</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Report created for the OpenRML project. All links were working at the time of publication (March 11, 2026).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Parenting During War</span>
+            <span class="badge">Interpersonal Emotion Regulation</span>
+            <span class="badge">Parental Burnout</span>
+            <span class="badge">Trauma-Informed Parenting</span>
+            <span class="badge">Reappraisal</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

@@ -9,7 +9,7 @@
     "pages:build": "npx @cloudflare/next-on-pages",
     "start": "next start",
     "lint": "eslint .",
-    "import-roles": "tsx scripts/import-roles.ts",
+    "import-orml": "tsx scripts/import-openrml-roles.ts",
     "cf-build": "next build",
     "cf-preview": "npx wrangler pages dev ./out --compatibility-date=2024-03-01",
     "cf-deploy": "npx wrangler pages deploy ./out --project-name=fromua"

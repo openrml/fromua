@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: The Community Builder (Будівничий спільноти)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #4a6b7a;
+            border-bottom: 3px solid #6b8c9c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #3a5b6a;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e6f0fa 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #6b8c9c;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #6b8c9c;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(107,140,156,0.15);
+        }
+        
+        .source a {
+            color: #3a5b6a;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #6b8c9c;
+        }
+        
+        .source a:hover {
+            color: #1a3a4a;
+            border-bottom: 1px solid #1a3a4a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #4a6b7a;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #6b8c9c;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #6b8c9c;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #3a5b6a;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #6b8c9c;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #6b8c9c;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #6b8c9c;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #3a5b6a;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: The Community Builder</h1>
+    <p><em>"Будівничий спільноти: підтримка лідерів, активістів та організацій у створенні та зміцненні громад"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створення науково-обґрунтованої, збалансованої та етичної ролі OpenRML "The Community Builder", яка допомагає лідерам, активістам та організаціям розвивати та зміцнювати громади. Роль має відповідати потребам українців у контексті війни, де громади стали основою стійкості, волонтерства та взаємодопомоги, та спиратися на міжнародний доказовий досвід (CBPR, соціальний капітал, trauma-informed community building).</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">10.8 млн</div>
+            <div class="stat-label">українців потребують гуманітарної допомоги</div>
+            <small>(Джерело 5, UN Ukraine, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">3.7 млн</div>
+            <div class="stat-label">внутрішньо переміщених осіб</div>
+            <small>(Джерело 5, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">6 млн</div>
+            <div class="stat-label">українців за кордоном</div>
+            <small>(Джерело 5, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">600</div>
+            <div class="stat-label">волонтерів в організації "Десантно-Козацький Рій"</div>
+            <small>(Джерело 4, Decentralization, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">70</div>
+            <div class="stat-label">бригад отримують допомогу від однієї організації</div>
+            <small>(Джерело 4, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Community-Based Participatory Research (CBPR):</strong> Підхід, який ставить громаду в центр дослідницького процесу, пріоритезуючи її потреби та активно залучаючи членів громади до розробки сталих рішень. Це справжнє партнерство між дослідниками та громадою, засноване на спільному навчанні та прийнятті рішень .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Соціальний капітал (Social Capital):</strong> Мережі довіри, взаємодопомоги та співпраці, які дозволяють громадам діяти ефективно. В умовах війни соціальний капітал стає критичним ресурсом виживання .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Травма-інформоване будування громад:</strong> Підхід, що враховує колективну травму та створює безпечний простір для важких розмов, зберігаючи емпатію та довіру .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Ключовий принцип</th>
+                <th>Опис</th>
+                <th>Джерело</th>
+            </tr>
+            <tr>
+                <td><strong>Центрування громади</strong></td>
+                <td>Пріоритет слухання мешканців, повага до різноманітних перспектив, врахування місцевої історії</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Справжнє партнерство</strong></td>
+                <td>Рівноправне партнерство між дослідниками/організаціями та громадою, спільне прийняття рішень</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Культурна чутливість</strong></td>
+                <td>Повага до часу, культури та контексту учасників; програми, адаптовані до місцевих потреб</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Постійна присутність</strong></td>
+                <td>Регулярна залученість для побудови довіри</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Лідерство з досвідом</strong></td>
+                <td>Люди з життєвим досвідом мають мати право голосу та отримувати справедливу винагороду</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: All Voices Welcome at the World Cafe (University of Rochester, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> All Voices Welcome at the World Cafe<br>
+        <strong>Посилання:</strong> <a href="https://recoverycenterofexcellence.org/articles/all-voices-welcome-at-the-world-cafe" target="_blank">Recovery Center of Excellence</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Метод "World Cafe" — це доказовий підхід до фасилітації зустрічей, який використовує неформальну атмосферу та малі групи для заохочення активної участі всіх, уникнення домінування кількох голосів .</li>
+            <li>CBPR ставить громаду в центр дослідницького процесу, пріоритезуючи її потреби та активно залучаючи членів громади .</li>
+            <li>"Побудова довіри настільки ж важлива, як і збір даних" .</li>
+            <li>Травма-інформований підхід до досліджень створює атмосферу довіри та емпатії, особливо при обговоренні складних тем .</li>
+            <li>Принципи: неформальна атмосфера, малі групи, акцент на слуханні, повага до внеску кожного .</li>
+        </ul>
+        <div class="quote">
+            <p>"World Cafe створює безпечний простір для наших сільських партнерів з громади для проведення важких розмов."</p>
+            <p style="text-align: right;">— Allison Stiles, PhD</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 2: Building Resilient Inclusive Communities (BRIC) (NACDD/CDC, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Building Resilient Inclusive Communities (BRIC)<br>
+        <strong>Посилання:</strong> <a href="https://chronicdisease.org/BRIC/" target="_blank">NACDD</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Програма BRIC працювала з 20 штатами та більш ніж 60 громадами для вирішення проблем продовольчої безпеки, фізичної активності та соціальної ізоляції .</li>
+            <li><strong>Ключові напрямки роботи з громадами:</strong>
+                <ul>
+                    <li>Продовольча безпека: співпраця з продовольчими радами, міні-гранти, впровадження стандартів харчування</li>
+                    <li>Безпечний доступ до фізичної активності: співпраця з коаліціями, плани покращення місцевої інфраструктури, оцінка потреб громади</li>
+                    <li>Соціальна зв'язаність: стратегії для людей похилого віку, міжпоколінні програми наставництва, онлайн та офлайн активності</li>
+                </ul>
+            </li>
+            <li>Програми для людей похилого віку, що пропонують освітні, соціальні, творчі та фізичні активності, заохочують особисту взаємодію та залучення громади .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: Five paths to a happier community (BPS, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Five paths to a happier community<br>
+        <strong>Посилання:</strong> <a href="https://www.bps.org.uk/psychologist/five-paths-happier-community" target="_blank">British Psychological Society</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>Говоріть — навіть коли не згодні:</strong> Ініціатива "Who is Your Neighbour" створює безпечні простори для розмов про складні теми (раса, імміграція, культура), дозволяючи людям пропрацьовувати ідентичність без звинувачень .</li>
+            <li><strong>Змінюйте наратив:</strong> Негативні наративи ("острів незнайомців") шкодять соціальній згуртованості. Сила громади — у відкритості, складності та повсякденній солідарності .</li>
+            <li><strong>Визнавайте силу громади:</strong> Ініціативи на рівні сусідства, плани та групи взаємодопомоги мають значний вплив на благополуччя всієї громади .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: Український контекст - волонтерство та громади (Decentralization, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Planting seeds for the future. How volunteers combine patriotic education for young people, support for the army, and cooperation with local authorities<br>
+        <strong>Посилання:</strong> <a href="https://decentralization.gov.ua/en/news/20328?page=1296" target="_blank">Decentralization.gov.ua</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Історія Володимира Мосейка та організації "Десантно-Козацький Рій" — приклад трансформації дитячого клубу в найбільшу волонтерську структуру Західної України з 600 волонтерами .</li>
+            <li><strong>Ключові елементи успіху:</strong>
+                <ul>
+                    <li>Співпраця з місцевою владою: меморандуми з головами РДА та громад, спільне вирішення інфраструктурних питань</li>
+                    <li>Багатофункціональність: допомога армії, освіта молоді, підтримка переселенців</li>
+                    <li>Власне виробництво: виготовлення бойових дронів</li>
+                    <li>Відсутність зарплат — обов'язкова умова для збереження волонтерського духу</li>
+                    <li>Залучення різних верств населення: пенсіонери ліплять вареники, підприємці купують Starlinks</li>
+                </ul>
+            </li>
+            <li>"Рій" — козацька одиниця, що також має конотацію бджіл, які працюють разом .</li>
+        </ul>
+        <div class="quote">
+            <p>"Найважче — чекати. Я чекаю майже дванадцять років, щоб ця кривава війна закінчилася."</p>
+            <p style="text-align: right;">— Володимир Мосейко</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 5: Years of War, Ukrainians Continue to Choose Hope (UN Ukraine, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Years of War, Ukrainians Continue to Choose Hope<br>
+        <strong>Посилання:</strong> <a href="https://ukraine.un.org/en/310581-years-war-ukrainians-continue-choose-hope" target="_blank">UN Ukraine</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>10.8 млн українців потребують гуманітарної допомоги, 3.7 млн ВПО, майже 6 млн за кордоном .</li>
+            <li>Потреби еволюціонують: окрім екстреної допомоги, потрібні довгострокові рішення — житло, школи, лікарні, травма-орієнтована допомога ветеранам .</li>
+            <li>Маттіас Шмале (координатор ООН): "Люди втомлюються, але не здаються. Це більше ніж стійкість — це свідомий вибір витримувати, рухатися вперед і наполегливо працювати, незважаючи на високу ціну."</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: JUMP Initiative - Community Engagement (UConn Health, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Creating Healthier Communities via the Integrated Just Us Moving Program (JUMP) Initiative<br>
+        <strong>Посилання:</strong> <a href="https://www.lmconference.org/fsPopup.asp?PosterID=769186&mode=posterInfo" target="_blank">LMConference.org</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Ініціатива JUMP використовує CBPR та Built Environment theory для вирішення проблем харчової безпеки .</li>
+            <li><strong>Ключові уроки:</strong>
+                <ul>
+                    <li>Постійна присутність у громаді будує довіру</li>
+                    <li>Навмисне партнерство використовує сильні сторони та ресурси громади</li>
+                    <li>Повага до учасників: цінуйте їхній час, культуру та контекст</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: North Carolina's Healthy & Resilient Communities Initiative (2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> North Carolina's Healthy & Resilient Communities Initiative<br>
+        <strong>Посилання:</strong> <a href="https://www.atachcommunity.com/our-impact/case-studies/north-carolinas-healthy-resilient-communities-initiative/" target="_blank">Atachcommunity.com</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Ініціатива NC HRCI будує стійкість громад, адресуючи травму через міжсекторальну співпрацю .</li>
+            <li><strong>Фактори успіху:</strong> широка підтримка різних секторів (уряд, освіта, правоохоронні органи, охорона здоров'я) та спільна інвестиція в персонал і системи .</li>
+            <li><strong>Рекомендації:</strong> учасники з життєвим досвідом повинні мати право голосу та отримувати справедливу винагороду .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 8: IOM DRC - Community Engagement for MHPSS (IOM, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Launch of Community Engagement Activities in Nyemba Health Zone<br>
+        <strong>Посилання:</strong> <a href="https://drcongo.iom.int/en/news/launch-community-engagement-activities-nyemba-health-zone" target="_blank">IOM DRC</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Залучення громади є основою для інтервенцій у сфері ментального здоров'я та психосоціальної підтримки (MHPSS) .</li>
+            <li>Інклюзивний підхід: врахування всіх соціальних груп, створення відкритого простору для діалогу, зміцнення довіри .</li>
+            <li>Ідентифікація 381 громадського актора та 39 фокальних точок для підтримки проєкту .</li>
+            <li>Роль фокальних точок: підвищення обізнаності про MHPSS, зменшення стигми, організація колективних активностей, надання першої психологічної допомоги, направлення до спеціалістів .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 9: Support for frontline communities (Cabinet of Ministers of Ukraine, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Support for frontline communities is based on the needs of people and the community: Oleksii Kuleba<br>
+        <strong>Посилання:</strong> <a href="https://www.kmu.gov.ua/en/news/pidtrymka-pryfrontovykh-hromad-bazuietsia-na-zapytakh-liudei-i-hromady-oleksii-kuleba" target="_blank">Cabinet of Ministers of Ukraine</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Програма підтримки прифронтових громад базується на реальних запитах людей .</li>
+            <li><strong>Основні напрямки:</strong> енергетична стійкість, житло та реконструкція, охорона здоров'я та освіта, місцева економіка, соціальна інфраструктура для молоді та спорту .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Source 10: From People to Place and Power (Penn State University, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> From People to Place and Power: Coalitions that Succeed by Grounding Efforts in Community Context<br>
+        <strong>Посилання:</strong> <a href="https://prevention.psu.edu/evidence2success/from-people-to-place-and-power-coalitions-that-succeed-by-grounding-efforts-in-community-context/" target="_blank">Penn State University</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Центрування громади та контексту є життєво важливим для сталих змін .</li>
+            <li><strong>Що це означає на практиці:</strong>
+                <ul>
+                    <li>Пріоритет слухання мешканців</li>
+                    <li>Пошук та повага до різноманітних перспектив</li>
+                    <li>Врахування того, як місцева історія сформувала поточні реалії</li>
+                </ul>
+            </li>
+            <li>Коли експертиза мешканців та їхнє право голосу були поставлені в центр, "це запалило вогонь" .</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 9/10</strong> — Висока емпатія є критичною для розуміння потреб громади, визнання її болю та створення безпечного простору для важких розмов .</li>
+            <li><strong>Patience: 9/10</strong> — Дуже висока терплячість, оскільки розвиток громади — це довготривалий процес, що потребує постійної присутності та "висіння" .</li>
+            <li><strong>Assertiveness: 5/10</strong> — Помірна наполегливість, щоб м'яко направляти та підтримувати ініціативи, але не домінувати. Ключовий принцип CBPR — рівноправне партнерство .</li>
+            <li><strong>Creativity: 8/10</strong> — Висока креативність для створення нових форм залучення, адаптації програм до місцевих потреб, вирішення нестандартних проблем .</li>
+            <li><strong>Formality: 3/10</strong> — Низька формальність. Неформальна атмосфера сприяє відкритості та залученню всіх голосів .</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між лідерством, партнерством та повагою до автономії громади.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від розуміння потреб громади до створення сталих структур та інтеграції. Базується на принципах CBPR , міжсекторальної співпраці  та українському досвіді .</em></p>
+        
+        <p><strong>Сесія 1: Understanding Your Community (Розуміння вашої громади)</strong><br>
+        <em>Завдання:</em> Оцінка поточного стану громади; визначення ключових потреб та ресурсів; картування зацікавлених сторін; пріоритет слухання мешканців .<br>
+        <em>Очікувані результати:</em> Чітке розуміння сильних сторін та викликів громади; карта ключових акторів.<br>
+        <em>Обґрунтування:</em> Центрування громади є першим кроком до сталих змін .</p>
+        
+        <p><strong>Сесія 2: Building Trust and Relationships (Побудова довіри та стосунків)</strong><br>
+        <em>Завдання:</em> Стратегії побудови довіри; створення безпечних просторів для діалогу; практика активного слухання; визнання та повага до різноманітних перспектив .<br>
+        <em>Очікувані результати:</em> Зміцнення довіри між учасниками; відчуття безпеки для відкритих розмов.<br>
+        <em>Обґрунтування:</em> Побудова довіри настільки ж важлива, як і збір даних .</p>
+        
+        <p><strong>Сесія 3: Collaborative Visioning (Спільне бачення)</strong><br>
+        <em>Завдання:</em> Фасилітація процесу спільного визначення бачення майбутнього громади; використання інклюзивних методів (World Cafe) ; залучення різних груп населення.<br>
+        <em>Очікувані результати:</em> Спільне бачення, яке відображає потреби та прагнення всієї громади.<br>
+        <em>Обґрунтування:</em> Інклюзивний підхід створює відкритий простір для діалогу .</p>
+        
+        <p><strong>Сесія 4: Building Multi-Sector Coalitions (Побудова міжсекторальних коаліцій)</strong><br>
+        <em>Завдання:</em> Ідентифікація потенційних партнерів з різних секторів (влада, бізнес, освіта, медицина); створення міцних коаліцій; розподіл ролей та відповідальності .<br>
+        <em>Очікувані результати:</em> Сформована міжсекторальна коаліція з чіткими ролями.<br>
+        <em>Обґрунтування:</em> Широка підтримка різних секторів створює спільну відповідальність за результати .</p>
+        
+        <p><strong>Сесія 5: Designing and Implementing Community-Led Projects (Розробка та впровадження проєктів)</strong><br>
+        <em>Завдання:</em> Розробка проєктів на основі визначених потреб; залучення ресурсів; впровадження з урахуванням культурної чутливості; навчання місцевих лідерів .<br>
+        <em>Очікувані результати:</em> Запущені проєкти, які відповідають реальним потребам громади.<br>
+        <em>Обґрунтування:</em> Люди з життєвим досвідом повинні мати право голосу .</p>
+        
+        <p><strong>Сесія 6: Sustaining Momentum and Building Resilience (Підтримка імпульсу та стійкості)</strong><br>
+        <em>Завдання:</em> Створення механізмів для довготривалої підтримки; оцінка впливу; святкування успіхів; визначення "червоних прапорців" (вигорання, конфлікти).<br>
+        <em>Очікувані результати:</em> Довгострокова стратегія підтримки громади; стійкість до майбутніх викликів.<br>
+        <em>Обґрунтування:</em> Люди втомлюються, але не здаються — це свідомий вибір .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Disconnected, Mistrustful, Overwhelmed, Hopeless, Isolated, Connected, Trusting, Empowered, Hopeful, United.</p>
+        <p><strong>Hot Memory:</strong> Поточний рівень залученості громади, ключові проблеми, що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Історія громади, ключові лідери, успішні проєкти, рівень довіри, партнерства.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія громади, довгострокові патерни, травматичний досвід, демографічні зміни.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не використовувати громаду лише як джерело даних.</strong> Громада має бути рівноправним партнером .</li>
+            <li><strong>Не обіцяти того, що не можна виконати.</strong> Розвиток громади потребує реалістичних очікувань.</li>
+            <li><strong>Поважати місцевий контекст та історію.</strong> Вони формують поточні реалії .</li>
+            <li><strong>Компенсувати учасникам їхній час та внесок.</strong> Це визнання цінності їхньої роботи .</li>
+            <li><strong>Бути чутливим до колективної травми.</strong> Війна створила глибокі рани .</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>Вигорання лідерів громади.</strong> Володимир Мосейко: "Найважче — чекати" .</li>
+            <li><strong>Конфлікти в громаді, що потребують медіації.</strong></li>
+            <li><strong>Травма, що потребує професійної психологічної допомоги.</strong> 10.8 млн українців потребують допомоги .</li>
+            <li><strong>Юридичні питання, пов'язані з реєстрацією організацій або власністю.</strong></li>
+            <li><strong>Відсутність прогресу або погіршення ситуації в громаді.</strong></li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides guidance, strategies, and support for community leaders, activists, and organizations working to build and strengthen communities. It is based on evidence-based approaches including Community-Based Participatory Research (CBPR), trauma-informed community building, and multi-sector collaboration. It is a capacity-building and support tool, NOT a substitute for professional community organizing, legal advice, or mental health services. If you or your community members are in crisis, please seek immediate help from appropriate professionals or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7)."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "The Community Builder" є збалансованою та науково-обґрунтованою. Вона враховує:</p>
+    <ul>
+        <li><strong>Міжнародні доказові підходи:</strong> CBPR , міжсекторальні коаліції , травма-інформоване будування громад .</li>
+        <li><strong>Принципи успішних ініціатив:</strong> центрування громади, побудова довіри, повага до контексту, залучення різних голосів .</li>
+        <li><strong>Специфічний український контекст:</strong> неймовірна стійкість громад, волонтерський рух, 600 волонтерів в одній організації, 10.8 млн потребуючих допомоги .</li>
+        <li>Чіткі етичні межі: не використовувати громаду, поважати місцевий контекст, компенсувати учасникам.</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від розуміння потреб громади до створення сталих структур. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не замінює професійний досвід організаторів громад. Вона створена, щоб підтримати лідерів та допомогти їм уникнути вигорання, зберігаючи фокус на потребах громади.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Community Building</span>
+            <span class="badge">CBPR</span>
+            <span class="badge">Social Capital</span>
+            <span class="badge">Trauma-Informed</span>
+            <span class="badge">Multi-Sector Collaboration</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

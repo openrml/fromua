@@ -1,0 +1,57 @@
+{
+  "hero": {
+    "line1": "UKRAINE LEARNED TO LIVE",
+    "line2": "IN UNCERTAINTY.",
+    "line3": "THE WORLD IS JUST BEGINNING.",
+    "sub": "While others studied resilience, we practiced it daily. We turned it into structured AI roles — open, free, built for the real world.",
+    "exploreRoles": "Explore 29 Roles",
+    "readManifesto": "Read Manifesto",
+    "stats": {
+      "roles": "Structured Roles",
+      "protocol": "Open Protocol",
+      "license": "Base License",
+      "registration": "Registration Required"
+    }
+  },
+  "philosophy": {
+    "heading1": "Not motivational quotes.",
+    "heading2": "Not \"chat with a bot.\"",
+    "sub": "When noise surrounds you — you need structure. When systems collapse — you need protocol.",
+    "pillars": [
+      {
+        "label": "Structured Thinking",
+        "description": "Each role is a protocol — not a conversation starter. It follows a defined architecture with identity, archetype, and session structure."
+      },
+      {
+        "label": "Emotional Stabilization",
+        "description": "Built for acute and chronic stress environments. Roles provide cognitive scaffolding when internal resources are depleted."
+      },
+      {
+        "label": "Strategic Decision Support",
+        "description": "Clarity over comfort. Roles help users move from paralysis to action through structured frameworks, not motivational language."
+      }
+    ],
+    "checklist": [
+      "Structured thinking",
+      "Emotional stabilization",
+      "Strategic decision support",
+      "24/7 clarity"
+    ]
+  },
+  "categories": {
+    "heading": "Five categories",
+    "sub": "The full spectrum of human crisis support.",
+    "viewLabel": "View"
+  },
+  "cta": {
+    "step1": "Download",
+    "step2": "Insert into any LLM",
+    "step3": "Get an ally.",
+    "heading1": "No registration.",
+    "heading2": "No dependency.",
+    "heading3": "Free forever.",
+    "sub": "Download any role as a plain text file. Insert it at the start of any LLM conversation. The role activates immediately — no API, no account, no lock-in.",
+    "browseRoles": "Browse Roles",
+    "readStandard": "Read the Standard →"
+  }
+}

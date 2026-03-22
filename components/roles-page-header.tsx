@@ -1,9 +1,9 @@
 'use client'
 
-import { useLanguage } from '@/components/language-context'
+import { useLocale } from '@/components/locale-provider'
 
 export function RolesPageHeader() {
-  const { t } = useLanguage()
+  const { t } = useLocale()
   const rc = t.rolesCatalog
 
   return (

@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Don't Burn Out While Lighting the Way for Others (Не згори, світячи іншим)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #c06040;
+            border-bottom: 3px solid #e07a5f;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #a04e3a;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #fceae5 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #e07a5f;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #e07a5f;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(224,122,95,0.15);
+        }
+        
+        .source a {
+            color: #a04e3a;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #e07a5f;
+        }
+        
+        .source a:hover {
+            color: #702e1a;
+            border-bottom: 1px solid #702e1a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #c06040;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #e07a5f;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #e07a5f;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #a04e3a;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #e07a5f;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #e07a5f;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #e07a5f;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #c06040;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Don't Burn Out While Lighting the Way for Others</h1>
+    <p><em>"Не згори, світячи іншим: профілактика та подолання емоційного вигорання, співчутливої втоми та професійного стресу у допомагаючих професій"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Don't Burn Out While Lighting the Way for Others", яка допомагає працівникам допомагаючих професій (медики, психологи, соціальні працівники, рятувальники, волонтери) запобігати та долати емоційне вигорання, співчутливу втому (compassion fatigue) та професійний стрес. Роль має відповідати потребам українців у контексті війни, де ці явища набули критичних масштабів, та спиратися на міжнародний доказовий досвід (MBSR, CBT, позитивна психологія, організаційні інтервенції).</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український та міжнародний контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">40%</div>
+            <div class="stat-label">працівників мають симптоми вигорання (Північна Америка)</div>
+            <small>(Джерело 1, NIH, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">30-40%</div>
+            <div class="stat-label">претензій з короткострокової непрацездатності через ментальне здоров'я</div>
+            <small>(Джерело 1, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">94%</div>
+            <div class="stat-label">медичних працівників позитивно оцінили програму підтримки Care Code</div>
+            <small>(Джерело 7, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">8.7/10</div>
+            <div class="stat-label">задоволеність українських медиків онлайн-тренінгом SOLOMIYA</div>
+            <small>(Джерело 9, Cambridge, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">30%</div>
+            <div class="stat-label">зменшення кількості медсестер в Україні (2015-2022)</div>
+            <small>(Джерело 4, ZOiS, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">229</div>
+            <div class="stat-label">Центрів життєстійкості відкрито в Україні</div>
+            <small>(Джерело 5, Мінсоцполітики, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Емоційне вигорання (Burnout):</strong> Багатовимірний феномен, що характеризується хронічним робочим стресом, який не був успішно подоланий. Включає три основні виміри: емоційне виснаження (відчуття спустошеності), цинізм/деперсоналізація (негативне ставлення до роботи та людей) та редукція професійних досягнень (зниження відчуття компетентності) .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Співчутлива втома (Compassion Fatigue):</strong> Стан, що розвивається у професіоналів, чия робота пов'язана з турботою про інших, особливо тих, хто страждає або пережив травму. Це тяжка емоційна втома, яка негативно впливає на здатність піклуватися про пацієнтів та виконувати професійні обов'язки .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Емоційна стійкість (Emotional Resilience):</strong> Ключовий фактор пом'якшення ефектів співчутливої втоми. Включає адаптацію до стресу через розвиток стратегій подолання та сильних систем підтримки. Характеристики: оптимізм, адаптивність, емоційний інтелект, практики турботи про себе .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Тип інтервенції</th>
+                <th>Приклади</th>
+                <th>Ефективність</th>
+            </tr>
+            <tr>
+                <td><strong>Індивідуальні</strong></td>
+                <td>MBSR (майндфулнес), CBT, позитивна психологія, самоспівчуття</td>
+                <td>SMD = -0.32 (невеликий до помірного ефект) </td>
+            </tr>
+            <tr>
+                <td><strong>Організаційні/структурні</strong></td>
+                <td>Зміна робочого навантаження, менторство, підтримка керівництва</td>
+                <td>Потенційно вища ефективність, але менше досліджень </td>
+            </tr>
+            <tr>
+                <td><strong>Гібридні/комплексні</strong></td>
+                <td>Care Code (холістичні інтервенції + організаційна підтримка)</td>
+                <td>94% позитивних відгуків, 83% зниження стресу </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Digital Self-Guided Mental Health Interventions to Prevent Workplace Burnout (NIH, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Digital Self-Guided Mental Health Interventions to Prevent Workplace Burnout and Enhance Psychological Wellness: Protocol for a Systematic Review<br>
+        <strong>Посилання:</strong> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12795410/" target="_blank">https://pmc.ncbi.nlm.nih.gov/articles/PMC12795410/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Майже 40% працівників повідомляють про симптоми вигорання, спричинені надмірним робочим навантаженням, недостатньою підтримкою керівництва та токсичною організаційною культурою.</li>
+            <li>Проблеми ментального здоров'я становлять приблизно 30-40% претензій з короткострокової непрацездатності.</li>
+            <li>Самодопомога (self-guided interventions) пропонує гнучкість, доступність та економічну ефективність, усуваючи такі бар'єри, як висока вартість, довгі черги, конфлікти в розкладі та стигму.</li>
+            <li>Огляд має на меті ідентифікувати найефективніший контент, активності та теоретичні рамки в цифрових інтервенціях для запобігання вигоранню.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: Nourishing Emotional Resilience: Practical Self-Care Strategies for Oncology Nurses (The Oncology Nurse, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Nourishing Emotional Resilience: Practical Self-Care Strategies for Oncology Nurses<br>
+        <strong>Посилання:</strong> <a href="https://www.theoncologynurse.com/issue-archive/2025/may-2025-vol-18-no-2/nourishing-emotional-resilience-practical-self-care-strategies-for-oncology-nurses" target="_blank">Посилання</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Емоційна стійкість (resilience) є ключовим фактором пом'якшення ефектів співчутливої втоми.</li>
+            <li>Характеристики стійких людей: оптимізм, адаптивність, емоційний інтелект, практики турботи про себе.</li>
+            <li>Підтримка оптимізму захищає від стресу та підвищує загальне благополуччя.</li>
+            <li>Практики усвідомленості (mindfulness), такі як медитація та глибоке дихання, ефективні для зниження стресу та сприяння емоційному балансу.</li>
+            <li>Критично важливий компонент стійкості — час на відновлення (recovery time). Хронічний стрес без періодів відновлення має серйозні наслідки для психічного та фізичного здоров'я.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: School-Based Trauma Interventions (Psych News Alert, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Six School-Based Trauma Interventions Found to Have High or Moderate Effectiveness<br>
+        <strong>Посилання:</strong> <a href="https://alert.psychnews.org/six-school-based-trauma-interventions-found-to-have-high-or-moderate-effectiveness" target="_blank">Посилання</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Огляд 25 шкільних інтервенцій показав, що програми, які включають <strong>когнітивно-поведінкові та творчо-експресивні техніки</strong>, були послідовно ефективними в різних умовах та культурах.</li>
+            <li>Висновок: "Інтервенції, що включали когнітивно-поведінкові та творчо-експресивні техніки, були послідовно ефективними в безлічі умов та культур."</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: How Nursing is Overlooked in Ukraine's Healthcare Crisis (ZOiS, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> How Nursing is Overlooked in Ukraine's Healthcare Crisis<br>
+        <strong>Посилання:</strong> <a href="https://www.zois-berlin.de/en/publications/zois-spotlight/how-nursing-is-overlooked-in-ukraines-healthcare-crisis" target="_blank">Посилання</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Кількість медсестер в Україні зменшилася майже на третину між 2015 та 2022 роками.</li>
+            <li>Причини: низька оплата, інтенсивні умови праці, скасування норм навантаження.</li>
+            <li>Цитата медсестри з 28-річним стажем: "Я дуже часто плачу, напевно, через стрес і кортизол... Це стан відчаю, є такий психологічний термін 'фрустрація' — негативна емоція, коли мета не досягається."</li>
+            <li>Збільшення робочого навантаження та значне емоційне напруження є ключовими факторами поширеного відчуття виснаження та вигорання.</li>
+            <li>Психоемоційний стан багатьох опитаних показує ознаки співчутливої втоми (compassion fatigue).</li>
+        </ul>
+        <div class="quote">
+            <p>"Це свого роду відчай, знаєте, є такий психологічний термін 'фрустрація' – це негативна емоція, яку ви відчуваєте, коли мета не досягається. Після 28 років кожен повинен мати щось, що можна показати. І я розумію, що ці 28 років пройшли марно. Здається, що ти розумна людина і робиш дуже корисну роботу, але щось не так. Ах, вигорання. Так. Ось слово, яке я шукала. Емоційне та фізичне."</p>
+            <p style="text-align: right;">— Ірина, українська медсестра з 28-річним стажем</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 5: Resilience Center Opens in Zaporizhzhia (Мінсоцполітики України, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Resilience Center Opens in Zaporizhzhia - A Space for Psychosocial Support<br>
+        <strong>Посилання:</strong> <a href="https://www.msp.gov.ua/en/press-center/news/resilience-center-opens-in-zaporizhzhia-a-space-for-psychosocial-support" target="_blank">Посилання</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Станом на червень 2025 року в 24 областях України працює 229 Центрів життєстійкості.</li>
+            <li>Центри надають допомогу людям, які відчувають стрес, втому, емоційне виснаження або адаптуються до нових життєвих обставин.</li>
+            <li>Це місця, "де відновлюються сила, зв'язки та впевненість у собі".</li>
+            <li>Центри працюють за програмою "Ти як?" Першої леді Олени Зеленської.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Prevention of burnout syndrome in physicians: a systematic review and meta-analysis (PubMed, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Prevention of burnout syndrome in physicians: a systematic review and meta-analysis<br>
+        <strong>Посилання:</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/41212207/" target="_blank">https://pubmed.ncbi.nlm.nih.gov/41212207/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Мета-аналіз 22 досліджень показав значне зниження вигорання в інтервенційних групах із <strong>standardised mean difference (SMD) = -0.32</strong>, що свідчить про невеликий до помірного ефект.</li>
+            <li>Найпоширенішими інтервенціями були програми, засновані на майндфулнес (MBSR) або подібні до них.</li>
+            <li>MBSR не виявився кращим за інші інтервенції в підгруповому аналізі.</li>
+            <li>Автори закликають зосередитися на структурних програмах, які вирішують проблеми відсутності менторства, зростання адміністративних завдань або довгого робочого дня, оскільки вони можуть бути більш ефективними.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Care Code® and Holistic Interventions: Addressing Compassion Fatigue and Improving Resiliency Among Staff (ACCC, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Care Code® and Holistic Interventions: Addressing Compassion Fatigue and Improving Resiliency Among Staff<br>
+        <strong>Посилання:</strong> <a href="https://journals.accc-cancer.org/view/care-code-and-holistic-interventions-addressing-compassion-fatigue-and-improving-resiliency-among-staff" target="_blank">Посилання</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Онкологічні медсестри та лікарі більш схильні до внутрішнього дистресу через зв'язок між раком і смертю.</li>
+            <li>Програма Care Code пропонує холістичні інтервенції: Healing Touch, Reiki, медитація, керована уява, ароматерапія.</li>
+            <li><strong>Результати опитування 2025 року:</strong>
+                <ul>
+                    <li><strong>94%</strong> підтвердили, що Care Code допомагає їм емоційно та/або духовно протягом робочого дня.</li>
+                    <li><strong>83%</strong> повідомили про зниження рівня стресу після візиту Care Code.</li>
+                    <li><strong>93%</strong> погодилися, що Care Code допомагає їм відчувати себе цінованими та визнаними.</li>
+                    <li>Найкорисніші інтервенції: їжа (92%), ароматерапія (87%), картки з афірмаціями (69%), дихання/медитація (53%).</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 8: FOREST Program - Positive Emotion Skills for Violence Prevention Workers (ADAA, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Fostering Optimal Regulation of Emotion for Prevention of Secondary Trauma (FOREST)<br>
+        <strong>Посилання:</strong> <a href="https://adaa.trialstoday.org/trial/NCT05942469" target="_blank">Посилання</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Програма FOREST навчає 10 навичок позитивних емоцій протягом 9 місяців для працівників, які займаються запобіганням насильству.</li>
+            <li>Мета: зменшити вигорання та плинність кадрів, підвищити стійкість.</li>
+            <li>Підхід: інфузія навичок в організаційну культуру через щомісячні сесії, онлайн-модулі та "амбасадорів позитивних емоцій".</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 9: SOLOMIYA Project - Online Psychological Training for Ukrainian Medical Workers (Cambridge, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Prevention of professional burnout among medical workers during wartime: results of an online psychological training program in Ukraine<br>
+        <strong>Посилання:</strong> <a href="https://www.cambridge.org/core/search?filters%5BauthorTerms%5D=V.+Rusanov&eventCode=SE-AU" target="_blank">Посилання</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Онлайн-тренінг розроблений спеціалістами Charité (Берлін) та Богомольця (Київ) в рамках проєкту SOLOMIYA.</li>
+            <li>Учасники: 27 медичних працівників з України. Інтервенція: 4 години (дві 2-годинні сесії), включаючи психоедукацію, практичні вправи та інтерактивні дискусії.</li>
+            <li><strong>Результати:</strong> високий рівень задоволеності: середній бал 8.7/10, 59% оцінили як "відмінно" (9-10).</li>
+            <li>Учасники повідомили, що вправи та стратегії подолання були корисними для управління стресом. Інтерактивні дискусії були особливо корисними, демонструючи важливість соціальної підтримки.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: Mental health support teams in Ukraine offer a lifeline in a warzone (UNFPA, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Mental health support teams in Ukraine offer a lifeline in a warzone<br>
+        <strong>Посилання:</strong> <a href="https://test-global-unfpa.pantheonsite.io/news/mental-health-support-teams-ukraine-offer-lifeline-warzone" target="_blank">Посилання</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Майже дві третини домогосподарств в Україні повідомляють про тривогу, депресію або екстремальний стрес.</li>
+            <li>87 мобільних психосоціальних груп UNFPA працюють в Україні.</li>
+            <li>Цитата соціального працівника Романа: "Коли ми прибуваємо на місця обстрілів або у випадках насильства, у нас немає часу сповільнюватися. Ми включаємося миттєво і починаємо надавати послуги. Це так, ніби наші власні реакції призупинені. Тільки пізніше, коли ми озираємося назад і обговорюємо це, ми усвідомлюємо, наскільки це було важко."</li>
+            <li>Важливість систем підтримки для самих працівників: "Потім, коли безпосередня криза врегульована, ми звертаємося до власних мереж підтримки і все це переробляємо."</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Критично важливо для створення безпечного простору для людей, які самі є помічниками. Вони потребують, щоб їхній біль був визнаний, а їхня втома — нормалізована. Програма Care Code показала, що "бути присутніми для інших, розділяючи їхній біль" є ключовим .</li>
+            <li><strong>Patience: 9/10</strong> — Дуже висока терплячість, оскільки відновлення від вигорання — це процес. Як зазначають дослідження, критично важливий "час на відновлення" .</li>
+            <li><strong>Assertiveness: 5/10</strong> — Помірна наполегливість, щоб м'яко заохочувати до практик турботи про себе, але не тиснути. Люди з вигоранням часто відчувають провину за те, що беруть паузу .</li>
+            <li><strong>Creativity: 7/10</strong> — Для різноманітних технік: творчо-експресивні вправи , афірмації, візуалізації, ароматерапія .</li>
+            <li><strong>Formality: 3/10</strong> — Низька формальність. Теплий, людяний тон, що контрастує з "холодною" медичною/бюрократичною мовою, є важливим для створення відчуття турботи .</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, заохоченням до самодопомоги та повагою до професійного досвіду користувача.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від розуміння вигорання та співчутливої втоми до відновлення, розвитку стійкості та інтеграції практик у професійне життя.</em></p>
+        
+        <p><strong>Сесія 1: Understanding Burnout and Compassion Fatigue (Розуміння вигорання та співчутливої втоми)</strong><br>
+        <em>Завдання:</em> Психоосвіта: три компоненти вигорання (емоційне виснаження, цинізм, редукція досягнень) ; співчутлива втома як професійний ризик ; нормалізація досвіду; оцінка власного стану.<br>
+        <em>Очікувані результати:</em> Розуміння, що вигорання — це не особиста невдача, а результат хронічного стресу; зменшення самозвинувачення.<br>
+        <em>Обґрунтування:</em> Усвідомлення проблеми є першим кроком до її вирішення .</p>
+        
+        <p><strong>Сесія 2: The Importance of Recovery Time (Важливість часу на відновлення)</strong><br>
+        <em>Завдання:</em> Дослідження концепції "часу на відновлення" ; виявлення бар'єрів до відпочинку (провина, перфекціонізм); планування мікропауз протягом дня; техніки швидкого відновлення.<br>
+        <em>Очікувані результати:</em> Визнання критичної важливості відпочинку; зменшення провини за паузи; впровадження мікропауз.<br>
+        <em>Обґрунтування:</em> Хронічний стрес без відновлення має серйозні наслідки .</p>
+        
+        <p><strong>Сесія 3: Mindfulness and Self-Regulation (Майндфулнес та саморегуляція)</strong><br>
+        <em>Завдання:</em> Практики усвідомленості (дихання, медитація, сканування тіла); керована уява; використання ароматерапії для швидкого заземлення .<br>
+        <em>Очікувані результати:</em> Зниження фізіологічного збудження; навички саморегуляції в стресових ситуаціях.<br>
+        <em>Обґрунтування:</em> MBSR є найпоширенішою інтервенцією з доведеною ефективністю .</p>
+        
+        <p><strong>Сесія 4: Building Emotional Resilience (Розвиток емоційної стійкості)</strong><br>
+        <em>Завдання:</em> Розвиток оптимізму (як захисного фактора) ; практики вдячності; виявлення та підсилення сильних сторін; робота з переконаннями .<br>
+        <em>Очікувані результати:</em> Підвищення емоційної стійкості; більш позитивний погляд на професійну діяльність.<br>
+        <em>Обґрунтування:</em> Оптимізм захищає від стресу та підвищує задоволеність роботою .</p>
+        
+        <p><strong>Сесія 5: The Power of Connection and Support (Сила зв'язку та підтримки)</strong><br>
+        <em>Завдання:</em> Важливість соціальної підтримки (колеги, друзі, сім'я); створення "мережі підтримки"; практики дебрифінгу після важких випадків; звернення по допомогу без сорому.<br>
+        <em>Очікувані результати:</em> Посилення зв'язків з колегами; зменшення ізоляції; нормалізація прохання про допомогу.<br>
+        <em>Обґрунтування:</em> Інтерактивні дискусії та соціальна підтримка були визнані особливо корисними в українському дослідженні .</p>
+        
+        <p><strong>Сесія 6: Creating a Sustainable Self-Care Plan (Створення сталого плану турботи про себе)</strong><br>
+        <em>Завдання:</em> Інтеграція всіх вивчених технік у персоналізований план; визначення "червоних прапорців" (погіршення симптомів, суїцидальні думки); планування довгострокової підтримки; святкування прогресу.<br>
+        <em>Очікувані результати:</em> Довгострокова стратегія профілактики вигорання; відчуття контролю над власним благополуччям.<br>
+        <em>Обґрунтування:</em> Сталий підхід до самодопомоги є ключем до довготривалого благополуччя .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Exhausted, Cynical, Ineffective, Compassion-fatigued, Overwhelmed, Numb, Guilty, Restored, Energized, Connected, Hopeful.</p>
+        <p><strong>Hot Memory:</strong> Поточний рівень виснаження, останні стресові події на роботі, що працювало/не працювало в цій сесії.</p>
+        <p><strong>Warm Memory:</strong> Улюблені практики відновлення, ефективні стратегії подолання стресу, ключові професійні тригери, прогрес.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія професійного стресу, довгострокові патерни, коморбідні стани, ризики.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не звинувачувати користувача</strong> за його вигорання. Це системна проблема, а не особиста невдача .</li>
+            <li><strong>Не давати медичних порад</strong> щодо лікування депресії, тривоги, безсоння.</li>
+            <li><strong>Не ставити діагнозів</strong> — роль не має на це права.</li>
+            <li><strong>Підкреслювати, що турбота про себе — це не егоїзм, а необхідність</strong> для тих, хто піклується про інших.</li>
+            <li><strong>Визнавати, що деякі структурні проблеми (перевантаження, брак персоналу) потребують організаційних змін</strong>, і роль не може їх вирішити .</li>
+            <li><strong>Заохочувати звернення до фахівця</strong> при симптомах депресії, ПТСР, суїцидальних думках.</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Симптоми клінічної депресії або тривожного розладу, що заважають функціонуванню.</li>
+            <li>Ознаки ПТСР (флешбеки, гіперпильність, уникнення).</li>
+            <li>Зловживання алкоголем або седативними препаратами як спосіб впоратися зі стресом.</li>
+            <li>Неможливість виконувати професійні обов'язки через емоційний стан.</li>
+            <li>Відсутність покращення після 4-5 сесій або погіршення стану.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides psychoeducation, self-care practices, and resilience-building strategies to help you prevent and cope with burnout and compassion fatigue. It is based on evidence-based approaches including MBSR, positive psychology, and holistic interventions. It is a self-help support tool, NOT a substitute for professional mental health treatment or medical advice. Burnout can be a symptom of underlying conditions such as depression or anxiety that require professional diagnosis and treatment. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming your daily life, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7) or visit one of the 229 Resilience Centers across the country."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Don't Burn Out While Lighting the Way for Others" є збалансованою та науково-обґрунтованою. Вона враховує:</p>
+    <ul>
+        <li><strong>Доказові індивідуальні інтервенції:</strong> MBSR (SMD = -0.32) , техніки усвідомленості , когнітивно-поведінкові та творчо-експресивні техніки .</li>
+        <li><strong>Холістичні та інноваційні підходи:</strong> програма Care Code (94% позитивних відгуків) , FOREST (навички позитивних емоцій) .</li>
+        <li><strong>Специфічний український контекст:</strong> катастрофічне скорочення медсестер , високий рівень стресу серед населення , відкриття 229 Центрів життєстійкості , успішність онлайн-тренінгу SOLOMIYA .</li>
+        <li>Чіткі етичні межі: не звинувачувати, не давати медичних порад, скеровувати при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від розуміння вигорання до створення сталого плану турботи про себе. Всі параметри (тональність, риси особистості, техніки, етичні межі) визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль призначена для підтримки індивідуальних стратегій подолання вигорання. Вона не може замінити організаційні зміни (зменшення навантаження, покращення умов праці), які часто є першопричиною проблеми.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Burnout Prevention</span>
+            <span class="badge">Compassion Fatigue</span>
+            <span class="badge">Resilience</span>
+            <span class="badge">MBSR</span>
+            <span class="badge">Self-Care</span>
+            <span class="badge">Healthcare Workers</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

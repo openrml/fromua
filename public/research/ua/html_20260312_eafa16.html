@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Kitchen Assistant (Помічник на кухні)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #e67e22;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #ecf0f1 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #e67e22;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #e67e22;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(230,126,34,0.15);
+        }
+        
+        .source a {
+            color: #d35400;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #e67e22;
+        }
+        
+        .source a:hover {
+            color: #a04000;
+            border-bottom: 1px solid #a04000;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #2c3e50;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #e67e22;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #e67e22;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #d35400;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #e67e22;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #e67e22;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #e67e22;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Kitchen Assistant</h1>
+    <p><em>"Помічник на кухні: смачно приготувати, заощадивши бюджет"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Kitchen Assistant", яка допомагає людям готувати смачну, здорову та економну їжу вдома. Роль інтегрує дослідження з планування харчування, зменшення харчових відходів, економії коштів та психологічних аспектів приготування їжі вдома, з особливим фокусом на український контекст економічних труднощів та необхідності раціонального використання ресурсів.</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика та висновки досліджень</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">58.5%</div>
+            <div class="stat-label">витрат на їжу йде на харчування поза домом (США)</div>
+            <small>(Джерело 8, USDA/SoFi, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">$4-6</div>
+            <div class="stat-label">вартість домашньої їжі на людину</div>
+            <small>(Джерело 8, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">$15+</div>
+            <div class="stat-label">вартість ресторанної їжі на людину</div>
+            <small>(Джерело 8, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">7 балів</div>
+            <div class="stat-label">вищий HEI-індекс у тих, хто часто готує вдома</div>
+            <small>(Джерело 3, Seattle Obesity Study, 2017)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">17%</div>
+            <div class="stat-label">менші щомісячні витрати на їжу</div>
+            <small>(Джерело 3, 2017)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">£6,700</div>
+            <div class="stat-label">річна економія через batch cooking (UK)</div>
+            <small>(Джерело 6, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">410 годин</div>
+            <div class="stat-label">річної економії часу через batch cooking</div>
+            <small>(Джерело 6, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">40%</div>
+            <div class="stat-label">менше витрачають покупці зі списком</div>
+            <small>(Джерело 6, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">$2,000-2,500</div>
+            <div class="stat-label">річні втрати австралійської сім'ї через харчові відходи</div>
+            <small>(Джерело 2, NSW Health, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">1/3</div>
+            <div class="stat-label">всієї їжі в австралійських домогосподарствах йде на смітник</div>
+            <small>(Джерело 2, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Планування харчування (Meal Planning):</strong> Процес створення плану страв на тиждень, що базується на наявних інгредієнтах, сезонності та бюджеті. Дослідження FAO/Agris (2024) підтверджує, що планування харчування дозволяє оптимізувати витрати, зменшити харчові відходи та покращити харчову цінність раціону. Математичні моделі можуть створювати плани з нульовими відходами .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Batch Cooking (готування партіями):</strong> Приготування великих порцій страв (наприклад, 153 порції за один раз) та їх заморожування для подальшого використання. Дослідження 2026 року показує, що цей метод може заощадити сім'ї до £6,700 на рік та 410 годин часу .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Економічність домашнього приготування:</strong> Seattle Obesity Study (2017) показало, що ті, хто часто готує вдома, витрачають лише 23% бюджету на їжу поза домом (проти 47% у тих, хто рідко готує) і мають на 17% нижчі загальні витрати на їжу .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Healthy Eating Index (HEI):</strong> Показник відповідності раціону Дієтичним рекомендаціям для американців (шкала 0-100). Домашнє приготування корелює з вищим HEI (на 7 балів), меншим споживанням калорій, порожніх калорій та натрію .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Харчові відходи (Food Waste):</strong> Австралійська сім'я щороку викидає їжі на $2,000-2,500, що дорівнює кожному п'ятому продуктовому пакету . Планування, правильне зберігання та "scrappy cooking" (використання всіх частин продуктів) можуть суттєво зменшити ці втрати .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Економія на продуктах:</strong> Дослідження показують, що покупці зі списком витрачають приблизно на 40% менше . Важливо також порівнювати ціну за 100 г, купувати сезонні продукти, обирати магазинні бренди та використовувати картки лояльності .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>FIFO (First In, First Out):</strong> Принцип ротації продуктів, при якому старіші продукти використовуються першими. Це критично важливо для зменшення псування та відходів .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Розтягування страв (Stretching recipes):</strong> Додавання дешевих та здорових інгредієнтів (овочі, бобові, крупи) до м'ясних страв для збільшення об'єму та зниження вартості порції .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Український контекст:</strong> В умовах війни, економічної нестабільності та інфляції, вміння готувати вдома економно та раціонально стає не просто корисним, а життєво необхідним. Зростання цін на продукти вимагає від українських родин пошуку способів заощаджувати без шкоди для якості харчування.</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Стратегія економії</th>
+                <th>Опис</th>
+                <th>Потенційна економія/вигода</th>
+            </tr>
+            <tr>
+                <td><strong>Планування харчування</strong></td>
+                <td>Складання тижневого меню на основі наявних продуктів та акцій </td>
+                <td>Зменшення відходів, економія часу та грошей</td>
+            </tr>
+            <tr>
+                <td><strong>Список покупок</strong></td>
+                <td>Чіткий список перед походом до магазину, уникнення імпульсних покупок </td>
+                <td>До 40% менше витрат </td>
+            </tr>
+            <tr>
+                <td><strong>Batch cooking</strong></td>
+                <td>Готування великих порцій та заморожування </td>
+                <td>До £6,700/рік та 410 годин/рік </td>
+            </tr>
+            <tr>
+                <td><strong>Розтягування страв</strong></td>
+                <td>Додавання овочів, бобових, круп до м'яса </td>
+                <td>Зменшення вартості порції, збільшення об'єму </td>
+            </tr>
+            <tr>
+                <td><strong>Правильне зберігання</strong></td>
+                <td>FIFO, герметичні контейнери, заморозка </td>
+                <td>Зменшення псування, подовження терміну придатності </td>
+            </tr>
+            <tr>
+                <td><strong>Scrappy cooking</strong></td>
+                <td>Використання всіх частин продуктів (шкірка, стебла) </td>
+                <td>Зменшення відходів, безкоштовні інгредієнти </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Meal prepping on a budget (Consumer Reports, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Consumer Reports: Meal prepping on a budget<br>
+        <strong>Посилання:</strong> <a href="https://www.krgv.com/news/consumer-reports-meal-prepping-on-a-budget" target="_blank">KRGV/Consumer Reports</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Почніть з планування страв на весь тиждень, складіть список покупок і дотримуйтесь його .</li>
+            <li>Дослідження показують, що покупці в магазині витрачають менше, ніж онлайн, але важливо дотримуватись списку .</li>
+            <li>Обирайте магазинні бренди — вони часто такі ж смачні, як і відомі бренди, але дешевші .</li>
+            <li>Використовуйте картки лояльності та перевіряйте додатки магазинів на наявність знижок та купонів .</li>
+            <li>Правильне обладнання (аерофритюрниця, мультиварка) заощаджує час на кухні .</li>
+            <li>Аерофритюрниця дозволяє смажити з мінімальною кількістю жиру .</li>
+            <li>Мультиварка ідеально підходить для приготування бобових — дешевого джерела білка .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: Meal planning on a budget (NSW Health, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Meal planning on a budget<br>
+        <strong>Посилання:</strong> <a href="https://www.schn.health.nsw.gov.au/kids-health-hub/kids-nutrition/healthy-family-meal-planning/meal-planning-budget" target="_blank">Sydney Children's Hospitals Network</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Австралійські харчові відходи дорівнюють 1 з кожних 5 продуктових сумок .</li>
+            <li>Середня родина викидає їжі на $2,000-2,500 щороку! .</li>
+            <li>Будуйте меню навколо кількох ключових інгредієнтів, щоб використовувати їх у різних стравах протягом тижня .</li>
+            <li>Приклад: з інгредієнтів для мексиканських курячих буріто можна приготувати курку з салатом, тостадилья, сирно-томатний тост та інші страви .</li>
+            <li>Перевіряйте, що вже є вдома, перед походом у магазин .</li>
+            <li>Заморожені овочі та фрукти так само корисні, як свіжі, і мають довший термін зберігання .</li>
+            <li>Обирайте дешевші види м'яса, порівнюйте ціну за кг .</li>
+            <li>Їжте безм'ясні страви, використовуючи сочевицю, нут, тофу .</li>
+            <li>Купуйте сезонні продукти .</li>
+            <li>Уникайте імпульсних покупок — список покупок є ключовим .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: Cooking at home is cheaper and better for you (Seattle Obesity Study, 2017)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Cooking at home is cheaper and better for you<br>
+        <strong>Посилання:</strong> <a href="https://mds.culinarymedicine.org/bites/2017/051017.shtml" target="_blank">Culinary Medicine</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження 437 дорослих, які відповідали за харчування в сім'ї .</li>
+            <li>Ті, хто часто готував вдома, витрачали лише 23% бюджету на їжу поза домом, тоді як ті, хто рідко готував, — 47% .</li>
+            <li>Ті, хто часто готував вдома, мали на 7 балів вищий Healthy Eating Index (HEI) .</li>
+            <li>Вони споживали менше калорій, порожніх калорій та натрію .</li>
+            <li><strong>Висновок:</strong> ті, хто часто готує вдома, витрачають на 17% менше на їжу щомісяця .</li>
+        </ul>
+        <div class="quote">
+            <p>"Повідомлення чітке: готувати власну їжу дешевше та корисніше."</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 4: Kitchen guide for students (Safefood, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> How to cook - a kitchen guide for students<br>
+        <strong>Посилання:</strong> <a href="https://www.safefood.net/healthy-eating/healthy-food-and-you/how-to-cook-a-kitchen-guide-for-students" target="_blank">Safefood</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Запасіться консервами — вони доступні та не псуються .</li>
+            <li>Паста та рис — бюджетні основи; обирайте цільнозернові варіанти .</li>
+            <li>Консервовані помідори — основа для соусів .</li>
+            <li>Бобові — найдешевше джерело білка .</li>
+            <li>Заморожені овочі — зручні, корисні та не псуються .</li>
+            <li>М'ясний фарш — бюджетний спосіб отримати смак м'яса .</li>
+            <li>Бульйонні кубики додають смаку бюджетним стравам .</li>
+            <li>Супи — простий спосіб використати залишки овочів .</li>
+            <li>Соуси (табаско, соєвий, срірача) додають різноманітності .</li>
+            <li>Заморожуйте фрукти для смузі .</li>
+            <li>Слоукукер — економний та зручний прилад .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Food cost control strategies (CSNM, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Coping With Inflation<br>
+        <strong>Посилання:</strong> <a href="https://csnm.ca/coping-with-inflation/#content" target="_blank">Canadian Society of Nutrition Management</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Ціни на продукти зросли на 33.2% між січнем 2021 та липнем 2024 (для порівняння: 9.2% за 2016-2020) .</li>
+            <li><strong>Планування:</strong> мати формалізовані рецепти з точною калькуляцією вартості .</li>
+            <li><strong>Закупівля:</strong> приєднуйтесь до закупівельних груп, прогнозуйте попит .</li>
+            <li><strong>Отримання товарів:</strong> перевіряйте, чи все відповідає замовленню, чи не зіпсоване .</li>
+            <li><strong>Інвентаризація:</strong> FIFO, обмежений доступ до складів, щомісячний облік .</li>
+            <li><strong>Виробництво:</strong> суворо дотримуйтесь рецептів, контролюйте порції, відстежуйте відходи .</li>
+            <li><strong>Порівняння фактичної та теоретичної вартості:</strong> найкращий спосіб контролю витрат .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Batch cooking savings (LatestDeals.co.uk, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> New Research Claims Families Can Save £6,700 Yearly With One Simple Food Habit<br>
+        <strong>Посилання:</strong> <a href="https://www.latestdeals.co.uk/news/cook-once-save-fortune-6700-kitchen-trick-hiding-freezer" target="_blank">LatestDeals.co.uk</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження Lidl показало, що родини можуть заощаджувати до <strong>£6,700 на рік</strong> та 410 годин часу, готуючи страви партіями та заморожуючи їх .</li>
+            <li>Одна мама приготувала 153 страви за одну мега-сесію .</li>
+            <li><strong>Поради:</strong> готуйте подвійну порцію, заморожуйте пласко (як книги на полиці), підписуйте все, плануйте перед покупками, використовуйте заморожені овочі .</li>
+            <li>Покупці зі списком витрачають приблизно на 40% менше .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Meal planning and food waste optimization (FAO/Agris, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Optimizing household food waste: The impact of meal planning, package sizes, and performance indicators<br>
+        <strong>Посилання:</strong> <a href="https://agris.fao.org/search/zh/records/662912bc2b3930d7cdc09e8c" target="_blank">FAO/Agris</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Основною причиною харчових відходів є погане планування харчування .</li>
+            <li>Модель на основі математичного програмування може створювати плани харчування та списки покупок, обираючи комбінації рецептів на основі доступних розмірів упаковок .</li>
+            <li>Така модель оптимізує харчові відходи, витрати, викиди парникових газів та харчову цінність .</li>
+            <li><strong>Результат:</strong> здорові, доступні плани харчування з нульовими відходами .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 8: Eating at home vs eating out (SoFi, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Examining the Price of Eating at Home vs Eating Out<br>
+        <strong>Посилання:</strong> <a href="https://www.sofi.com/learn/content/price-of-eating-at-home-vs-eating-out/" target="_blank">SoFi</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>За даними USDA, 58.5% витрат на їжу йде на харчування поза домом (проти 41.5% на домашню їжу) .</li>
+            <li>У 2024 році ціни на домашню їжу зросли на 1.2%, тоді як на ресторанну — на 4.1% .</li>
+            <li>Домашня їжа коштує приблизно $4-6 на людину, тоді як ресторанна — $15 і більше .</li>
+            <li>Домашнє приготування дозволяє контролювати інгредієнти та робити здоровіший вибір .</li>
+            <li>Поради для економії в ресторанах: не замовляти напої, десерти, ділити страву, ходити на happy hour .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 9: Making food go further (Kaiser Permanente, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Learning About How to Make Food Go Further<br>
+        <strong>Посилання:</strong> <a href="https://healthy.kaiserpermanente.org/health-wellness/health-encyclopedia/he.learning-about-how-to-make-food-go-further.acq5967" target="_blank">Kaiser Permanente</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Розтягуйте рецепти, додаючи овочі, сочевицю, квасолю, коричневий рис .</li>
+            <li>Змішуйте фарш з вівсом, бобами, сочевицею або тертими овочами .</li>
+            <li>Готуйте страви "одна страва" (чилі, супи, рагу, стир-фрай) — менше відходів .</li>
+            <li>Робіть другу страву з залишків .</li>
+            <li>Готуйте страви без м'яса, використовуючи білок рослинного походження .</li>
+            <li>Використовуйте заморожені та консервовані овочі та фрукти .</li>
+            <li>Заморожуйте продукти близькі до дати "використати до" .</li>
+            <li>Плануйте харчування на тиждень .</li>
+            <li>Плануйте страви навколо того, що вже є вдома .</li>
+            <li>Діліться продуктами з сусідами або друзями .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: Foodservice budget management (Chicken of the Sea, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> New Year Foodservice Budget Tune-up<br>
+        <strong>Посилання:</strong> <a href="https://b2b.chickenofthesea.com/foodservice/blog/new-year-foodservice-budget-tune-up/" target="_blank">Chicken of the Sea</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Управління харчовими витратами: працюйте з постачальниками, щоб знайти замінники інгредієнтів .</li>
+            <li>Управління відходами: контроль замовлень, перевірка поставок, FIFO, заміна perishable продуктів на shelf-stable .</li>
+            <li>Контроль порцій: стандартизовані рецепти, калібровані мірні прилади .</li>
+            <li>AI-інструменти для автоматизації завдань, управління запасами, порівняння цін .</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 8/10</strong> — Висока емпатія для розуміння стресу, пов'язаного з приготуванням їжі, особливо для людей з обмеженим бюджетом, часом або кулінарними навичками. Важливо створити безпечний простір без осуду .</li>
+            <li><strong>Patience: 9/10</strong> — Дуже висока терплячість, оскільки кулінарні навички та звички планування формуються поступово. Рекомендується починати з малого, не перевантажувати .</li>
+            <li><strong>Assertiveness: 5/10</strong> — Помірна наполегливість для заохочення до спроб нових рецептів та методів, але без тиску. Важливо не створювати додаткового стресу .</li>
+            <li><strong>Creativity: 9/10</strong> — Дуже висока креативність для адаптації рецептів під наявні інгредієнти, створення нових комбінацій, "розтягування" страв та використання залишків .</li>
+            <li><strong>Formality: 4/10</strong> — Помірно низька формальність. Тон має бути теплим, дружнім, як у досвідченого кулінара, який ділиться секретами, а не суворого вчителя .</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, практичністю та заохоченням до кулінарної творчості.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від основ планування та економії до практичних навичок готування, роботи з залишками, batch cooking та створення сталої кухонної системи. Базується на дослідженнях планування , економії , batch cooking  та зменшення відходів .</em></p>
+        
+        <p><strong>Сесія 1: The Foundation — Planning Your Meals (Основа — планування)</strong><br>
+        <em>Завдання:</em> Введення в концепцію планування харчування; перевірка наявних продуктів; створення тижневого меню на основі акцій та сезонності ; складання списку покупок; обіцянка дотримуватись списку .<br>
+        <em>Очікувані результати:</em> Перший досвід планування; зменшення імпульсних покупок .<br>
+        <em>Обґрунтування:</em> "Покупці зі списком витрачають приблизно на 40% менше" .</p>
+        
+        <p><strong>Сесія 2: Shopping Smart — Getting the Best Value (Розумні покупки)</strong><br>
+        <em>Завдання:</em> Порівняння цін за 100 г/кг ; вибір магазинних брендів ; використання карток лояльності та купонів ; закупівля базових продуктів (консерви, крупи, заморожені овочі) ; розуміння, де знаходяться дешевші товари в магазині (нижні полиці) .<br>
+        <em>Очікувані результати:</em> Зменшення витрат на продукти; наповнення комори бюджетними основами.<br>
+        <em>Обґрунтування:</em> "Магазинні бренди можуть заощадити гроші, і часто вони такі ж смачні" .</p>
+        
+        <p><strong>Сесія 3: Smart Cooking — Techniques for Flavor and Savings (Розумне готування)</strong><br>
+        <em>Завдання:</em> Основи готування: використання дешевих джерел білка (бобові, фарш) ; "розтягування" м'ясних страв овочами та крупами ; використання заморожених овочів ; приготування простих соусів з консервованих помідорів .<br>
+        <em>Очікувані результати:</em> Вміння готувати бюджетні, смачні страви; зменшення залежності від дорогих інгредієнтів.<br>
+        <em>Обґрунтування:</em> "Бобові — найдешевше джерело білка" .</p>
+        
+        <p><strong>Сесія 4: Waste Not, Want Not — Using Everything (Без відходів)</strong><br>
+        <em>Завдання:</em> Правильне зберігання продуктів (FIFO, герметичні контейнери, заморозка) ; scrappy cooking — використання стебел, шкірки, залишків ; приготування бульйону з обрізків ; перетворення залишків на нові страви .<br>
+        <em>Очікувані результати:</em> Зменшення харчових відходів; економія на продуктах .<br>
+        <em>Обґрунтування:</em> "Середня родина викидає їжі на $2,000-2,500 щороку" .</p>
+        
+        <p><strong>Сесія 5: Batch Cooking — Cook Once, Eat Many Times (Готування партіями)</strong><br>
+        <em>Завдання:</em> Введення в batch cooking: готування подвійних порцій ; заморожування пласко (у пакетах) ; підписування страв ; планування однієї "мега-сесії" на тиждень .<br>
+        <em>Очікувані результати:</em> Економія часу та грошей; завжди готова домашня їжа .<br>
+        <em>Обґрунтування:</em> "Batch cooking може заощадити до £6,700 на рік та 410 годин часу" .</p>
+        
+        <p><strong>Сесія 6: Your Personal Kitchen System — Sustainability (Ваша кухонна система)</strong><br>
+        <em>Завдання:</em> Інтеграція всіх навичок у персоналізовану систему; створення "меню-ротації" улюблених страв; планування бюджету на харчування; визначення "червоних прапорців" (нездатність годувати родину, серйозні харчові обмеження); план подальшої підтримки.<br>
+        <em>Очікувані результати:</em> Довгострокова стратегія економного та смачного харчування; відчуття контролю.<br>
+        <em>Обґрунтування:</em> "Сильний контроль витрат починається з плану" .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Overwhelmed (кухнею), Stressed (бюджетом), Inexperienced, Creative, Satisfied, Proud, In-control, Resourceful.</p>
+        <p><strong>Hot Memory:</strong> Поточний тижневий план, список покупок, що в холодильнику скоро зіпсується, що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Улюблені бюджетні рецепти, ефективні стратегії розтягування страв, успішні batch-cooking сесії, що в морозилці.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія харчування, сімейні вподобання, алергії, бюджетні обмеження, кулінарні навички.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>Не засуджувати харчові звички:</strong> Кожен має свій бюджет, смаки та обмеження. Мета — допомогти, а не критикувати.</li>
+            <li><strong>Безпека харчування:</strong> Наголошувати на важливості безпечного зберігання, розморожування та приготування їжі .</li>
+            <li><strong>Визнання обмежень:</strong> Не давати медичних порад щодо дієт (діабет, алергії) — скеровувати до дієтолога .</li>
+            <li><strong>Доступність:</strong> Пропонувати альтернативи для людей з обмеженим доступом до кухонного обладнання.</li>
+            <li><strong>Культурна чутливість:</strong> Враховувати різноманітність кулінарних традицій та вподобань.</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>Харчова небезпека:</strong> Ознаки псування, неправильне зберігання, ризик харчових отруєнь — направлення до відповідних служб.</li>
+            <li><strong>Серйозні дієтичні обмеження:</strong> Діабет, целіакія, алергії — направлення до дієтолога або лікаря .</li>
+            <li><strong>Нездатність годувати родину:</strong> Фінансові труднощі — направлення до соціальних служб, food banks.</li>
+            <li><strong>Розлади харчової поведінки:</strong> Ознаки обмежувальних дієт, переїдання — направлення до психолога.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides educational guidance, recipes, and practical tips for cooking at home on a budget. It is based on current research in nutrition, food economics, and food waste reduction. It is NOT a substitute for professional dietary advice, medical nutrition therapy, or financial counseling. If you have specific dietary needs, medical conditions, or severe food insecurity, please consult with a qualified professional or social services."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Kitchen Assistant" є збалансованою та науково-обґрунтованою. Вона інтегрує:</p>
+    <ul>
+        <li><strong>Економічні дослідження:</strong> домашнє приготування дешевше на 17% , batch cooking економить £6,700/рік .</li>
+        <li><strong>Дослідження планування:</strong> покупці зі списком витрачають на 40% менше , планування зменшує відходи .</li>
+        <li><strong>Зменшення відходів:</strong> родини викидають $2,000-2,500 щороку , scrappy cooking та правильне зберігання зменшують втрати .</li>
+        <li><strong>Практичні стратегії:</strong> розтягування страв, використання бобових, заморожених овочів, консервів .</li>
+        <li>Чіткі етичні межі: без засудження, безпека харчування, скеровування при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від основ планування до створення сталої кухонної системи. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не замінює професійну дієтологічну допомогу. Вона створена, щоб допомогти людям готувати смачно, економно та раціонально, особливо в умовах економічних труднощів.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Meal Planning</span>
+            <span class="badge">Budget Cooking</span>
+            <span class="badge">Food Waste</span>
+            <span class="badge">Batch Cooking</span>
+            <span class="badge">Kitchen Tips</span>
+        </p>
+    </footer>
+
+</body>
+</html>

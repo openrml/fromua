@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: The Art of Waiting (Мистецтво чекати)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #5d6d7e;
+            border-bottom: 3px solid #7f8c8d;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #4d5d6e;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #eaf2f8 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #7f8c8d;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #7f8c8d;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(127,140,141,0.15);
+        }
+        
+        .source a {
+            color: #4d5d6e;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #7f8c8d;
+        }
+        
+        .source a:hover {
+            color: #2d3d4e;
+            border-bottom: 1px solid #2d3d4e;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #5d6d7e;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #7f8c8d;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #7f8c8d;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #4d5d6e;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #7f8c8d;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #7f8c8d;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #7f8c8d;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #5d6d7e;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: The Art of Waiting</h1>
+    <p><em>"Мистецтво чекати: підтримка в періоди невизначеності, очікування новин та хронічного стресу"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "The Art of Waiting", яка допомагає людям справлятися з періодами очікування, невизначеності та стресу, пов'язаного з очікуванням важливих новин або подій. Роль має відповідати потребам українців у контексті війни, де очікування є хронічним станом (очікування обстрілів, звісток з фронту, результатів евакуації, зниклих безвісти), та спиратися на міжнародний доказовий досвід (психологія терпіння, майндфулнес-інтервенції, когнітивно-поведінкові підходи до роботи з невизначеністю).</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український та міжнародний контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">38%</div>
+            <div class="stat-label">українців мають високий ризик депресії</div>
+            <small>(IOM Ukraine, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">76%</div>
+            <div class="stat-label">українців відповідають критеріям ПТСР (2022-2023)</div>
+            <small>(New Line Institute, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">52,950+</div>
+            <div class="stat-label">дзвінків на національну гарячу лінію психологічної підтримки</div>
+            <small>(IOM Ukraine)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">11,383</div>
+            <div class="stat-label">людей отримали психологічну підтримку від HI</div>
+            <small>(Humanity & Inclusion)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: психологія очікування</h2>
+    
+    <div class="key-concept">
+        <p><strong>Терпіння як риса особистості (Trait Patience):</strong> Визначається як "схильність людини чекати спокійно перед обличчям фрустрації, негараздів або страждання" (Schnitker, 2012). Терплячі люди менше хвилюються і відчувають менше негативних емоцій під час очікування особисто-значущих новин [citation:1].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Невизначене очікування (Uncertain Waiting):</strong> Ситуації, коли людина має чекати на особисто-важливу інформацію. Це емоційно напружений досвід, що часто перевищує клінічні пороги тривожних розладів (наприклад, очікування результатів медичних тестів) [citation:1].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Інтолерантність до невизначеності (Intolerance of Uncertainty):</strong> Риси, що визначають, наскільки загрозливою та неприємною людина вважає невизначеність. Підвищена інтолерантність пов'язана з меншою готовністю чекати в невизначеності [citation:4][citation:7].</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Фактор</th>
+                <th>Вплив на здатність чекати</th>
+            </tr>
+            <tr>
+                <td><strong>Терпіння (Trait Patience)</strong></td>
+                <td>Позитивний: менше хвилювання, більше позитивних емоцій, менше використання неефективних стратегій (придушення, уникання) [citation:1]</td>
+            </tr>
+            <tr>
+                <td><strong>Дисконтування відстрочки (Delay Discounting)</strong></td>
+                <td>Негативний: перевага меншим негайним винагородам над більшими відстроченими пов'язана з меншою готовністю чекати [citation:4][citation:7]</td>
+            </tr>
+            <tr>
+                <td><strong>Інтолерантність до невизначеності</strong></td>
+                <td>Негативний: високі показники пов'язані з меншою готовністю чекати [citation:4][citation:7]</td>
+            </tr>
+            <tr>
+                <td><strong>Нейротизм (Neuroticism)</strong></td>
+                <td>Негативний: пов'язаний з труднощами прийняття рішень в умовах невизначеності [citation:7]</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Роль терпіння під час стресових періодів очікування (ScienceDirect, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Patiently waiting: The role of trait patience during stressful waiting periods<br>
+        <strong>Посилання:</strong> <a href="https://www.sciencedirect.com/science/article/abs/pii/S0092656625001138" target="_blank">ScienceDirect</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження визначає терпіння як "схильність людини чекати спокійно перед обличчям фрустрації, негараздів або страждання" [citation:1].</li>
+            <li>Міні-мета-аналіз показав, що люди з вищим рівнем терпіння:
+                <ul>
+                    <li>Менше хвилюються під час очікування особисто-значущих новин</li>
+                    <li>Відчувають менше негативних і більше позитивних емоцій</li>
+                    <li>Уникають відносно неефективних стратегій подолання, таких як відволікання (distraction) та придушення (suppression) [citation:1]</li>
+                </ul>
+            </li>
+            <li>Очікування в невизначеності є емоційно напруженим досвідом, який може перевищувати клінічні пороги тривожних розладів [citation:1].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: Майндфулнес-інтервенції в очікуванні болю (Frontiers, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Waiting for pain: effect of a mindfulness intervention during a wait situation on pain intensity<br>
+        <strong>Посилання:</strong> <a href="https://www.frontiersin.org/journals/pain-research/articles/10.3389/fpain.2025.1653859/full" target="_blank">Frontiers</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження вивчало, чи можна використовувати час очікування в приймальні для короткої майндфулнес-інтервенції [citation:5].</li>
+            <li><strong>Ключові результати:</strong>
+                <ul>
+                    <li>Майндфулнес-інтервенція підвищила стан усвідомленості (state mindfulness) (d = 0.37) [citation:5].</li>
+                    <li>Інструкція "хвилюватися" призвела до збільшення сприйняття болю (d = 0.31) [citation:5].</li>
+                    <li>Сама по собі майндфулнес-інтервенція не знизила інтенсивність болю, але запобігла її зростанню [citation:5].</li>
+                </ul>
+            </li>
+            <li>Висновок: очікування можна використовувати для розвитку усвідомленості, що має позитивні ефекти [citation:5].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: Індивідуальні відмінності в готовності чекати в невизначеності (Sage Journals, 2018)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Hating waiting: Individual differences in willingness to wait in uncertainty<br>
+        <strong>Посилання:</strong> <a href="https://journals.sagepub.com/doi/10.1177/2043808718778982" target="_blank">Sage Journals</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження вивчало, чи пов'язана готовність чекати в невизначеності з індивідуальними відмінностями в імпульсивності, тривожності та регуляції емоцій [citation:4][citation:7].</li>
+            <li><strong>Ключові відмінності між тими, хто чекає (waiters) і не чекає (non-waiters):</strong>
+                <ul>
+                    <li>Non-waiters мають вищі рівні дисконтування відстрочки (delay discounting), нейротизму, інтолерантності до невизначеності та хвилювання [citation:4][citation:7].</li>
+                    <li>Non-waiters повідомляли про більше напруження після завдання [citation:4][citation:7].</li>
+                </ul>
+            </li>
+            <li>Висновок: існує зв'язок між порушеним прийняттям рішень в умовах невизначеності та підвищеним ризиком психопатології [citation:4][citation:7].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: Майндфулнес у приймальні клініки для незастрахованих пацієнтів (FSU Blogs, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Waiting With Intention: Bringing Mindfulness to a Free Clinic Waiting Room<br>
+        <strong>Посилання:</strong> <a href="https://hsfhouseblogs.fsu.edu/2025/08/11/claire-sullivan-waiting-with-intention-bringing-mindfulness-to-a-free-clinic-waiting-room/" target="_blank">FSU Blogs</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Проєкт з впровадження коротких майндфулнес-інтервенцій у приймальні безкоштовної клініки для незастрахованих пацієнтів [citation:2][citation:8].</li>
+            <li>Пацієнти іноді чекають 3-4 години, і скоротити час очікування неможливо через обмежені ресурси [citation:8].</li>
+            <li>Цитата менеджера клініки: "Після впровадження майндфулнес-сесій різниця була помітною. Пацієнти виглядають спокійнішими, більш відкритими під час консультацій і загалом більш задоволеними візитом" [citation:8].</li>
+            <li>Такі інтервенції можуть бути економічно ефективною стратегією для покращення комфорту пацієнтів під час очікування [citation:8].</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Український контекст - психологічна підтримка під час війни (IOM Ukraine, HI, 2025-2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Mental Health and Psychosocial Support (MHPSS) | IOM Ukraine / Together, we nurture hope (Humanity & Inclusion)<br>
+        <strong>Посилання:</strong> <a href="https://ukraine.iom.int/mental-health-and-psychosocial-support-mhpss" target="_blank">IOM Ukraine</a> | <a href="https://www.humanity-inclusion.org.uk/en/news/together-we-nurture-hope" target="_blank">Humanity & Inclusion</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>IOM Ukraine:</strong> 38% українців мають високий ризик депресії; національна гаряча лінія прийняла понад 52,950 дзвінків; 11,383 людини отримали психологічну підтримку [citation:6].</li>
+            <li><strong>Humanity & Inclusion (психологиня Наталія):</strong> "Люди переживають війну в динаміці. У 2022 році це був шок та інтенсивна тривога; тепер ми спостерігаємо виснаження та депресію. Щоденні втрати стали непосильними, і людям все важче знаходити новий сенс у житті" [citation:9].</li>
+            <li>Для тих, хто був переміщений кілька разів, ситуація надзвичайно важка. Базова потреба в "домі" постійно під загрозою [citation:9].</li>
+            <li>Навички самозаспокоєння та емоційної саморегуляції можуть допомогти людям пережити важкі періоди [citation:9].</li>
+        </ul>
+        <div class="quote">
+            <p>"Ми допомагаємо людям згадати власні можливості та знайти сили продовжувати жити після важких втрат... Головне, на чому ми зосереджуємося з ними, це те, що, незважаючи на знищення матеріальних речей, їхні навички та знання не знищені."</p>
+            <p style="text-align: right;">— Наталія, психологиня Humanity & Inclusion</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Критично важливо для створення безпечного простору для людей, які перебувають у стані хронічного очікування та невизначеності. Український контекст показує, що "щоденні втрати стали непосильними" [citation:9].</li>
+            <li><strong>Patience: 10/10</strong> — Максимальна терплячість, оскільки роль сама має бути взірцем терпіння. Дослідження показують, що терпіння як риса допомагає людям менше хвилюватися під час очікування [citation:1].</li>
+            <li><strong>Assertiveness: 4/10</strong> — Дуже низька наполегливість. Не можна підштовхувати людину до "прийняття" невизначеності. Роль пропонує, але не наполягає, поважає опір [citation:7].</li>
+            <li><strong>Creativity: 7/10</strong> — Для створення метафор, ритуалів очікування, технік заземлення, що допомагають "пережити" час. Майндфулнес-інтервенції є креативним способом використання часу очікування [citation:5].</li>
+            <li><strong>Formality: 3/10</strong> — Низька. Формальний тон може сприйматися як холодний, нечутливий до страждання. Теплий, людяний тон, мова, що нормалізує досвід [citation:2][citation:8].</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, розвитком навичок терпіння та повагою до унікального досвіду очікування.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від розуміння психології очікування до розвитку навичок терпіння, роботи з невизначеністю та інтеграції практик.</em></p>
+        
+        <p><strong>Сесія 1: Understanding Waiting (Розуміння очікування)</strong><br>
+        <em>Завдання:</em> Психоосвіта: психологія очікування, чому очікування таке важке; нормалізація досвіду; оцінка індивідуальних реакцій на очікування; введення поняття "терпіння як риси" .<br>
+        <em>Очікувані результати:</em> Розуміння, що труднощі з очікуванням є нормальними; усвідомлення власних патернів.<br>
+        <em>Обґрунтування:</em> Усвідомлення є першим кроком до змін [citation:1].</p>
+        
+        <p><strong>Сесія 2: The Nature of Uncertainty (Природа невизначеності)</strong><br>
+        <em>Завдання:</em> Дослідження інтолерантності до невизначеності; розрізнення того, що ми можемо контролювати, а що ні; техніки прийняття невизначеності.<br>
+        <em>Очікувані результати:</em> Зменшення боротьби з невизначеністю; більше прийняття.<br>
+        <em>Обґрунтування:</em> Інтолерантність до невизначеності пов'язана з меншою готовністю чекати [citation:4][citation:7].</p>
+        
+        <p><strong>Сесія 3: Mindfulness in Waiting (Майндфулнес в очікуванні)</strong><br>
+        <em>Завдання:</em> Навчання усвідомленому диханню; практика "спостереження за думками" під час очікування; використання тілесних відчуттів як якоря.<br>
+        <em>Очікувані результати:</em> Підвищення стану усвідомленості (state mindfulness) [citation:5]; зменшення автоматичних реакцій.<br>
+        <em>Обґрунтування:</em> Майндфулнес-інтервенції підвищують усвідомленість і запобігають посиленню негативних станів під час очікування [citation:5][citation:8].</p>
+        
+        <p><strong>Сесія 4: Cultivating Patience (Розвиток терпіння)</strong><br>
+        <em>Завдання:</em> Практики розвитку терпіння як навички; переосмислення очікування як "часу для себе", а не "втраченого часу"; робота з відволіканням та придушенням як неефективними стратегіями.<br>
+        <em>Очікувані результати:</em> Розвиток терпіння; зменшення використання неефективних стратегій.<br>
+        <em>Обґрунтування:</em> Терплячі люди уникають неефективних стратегій і краще почуваються під час очікування [citation:1].</p>
+        
+        <p><strong>Сесія 5: Emotional Regulation During Waiting (Емоційна регуляція під час очікування)</strong><br>
+        <em>Завдання:</em> Техніки самозаспокоєння; робота з хвилюванням; розрізнення продуктивного та непродуктивного хвилювання; практики заземлення.<br>
+        <em>Очікувані результати:</em> Зменшення інтенсивності хвилювання; краща емоційна регуляція.<br>
+        <em>Обґрунтування:</em> Інструкція "хвилюватися" посилює негативні стани [citation:5]; навички саморегуляції допомагають пережити важкі періоди [citation:9].</p>
+        
+        <p><strong>Сесія 6: Integration and Moving Forward (Інтеграція та рух вперед)</strong><br>
+        <em>Завдання:</em> Огляд прогресу; створення персоналізованого плану для майбутніх періодів очікування; визначення "червоних прапорців" (посилення тривоги, депресії, суїцидальні думки).<br>
+        <em>Очікувані результати:</em> Довгострокова стратегія; відчуття підготовленості до майбутніх періодів очікування.<br>
+        <em>Обґрунтування:</em> Інтеграція навичок є ключем до довготривалих змін [citation:9].</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Anxious (in waiting), Impatient, Frustrated, Worried, Overwhelmed, Numb, Calm, Accepting, Patient, Grounded.</p>
+        <p><strong>Hot Memory:</strong> Поточна ситуація очікування (чого саме людина чекає), тривалість очікування, емоційний стан, використані техніки.</p>
+        <p><strong>Warm Memory:</strong> Улюблені техніки для очікування, ефективні стратегії, індивідуальні тригери, що посилюють нетерпіння.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія очікувань, довгострокові патерни, коморбідні стани (тривога, депресія), ризики.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не знецінювати досвід очікування.</strong> Для багатьох українців очікування (обстрілів, звісток) є травматичним досвідом [citation:9].</li>
+            <li><strong>Не давати медичних порад</strong> щодо лікування тривожних розладів, депресії.</li>
+            <li><strong>Не ставити діагнозів</strong> — роль не має на це права.</li>
+            <li><strong>Підкреслювати, що деякі ситуації очікування є об'єктивно нестерпними</strong> (наприклад, очікування звістки про зниклого безвісти).</li>
+            <li><strong>Визнавати, що в контексті війни "терпіння" не означає пасивність</strong> чи прийняття небезпеки [citation:9].</li>
+            <li><strong>Заохочувати звернення до фахівця</strong> при симптомах депресії, ПТСР, суїцидальних думках.</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Симптоми клінічної депресії (особливо при 38% високого ризику серед українців) [citation:6].</li>
+            <li>Симптоми ПТСР (флешбеки, гіперпильність, уникнення) [citation:3].</li>
+            <li>Інтолерантність до невизначеності, що значно погіршує якість життя [citation:4][citation:7].</li>
+            <li>Зловживання алкоголем або седативними препаратами [citation:3].</li>
+            <li>Відсутність покращення після 4-5 сесій або погіршення стану.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides psychoeducation, mindfulness practices, and emotional regulation strategies to help you cope with periods of waiting and uncertainty. It is based on evidence-based approaches including research on trait patience, mindfulness-based interventions, and cognitive-behavioral techniques for intolerance of uncertainty. It is a self-help support tool, NOT a substitute for professional mental health treatment or medical advice. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming your daily life, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7) or the IOM Ukraine Emotional Support Hotline."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "The Art of Waiting" є збалансованою та науково-обґрунтованою. Вона враховує:</p>
+    <ul>
+        <li><strong>Доказові дослідження терпіння:</strong> терпіння як риса допомагає людям краще справлятися з очікуванням [citation:1].</li>
+        <li><strong>Майндфулнес-інтервенції в очікуванні:</strong> підвищення усвідомленості (d = 0.37) та запобігання посиленню негативних станів [citation:5][citation:8].</li>
+        <li><strong>Розуміння індивідуальних відмінностей:</strong> роль інтолерантності до невизначеності, дисконтування відстрочки, нейротизму [citation:4][citation:7].</li>
+        <li><strong>Специфічний український контекст:</strong> хронічне очікування в умовах війни, високий рівень депресії (38%) та ПТСР (76%), важливість навичок самозаспокоєння [citation:6][citation:9].</li>
+        <li>Чіткі етичні межі: не знецінювати, не давати медичних порад, скеровувати при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від розуміння психології очікування до інтеграції практик у життя. Всі параметри (тональність, риси особистості, техніки, етичні межі) визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> В контексті війни деякі періоди очікування (наприклад, очікування звістки про зниклого безвісти) є об'єктивно травматичними. Роль не має на меті "навчити" людей спокійно чекати в небезпечних ситуаціях, а допомогти їм регулювати емоції там, де очікування є неминучим.</p>
+    </div>
+    
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Waiting</span>
+            <span class="badge">Patience</span>
+            <span class="badge">Uncertainty</span>
+            <span class="badge">Mindfulness</span>
+            <span class="badge">Intolerance of Uncertainty</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

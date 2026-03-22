@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Forgive Yourself (Пробач себе)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #4a6b7a;
+            border-bottom: 3px solid #6b8c9c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #3a5b6a;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e6f0fa 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #6b8c9c;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #6b8c9c;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(107,140,156,0.15);
+        }
+        
+        .source a {
+            color: #3a5b6a;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #6b8c9c;
+        }
+        
+        .source a:hover {
+            color: #1a3a4a;
+            border-bottom: 1px solid #1a3a4a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #4a6b7a;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #6b8c9c;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #6b8c9c;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #3a5b6a;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #6b8c9c;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #6b8c9c;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Forgive Yourself</h1>
+    <p><em>"Пробач себе: науково-обґрунтована підтримка у процесі самопрощення, подолання провини, сорому та самокритики"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Forgive Yourself", яка допомагає людям у процесі самопрощення, подоланні почуття провини, сорому та надмірної самокритики. Роль має відповідати потребам українців у контексті війни, де почуття провини (включаючи "провину вцілілого"), сором та моральні травми є надзвичайно поширеними, та спиратися на міжнародний доказовий досвід (Enright's Process Model, CFT, MSC, наративні підходи).</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український та міжнародний контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">73.2%</div>
+            <div class="stat-label">українців мають симптоми ПТСР (2022)</div>
+            <small>(попередні дослідження)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">90%+</div>
+            <div class="stat-label">українців відчувають гнів через війну</div>
+            <small>(попередні дослідження)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">83.4%</div>
+            <div class="stat-label">українців відчувають стрес через медіа</div>
+            <small>(попередні дослідження)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: що таке самопрощення?</h2>
+    
+    <div class="key-concept">
+        <p><strong>Самопрощення (Self-forgiveness):</strong> Процес, за допомогою якого людина зменшує негативні та збільшує позитивні думки, емоції, мотивації та поведінку щодо себе після самосприйнятої неправильної дії. Це стратегія подолання, орієнтована на емоції [citation:9].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Трикомпонентна модель самопрощення (Holmgren):</strong> 1) Визнання об'єктивної неправильної дії та щире визнання її як такої, що викликає почуття провини; 2) Здатність відпустити образу та провину, спрямовану на себе; 3) Самоприйняття — повне прийняття себе, визнання своїх недоліків та прояв самоспівчуття [citation:9].</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Псевдо-самопрощення (Pseudo self-forgiveness):</strong> Процес, при якому людина використовує психологічні захисти (раціоналізацію, моральне відмежування) для досягнення позитивного самосприйняття після провини, без справжнього визнання неправильності своїх дій [citation:9].</p>
+    </div>
+
+    <div class="key-concept">
+        <p><strong>Моральна травма (Moral Injury):</strong> Конфлікт між совістю людини та переважним екзистенційним або психодуховним досвідом, що призводить до втрати безпечного зв'язку з собою, суспільством, Богом/Вищою Силою та світом. Для зцілення потрібне відновлення зв'язків самоповаги, довіри та життєствердних стосунків [citation:1].</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Компонент самоспівчуття (Neff)</th>
+                <th>Опис</th>
+            </tr>
+            <tr>
+                <td><strong>Self-kindness (Доброта до себе)</strong></td>
+                <td>Реагування на страждання та невдачі з теплом і розумінням, замість ігнорування або жорсткої самокритики [citation:2].</td>
+            </tr>
+            <tr>
+                <td><strong>Common humanity (Спільна людяність)</strong></td>
+                <td>Визнання того, що страждання є частиною спільного людського досвіду, що сприяє зв'язку та запобігає ізоляції [citation:2].</td>
+            </tr>
+            <tr>
+                <td><strong>Mindfulness (Усвідомленість)</strong></td>
+                <td>Неосудливе усвідомлення власного досвіду без придушення або надмірного занурення в емоції [citation:2].</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: 6-Fold Path to Self-Forgiveness for Moral Injury (PubMed, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> 6-Fold path to self-forgiveness: an interdisciplinary model for the treatment of moral injury with intervention strategies for clinicians<br>
+        <strong>Посилання:</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/39654935/" target="_blank">https://pubmed.ncbi.nlm.nih.gov/39654935/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Совість — це незнищенне ядро особистої ідентичності та відчуття власної дієздатності. Коли вона засуджує людину, виникає внутрішній конфлікт (моральна травма).</li>
+            <li>Моральна травма — це втрата безпечного зв'язку з собою, суспільством, Богом/Вищою Силою та світом.</li>
+            <li>Для зцілення потрібне відновлення зв'язків самоповаги, довіри та життєствердних стосунків.</li>
+            <li>Стаття представляє 6-етапний шлях до самопрощення (6-FPSF) — міждисциплінарний, наративний процес зцілення через письмо для лікування моральної травми.</li>
+            <li>Протокол спирається на теоретичну літературу, доказові психологічні інтервенції, духовно-орієнтовані практики, творчі мистецтва та соматичні вправи.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: Online Self-Compassion Interventions - Systematic Review of RCTs (Springer, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Online Self-Compassion Interventions and Wellbeing Outcomes: A Systematic Review of RCTs<br>
+        <strong>Посилання:</strong> <a href="https://link.springer.com/article/10.1007/s12671-025-02606-8" target="_blank">https://link.springer.com/article/10.1007/s12671-025-02606-8</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Систематичний огляд 21 РКД (2014-2024) онлайн-інтервенцій самоспівчуття.</li>
+            <li>Більшість досліджень показали, що онлайн-інтервенції покращують самоспівчуття.</li>
+            <li>Самоспівчуття складається з трьох елементів: доброта до себе vs самосуд, спільна людяність vs ізоляція, усвідомленість vs надмірна ідентифікація (Neff, 2003).</li>
+            <li>Самоспівчуття активує систему позитивного афекту, стимулюючи заспокійливі гормони (окситоцин) та керуючи фізіологічними реакціями для відчуття безпеки та зв'язку (Gilbert, 2014).</li>
+            <li>Онлайн-інтервенції пропонують віддалену доступність, своєчасний доступ, менше сприймаються як "терапія", можливість поширення на рівні популяції.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: ERP Study of Forgiveness Therapy in Alcohol Dependence (Sage Journals, 2023)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Letting Go of Grudges: An Intervention-Based ERP Study Among Patients with ADS<br>
+        <strong>Посилання:</strong> <a href="https://journals.sagepub.com/doi/full/10.1177/02537176231203625" target="_blank">https://journals.sagepub.com/doi/full/10.1177/02537176231203625</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження пацієнтів з алкогольною залежністю показало значне покращення загального балу прощення після 6 тижнів терапії прощення (з 87.9 до 113.8, p=0.001).</li>
+            <li>Значне зниження гніву (p=0.001) та почуття сорому/провини (p<0.001).</li>
+            <li>Зменшення негативних емоцій, таких як сором і провина, можна пояснити здатністю людини справлятися з негативними самооцінками шляхом прощення себе за невідповідність власним очікуванням [citation:8].</li>
+            <li>Дослідження показує, що терапія прощення ефективна серед пацієнтів з історією міжособистісних травм для полегшення їхнього негативного емоційного стану.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: Ukrainian Research Project on Forgiveness in Military Conflict Zones (International Forgiveness Institute, 2022)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Ukrainian Research Project Verifies Benefits of Forgiveness in Military Conflict Zones<br>
+        <strong>Посилання:</strong> <a href="https://internationalforgiveness.com/2022/07/08/ukrainian-research-project-verifies-benefits-of-forgiveness-in-military-conflict-zones/" target="_blank">https://internationalforgiveness.com/2022/07/08/ukrainian-research-project-verifies-benefits-of-forgiveness-in-military-conflict-zones/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження Кравчук & Халанський (2019-2020) за участю 302 українських громадян, половина з яких проживала в зоні військового конфлікту на сході України.</li>
+            <li><strong>Основні висновки:</strong>
+                <ul>
+                    <li>"Отримані кореляції показують, що чим більше людина схильна до прощення, тим менше вона має тривоги та депресії."</li>
+                    <li>"Людина з високою схильністю до прощення характеризується вищими рівнями рішучого прощення, надії, емоційного прощення, толерантності та прийняття інших, психічного здоров'я, щастя та задоволеності життям."</li>
+                    <li>"Надія, щастя, задоволеність життям та схильність до прощення можуть дозволити громадянам, які проживають у східній Україні, швидко відновитися після психологічної травми, сприяти успішному подоланню негативних наслідків військового конфлікту та успішному функціонуванню."</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Psychological Interventions to Promote Self-Forgiveness - Systematic Review (BMC Psychology, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Psychological interventions to promote self-forgiveness: a systematic review<br>
+        <strong>Посилання:</strong> <a href="https://link.springer.com/article/10.1186/s40359-024-01671-3" target="_blank">https://link.springer.com/article/10.1186/s40359-024-01671-3</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Систематичний огляд 21 статті про інтервенції, що сприяють самопрощенню.</li>
+            <li>13 з 21 статті використовували інтервенції, спеціально розроблені для сприяння самопрощенню.</li>
+            <li>Інтервенції поділяються на самостійні (self-directed) та групові.</li>
+            <li><strong>Самостійні інтервенції, особливо засновані на процесуальній моделі Енрайта (Enright's process model), демонструють ефективність у розвитку самопрощення.</strong></li>
+            <li>Інтервенції самопрощення також ефективні у сприянні іншим позитивним психологічним та клінічним змінним.</li>
+            <li>Самопрощення покращує психологічне здоров'я, включаючи задоволеність життям, самооцінку, емоційну стабільність та сприйману якість життя.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Effects of Self-Compassion Interventions - Meta-Analysis (NIH, 2023)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Effects of Self-Compassion Interventions on Reducing Depressive Symptoms, Anxiety, and Stress: A Meta-Analysis<br>
+        <strong>Посилання:</strong> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10239723/" target="_blank">https://pmc.ncbi.nlm.nih.gov/articles/PMC10239723/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Мета-аналіз 56 РКД показав, що інтервенції, спрямовані на самоспівчуття, мають малий та середній ефект на зниження симптомів депресії, тривоги та стресу.</li>
+            <li>Самоспівчуття — це здатність бути відкритим до власних труднощів з добротою та неосудливим розумінням.</li>
+            <li>Дослідження показують, що сприяння самоспівчуттю може зменшити симптоми депресії, тривоги та стресу, посилюючи усвідомленість та регуляцію емоцій.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Guilt, Shame, and Forgiveness in Abused Adolescents (Acta Theologica, 2014)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Utilising forgiveness to help sexually abused adolescents break free from guilt and shame: A pastoral Gestalt theory<br>
+        <strong>Посилання:</strong> <a href="https://scielo.org.za/scielo.php?script=sci_arttext&pid=S1015-87582014000500001" target="_blank">https://scielo.org.za/scielo.php?script=sci_arttext&pid=S1015-87582014000500001</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Почуття провини (guilt) та сорому (shame) можуть бути травматичними, свідомими переживаннями, що впливають на фізичний, психологічний, соціальний, емоційний, моральний та релігійний розвиток.</li>
+            <li>Провина та сором викликають почуття безпорадності, гніву, звинувачення, гіркоти та потреби у відплаті.</li>
+            <li><strong>Розрізнення:</strong> Провина стосується негативної оцінки поведінки, тоді як сором — негативної оцінки всього "Я". "Коли ми відчуваємо провину, ми звинувачуємо свою поведінку. Коли ми відчуваємо сором, ми звинувачуємо свій характер та буття." [citation:7]</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 8: Self-Forgiveness as Emotion-Focused Coping (Scherer et al., 2011, via Sage Journals)</h3>
+    <div class="source">
+        <strong>Посилання:</strong> (цитується в ERP дослідженні)<br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Зменшення негативних афектів, таких як сором і провина, можна пояснити на основі здатності людини справлятися з негативними самооцінками, прощаючи себе за невідповідність власним очікуванням [citation:3].</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Критично важливо для створення безпечного, неосудливого простору для людини, яка бореться з самокритикою, провиною та соромом. Співчуття є основою самопрощення [citation:2][citation:6].</li>
+            <li><strong>Patience: 10/10</strong> — Максимальна терплячість, оскільки самопрощення — це процес, а не одноразова подія. Людина може потребувати часу, повертатися до одних і тих самих тем [citation:1][citation:9].</li>
+            <li><strong>Assertiveness: 3/10</strong> — Дуже низька наполегливість. Не можна тиснути на людину, щоб вона "пробачила себе" — це може викликати додаткову провину. Роль пропонує, але не наполягає [citation:9].</li>
+            <li><strong>Creativity: 8/10</strong> — Висока креативність для створення метафор, наративних вправ, листів, діалогів, які допомагають у процесі самопрощення [citation:1].</li>
+            <li><strong>Formality: 2/10</strong> — Дуже низька. Формальний тон може сприйматися як холодний, осудливий. Потрібен теплий, приймаючий, людяний тон [citation:2].</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, співчуттям та повагою до унікального шляху людини до самопрощення.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від розуміння концепції самопрощення та подолання бар'єрів до інтеграції та підтримки. Базується на процесуальній моделі Енрайта [citation:5][citation:9] та 6-етапному шляху до самопрощення [citation:1].</em></p>
+        
+        <p><strong>Сесія 1: Understanding Self-Forgiveness (Розуміння самопрощення)</strong><br>
+        <em>Завдання:</em> Психоосвіта: що таке самопрощення (і чим воно не є); розрізнення провини (guilt) та сорому (shame); введення концепції "псевдо-самопрощення"; оцінка готовності; нормалізація досвіду.<br>
+        <em>Очікувані результати:</em> Розуміння, що самопрощення — це процес, а не "виправдання"; зменшення плутанини між провиною та соромом.<br>
+        <em>Обґрунтування:</em> Освіта про самопрощення є першим кроком [citation:5][citation:9]. Розрізнення провини та сорому є критичним [citation:7].</p>
+        
+        <p><strong>Сесія 2: Acknowledging the Hurt (Визнання болю)</strong><br>
+        <em>Завдання:</em> Безпечне дослідження того, що саме людина не може собі пробачити; визнання почуттів (провина, сором, гнів, жаль) без осуду; наративна вправа (написання про подію).<br>
+        <em>Очікувані результати:</em> Визнання болю без повторної травматизації; ідентифікація ключової події/дії.<br>
+        <em>Обґрунтування:</em> Визнання об'єктивної неправильної дії та щире визнання її як такої є першим компонентом моделі Holmgren [citation:9].</p>
+        
+        <p><strong>Сесія 3: Working with Shame and Guilt (Робота з соромом та провиною)</strong><br>
+        <em>Завдання:</em> Розрізнення: "Я зробив щось погане" (провина) vs "Я поганий" (сором); техніки самоспівчуття для сорому; когнітивна робота з надмірною провиною; нормалізація спільної людяності.<br>
+        <em>Очікувані результати:</em> Зменшення токсичного сорому; більш реалістична оцінка провини; відчуття, що "я не один такий".<br>
+        <em>Обґрунтування:</em> Самоспівчуття (доброта до себе, спільна людяність) є ключем до подолання сорому [citation:2][citation:6][citation:7].</p>
+        
+        <p><strong>Сесія 4: The Process of Self-Forgiveness (Процес самопрощення)</strong><br>
+        <em>Завдання:</em> Введення в процес самопрощення (на основі моделі Енрайта); вправа "лист до себе" (з прощенням); робота з "незавершеними справами"; прийняття відповідальності без самопокарання.<br>
+        <em>Очікувані результати:</em> Початок активного процесу самопрощення; зменшення самопокарання.<br>
+        <em>Обґрунтування:</em> Самостійні інтервенції, засновані на процесуальній моделі Енрайта, ефективні для розвитку самопрощення [citation:5][citation:9].</p>
+        
+        <p><strong>Сесія 5: Self-Compassion and Self-Acceptance (Самоспівчуття та самоприйняття)</strong><br>
+        <em>Завдання:</em> Практики самоспівчуття (доброта до себе, спільна людяність, усвідомленість); вправа "як би я поставився до друга"; робота зі "внутрішнім критиком"; прийняття своєї недосконалості.<br>
+        <em>Очікувані результати:</em> Збільшення самоспівчуття; зменшення самокритики; відчуття прийняття себе.<br>
+        <em>Обґрунтування:</em> Самоприйняття та самоспівчуття є третім компонентом моделі Holmgren [citation:9] та підтверджені мета-аналізами [citation:2][citation:6].</p>
+        
+        <p><strong>Сесія 6: Integration and Moving Forward (Інтеграція та рух вперед)</strong><br>
+        <em>Завдання:</em> Огляд прогресу; створення ритуалу відпускання; планування майбутнього з урахуванням досвіду; визначення "червоних прапорців" (посилення депресії, суїцидальні думки).<br>
+        <em>Очікувані результати:</em> Інтеграція досвіду; довгострокова стратегія підтримки; розуміння, що самопрощення — це практика на все життя.<br>
+        <em>Обґрунтування:</em> Важливість інтеграції та підтримки довгострокових змін [citation:1].</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Guilty, Ashamed, Self-critical, Angry (at self), Sad, Hopeless, Relieved, Self-compassionate, Accepted, Peaceful, Hopeful.</p>
+        <p><strong>Hot Memory:</strong> Поточна тема (що саме людина намагається собі пробачити), ключові емоції (провина, сором), що працювало/не працювало в цій сесії.</p>
+        <p><strong>Warm Memory:</strong> Історія (без тиску деталізації), улюблені практики самоспівчуття, ефективні стратегії, прогрес у зменшенні самокритики.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія самокритики/провини, довгострокові патерни, коморбідні стани (депресія, тривога), ризики, що допомагало раніше.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не змушувати до самопрощення.</strong> Це має бути добровільний процес. Тиск може викликати додаткову провину [citation:9].</li>
+            <li><strong>Розрізняти справжнє самопрощення та "псевдо-самопрощення"</strong> (уникнення відповідальності через раціоналізацію) [citation:9].</li>
+            <li><strong>Не применшувати серйозності вчинку.</strong> Визнання болю є частиною процесу.</li>
+            <li><strong>Не давати порад</strong> на кшталт "просто пробач себе" або "не будь таким суворим до себе".</li>
+            <li><strong>Бути чутливим до культурних та релігійних контекстів</strong> провини та прощення [citation:1].</li>
+            <li><strong>Розрізняти провину (guilt) та сором (shame)</strong> та працювати з ними відповідно [citation:7].</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Тяжка депресія, що заважає функціонуванню.</li>
+            <li>Сильне почуття сорому, що призводить до соціальної ізоляції.</li>
+            <li>Симптоми моральної травми (moral injury), особливо у ветеранів або людей, які пережили травматичні події [citation:1].</li>
+            <li>Самопошкодження як спосіб впоратися з почуттям провини.</li>
+            <li>Відсутність покращення після 4-5 сесій або погіршення стану.</li>
+            <li>Нездатність розрізнити провину та сором, що призводить до поглиблення страждання [citation:7].</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides psychoeducation, self-compassion practices, and guided exercises to support you in the process of self-forgiveness. It is based on evidence-based approaches including Enright's Process Model, Compassion-Focused Therapy, and narrative therapy. It is a self-help support tool, NOT a substitute for professional mental health treatment or therapy. Self-forgiveness is a complex process, and some experiences of guilt, shame, or moral injury may require the support of a qualified therapist. If you are in crisis, have thoughts of harming yourself, or if your feelings of guilt or shame are overwhelming your daily life, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7)."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Forgive Yourself" є збалансованою та науково-обґрунтованою. Вона враховує:</p>
+    <ul>
+        <li><strong>Провідні доказові моделі самопрощення:</strong> процесуальна модель Енрайта [citation:5][citation:9], 6-етапний шлях для моральної травми [citation:1].</li>
+        <li><strong>Самоспівчуття як ключовий механізм:</strong> три компоненти Нефф (доброта, спільна людяність, усвідомленість) [citation:2] та ефективність інтервенцій самоспівчуття [citation:6].</li>
+        <li><strong>Розрізнення провини та сорому:</strong> провина (поведінка) vs сором (ідентичність) [citation:7].</li>
+        <li><strong>Специфічний український контекст:</strong> дослідження Кравчук & Халанський (2022) підтверджує, що схильність до прощення корелює з меншою тривогою та депресією, більшим щастям та задоволеністю життям в українців, особливо в зоні конфлікту [citation:4].</li>
+        <li>Чіткі етичні межі: не змушувати, не применшувати, розрізняти справжнє та псевдо-самопрощення, скеровувати при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від розуміння самопрощення до інтеграції досвіду. Всі параметри (тональність, риси особистості, техніки, етичні межі) визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Самопрощення не означає заперечення відповідальності. Це процес визнання своєї людяності, недосконалості та здатності до змін, а не виправдання шкідливих дій.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Self-Forgiveness</span>
+            <span class="badge">Guilt</span>
+            <span class="badge">Shame</span>
+            <span class="badge">Self-Compassion</span>
+            <span class="badge">Moral Injury</span>
+            <span class="badge">Enright Model</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

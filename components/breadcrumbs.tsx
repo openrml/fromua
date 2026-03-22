@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
-import { useLanguage } from '@/components/language-context'
 
 interface BreadcrumbItem {
   label: string
@@ -14,8 +13,6 @@ interface BreadcrumbsProps {
 }
 
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
-  const { t } = useLanguage()
-  
   // JSON-LD structured data for breadcrumbs
   const jsonLd = {
     '@context': 'https://schema.org',

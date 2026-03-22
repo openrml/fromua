@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: A Guide to the Body After Trauma (Гід по тілу після травми)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #4a6b7a;
+            border-bottom: 3px solid #6b8c9c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #3a5b6a;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e6f0fa 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #6b8c9c;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #6b8c9c;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(107,140,156,0.15);
+        }
+        
+        .source a {
+            color: #3a5b6a;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #6b8c9c;
+        }
+        
+        .source a:hover {
+            color: #1a3a4a;
+            border-bottom: 1px solid #1a3a4a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #4a6b7a;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #6b8c9c;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #6b8c9c;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #3a5b6a;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #6b8c9c;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #6b8c9c;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #6b8c9c;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #3a5b6a;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: A Guide to the Body After Trauma</h1>
+    <p><em>"Гід по тілу після травми: відновлення зв'язку з тілом через соматичні підходи"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "A Guide to the Body After Trauma", яка допомагає людям відновити зв'язок з тілом після травматичного досвіду, використовуючи соматичні підходи (Somatic Experiencing, тілесно-орієнтовані інтервенції, травма-інформовану йогу). Роль має відповідати потребам українців у контексті війни, де травматичний досвід є масовим явищем, та спиратися на міжнародний доказовий досвід.</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український та міжнародний контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">23%</div>
+            <div class="stat-label">пацієнтів первинної ланки мають ПТСР (Boston Medical Center)</div>
+            <small>(Джерело 1, NIH, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">13/14</div>
+            <div class="stat-label">учасників дослідження мали хронічний біль</div>
+            <small>(Джерело 1, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">63%</div>
+            <div class="stat-label">домогосподарств в Україні мають ментальні виклики</div>
+            <small>(Джерело 10, HI, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">55%</div>
+            <div class="stat-label">атриція в доказових травма-фокусованих терапіях</div>
+            <small>(Джерело 6, Wiley, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">40%</div>
+            <div class="stat-label">non-response rate після когнітивних інтервенцій</div>
+            <small>(Джерело 7, Taylor & Francis, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: соматичні підходи до травми</h2>
+    
+    <div class="key-concept">
+        <p><strong>Somatic Experiencing (SE):</strong> Підхід, орієнтований на тіло, для зцілення травми, розроблений Петером Левіним. Базується на ідеї, що травма — це не патологія, а "природний процес, який пішов неправильно". SE фокусується на відстеженні тілесних відчуттів, титрації (поступове опрацювання) та пендуляції (чергування між активацією та ресурсом) .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Інтероцепція (Interoception):</strong> Здатність відчувати та інтерпретувати сигнали зсередини тіла. Люди з ПТСР часто інтерпретують фізіологічне збудження як небезпечне, що призводить до дезадаптивних реакцій .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Травма-інформована йога (Trauma-Informed Yoga):</strong> Підхід, що адаптує йогу для людей з травмою, фокусуючись на виборі, безпеці та поверненні відчуття контролю над тілом .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Підхід</th>
+                <th>Ключові елементи</th>
+                <th>Доказова база</th>
+            </tr>
+            <tr>
+                <td><strong>Somatic Experiencing (SE)</strong></td>
+                <td>Відстеження відчуттів, титрація, пендуляція, розрядка</td>
+                <td>РКД у ветеранів; учасники описували процес як "вивчення мови, застосовної до різних ситуацій" </td>
+            </tr>
+            <tr>
+                <td><strong>Тілесно-орієнтовані інтервенції (BMOI)</strong></td>
+                <td>Розпізнавання тілесних сигналів, регуляція збудження, відновлення контролю</td>
+                <td>Попередні результати свідчать про ефективність для CPTSD </td>
+            </tr>
+            <tr>
+                <td><strong>Травма-інформована йога</strong></td>
+                <td>Вибір, безпека, усвідомленість, співчуття</td>
+                <td>Покращення настрою, зниження стресу, посттравматичне зростання </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Acceptability of Somatic Therapy for PTSD (NIH, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> The Acceptability of Somatic Therapy for PTSD Among Patients at an Urban Safety Net Primary Care Clinic<br>
+        <strong>Посилання:</strong> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12334822/" target="_blank">https://pmc.ncbi.nlm.nih.gov/articles/PMC12334822/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Соматична терапія (ST) виявилася прийнятною для пацієнтів з ПТСР та персоналу .</li>
+            <li>ST фокусується на інтероцепції (відчуття сигналів тіла), пропріоцепції (відчуття положення тіла) та кінестезії (відчуття руху) .</li>
+            <li>13 з 14 учасників мали хронічний біль, що підкреслює зв'язок між травмою та тілесними симптомами .</li>
+            <li>Найпоширенішою травмою було сексуальне насильство в дитинстві .</li>
+            <li>ST може бути варіантом для пацієнтів, які не переносять експозиційні терапії .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2 & 7: Movement in Trauma Intervention (Rijksuniversiteit Groningen / Taylor & Francis, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Movement in trauma–a body- and movement-oriented intervention for adults with post-traumatic stress disorder<br>
+        <strong>Посилання:</strong> <a href="https://research.rug.nl/en/publications/movement-in-traumaa-body-and-movement-oriented-intervention-for-a/" target="_blank">Research.rug.nl</a> | <a href="https://www.tandfonline.com/doi/full/10.1080/17432979.2025.2502370" target="_blank">Taylor & Francis</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Інтервенція "Movement in Trauma" (MiT) фокусується на трьох елементах: (1) розпізнавання та перенесення тілесних відчуттів, (2) техніки регуляції збудження, (3) (відновлення відчуття контролю .</li>
+            <li>Попередні результати свідчать, що інтервенція ефективно зменшує симптоми травми та може бути цінним доповненням до вербальних терапій, особливо для CPTSD .</li>
+            <li>Люди з посттравматичним стресом інтерпретують фізіологічне збудження переважно як небезпечне .</li>
+            <li>Залишкові симптоми після когнітивних терапій поширені, особливо гіперзбудження .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: Trauma-Informed Yoga in Carceral Settings (International Journal of Yoga Therapy, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Embodied Resilience: A Quasi-Experimental Exploration of the Effects of a Trauma-Informed Yoga and Mindfulness Curriculum in Carceral Settings<br>
+        <strong>Посилання:</strong> <a href="https://mentalhealthdataprizeafrica.aphrc.org/repository/paper/27002/embodied-resilience-a-quasi-experimental-exploration-of-the-effects-of-a-trauma-informed-yoga-and-mindfulness-curriculum-in-carceral-settings" target="_blank">Mental Health Data Prize Africa</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Травма-інформована йога показала значне підвищення настрою та зниження стресу після занять .</li>
+            <li>Учасники частіше використовували позитивні навички подолання, відчували більше прощення та посттравматичне зростання .</li>
+            <li>Якісні дані показали покращення настрою, фізичного здоров'я, комунікації, подолання тривоги та гніву, фокусу, оптимізму, прийняття .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: Somatic Experiencing Case Study with HRV Monitoring (University of Glasgow, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> How the body remembers a traumatic event: a case study from Somatic Experiencing perspective<br>
+        <strong>Посилання:</strong> <a href="https://eprints.gla.ac.uk/350302/" target="_blank">https://eprints.gla.ac.uk/350302/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження використовувало варіабельність серцевого ритму (HRV) для вимірювання регуляції автономної нервової системи під час SE-сесії .</li>
+            <li>Результати показали значні коливання HRV, що відповідали емоційним та фізіологічним станам клієнтки .</li>
+            <li>SE сприяє відновленню вегетативного балансу та емоційної регуляції через тілесні інтервенції та дотик .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Adaptive Sports Training for Ukrainian Coaches (UNDP, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> First training in Adaptive Sports empowering Ukrainian coaches to support war-affected communities<br>
+        <strong>Посилання:</strong> <a href="https://www.undp.org/ukraine/press-releases/first-training-adaptive-sports-empowering-ukrainian-coaches-support-war-affected-communities" target="_blank">UNDP Ukraine</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Перше в Україні навчання для тренерів з адаптивного спорту для підтримки людей, постраждалих від війни .</li>
+            <li>Адаптивний спорт — потужний інструмент фізичної, психологічної та соціальної реабілітації .</li>
+            <li>"Фізична активність — це не лише про фізичну форму, але й про повернення впевненості, відновлення ідентичності та реінтеграцію в соціальне життя" .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Veterans' Experiences of Somatic Experiencing and Prolonged Exposure (Wiley, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Veterans' experiences of somatic experiencing and prolonged exposure therapies for post-traumatic stress disorder: A qualitative analysis<br>
+        <strong>Посилання:</strong> <a href="https://bpspsychub.onlinelibrary.wiley.com/doi/10.1111/papt.12570?af=R" target="_blank">Wiley Online Library</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження ветеранів, які проходили SE та Prolonged Exposure (PE) .</li>
+            <li>Високий рівень атриції в золото-стандартних терапіях: 55% в нещодавньому дослідженні .</li>
+            <li>Учасники SE описували процес як "вивчення мови, застосовної до альтернативних ситуацій" .</li>
+            <li>В обох терапіях учасники відзначали переважання фізіологічних або тілесних переживань .</li>
+            <li>Розуміння унікальних елементів SE може допомогти у виборі терапії .</li>
+        </ul>
+        <div class="quote">
+            <p>"Учасники SE описували процес як 'вивчення мови, застосовної до альтернативних ситуацій'"</p>
+            <p style="text-align: right;">— Джерело 6</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 8: Trauma-Informed Yoga Scoping Review (Occupational Therapy in Mental Health, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Trauma-Informed Yoga: A Scoping Review<br>
+        <strong>Посилання:</strong> <a href="https://jipmerlibrary.ovidds.com/resolver?rft.genre=article&rft.date=2023-11&rft.issn=0164-212X&rft.eissn=1541-3101&rft.atitle=Trauma-Informed+Yoga%3a+A+Scoping+Review&rft.jtitle=Occupational+Therapy+in+Mental+Health&rft.spage=1&rft.pages=1-25&rft.au=Klukan%2c+Krista&rft.au=Lunsford%2c+Dianna&rft.aulast=Klukan&rft.aulast=Lunsford&rft.aufirst=Krista&rft.aufirst=Dianna&rft.auinit=K.&rft.auinit=D.&rft_id=info%3adoi%2f10.1080%2f0164212X.2023.2276148&rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&rfr_id=info%3asid%2fTDNet%3aDiscover&ctx_ver=Z39.88-2004&pubid=7902-info%3Adoi%2F10.1080%252F0164212X.2023.2276148" target="_blank">JIPMER Library</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Травма-інформована йога (TIY) адаптує практики для людей з травмою, фокусуючись на виборі, безпеці та поверненні контролю .</li>
+            <li>Ключові принципи: безпека, співчуття, вибір, усвідомленість .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 9: Systematic Review Protocol for Somatic Experiencing (PROSPERO, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Survey of empirical evidence of the theoretical bases of somatic experiencing: a systematic review<br>
+        <strong>Посилання:</strong> <a href="https://www.crd.york.ac.uk/PROSPERO/view/CRD42024622874" target="_blank">PROSPERO</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>SE навчає пацієнта розуміти фізіологію тіла/розуму та як вона проявляється в думках, емоціях та поведінці .</li>
+            <li>Пацієнт вчиться модулювати свою фізіологію до більш гармонійних, адаптивних станів .</li>
+            <li>SE вважається "bottom-up" сенсомоторним психотерапевтичним підходом .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: Ukrainian Context - MHPSS and Grounding Techniques (Humanity & Inclusion, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> "We are moving forward together": how Mariia and Serhii support each other in the war<br>
+        <strong>Посилання:</strong> <a href="https://www.humanity-inclusion.org.uk/en/news/we-are-moving-forward-together-how-mariia-and-serhii-support-each-other-in-the-war" target="_blank">Humanity & Inclusion UK</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>63% домогосподарств в Україні повідомляють про щонайменше один ментальний виклик .</li>
+            <li>Стигма та брак послуг заважають людям звертатися по допомогу .</li>
+            <li>Марія, дружина пораненого, навчилася технік заземлення та дихання від психологині HI: "Ліза показала мені, як заспокоїтися, як зробити паузу, дихати та керувати своєю фрустрацією... Вона дала мені прості інструменти, які я могла використовувати, коли все ставало надто важко" .</li>
+            <li>Підтримка опікунів є настільки ж важливою, як і підтримка тих, хто отримує допомогу .</li>
+        </ul>
+        <div class="quote">
+            <p>"Ліза показала мені, як заспокоїтися, як зробити паузу, дихати та керувати своєю фрустрацією... Вона дала мені прості інструменти, які я могла використовувати, коли все ставало надто важко. Вони допомогли мені знайти рівновагу."</p>
+            <p style="text-align: right;">— Марія, Україна</p>
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Критично важливо для створення безпечного простору для людей, чиї тіла стали "ворожою територією". Соматичні підходи вимагають глибокої емпатії та неосудливої присутності .</li>
+            <li><strong>Patience: 10/10</strong> — Максимальна терплячість, оскільки відновлення зв'язку з тілом відбувається повільно. Тілесні інтервенції вимагають поступового підходу (титрації) .</li>
+            <li><strong>Assertiveness: 4/10</strong> — Дуже низька наполегливість. Люди з травмою потребують відчуття контролю та вибору. "Вибір" є ключовим принципом травма-інформованої йоги .</li>
+            <li><strong>Creativity: 8/10</strong> — Для створення метафор, візуалізацій, "ресурсів", що допомагають відчути тіло безпечним способом .</li>
+            <li><strong>Formality: 2/10</strong> — Дуже низька. Формальний тон може сприйматися як холодний, авторитарний. Теплий, м'який, заземлюючий тон є необхідним .</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, безпекою та повагою до індивідуального темпу відновлення.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від створення безпеки та базового усвідомлення тіла до регуляції нервової системи, роботи з відчуттями та інтеграції. Базується на трьох елементах ефективної травма-терапії за ван дер Колком та протоколі MiT .</em></p>
+        
+        <p><strong>Сесія 1: Creating Safety and Orientation (Створення безпеки та орієнтація)</strong><br>
+        <em>Завдання:</em> Встановлення безпечного простору; психоедукація про зв'язок тіла та травми; введення концепції "тіло пам'ятає"; практика орієнтації в просторі; визначення "вікна толерантності".<br>
+        <em>Очікувані результати:</em> Розуміння, що тілесні реакції є нормальними; відчуття безпеки; знайомство з базовими поняттями.<br>
+        <em>Обґрунтування:</em> Безпека є першим принципом травма-інформованої допомоги .</p>
+        
+        <p><strong>Сесія 2: Learning the Language of the Body (Вивчення мови тіла)</strong><br>
+        <em>Завдання:</em> Розвиток інтероцепції — спостереження за тілесними відчуттями без осуду; відстеження нейтральних/приємних відчуттів; знайомство з поняттям "ресурсу" в тілі; практика "сканування тіла".<br>
+        <em>Очікувані результати:</em> Підвищення здатності відчувати тіло; ідентифікація безпечних відчуттів.<br>
+        <em>Обґрунтування:</em> SE навчає "вивченню мови" тіла . Інтероцепція є ключовою .</p>
+        
+        <p><strong>Сесія 3: Pendulation and Titration (Пендуляція та титрація)</strong><br>
+        <em>Завдання:</em> Введення концепцій пендуляції (чергування активації та ресурсу) та титрації (невеликими кроками); практика переходу від дискомфорту до ресурсних відчуттів; розвиток здатності "бути з" відчуттями .<br>
+        <em>Очікувані результати:</em> Здатність регулювати рівень активації; зменшення страху перед тілесними відчуттями.<br>
+        <em>Обґрунтування:</em> Це ключові механізми SE .</p>
+        
+        <p><strong>Сесія 4: Grounding and Centering (Заземлення та центрування)</strong><br>
+        <em>Завдання:</em> Практики заземлення (відчуття опори, тяжіння); центрування (знаходження центру тіла); використання дихання для регуляції; практики з тілесно-орієнтованого протоколу MiT .<br>
+        <em>Очікувані результати:</em> Покращення здатності заземлюватися; відчуття стабільності.<br>
+        <em>Обґрунтування:</em> Заземлення є базовою навичкою для роботи з травмою .</p>
+        
+        <p><strong>Сесія 5: Re-establishing Control and Boundaries (Відновлення контролю та меж)</strong><br>
+        <em>Завдання:</em> Вправи на відчуття особистого простору; практики встановлення меж через тіло (руки, поза); усвідомлення різниці між минулим і теперішнім; вибір у русі .<br>
+        <em>Очікувані результати:</em> Відчуття контролю над тілом; здатність встановлювати межі.<br>
+        <em>Обґрунтування:</em> Відновлення відчуття контролю є третім елементом ефективної терапії .</p>
+        
+        <p><strong>Сесія 6: Integration and Moving Forward (Інтеграція та рух вперед)</strong><br>
+        <em>Завдання:</em> Огляд прогресу; створення персоналізованого плану подальшої практики; визначення "червоних прапорців"; практика "тілесної вдячності".<br>
+        <em>Очікувані результати:</em> Інтеграція навичок; довгострокова стратегія; відчуття надії .<br>
+        <em>Обґрунтування:</em> Посттравматичне зростання можливе через тілесні практики .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Numb (відключення від тіла), Flooded (переповнення), Dissociated, Triggered, Tense, Anxious, Grounded, Centered, Calm, Safe, Empowered.</p>
+        <p><strong>Hot Memory:</strong> Поточний рівень активації, тілесні відчуття, використані техніки, безпека.</p>
+        <p><strong>Warm Memory:</strong> Улюблені "ресурсні" відчуття, ефективні техніки заземлення, індивідуальні тригери, "безпечне місце".</p>
+        <p><strong>Cold Memory:</strong> Загальна історія травми, довгострокові патерни, коморбідні стани (хронічний біль), що допомагало раніше.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не примушувати до тілесних практик.</strong> Вибір є ключовим принципом травма-інформованої допомоги .</li>
+            <li><strong>Не торкатися користувача.</strong> AI не має фізичного тіла, і це слід підкреслювати.</li>
+            <li><strong>Попереджати про можливі реакції.</strong> Тілесні практики можуть викликати спогади або дискомфорт .</li>
+            <li><strong>Не давати медичних порад</strong> щодо фізичних травм, болю, ліків.</li>
+            <li><strong>Не ставити діагнозів</strong> — роль не має на це права.</li>
+            <li><strong>Підкреслювати, що роль є доповненням, а не заміною терапії.</strong> Соматичні підходи найкраще працюють у комплексі .</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Дисоціація, що не проходить після заземлення.</li>
+            <li>Флешбеки, що посилюються під час практик.</li>
+            <li>Сильний хронічний біль без медичного супроводу .</li>
+            <li>Потреба в психотерапії (CBT, EMDR, SE з сертифікованим терапевтом).</li>
+            <li>Відсутність покращення після 4-5 сесій або погіршення стану.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides gentle, trauma-informed guidance to help you reconnect with your body after traumatic experiences. It draws on evidence-based somatic approaches including Somatic Experiencing, body-oriented interventions, and trauma-informed yoga principles. It is a self-help support tool, NOT a substitute for professional trauma therapy or medical treatment. Somatic work can sometimes bring up difficult sensations or memories. Always proceed at your own pace, and stop if you feel overwhelmed. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming your daily life, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7) or seek support from organizations like Humanity & Inclusion."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "A Guide to the Body After Trauma" є збалансованою та науково-обґрунтованою. Вона враховує:</p>
+    <ul>
+        <li><strong>Доказові соматичні підходи:</strong> Somatic Experiencing , тілесно-орієнтовані інтервенції (MiT) , травма-інформовану йогу .</li>
+        <li><strong>Ключові принципи:</strong> безпека, вибір, титрація, пендуляція, відновлення контролю .</li>
+        <li><strong>Специфічний український контекст:</strong> високий рівень травматизації, потреба в простих інструментах заземлення для населення, важливість підтримки опікунів .</li>
+        <li>Чіткі етичні межі: не торкатися, не примушувати, не замінювати терапію.</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від створення безпеки до інтеграції тілесних практик. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Соматична робота може бути інтенсивною. Роль не замінює роботу з сертифікованим соматичним терапевтом, особливо при складній травмі (CPTSD).</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Somatic Experiencing</span>
+            <span class="badge">Trauma-Informed</span>
+            <span class="badge">Body-Oriented Therapy</span>
+            <span class="badge">PTSD</span>
+            <span class="badge">Interoception</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

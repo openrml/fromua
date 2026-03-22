@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useLanguage } from '@/components/language-context'
+import { useLocale } from '@/components/locale-provider'
 import { Badge } from '@/components/ui/badge'
 import { ArrowRight } from 'lucide-react'
 
@@ -27,7 +27,7 @@ interface PopularRolesProps {
 }
 
 export function PopularRoles({ roles }: PopularRolesProps) {
-  const { locale, t } = useLanguage()
+  const { locale, t } = useLocale()
   
   const popularRoles = roles.filter(role => POPULAR_ROLES.includes(role.slug))
 
@@ -53,7 +53,7 @@ export function PopularRoles({ roles }: PopularRolesProps) {
             return (
               <Link
                 key={role.slug}
-                href={`/roles/${role.slug}`}
+                href={`/${locale}/roles/${role.slug}`}
                 className="group block p-6 border border-border hover:border-foreground transition-colors"
               >
                 <div className="flex flex-col gap-4">
@@ -79,7 +79,7 @@ export function PopularRoles({ roles }: PopularRolesProps) {
 
         <div className="mt-12 text-center">
           <Link
-            href="/roles"
+            href={`/${locale}/roles`}
             className="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 text-sm font-mono tracking-widest uppercase hover:opacity-90 transition-opacity"
           >
             {locale === 'uk' ? 'Всі 29 ролей' : 'All 29 Roles'}

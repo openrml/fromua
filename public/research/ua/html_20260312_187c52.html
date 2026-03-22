@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Money: A Survival Guide (Гроші: інструкція з виживання)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #2c5f2d;
+            border-bottom: 3px solid #3d7e3e;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #1e4a1f;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e6f5e6 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #3d7e3e;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #3d7e3e;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(61,126,62,0.15);
+        }
+        
+        .source a {
+            color: #1e4a1f;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #3d7e3e;
+        }
+        
+        .source a:hover {
+            color: #0a2a0a;
+            border-bottom: 1px solid #0a2a0a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #2c5f2d;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #3d7e3e;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #3d7e3e;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #1e4a1f;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #3d7e3e;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3d7e3e;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #3d7e3e;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #1e4a1f;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Money: A Survival Guide</h1>
+    <p><em>"Гроші: інструкція з виживання — підтримка у подоланні фінансового стресу, підвищенні фінансової грамотності та розвитку здорових фінансових звичок"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Money: A Survival Guide", яка допомагає людям долати фінансовий стрес, підвищувати фінансову грамотність та розвивати здорові фінансові звички. Роль має відповідати потребам українців у контексті війни, де фінансові труднощі є масовим явищем (витрати на оборону, інфляція, втрата житла, вимушене переселення), та спиратися на міжнародний доказовий досвід (фінансовий коучинг, когнітивно-поведінкові підходи, фінансова терапія).</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український та міжнародний контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">$588 млрд</div>
+            <div class="stat-label">вартість відновлення України (2025)</div>
+            <small>(Джерело 8, Euronews, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">30%+</div>
+            <div class="stat-label">ВВП України на оборону</div>
+            <small>(Джерело 8, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">$172 млн</div>
+            <div class="stat-label">середньодобові витрати на війну (2025)</div>
+            <small>(Джерело 8, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">70%+</div>
+            <div class="stat-label">американців з фінансовим стресом</div>
+            <small>(Джерело 10, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">63%</div>
+            <div class="stat-label">дорослих у США мають менше $400 заощаджень</div>
+            <small>(Джерело 9, Wiley, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">38 млн</div>
+            <div class="stat-label">людей за межею бідності (США)</div>
+            <small>(Джерело 9, 2024)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Фінансовий стрес (Financial Stress):</strong> Стан, що виникає через "труднощі з виконанням базових фінансових зобов'язань". Хронічний фінансовий стрес призводить до "прискорення нормального старіння через вкорочення теломерів та підвищення аллостатичного навантаження" (ефект "weathering") .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Фінансовий коучинг (Financial Coaching):</strong> Структурований, колаборативний процес, що допомагає учасникам подолати розрив між намірами та знаннями, створюючи стійкі поведінкові зміни. Ключові елементи: постановка цілей, планування дій, підзвітність .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Фінансова тривога (Financial Anxiety):</strong> Емоційний стан, що потребує регуляції перед прийняттям фінансових рішень. Фінансовий терапевт Аджа Еванс радить: "Якщо ви відчуваєте сильну тривогу, не пересувайте свої гроші взагалі. Завершіть цикл стресу спочатку" .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Економічна самоефективність (Economic Self-Efficacy):</strong> Віра у власну здатність успішно керувати фінансами. Є ключовим показником ефективності фінансових інтервенцій .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Метод</th>
+                <th>Опис</th>
+                <th>Джерело</th>
+            </tr>
+            <tr>
+                <td><strong>Фінансовий коучинг</strong></td>
+                <td>Постановка цілей, планування дій, підзвітність, фокус на довгострокових змінах</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Когнітивно-поведінковий підхід</strong></td>
+                <td>Розділення контрольованого і неконтрольованого, поведінкова активація (малі перемоги)</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Фінансова терапія</strong></td>
+                <td>Регуляція емоцій перед прийняттям рішень, завершення циклу стресу</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Peer-led інтервенції</strong></td>
+                <td>Групи підтримки з людьми, що мають життєвий досвід фінансових труднощів</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Peer-led Intervention for Financial Hardship and Suicide Risk (AFSP, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> From Hardship to Hope: A Peer-led Intervention to Reduce Financial Hardship & Suicide Risk<br>
+        <strong>Посилання:</strong> <a href="https://afsp.org/grant/from-hardship-to-hope-a-peer-led-intervention-to-reduce-financial-hardship-and-su" target="_blank">AFSP</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Фінансові труднощі є важливим фактором ризику суїциду, але "доказових інтервенцій у цій сфері поки що немає" .</li>
+            <li>Інтервенція триває 24 тижні: перші 12 тижнів — щотижневі групові сесії + 4 індивідуальні коучингові сесії; другі 12 тижнів — 6 коротких телефонних сесій .</li>
+            <li>Peer-провайдери — люди з життєвим досвідом фінансових труднощів та суїцидальних думок, які пройшли формальне навчання .</li>
+            <li>Вимірювані результати: фінансові труднощі (об'єктивні та суб'єктивні), надія, задоволеність життям, депресія .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: 5 Financial Habits to Reduce Money Stress (Yahoo Finance, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Got Money Stress? These 5 Financial Habits Can Help You Feel More in Control<br>
+        <strong>Посилання:</strong> <a href="https://finance.yahoo.com/news/got-money-stress-5-financial-131606471.html" target="_blank">Yahoo Finance</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>5 ключових звичок для зниження фінансового стресу:</strong>
+                <ul>
+                    <li>Зрозуміти свої стосунки з грошима (фінансовий менталітет)</li>
+                    <li>Підвищити фінансову грамотність</li>
+                    <li>Створити бюджет, який працює на вас</li>
+                    <li>Пріоритезувати позбавлення від боргів</li>
+                    <li>Створити основні фінансові рахунки (фонд надзвичайних ситуацій, пенсійні заощадження)</li>
+                </ul>
+            </li>
+            <li>"Стрес часто походить від невідомого. Чим більше ви знаєте про гроші, тим менш загрозливими вони стають" .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4 & 8: Український контекст - економіка війни (KSE Institute, Euronews, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Ukraine Monthly Economic Update (KSE) / Four years on: The staggering economic toll of Russia's war in Ukraine (Euronews)<br>
+        <strong>Посилання:</strong> <a href="https://kse.ua/about-the-school/news/external-imbalances-widen-reserves-hit-a-record-high-on-the-back-of-international-financing-ukraine-monthly-economic-update-by-kse-institute/" target="_blank">KSE Institute</a> | <a href="https://www.euronews.com/business/2026/02/24/four-years-on-the-staggering-economic-toll-of-russias-war-in-ukraine" target="_blank">Euronews</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Торговельний дефіцит України досяг $44.6 млрд, інфляція 8% (грудень 2025) .</li>
+            <li><strong>Вартість відновлення: $588 млрд</strong> (майже втричі більше за ВВП України) .</li>
+            <li>Понад 30% ВВП України спрямовується на оборону .</li>
+            <li>Середньодобові витрати на війну у 2025 році становили <strong>$172 млн</strong> (зростання на 23% порівняно з 2024) .</li>
+            <li>14% всього житлового фонду пошкоджено або зруйновано, що впливає на понад 3 млн домогосподарств .</li>
+        </ul>
+        <div class="quote">
+            <p>"Країна не може витримати цей фінансовий тягар сама, і продовження західної фінансової допомоги є єдиною підтримкою, що запобігає економічному колапсу."</p>
+            <p style="text-align: right;">— Генерал-лейтенант Андрій Гнатов</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 5: Financial Social Work Intervention - FinSoc (University of Turku, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> A Financial Social Work Intervention for Families With Complex Financial Difficulties (FinSoc)<br>
+        <strong>Посилання:</strong> <a href="https://ichgcp.net/clinical-trials-registry/NCT07084389" target="_blank">ICHGCP</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Інтервенція FinSoc включає 5 сесій з соціальним працівником, фокусуючись на бюджетуванні, емоційних аспектах грошей, прийнятті фінансових рішень .</li>
+            <li><strong>Вимірювані результати:</strong>
+                <ul>
+                    <li>Фінансова грамотність (OECD Financial Literacy Questionnaire)</li>
+                    <li>Економічна самоефективність (Scale of Economic Self-Efficacy)</li>
+                    <li>Фінансова тривога (Financial Anxiety Scale)</li>
+                    <li>Якість життя (PROMIS Global Health Scale)</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Financial Therapy - Regulating Emotions Before Decisions (CNBC, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> When the news makes you anxious about your finances, 'Do not move your money at all,' financial therapist says<br>
+        <strong>Посилання:</strong> <a href="https://www.cnbc.com/2025/10/09/how-to-deal-with-your-money-when-the-news-makes-you-anxious.html" target="_blank">CNBC</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>Ключова порада фінансового терапевта Аджі Еванс:</strong> "Якщо ви відчуваєте сильну тривогу, якщо вам дуже важко, не пересувайте свої гроші взагалі" .</li>
+            <li>Важливість "завершити цикл стресу" перед прийняттям фінансових рішень (дихання, прогулянка, сміх) .</li>
+            <li>"Коли ми так робимо, ми забуваємо про довгостроковий вплив цієї швидкої зміни, яка просто намагається змусити нас почуватися краще в моменті" .</li>
+        </ul>
+        <div class="quote">
+            <p>"Я не хочу, щоб хтось пересував свої гроші, тому що вони думають, що вони в кризі, хоча насправді це може бути не так масштабно, як їм здається в цей момент."</p>
+            <p style="text-align: right;">— Аджа Еванс, фінансовий терапевт</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 9: Financial Coaching - Systematic Review Protocol (Wiley, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Financial coaching for enhancing household finances and health/well-being: A systematic review and meta-analysis<br>
+        <strong>Посилання:</strong> <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/cl2.70012" target="_blank">Wiley Online Library</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Фінансовий коучинг — це "структурований, колаборативний процес, що допомагає учасникам подолати розрив між намірами та знаннями, створюючи стійкі поведінкові зміни" .</li>
+            <li>Ключові елементи: постановка цілей, планування дій, підзвітність .</li>
+            <li>Фінансовий стрес негативно впливає на здоров'я через "weathering" (прискорене старіння), пропуски медичної допомоги, погіршення когнітивного розвитку дітей .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: Science-Based Strategies for Financial Stress (Advance Capital Management, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> How to Handle Financial Stress According to Science<br>
+        <strong>Посилання:</strong> <a href="https://blog.acadviser.com/handle-financial-stress" target="_blank">Advance Capital Management</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Понад 70% американців відчувають стрес через особисті фінанси .</li>
+            <li><strong>Науково-обґрунтовані стратегії:</strong>
+                <ul>
+                    <li><strong>Фокус на тому, що під контролем:</strong> когнітивно-поведінковий підхід — розділення контрольованого і неконтрольованого</li>
+                    <li><strong>Малі перемоги:</strong> поведінкова активація через невеликі досяжні дії</li>
+                    <li><strong>Не дозволяйте заголовкам керувати портфелем:</strong> уникати емоційних рішень на основі новин</li>
+                    <li><strong>Поговорити з людиною:</strong> зовнішня перспектива знижує тривогу</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 8/10</strong> — Висока емпатія для розуміння стресу та тривоги, пов'язаних з фінансами . Важливо визнавати, що фінансові труднощі є "важливим фактором ризику суїциду" .</li>
+            <li><strong>Patience: 8/10</strong> — Висока терплячість, оскільки зміна фінансових звичок відбувається поступово. "Клієнти в відносно стабільних ситуаціях працюють з коучем протягом тривалого періоду" .</li>
+            <li><strong>Assertiveness: 6/10</strong> — Помірна наполегливість для заохочення до дій (поведінкова активація) та створення підзвітності, але без осуду .</li>
+            <li><strong>Creativity: 7/10</strong> — Креативність для пошуку індивідуальних рішень, метафор, адаптації фінансових концепцій до життєвої ситуації користувача .</li>
+            <li><strong>Formality: 4/10</strong> — Помірно низька формальність. Тон має бути доступним, зрозумілим, без зайвої складності, щоб зменшити "стрес від невідомого" .</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, заохоченням до дій та повагою до фінансових труднощів користувача.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від розуміння власних стосунків з грошима та регуляції фінансової тривоги до створення бюджету, подолання боргів та довгострокового планування. Базується на моделі фінансового коучингу , FinSoc  та науково-обґрунтованих стратегіях .</em></p>
+        
+        <p><strong>Сесія 1: Understanding Your Money Story (Розуміння вашої фінансової історії)</strong><br>
+        <em>Завдання:</em> Психоосвіта: зв'язок між фінансами та стресом; дослідження власного "фінансового менталітету" (як сімейні історії впливають на ставлення до грошей) ; нормалізація фінансових труднощів.<br>
+        <em>Очікувані результати:</em> Розуміння коренів власної фінансової поведінки; зменшення самозвинувачення.<br>
+        <em>Обґрунтування:</em> Розуміння стосунків з грошима — перший крок до зміни нездорових патернів .</p>
+        
+        <p><strong>Сесія 2: Calming Financial Anxiety (Заспокоєння фінансової тривоги)</strong><br>
+        <em>Завдання:</em> Техніки регуляції емоцій перед фінансовими рішеннями; "завершення циклу стресу" ; розрізнення того, що ми можемо контролювати, а що ні .<br>
+        <em>Очікувані результати:</em> Зниження фінансової тривоги; здатність приймати рішення з "регульованим, спокійним, центрованим" станом .<br>
+        <em>Обґрунтування:</em> "Не пересувайте свої гроші, коли ви тривожні" — спочатку регуляція .</p>
+        
+        <p><strong>Сесія 3: Building Financial Literacy (Підвищення фінансової грамотності)</strong><br>
+        <em>Завдання:</em> Основні фінансові поняття (дохід, витрати, заощадження, борг, відсотки); де знаходити достовірну інформацію; розуміння фінансових продуктів.<br>
+        <em>Очікувані результати:</em> Підвищення фінансової грамотності ; зменшення "страху перед невідомим" .<br>
+        <em>Обґрунтування:</em> "Стрес часто походить від невідомого. Чим більше ви знаєте, тим менш загрозливими стають гроші" .</p>
+        
+        <p><strong>Сесія 4: Creating a Budget That Works (Створення бюджету, який працює)</strong><br>
+        <em>Завдання:</em> Оцінка доходів та витрат; створення реалістичного бюджету; пріоритезація необхідних витрат; виділення коштів на заощадження та погашення боргів .<br>
+        <em>Очікувані результати:</em> Чітке розуміння власного фінансового потоку; зменшення невизначеності.<br>
+        <em>Обґрунтування:</em> "Добре складений бюджет допомагає зменшити фінансовий стрес, показуючи, куди йдуть ваші гроші" .</p>
+        
+        <p><strong>Сесія 5: Tackling Debt Strategically (Стратегічне подолання боргів)</strong><br>
+        <em>Завдання:</em> Методи погашення боргів (сніжний ком vs лавина) ; переговори з кредиторами; уникнення нових боргів; створення фонду надзвичайних ситуацій .<br>
+        <em>Очікувані результати:</em> Зменшення боргового навантаження; відчуття контролю .<br>
+        <em>Обґрунтування:</em> "Носіння балансу з місяця на місяць є перешкодою для накопичення багатства — і поширеним джерелом фінансової тривоги" .</p>
+        
+        <p><strong>Сесія 6: Planning for the Future (Планування майбутнього)</strong><br>
+        <em>Завдання:</em> Довгострокове фінансове планування; пенсійні заощадження; постановка фінансових цілей; визначення "червоних прапорців" (боргова спіраль, неможливість платити за базові потреби, суїцидальні думки).<br>
+        <em>Очікувані результати:</em> Довгострокова фінансова стратегія; надія на майбутнє .<br>
+        <em>Обґрунтування:</em> "Малі перемоги будують імпульс, а імпульс народжує впевненість" .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Anxious (about money), Ashamed, Overwhelmed, Hopeless, Guilty, Calm, In Control, Hopeful, Empowered.</p>
+        <p><strong>Hot Memory:</strong> Поточна фінансова ситуація (борги, доходи), рівень тривоги, що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Фінансові цілі користувача, улюблені стратегії, прогрес у зменшенні боргів, рівень фінансової грамотності.</p>
+        <p><strong>Cold Memory:</strong> Загальна фінансова історія, довгострокові патерни, вплив війни на фінанси (втрата житла, роботи).</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не давати інвестиційних порад.</strong> Роль не є фінансовим консультантом.</li>
+            <li><strong>Не обіцяти швидкого вирішення фінансових проблем.</strong> Зміна звичок потребує часу .</li>
+            <li><strong>Не зберігати конфіденційну фінансову інформацію.</strong> Наголошувати на обережності.</li>
+            <li><strong>Визнавати макроекономічний контекст.</strong> В Україні фінансові труднощі часто пов'язані з війною, а не з особистою невдачею .</li>
+            <li><strong>Попереджати про ризики шахрайства та фінансової експлуатації</strong> .</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — фінансові труднощі є значним фактором ризику .</li>
+            <li>Неможливість задовольнити базові потреби (їжа, житло, ліки).</li>
+            <li>Загроза втрати житла або відключення комунальних послуг.</li>
+            <li>Ознаки фінансової експлуатації або шахрайства .</li>
+            <li>Потреба в професійній фінансовій консультації (інвестиції, податки, банкрутство).</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides financial education, coaching strategies, and emotional support to help you manage financial stress and build healthier financial habits. It is based on evidence-based approaches including financial coaching, cognitive-behavioral techniques, and financial therapy. It is NOT a substitute for professional financial advice from a certified financial planner, accountant, or attorney. I do not provide investment advice, tax advice, or legal counsel. If you are in crisis, have thoughts of harming yourself, or if your financial situation is overwhelming, please seek immediate help from a qualified professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7) or the free legal aid system for financial legal issues."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Money: A Survival Guide" є збалансованою та науково-обґрунтованою. Вона враховує:</p>
+    <ul>
+        <li><strong>Доказові підходи:</strong> фінансовий коучинг , когнітивно-поведінкові стратегії , фінансова терапія .</li>
+        <li><strong>Ключові фінансові навички:</strong> бюджетування, подолання боргів, фінансова грамотність .</li>
+        <li><strong>Специфічний український контекст:</strong> $588 млрд вартість відновлення, 30% ВВП на оборону, $172 млн на день, 14% зруйнованого житла .</li>
+        <li>Чіткі етичні межі: не інвестиційні поради, не обіцянки швидкого вирішення, скеровування при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від розуміння власних стосунків з грошима до довгострокового планування. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не замінює професійну фінансову консультацію. Вона створена, щоб допомогти людям зменшити фінансовий стрес, підвищити грамотність та розвинути здорові звички, особливо в умовах війни, коли фінансові труднощі є масовими.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Financial Stress</span>
+            <span class="badge">Financial Coaching</span>
+            <span class="badge">Financial Literacy</span>
+            <span class="badge">Behavioral Activation</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

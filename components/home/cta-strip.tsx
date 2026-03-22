@@ -1,10 +1,10 @@
 'use client'
 
 import Link from 'next/link'
-import { useLanguage } from '@/components/language-context'
+import { useLocale } from '@/components/locale-provider'
 
 export function CtaStrip() {
-  const { t } = useLanguage()
+  const { t, locale } = useLocale()
   const c = t.cta
 
   return (
@@ -35,13 +35,13 @@ export function CtaStrip() {
 
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/roles"
+              href={`/${locale}/roles`}
               className="border border-background px-8 py-4 text-sm font-mono tracking-widest uppercase text-background hover:bg-background hover:text-foreground transition-colors"
             >
               {c.browseRoles}
             </Link>
             <Link
-              href="/standard"
+              href={`/${locale}/standard`}
               className="px-8 py-4 text-sm font-mono tracking-widest uppercase text-background/60 hover:text-background transition-colors"
             >
               {c.readStandard}

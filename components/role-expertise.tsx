@@ -1,9 +1,8 @@
 'use client'
 
-import { useLanguage } from '@/components/language-context'
+import { useLocale } from '@/components/locale-provider'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Role } from '@/lib/types'
 
 interface RoleExpertiseProps {
   expertiseAreas?: string[]
@@ -26,7 +25,7 @@ export function RoleExpertise({
   additionalRules,
   additionalRulesUa
 }: RoleExpertiseProps) {
-  const { locale, t } = useLanguage()
+  const { locale, t } = useLocale()
 
   const areas = locale === 'uk' && expertiseAreasUa ? expertiseAreasUa : expertiseAreas
   const toolList = locale === 'uk' && toolsUa ? toolsUa : tools

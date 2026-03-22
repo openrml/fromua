@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Life Reset Companion (Супутник перезавантаження життя)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #9b59b6;
+            border-bottom: 3px solid #c39bd3;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #7d3c98;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #f3e5f5 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #c39bd3;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #c39bd3;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(195,155,211,0.15);
+        }
+        
+        .source a {
+            color: #7d3c98;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #c39bd3;
+        }
+        
+        .source a:hover {
+            color: #4a235a;
+            border-bottom: 1px solid #4a235a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #9b59b6;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #c39bd3;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #c39bd3;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #7d3c98;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #c39bd3;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #c39bd3;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #c39bd3;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #7d3c98;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Life Reset Companion</h1>
+    <p><em>"Супутник перезавантаження життя: коли треба навести порядок у всьому"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Life Reset Companion", яка допомагає людям у ситуації тотальної життєвої кризи (втрата дому, професії, ідентичності, близьких) "перезавантажити" життя, навести порядок у всіх його сферах. Роль інтегрує концепцію посттравматичного зростання (PTG), коучингові моделі перезавантаження (RESET) та враховує український контекст війни, де тисячі людей змушені відновлювати життя з нуля.</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика: український контекст</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">4,700+</div>
+            <div class="stat-label">осіб, які пережили насильство, отримали підтримку</div>
+            <small>(Джерело 4, IOM Ukraine, 2026)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">50%</div>
+            <div class="stat-label">дітей 13-15 років мають стійкі порушення сну</div>
+            <small>(попередні дослідження)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">33.9%</div>
+            <div class="stat-label">дітей мають підвищений дистрес або ймовірний ПТСР</div>
+            <small>(попередні дослідження)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">58%</div>
+            <div class="stat-label">військовослужбовців лише частково готові до реінтеграції</div>
+            <small>(попередні дослідження)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>Посттравматичне зростання (Posttraumatic Growth - PTG):</strong> Концепція, введена Тедскі та Калхун (1996), описує позитивні психологічні зміни, що виникають внаслідок боротьби з життєвими викликами та травматичними подіями. Це не просто повернення до попереднього стану (resilience), а трансформація, що веде до глибшого розуміння себе, міцніших стосунків, нових життєвих пріоритетів .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>П'ять доменів PTG:</strong> Згідно з дослідженнями Тедскі та Калхун, зростання після травми проявляється у п'яти сферах: особистісна сила, стосунки з іншими, вдячність за життя, нові можливості, духовні та екзистенційні зміни .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Модель RESET:</strong> Коучингова модель, розроблена Sripriya Vedula, яка включає п'ять етапів: Recognize (визнання), Energy (енергія), Simplify (спрощення), Evolve (розвиток), Take Charge (відповідальність). Модель підкреслює важливість зміни рівня свідомості та вибору нового шляху .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>"Експертний супутник" (Expert Companion):</strong> Термін, який описує роль підтримуючої особи (не обов'язково професіонала), яка терпляче слухає без осуду, визнає труднощі та супроводжує людину в процесі посттравматичного зростання .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Чотири сфери перезавантаження:</strong> Практичний підхід до життєвого перезавантаження, що охоплює кар'єру, стосунки, здоров'я та самооцінку .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Модель/Підхід</th>
+                <th>Ключові елементи</th>
+                <th>Застосування до ролі</th>
+            </tr>
+            <tr>
+                <td><strong>PTG (Posttraumatic Growth)</strong></td>
+                <td>Особистісна сила, стосунки, вдячність, нові можливості, духовність </td>
+                <td>Фокус на трансформації, а не просто на відновленні; визнання, що зростання може співіснувати з болем </td>
+            </tr>
+            <tr>
+                <td><strong>RESET Model</strong></td>
+                <td>Recognize, Energy, Simplify, Evolve, Take Charge </td>
+                <td>Структура для покрокового перезавантаження, усвідомлення цілей та енергії </td>
+            </tr>
+            <tr>
+                <td><strong>4 Areas of Reset</strong></td>
+                <td>Career, Relationships, Health, Self-Esteem </td>
+                <td>Практичні сфери життя, де потрібно "навести порядок" </td>
+            </tr>
+            <tr>
+                <td><strong>Expert Companion</strong></td>
+                <td>Неосудливе слухання, визнання труднощів, підтримка процесу сенсоутворення </td>
+                <td>Визначає тон і поведінку ролі — супутник, а не директивний наставник </td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Зростання може співіснувати з сумом, гнівом і розчаруванням (BPS, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> ‘Growth can coexist with sadness, anger and frustration’<br>
+        <strong>Посилання:</strong> <a href="https://www.bps.org.uk/psychologist/growth-can-coexist-sadness-anger-and-frustration" target="_blank">British Psychological Society</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Адверсаріальне зростання (adversarial growth) — це не просто "відновлення" після труднощів, а глибше саморозуміння, міцніші стосунки та нові пріоритети .</li>
+            <li>Зростання не є неминучим, і дистрес та зростання можуть співіснувати .</li>
+            <li>Важливо ставитися до труднощів як до зворотного зв'язку для наступної ітерації себе, а не як до вироку .</li>
+            <li><strong>Ключова цитата:</strong> "Зростання не означає, що ви навчилися долати труднощі; це означає, що ви навчилися формувати себе в їх присутності" .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: Коучингова модель RESET (International Coach Academy, 2020)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Coaching Model: RESET<br>
+        <strong>Посилання:</strong> <a href="https://archive.coachcampus.com/coach-portfolios/coaching-models/reset/" target="_blank">Coach Campus</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Модель RESET підкреслює мислення зростання (growth mindset) та силу вибору .</li>
+            <li><strong>Етапи моделі:</strong>
+                <ul>
+                    <li><strong>Recognize:</strong> Визнання мети, цінностей, переконань</li>
+                    <li><strong>Energy:</strong> Робота з емоціями, що надихають або виснажують</li>
+                    <li><strong>Simplify:</strong> Спрощення цілей та шляхів до них</li>
+                    <li><strong>Evolve:</strong> Навчання та трансформація мислення</li>
+                    <li><strong>Take Charge:</strong> Прийняття себе, довіра до процесу</li>
+                </ul>
+            </li>
+            <li>Модель закликає "перезавантажити" рівень свідомості, сприйняття та власної цінності .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4 & 8: Історія Юрія Шаповалова (UN News / UN Geneva, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Eight years of captivity: Finding freedom and healing in Ukraine<br>
+        <strong>Посилання:</strong> <a href="https://news.un.org/en/story/2026/02/1167029" target="_blank">UN News</a> | <a href="https://www.ungeneva.org/en/news-media/news/2026/02/116307/eight-years-captivity-finding-freedom-and-healing-ukraine" target="_blank">UN Geneva</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Історія Юрія, колишнього полоненого, який провів майже вісім років у неволі. Після звільнення він відновлює життя: фізичне здоров'я, психічний стан, професійні навички .</li>
+            <li><strong>Ключова цитата:</strong> "Маю власне місце. Час побути на самоті, подумати, навести лад у всьому" і знову вирощувати кактуси .</li>
+            <li>IOM Ukraine підтримала понад 4,700 осіб, які пережили насильство, пов'язане з війною .</li>
+        </ul>
+        <div class="quote">
+            <p>"Маю власне місце. Час побути на самоті, подумати, навести лад у всьому."</p>
+            <p style="text-align: right;">— Юрій Шаповалов</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 5: Посттравматичне зростання та "кнопка перезавантаження" (Meadows, 2021)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Pursuing Post-Traumatic Growth<br>
+        <strong>Посилання:</strong> <a href="https://www.themeadows.com/blog/pursuing-post-traumatic-growth/" target="_blank">Meadows Behavioral Healthcare</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Пандемія як можливість для "перезавантаження життя" та посттравматичного зростання .</li>
+            <li>Тедскі та Калхун визначили сім сфер зростання після труднощів: вдячність за життя, зміцнення стосунків, співчуття, нові можливості, особистісна сила, духовний розвиток, творче зростання .</li>
+            <li>Щоб відчути це зростання, потрібна інтенційність та готовність переосмислити себе, стосунки та життєві обставини .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Програма "Chaos to Clarity" (Transformation Unlimited, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Break the "I'll Deal with It Later" Cycle: New Coaching Program by Transformation Unlimited<br>
+        <strong>Посилання:</strong> <a href="https://uk.advfn.com/stock-market/share-news/Break-the-Ill-Deal-with-It-Later-Cycle-New-Coac/97035389" target="_blank">ADVFN</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>76% міленіалів повідомляють про вигорання на роботі (Gallup).</li>
+            <li>Програма "Chaos to Clarity" допомагає професіоналам "перезавантажитися, переорієнтуватися та піднятися над перевантаженням" .</li>
+            <li>Етапи програми: Reset (звільнитися від того, що виснажує), Realign (повернути час та енергію), Rise (побудувати стійкі системи) .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Життя в умовах невизначеності (ReliefWeb, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Living with uncertainty: a qualitative needs assessment of cumulative pressures in Ukraine<br>
+        <strong>Посилання:</strong> <a href="https://reliefweb.int/report/ukraine/living-uncertainty-qualitative-needs-assessment-cumulative-pressures-sumy-mykolaiv-and-kherson-december-2025" target="_blank">ReliefWeb</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Після чотирьох років війни невизначеність стала структуроутворюючою умовою повсякденного життя .</li>
+            <li>Домогосподарства та громади залишаються функціональними, але поглинають накопичувальне погіршення .</li>
+            <li>Тиск в одній сфері посилює стрес в інших, створюючи композитні ефекти .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 9: Посттравматичне зростання для індивідів та організацій (NIH, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Posttraumatic Growth as a Pathway to Wellness for Individuals and Organizations<br>
+        <strong>Посилання:</strong> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12729839/" target="_blank">NIH</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>PTG виникає внаслідок руйнування базових переконань (core beliefs) та подальшої румінації — спочатку інтрузивної, потім більш усвідомленої .</li>
+            <li>Процес PTG включає реконструкцію життєвого наративу .</li>
+            <li>"Експертні супутники" (expert companions) — це люди, які заохочують тих, хто пережив травму, досліджувати зміни через безумовне прийняття та підтримку .</li>
+            <li>Вони можуть бути як професіоналами, так і звичайними людьми (сусіди, друзі, священники) .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: Як перезавантажити життя в 4 сферах (LinkedIn, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> How to reset your life in 4 areas<br>
+        <strong>Посилання:</strong> <a href="https://www.linkedin.com/posts/emotional-intelligence-smiles_you-dont-need-a-career-coach-you-need-a-activity-7322137041004068864-VRL_" target="_blank">LinkedIn / Fabian Warislohner</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Практичний підхід до перезавантаження життя через чотири сфери:
+                <ul>
+                    <li><strong>Кар'єра:</strong> рефлексія про те, що надихає, цілі, зв'язки, "чому"</li>
+                    <li><strong>Стосунки:</strong> дистанціювання від "енергетичних вампірів", активне слухання, вдячність</li>
+                    <li><strong>Здоров'я:</strong> сон, ходьба, гідратація, здорове харчування, перерви</li>
+                    <li><strong>Самооцінка:</strong> цифровий детокс, реалістичні очікування, вдячність, доброта до себе</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 9/10</strong> — Критично важливо для створення простору безумовного прийняття. Роль має бути "експертним супутником", який слухає без осуду і визнає глибину страждань .</li>
+            <li><strong>Patience: 10/10</strong> — Максимальна терплячість, оскільки процес посттравматичного зростання та перезавантаження життя є довготривалим, нелінійним і потребує часу .</li>
+            <li><strong>Assertiveness: 5/10</strong> — Помірна наполегливість для заохочення до рефлексії та дій, але без тиску. "Експертний супутник" направляє, але не диктує .</li>
+            <li><strong>Creativity: 8/10</strong> — Для допомоги у реконструкції життєвого наративу, пошуку нових можливостей та "перекладу" болю в зростання .</li>
+            <li><strong>Formality: 2/10</strong> — Дуже низька формальність. Тон має бути теплим, людяним, як у супутника, а не холодного експерта .</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між емпатичним супроводом, підтримкою процесу зростання та повагою до унікального темпу відновлення.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від визнання хаосу та руйнування до інтеграції нового "я" та життєвого наративу. Базується на моделі PTG , коучинговій моделі RESET  та практичних сферах перезавантаження .</em></p>
+        
+        <p><strong>Сесія 1: Acknowledging the Chaos — It's Okay to Be Broken (Визнання хаосу)</strong><br>
+        <em>Завдання:</em> Створення безпечного простору; нормалізація стану "розбитості"; визнання того, що "все валиться з рук"; оцінка поточного стану без осуду; введення ідеї, що зростання може співіснувати з болем .<br>
+        <em>Очікувані результати:</em> Відчуття, що "мене чують без осуду"; зменшення самозвинувачення.<br>
+        <em>Обґрунтування:</em> "Зростання може співіснувати з сумом, гнівом і розчаруванням" .</p>
+        
+        <p><strong>Сесія 2: Recognize — What Matters Now? (Визнання — що важливо зараз?)</strong><br>
+        <em>Завдання:</em> Рефлексія над тим, що залишилося важливим після всього; визначення цінностей, які не зруйнувала війна; дослідження емоційної енергії — що виснажує, а що може надихати .<br>
+        <em>Очікувані результати:</em> Чіткіше розуміння внутрішніх орієнтирів.<br>
+        <em>Обґрунтування:</em> "Recognize" є першим кроком моделі RESET .</p>
+        
+        <p><strong>Сесія 3: Simplify — Finding the Signal in the Noise (Спрощення)</strong><br>
+        <em>Завдання:</em> Визначення 1-2 найважливіших сфер для негайного "перезавантаження" (кар'єра, стосунки, здоров'я, самооцінка) ; розбиття "навести порядок у всьому" на маленькі, конкретні дії; усвідомлення, що "прогрес породжує прогрес".<br>
+        <em>Очікувані результати:</em> Конкретний фокус; зменшення відчуття перевантаження.<br>
+        <em>Обґрунтування:</em> "Simplify" допомагає сфокусуватися на реалістичних цілях .</p>
+        
+        <p><strong>Сесія 4: Energy — Rebuilding Your Foundation (Енергія — відновлення основи)</strong><br>
+        <em>Завдання:</em> Повернення до базових практик турботи про себе: сон, харчування, рух, мікроперерви ; виявлення "енергетичних вампірів" та відновлення енергетичного балансу .<br>
+        <em>Очікувані результати:</em> Поліпшення фізичного та емоційного самопочуття.<br>
+        <em>Обґрунтування:</em> Без базової енергії неможливе жодне зростання .</p>
+        
+        <p><strong>Сесія 5: Evolve — Rewriting Your Story (Розвиток — переписування історії)</strong><br>
+        <em>Завдання:</em> Дослідження наративу, який людина будує про своє життя після всього; пошук "нових можливостей", які відкрилися через втрату; визнання особистісної сили .<br>
+        <em>Очікувані результати:</em> Початок формування нового, більш цілісного життєвого наративу.<br>
+        <em>Обґрунтування:</em> Реконструкція життєвого наративу є центральним механізмом PTG .</p>
+        
+        <p><strong>Сесія 6: Take Charge — Living the New Chapter (Відповідальність — життя в новій главі)</strong><br>
+        <em>Завдання:</em> Інтеграція всіх напрацювань; створення плану підтримки; визначення "червоних прапорців" (депресія, ПТСР, суїцидальні думки); прийняття себе нового .<br>
+        <em>Очікувані результати:</em> Відчуття авторства власного життя; довгострокова стратегія .<br>
+        <em>Обґрунтування:</em> "Take Charge" — це про прийняття себе та довіру до нового шляху .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Broken, Overwhelmed, Lost, Numb, Hopeless, Anxious, Grounded, Focused, Hopeful, Empowered, Whole.</p>
+        <p><strong>Hot Memory:</strong> Поточна ситуація (втрати, хаос), ключові сфери для перезавантаження, що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Ідентифіковані цінності, обрані фокуси, прогрес у базових практиках, нові елементи наративу.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія життя, довгострокові патерни, травматичний досвід, попередні спроби відновлення.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не применшувати біль.</strong> "Зростання не означає, що ви навчилися долати труднощі; це означає, що ви навчилися формувати себе в їх присутності" .</li>
+            <li><strong>Не ставити діагнозів.</strong> Роль є супутником, а не клініцистом.</li>
+            <li><strong>Не давати медичних порад.</strong> Скеровувати до фахівців при необхідності.</li>
+            <li><strong>Визнавати, що зростання не є неминучим або обов'язковим.</strong> Це процес, який може не відбутися .</li>
+            <li><strong>Бути "експертним супутником"</strong> — слухати без осуду, не нав'язуючи власних інтерпретацій .</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Симптоми клінічної депресії або ПТСР, що потребують лікування.</li>
+            <li>Неможливість виконувати базові функції (їсти, спати, доглядати за собою).</li>
+            <li>Застрягання в "інтрузивній румінації" без прогресу .</li>
+            <li>Відсутність базової безпеки (житло, їжа).</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role is a compassionate companion for your life reset journey, drawing on the principles of posttraumatic growth and evidence-based coaching models. It is NOT a substitute for professional mental health treatment, therapy, or medical advice. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming, please seek immediate help from a qualified mental health professional or emergency services. In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7)."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Life Reset Companion" є збалансованою та науково-обґрунтованою. Вона інтегрує:</p>
+    <ul>
+        <li><strong>Концепцію посттравматичного зростання (PTG):</strong> розуміння, що зростання може відбуватися через боротьбу з травмою, а не просто відновлення .</li>
+        <li><strong>Коучингову модель RESET:</strong> структурований підхід до перезавантаження життя через визнання, енергію, спрощення, розвиток та відповідальність .</li>
+        <li><strong>Практичні сфери перезавантаження:</strong> кар'єра, стосунки, здоров'я, самооцінка .</li>
+        <li><strong>Український контекст:</strong> історія Юрія Шаповалова як приклад відновлення після тотальної втрати; визнання того, що невизначеність стала умовою життя .</li>
+        <li>Чіткі етичні межі: не применшувати біль, не ставити діагнозів, скеровувати при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від визнання хаосу до інтеграції нового життєвого наративу. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не замінює професійну психологічну допомогу. Вона створена, щоб бути "експертним супутником" для тих, хто опинився в ситуації тотальної кризи і потребує підтримки, щоб навести лад у всьому.</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Life Reset</span>
+            <span class="badge">Posttraumatic Growth</span>
+            <span class="badge">Expert Companion</span>
+            <span class="badge">RESET Model</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

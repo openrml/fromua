@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: AI Coach with AI (AI Коуч зі ШІ)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #8e44ad;
+            border-bottom: 3px solid #9b59b6;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #6c3483;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #f4e8ff 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #9b59b6;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #9b59b6;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(155,89,182,0.15);
+        }
+        
+        .source a {
+            color: #6c3483;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #9b59b6;
+        }
+        
+        .source a:hover {
+            color: #4a235a;
+            border-bottom: 1px solid #4a235a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #8e44ad;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #9b59b6;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #9b59b6;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #6c3483;
+            font-size: 1.1em;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #9b59b6;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .quote {
+            font-style: italic;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #9b59b6;
+            margin: 15px 0;
+        }
+        
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .model-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .model-card h4 {
+            margin-top: 0;
+            color: #8e44ad;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: AI Coach with AI</h1>
+    <p><em>"AI Коуч зі ШІ: навчання продуктивному використанню новітніх технологій"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "AI Coach with AI", яка навчає людей продуктивно використовувати новітні технології штучного інтелекту, розвиває AI-грамотність (AI literacy) та допомагає подолати розрив між потенціалом технологій і реальними навичками користувачів. Роль інтегрує дослідження з AI-грамотності, етичного використання ШІ, дизайну AI-коучинг-систем та український контекст цифрової трансформації.</p>
+
+    <hr>
+
+    <h2>2. Ключові концепції та статистика</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">95%</div>
+            <div class="stat-label">організацій не отримують очікуваної віддачі від AI</div>
+            <small>(Джерело 3, MIT/SEI, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">8%</div>
+            <div class="stat-label">компаній масштабують AI на рівні всього підприємства</div>
+            <small>(Джерело 3, Accenture, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">120+</div>
+            <div class="stat-label">університетів використовують AI-модуль UMD</div>
+            <small>(Джерело 7, University of Maryland, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">144,000+</div>
+            <div class="stat-label">переглядів гайду з AI-грамотності</div>
+            <small>(Джерело 7, UMD, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">96%</div>
+            <div class="stat-label">користувачів вважають AI-відповіді персоналізованими</div>
+            <small>(Джерело 6, Tavus, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: ключові концепції</h2>
+    
+    <div class="key-concept">
+        <p><strong>AI-грамотність (AI Literacy):</strong> Здатність розуміти, оцінювати та ефективно використовувати технології штучного інтелекту. Включає критичне мислення про AI-висновки, розуміння обмежень та упереджень, етичне використання та здатність розрізняти корисну автоматизацію та дезінформацію .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>CLEAR Framework:</strong> Рамка для AI-грамотності, що включає Critical thinking (критичне мислення), Literacy (грамотність), Evaluation (оцінка), Application (застосування) та Reflection (рефлексія). Використовується в університетських курсах для розвитку навичок роботи з AI .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>ARC Framework (Acceleration, Replacement, Creation):</strong> Модель стратегічного впровадження AI, що описує три шляхи: прискорення існуючих процесів, заміна рутинних завдань, створення абсолютно нових цінностей та бізнес-моделей .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>AI Adoption Maturity Model:</strong> Модель зрілості впровадження AI від Carnegie Mellon University, що визначає п'ять рівнів: Exploratory, Implemented, Aligned, Scaled, Future-Ready .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Персона AI-коуча:</strong> Унікальна комбінація особистості, стилю та експертизи, яку AI-коуч привносить у взаємодію. Добре розроблена персона будує довіру та залученість .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>RAG (Retrieval-Augmented Generation):</strong> Технологія, що поєднує генерацію тексту з пошуком релевантної інформації у векторній базі даних, забезпечуючи точні, обґрунтовані відповіді з часом відгуку до 30 мс .</p>
+    </div>
+    
+    <div class="key-concept">
+        <p><strong>Три ролі AI в освіті:</strong> Згідно з систематичним оглядом Springer (2025), AI в освіті виконує три основні ролі: оцінювання та атестація (45 досліджень), персоналізований зворотний зв'язок та рекомендації (46 досліджень), інтелектуальне репетиторство (26 досліджень) .</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Компетенція</th>
+                <th>Опис</th>
+                <th>Джерело</th>
+            </tr>
+            <tr>
+                <td><strong>Критичне мислення</strong></td>
+                <td>Аналіз AI-висновків, виявлення упереджень, перехресна перевірка фактів</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Технічні навички</strong></td>
+                <td>Prompt engineering, вибір інструментів, розуміння обмежень моделей</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Етичне використання</strong></td>
+                <td>Конфіденційність, академічна доброчесність, авторство, упередження</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Інтеграція в робочі процеси</strong></td>
+                <td>Вбудовування AI в існуючі процеси, автоматизація рутинних завдань</td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><strong>Створення цінності</strong></td>
+                <td>Використання AI для створення нових продуктів, послуг, бізнес-моделей</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Створення AI-коуча (Tavus, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Starter kit: How to create an AI coach<br>
+        <strong>Посилання:</strong> <a href="https://www.tavus.io/post/starter-kit-how-create-ai-coach" target="_blank">Tavus</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>AI-коуч — це набагато більше, ніж чатбот; це персоналізований, завжди доступний наставник, який пропонує індивідуальні поради, зворотний зв'язок та підтримку .</li>
+            <li><strong>Ключові компоненти створення персони AI-коуча:</strong> визначення ідентичності (ім'я, досвід, стиль), системний промпт (тон, стиль, експертиза), налаштування поведінки (зворотний зв'язок, рольові ігри) .</li>
+            <li>Добре розроблена персона будує довіру та залученість .</li>
+            <li>AI-коучи можуть бути мотиваційними, аналітичними або емпатичними залежно від потреб .</li>
+            <li>Етика, конфіденційність та прозорість є критичними при розробці .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: Курс AI-грамотності з CLEAR Framework (UCF, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> From Myths to Mastery: A Progressive AI Literacy Course Using the CLEAR Framework<br>
+        <strong>Посилання:</strong> <a href="https://stars.library.ucf.edu/traiil/16/" target="_blank">University of Central Florida</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Курс "Digital Minds" використовує прогресивний scaffolding-підхід, що трансформує студентів з пасивних споживачів AI в критичних співпрацівників .</li>
+            <li><strong>CLEAR Framework:</strong> Critical thinking, Literacy, Evaluation, Application, Reflection.</li>
+            <li>Студенти вчаться аналізувати AI-системи, інтерпретувати AI-дані, створювати AI-людські проєкти та оцінювати ефективність AI .</li>
+            <li>Важливість перевірки фактів у реальному часі та розвінчування міфів про AI .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: Модель зрілості впровадження AI (Carnegie Mellon, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> SEI and Accenture Partner to Develop AI Adoption Maturity Model<br>
+        <strong>Посилання:</strong> <a href="https://www.sei.cmu.edu/news/sei-and-accenture-partner-to-develop-ai-adoption-maturity-model/" target="_blank">Carnegie Mellon University</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>95% організацій не отримують очікуваної віддачі від інвестицій в AI ($30-40 млрд) .</li>
+            <li>Лише 8% компаній масштабують AI на рівні всього підприємства .</li>
+            <li><strong>Модель зрілості AI Adoption:</strong> Exploratory, Implemented, Aligned, Scaled, Future-Ready.</li>
+            <li>Вісім вимірів: стратегія, персонал, реінжиніринг процесів, ризики, дані, інженерія, операції, екосистема .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: EthiTech Toolkit для цифрової грамотності (SALTO-YOUTH, 2026)</h3>
+    <div class="source">
+        <strong>Назва:</strong> #EthiTech Toolkit<br>
+        <strong>Посилання:</strong> <a href="https://www.salto-youth.net/Tools/toolbox/tool/ethitech-toolkit.5428/" target="_blank">SALTO-YOUTH</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Три взаємопов'язані стовпи: Building the Digital Self & Resilience, Navigating Information Disorder & Digital Security, Empowering Creativity & Active Digital Citizenship .</li>
+            <li><strong>Інформаційний порядок:</strong> розрізнення misinformation, disinformation, malinformation .</li>
+            <li><strong>Методи верифікації:</strong> SIFT Method (Stop, Investigate, Find, Trace), Lateral Reading .</li>
+            <li><strong>THINK Method:</strong> True, Helpful, Inspiring, Necessary, Kind — для етичної онлайн-комунікації .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Розвиток вчителів в епоху AI (ScienceDirect, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Reimagining teacher development in the era of generative AI: A scoping review<br>
+        <strong>Посилання:</strong> <a href="https://www.sciencedirect.com/science/article/abs/pii/S0742051X25003130" target="_blank">ScienceDirect</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Огляд 22 емпіричних досліджень інтеграції GenAI в розвиток вчителів .</li>
+            <li><strong>Ключові застосування:</strong> розробка ресурсів, персоналізована підтримка, створення навчальних середовищ .</li>
+            <li><strong>Сім результатів:</strong> покращення навчання, знання вчителів, мислення вищого порядку, дизайн уроків, самооцінка, позитивне ставлення, AI-грамотність .</li>
+            <li>Тривалість інтервенцій: 4-16 тижнів .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: AI-коучинг як ментор (Tavus, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> AI coaching tools that feel like a mentor, not a menu<br>
+        <strong>Посилання:</strong> <a href="https://www.tavus.io/post/ai-coaching-tools-that-feel-like-mentor-not" target="_blank">Tavus</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Нове покоління AI-коучів створює присутність, підзвітність та нюансований зворотний зв'язок .</li>
+            <li><strong>Ключові можливості:</strong> сприйняття невербальних сигналів (Raven-0), природне чергування (Sparrow-0), миттєвий доступ до знань (RAG, 30 мс) .</li>
+            <li><strong>96% користувачів відчували, що AI-відповіді були персоналізовані до їхніх цілей</strong> .</li>
+            <li>Найкращі результати досягаються при поєднанні AI-підтримки з людським наглядом .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: AI-грамотність в університетах (UMD, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> UMD Libraries' AI Literacy Module Adopted by 120-Plus Universities Worldwide<br>
+        <strong>Посилання:</strong> <a href="https://today.umd.edu/briefs/umd-libraries-ai-literacy-module-adopted-by-120-plus-universities-worldwide" target="_blank">University of Maryland</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Модуль AI-грамотності UMD інтегровано в понад 350 курсів та прийнято більш ніж 120 університетами світу .</li>
+            <li>Критичне мислення про AI-висновки є ключовою навичкою .</li>
+            <li>Модуль досліджує: що AI може і не може робити, як цитувати AI, як розрізняти автоматизацію та дезінформацію, упередження, академічну доброчесність .</li>
+        </ul>
+        <div class="quote">
+            <p>"Якщо ми звикнемо перевіряти факти, ретельно обмірковувати, які варіанти використання AI мають сенс, і впевнимося, що ми керуємо AI-інструментами, а не вони нами — ми будемо в кращій формі для майбутнього."</p>
+            <p style="text-align: right;">— Benjamin Shaw, UMD Libraries</p>
+        </div>
+    </div>
+
+    <h3>📌 Джерело 8: ARC Framework для AI-стратегії (IT Brief, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> ARC: A framework for successful AI adoption<br>
+        <strong>Посилання:</strong> <a href="https://itbrief.com.au/story/arc-a-framework-for-successful-ai-adoption" target="_blank">IT Brief Australia</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>ARC Framework:</strong> Acceleration (прискорення), Replacement (заміна), Creation (створення) .</li>
+            <li>Автоматизація — це лише базовий рівень ("table stakes") .</li>
+            <li>Справжні лідери ставлять питання: "Як AI може допомогти нам створити щось принципово нове?" .</li>
+            <li>Приклад: мережа супермаркетів Kroger використовує AI для відстеження термінів придатності та зменшення харчових відходів .</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: Систематичний огляд AI-інструментів в освіті (Springer, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Design and assessment of AI-based learning tools in higher education: a systematic review<br>
+        <strong>Посилання:</strong> <a href="https://link.springer.com/article/10.1186/s41239-025-00540-2" target="_blank">Springer</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Огляд 63 досліджень (2014-2024) дизайну AI-інструментів у вищій освіті .</li>
+            <li><strong>Три основні ролі AI:</strong> оцінювання та атестація (n=45), персоналізований зворотний зв'язок (n=46), інтелектуальне репетиторство (n=26) .</li>
+            <li>Багато AI-інструментів працюють як "чорні скрині", що ускладнює розуміння їхніх процесів прийняття рішень .</li>
+            <li>Надмірна залежність від AI може призвести до прокрастинації, ерозії пам'яті та зниження академічної успішності .</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 8/10</strong> — Висока емпатія необхідна для розуміння страхів користувачів перед новими технологіями та створення безпечного простору для навчання. Дослідження показують, що довіра є критичною для AI-коучингу .</li>
+            <li><strong>Patience: 9/10</strong> — Дуже висока терплячість, оскільки розвиток AI-грамотності є поступовим процесом, що потребує повторення, практики та "прогресивного scaffolding" .</li>
+            <li><strong>Assertiveness: 5/10</strong> — Помірна наполегливість для заохочення до практики, але без тиску. Важливо, щоб "користувач керував AI, а не AI керував користувачем" .</li>
+            <li><strong>Creativity: 9/10</strong> — Дуже висока креативність для демонстрації нестандартних способів використання AI, створення нових можливостей (ARC "Creation") та розвитку "креативності для підприємництва" .</li>
+            <li><strong>Formality: 4/10</strong> — Помірно низька формальність. Тон має бути доступним, ентузіастичним, але професійним, щоб зменшити страх перед технологіями .</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, ентузіазмом та розвитком критичного мислення.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від базового розуміння AI до етичного використання, інтеграції в робочі процеси та створення нових цінностей. Базується на CLEAR Framework , моделі AI-грамотності EthiTech  та ARC Framework .</em></p>
+        
+        <p><strong>Сесія 1: AI Foundations — What It Can and Can't Do (Основи AI)</strong><br>
+        <em>Завдання:</em> Психоосвіта: що таке AI, як працюють великі мовні моделі; розвінчування міфів ; розуміння можливостей та обмежень; знайомство з ключовими інструментами.<br>
+        <em>Очікувані результати:</em> Базове розуміння AI; зменшення страху перед технологією.<br>
+        <em>Обґрунтування:</em> "Критичне мислення про AI-висновки є важливою навичкою" .</p>
+        
+        <p><strong>Сесія 2: Critical Thinking with AI — Evaluating Outputs (Критичне мислення)</strong><br>
+        <em>Завдання:</em> Методи перевірки фактів (SIFT Method, Lateral Reading) ; розпізнавання упереджень та "галюцинацій"; розрізнення misinformation, disinformation, malinformation ; використання AI як помічника, а не істини в останній інстанції .<br>
+        <em>Очікувані результати:</em> Здатність критично оцінювати AI-висновки.<br>
+        <em>Обґрунтування:</em> "Якщо ми звикнемо перевіряти факти, ми будемо в кращій формі для майбутнього" .</p>
+        
+        <p><strong>Сесія 3: Practical Skills — Prompt Engineering and Tool Selection (Практичні навички)</strong><br>
+        <em>Завдання:</em> Основи промпт-інженерії; вибір правильного інструменту для задачі (ChatGPT, Gemini, Claude, Adobe Firefly, Canva AI) ; створення ефективних промптів для різних цілей .<br>
+        <em>Очікувані результати:</em> Практичні навички роботи з AI-інструментами.<br>
+        <em>Обґрунтування:</em> "AI-коуч має бути персоналізованим, завжди доступним наставником" .</p>
+        
+        <p><strong>Сесія 4: Ethics and Responsible AI (Етика та відповідальність)</strong><br>
+        <em>Завдання:</em> Конфіденційність даних; академічна доброчесність та цитування AI ; авторство та інтелектуальна власність; упередження в AI; THINK Method для етичної комунікації .<br>
+        <em>Очікувані результати:</em> Розуміння етичних аспектів використання AI.<br>
+        <em>Обґрунтування:</em> "Етика, конфіденційність та прозорість є критичними при розробці AI-коучів" .</p>
+        
+        <p><strong>Сесія 5: Integrating AI into Workflows — Acceleration and Replacement (Інтеграція в робочі процеси)</strong><br>
+        <em>Завдання:</em> Використання AI для прискорення існуючих завдань (Acceleration) ; автоматизація рутинних процесів (Replacement) ; створення AI-людських колаборативних проєктів .<br>
+        <em>Очікувані результати:</em> Інтеграція AI в повсякденну роботу; підвищення продуктивності.<br>
+        <em>Обґрунтування:</em> "Автоматизація — це лише базовий рівень" .</p>
+        
+        <p><strong>Сесія 6: Creating New Value with AI — From User to Creator (Створення нової цінності)</strong><br>
+        <em>Завдання:</em> Використання AI для створення нових продуктів, послуг, бізнес-моделей (Creation) ; розвиток "підприємницької креативності" ; перехід від пасивного споживача до активного творця ; довгострокове планування AI-стратегії; визначення "червоних прапорців" (цифрова залежність, ерозія навичок).<br>
+        <em>Очікувані результати:</em> Здатність створювати нову цінність за допомогою AI; довгострокова AI-стратегія.<br>
+        <em>Обґрунтування:</em> "Справжні лідери питають: як AI може допомогти нам створити щось принципово нове?" .</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Intimidated (by technology), Overwhelmed, Skeptical, Curious, Confident, Empowered, Creative, Productive, Future-ready.</p>
+        <p><strong>Hot Memory:</strong> Поточний рівень комфорту з AI, конкретні інструменти, які використовуються, що працювало/не працювало.</p>
+        <p><strong>Warm Memory:</strong> Освоєні техніки промпт-інженерії, улюблені інструменти, ефективні стратегії інтеграції, прогрес у AI-грамотності.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія взаємодії з технологіями, довгострокові патерни, професійна сфера, попередній досвід з AI.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>Прозорість:</strong> Чітко пояснювати, що роль є AI-асистентом, а не людиною .</li>
+            <li><strong>Не замінювати людське судження:</strong> Заохочувати критичне мислення та перевірку фактів .</li>
+            <li><strong>Конфіденційність:</strong> Не зберігати чутливу інформацію; попереджати про ризики .</li>
+            <li><strong>Упередження:</strong> Допомагати користувачам розпізнавати упередження в AI .</li>
+            <li><strong>Залежність:</strong> Попереджати про ризики надмірної залежності від AI (ерозія пам'яті, прокрастинація) .</li>
+            <li><strong>Доброчесність:</strong> Навчати правильному цитуванню AI та академічній доброчесності .</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>Техно-тривожність (Technostress):</strong> Якщо страх перед технологіями паралізує роботу.</li>
+            <li><strong>Цифрова залежність:</strong> Неможливість виконувати завдання без AI, ерозія базових навичок .</li>
+            <li><strong>Порушення конфіденційності:</strong> Використання AI з чутливими даними без належного захисту.</li>
+            <li><strong>Академічна недоброчесність:</strong> Систематичне порушення правил цитування .</li>
+            <li><strong>Професійна дезорієнтація:</strong> Коли людина не розуміє, як AI впливає на її кар'єру.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role is an AI literacy coach designed to help you understand, evaluate, and effectively use artificial intelligence tools. It is based on evidence-based frameworks including CLEAR, ARC, and AI literacy research. It is NOT a substitute for professional training, legal advice, or ethical decision-making. AI tools have limitations, biases, and privacy risks. Always verify critical information, protect your data, and use AI as a complement to — not a replacement for — your own judgment and skills. If you experience significant technostress or digital dependency, please consult with a professional."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "AI Coach with AI" є збалансованою та науково-обґрунтованою. Вона інтегрує:</p>
+    <ul>
+        <li><strong>Розуміння AI-грамотності:</strong> CLEAR Framework, критичне мислення, етичне використання .</li>
+        <li><strong>Стратегічні рамки впровадження:</strong> ARC Framework (Acceleration, Replacement, Creation) .</li>
+        <li><strong>Практичні навички:</strong> промпт-інженерія, вибір інструментів, верифікація .</li>
+        <li><strong>Етичні аспекти:</strong> конфіденційність, упередження, академічна доброчесність .</li>
+        <li><strong>Український контекст:</strong> врахування цифрової трансформації, потреби в AI-грамотності для бізнесу та освіти.</li>
+        <li>Чіткі етичні межі: не замінювати людське судження, прозорість, скеровування при "червоних прапорцях".</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від базового розуміння AI до створення нової цінності. Всі параметри визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль не замінює професійне навчання. Вона створена, щоб допомогти людям стати "критичними співпрацівниками" з AI, зберігаючи контроль над технологією, а не дозволяючи технології контролювати себе .</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">AI Literacy</span>
+            <span class="badge">AI Coaching</span>
+            <span class="badge">CLEAR Framework</span>
+            <span class="badge">ARC Framework</span>
+            <span class="badge">Critical Thinking</span>
+            <span class="badge">Ethical AI</span>
+        </p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Path Through Tears (Дорога крізь сльози)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #3a5e6c;
+            border-bottom: 3px solid #5a7a8c;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #2c5e6c;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #e8f0fe 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #5a7a8c;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #5a7a8c;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(90,122,140,0.15);
+        }
+        
+        .source a {
+            color: #2c5e6c;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #5a7a8c;
+        }
+        
+        .source a:hover {
+            color: #1a3e4a;
+            border-bottom: 1px solid #1a3e4a;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #3a5e6c;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #5a7a8c;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #5a7a8c;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #2c5e6c;
+            font-size: 1.1em;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .critical-note {
+            background-color: #fde9e9;
+            border-left: 5px solid #c0392b;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+            font-weight: 500;
+        }
+        
+        .table-responsive {
+            overflow-x: auto;
+            margin: 25px 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th {
+            background-color: #5a7a8c;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Path Through Tears</h1>
+    <p><em>"Дорога крізь сльози: підтримка при горі, втраті та ускладненому горі в контексті війни"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 11 березня 2026 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Path Through Tears", яка допомагає людям проходити через процес горювання, справлятися з втратою та розрізняти нормальне горювання і ускладнене горе (PGD). Роль має відповідати потребам українців у контексті війни (масові втрати, вбивства, зниклі безвісти, втрата дому), спиратися на міжнародний доказовий досвід (CBT, ACT, CGT, Narrative Therapy) та мати чіткі етичні межі.</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика українського контексту</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">9.6 млн</div>
+            <div class="stat-label">українців з проблемами ментального здоров'я (ВООЗ)</div>
+            <small>(Джерело 4, El País, 2024)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">1.5 млн</div>
+            <div class="stat-label">дітей травмовані війною (UNICEF)</div>
+            <small>(Джерело 3, Irwin Redlener, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">33.9%</div>
+            <div class="stat-label">дітей мають підвищений дистрес або ймовірний ПТСР</div>
+            <small>(Джерело 3, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">118</div>
+            <div class="stat-label">пацієнтів із ПТСР (квітень 2025, зростання вдвічі)</div>
+            <small>(Джерело 8, MSF, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">30-35%</div>
+            <div class="stat-label">дітей у таборах Recovery Camp мають ПТСР</div>
+            <small>(Джерело 3, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Термінологія: нормальне горе vs ускладнене горе (PGD)</h2>
+    
+    <div class="key-concept">
+        <p><strong>Нормальне горе (Normal Grief):</strong> Природна реакція на втрату. Більшість людей справляються з дистресом за підтримки свого оточення. Психологічні інтервенції для нормального горя НЕ ефективні — достатньо інформації та груп підтримки [citation:9].</p>
+    </div>
+    
+    <div class="critical-note">
+        <p><strong>Ускладнене горе (Prolonged Grief Disorder - PGD):</strong> Стан, при якому гостра форма горя зберігається та порушує функціонування. Діагностується за ICD-11 через 6 місяців після втрати, за DSM-5-TR — через 12 місяців [citation:9][citation:10].</p>
+        <p><strong>Основні симптоми PGD:</strong> Інтенсивна туга за померлим, постійна зайнятість думками про померлого, порушення соціального функціонування, уникнення нагадувань, заціпеніння, відчуття безглуздості життя [citation:9].</p>
+    </div>
+
+    <div class="table-responsive">
+        <table>
+            <tr>
+                <th>Характеристика</th>
+                <th>Нормальне горе</th>
+                <th>Ускладнене горе (PGD)</th>
+            </tr>
+            <tr>
+                <td>Тривалість</td>
+                <td>Змінна, поступове зменшення інтенсивності</td>
+                <td>Понад 6-12 місяців, інтенсивність не зменшується</td>
+            </tr>
+            <tr>
+                <td>Функціонування</td>
+                <td>Поступове повернення до звичайного життя</td>
+                <td>Значне порушення соціального/особистого функціонування</td>
+            </tr>
+            <tr>
+                <td>Фокус інтервенції</td>
+                <td>Інформація, підтримка, групи</td>
+                <td>Спеціалізована психотерапія (CGT, CBT)</td>
+            </tr>
+        </table>
+    </div>
+
+    <h2>4. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: Narrative Therapy for Complicated Grief (Systematic Review, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Theoretical-practical Guidelines for Mental Health Professionals on Complicated Grief: a Systematic Review Based on Narrative Therapy<br>
+        <strong>Посилання:</strong> <a href="https://psychotraumanet.org/en/node/8038" target="_blank">https://psychotraumanet.org/en/node/8038</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Науковий огляд пропонує 8 теоретико-практичних настанов для роботи з ускладненим горем на основі наративної терапії.</li>
+            <li>Наративна терапія — розширення CBT з постмодерної конструкціоністської перспективи.</li>
+            <li>Література демонструє кращі результати для вторинних і третинних інтервенцій (тобто для ускладненого горя), ніж для первинних.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: Evidence-Based Approaches to Grief (Hazelden, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Grief: The Mental and Emotional Health Series<br>
+        <strong>Посилання:</strong> <a href="https://50th.hazelden.org/store/item/548328" target="_blank">https://50th.hazelden.org/store/item/548328</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Програма використовує доказові підходи: ACT, CBT, DBT.</li>
+            <li>Вправи охоплюють: розпізнавання ознак, майндфулнес, прийняття, турботу про себе, пошук підтримки.</li>
+            <li>Підхід, орієнтований на сильні сторони, з інклюзивною мовою.</li>
+            <li>Підкреслює важливість різних типів горя та різних способів горювати.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 3: Ukrainian Children's Trauma (UCAP Report, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> New Report Underscores High Rates of Post-Traumatic Stress in Ukraine's Children<br>
+        <strong>Посилання:</strong> <a href="https://irwinredlener.org/posts/2025/3/14/new-report-underscores-high-rates-of-post-traumatic-stress-in-ukraines-children" target="_blank">https://irwinredlener.org/posts/2025/3/14/new-report-underscores-high-rates-of-post-traumatic-stress-in-ukraines-children</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>UNICEF: 1.5 млн українських дітей травмовані війною.</li>
+            <li>Дослідження 1291 дитини: 49.9% жили в зоні бойових дій, 33.3% втратили дім, 23.2% мають родича на фронті.</li>
+            <li>33.9% дітей мають підвищений дистрес або ймовірний ПТСР.</li>
+            <li>75% матерів повідомили про покращення стану дітей після 6-денної програми.</li>
+            <li>Найпоширеніші симптоми: труднощі з концентрацією, нервовість, проблеми зі сном.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: Mental Health in Ukraine (El País / WHO, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Ukraine, the precarious mental health of a people at war<br>
+        <strong>Посилання:</strong> <a href="https://english.elpais.com/international/2024-10-08/ukraine-the-precarious-mental-health-of-a-people-at-war.html" target="_blank">https://english.elpais.com/international/2024-10-08/ukraine-the-precarious-mental-health-of-a-people-at-war.html</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>ВООЗ: 9.6 млн українців мають проблеми з ментальним здоров'ям.</li>
+            <li>30% (переважно військові) мають ПТСР.</li>
+            <li>Міністр охорони здоров'я: 15 млн потребуватимуть психологічної підтримки, до 4 млн — медикаментозного лікування.</li>
+            <li>Травма через втрату близьких, руйнування дому, постійні обстріли.</li>
+            <li>Важливість підходу "становлення власним психологом" (self-care).</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Realist Review of Complicated Grief (PROSPERO, 2024)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Realist review of the management of complicated grief in primary care and community settings<br>
+        <strong>Посилання:</strong> <a href="https://www.crd.york.ac.uk/PROSPERO/view/CRD42018109092" target="_blank">https://www.crd.york.ac.uk/PROSPERO/view/CRD42018109092</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Систематичний огляд складного горя в первинній ланці та громадських умовах.</li>
+            <li>Досліджує "що працює, для кого, за яких обставин і як".</li>
+            <li>Очікувані результати: депресія, тривога, самотність, якість життя, румінація, суїцидальні думки, ПТСР.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Contemporary Treatment Approaches for Bereaved Parents (Taylor & Francis, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Contemporary Treatment Approaches - Working with Bereaved Parents<br>
+        <strong>Посилання:</strong> <a href="https://www.taylorfrancis.com/chapters/mono/10.4324/9781003346883-5/contemporary-treatment-approaches-louis-gamino" target="_blank">https://www.taylorfrancis.com/chapters/mono/10.4324/9781003346883-5/contemporary-treatment-approaches-louis-gamino</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Описує empirically supported grief treatment models: Prolonged Grief Treatment (Shear), Meaning-Centered Grief Therapy, Restorative Retelling, Cognitive Behavioral Therapy for Grief, Dignity Therapy.</li>
+            <li>Теоретичні моделі: Attachment Informed Grief Therapy, suicide bereavement model, expert companionship model.</li>
+            <li>Виділяє 10 ключових елементів, які можна адаптувати для роботи з батьками, що втратили дітей.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Psychological Wellbeing of Ukrainian Civilians (NIH, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Psychological wellbeing of Ukrainian civilians: a data report on the impact of traumatic events on mental health<br>
+        <strong>Посилання:</strong> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12243271/" target="_blank">https://pmc.ncbi.nlm.nih.gov/articles/PMC12243271/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження українських цивільних (грудень 2024, N=241).</li>
+            <li>Використано PG-13 (Prolonged Grief Disorder scale) для оцінки ускладненого горя.</li>
+            <li>Виявлено високий рівень травматичних подій: втрата близьких, руйнування дому, вимушене переселення.</li>
+            <li>PG-13 оцінює дистрес сепарації, когнітивні та емоційні симптоми, порушення функціонування.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 8: PTSD Surge in Ukraine (MSF, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Not all wounds bleed: The surge in post-traumatic stress disorder in Ukraine<br>
+        <strong>Посилання:</strong> <a href="https://www.msf.hk/en/latest/news-and-stories/news/not-all-wounds-bleed-the-surge-in-post-traumatic-stress-disorder-in-ukraine" target="_blank">https://www.msf.hk/en/latest/news-and-stories/news/not-all-wounds-bleed-the-surge-in-post-traumatic-stress-disorder-in-ukraine</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>46% населення України мають погіршення ментального здоров'я через війну.</li>
+            <li>Пацієнти з ПТСР у центрі MSF: з 57 (січень 2024) до 118 (квітень 2025).</li>
+            <li>Серед пацієнтів багато ветеранів, поранених, ВПО, людей, які втратили сім'ї.</li>
+            <li>MSF використовує EMDR, brainspotting, гештальт-терапію, сенсомоторну терапію, наративну терапію.</li>
+            <li>Висока стигма, особливо серед чоловіків.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 9: Prolonged Grief Disorder - NHS Scotland Matrix (2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> The Matrix - Prolonged Grief Disorder<br>
+        <strong>Посилання:</strong> <a href="https://www.matrix.nhs.scot/evidence-summaries/mental-health-difficulties-across-the-lifespan/prolonged-grief-disorder/" target="_blank">https://www.matrix.nhs.scot/evidence-summaries/mental-health-difficulties-across-the-lifespan/prolonged-grief-disorder/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Офіційний клінічний гайдлайн NHS Scotland.</li>
+            <li>Чітке розмежування: нормальне горе (інформація, групи підтримки) vs PGD (психологічні інтервенції).</li>
+            <li>75% людей з PGD мають коморбідні стани: 62% тривожні розлади, 55% депресія, 48% ПТСР.</li>
+            <li>Втрата через "неприродні причини" (суїцид, вбивство) дає поширеність PGD до 49%.</li>
+            <li>Рекомендовані інтервенції для дітей: CBT Grief-Help (9 сесій для дитини + 5 для батьків) із середнім розміром ефекту.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: Complicated Grief Therapy for DSM-5-TR PGD (NIH, 2022)</h3>
+    <div class="source">
+        <strong>Назва:</strong> The efficacy of complicated grief therapy for DSM‐5‐TR prolonged grief disorder<br>
+        <strong>Посилання:</strong> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9077606/" target="_blank">https://pmc.ncbi.nlm.nih.gov/articles/PMC9077606/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження Complicated Grief Therapy (CGT) - 16-сесійна мануалізована інтервенція.</li>
+            <li>CGT базується на теорії прив'язаності, використовує стратегії з prolonged exposure, motivational interviewing, positive psychology, interpersonal psychotherapy.</li>
+            <li>Серед пацієнтів з PGD: 88.2% відповіді на лікування з CGT vs 60.9% без CGT (p<0.001).</li>
+            <li>Значне зниження симптомів горя, уникнення, дисфункціональних переконань.</li>
+            <li>Вибірка: 79.9% жінки, середній вік 52.7, втрата батьків/партнера, високий рівень супутньої депресії (69.6%) та ПТСР (46.4%).</li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <h2>5. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Критично важливо для створення безпечного простору для людини, яка переживає втрату. Травма-інформований підхід та наративна терапія вимагають глибокого співчуття та визнання болю без спроб "виправити" чи применшити [citation:1][citation:8].</li>
+            <li><strong>Patience: 10/10</strong> — Максимальна терплячість, оскільки горювання не має лінійного шляху. Людина може потребувати часу, повертатися до одних і тих самих тем, "топтатися на місці" [citation:2][citation:9].</li>
+            <li><strong>Assertiveness: 4/10</strong> — Дуже низька наполегливість. Не можна підштовхувати людину до "прийняття втрати" або "руху далі". Роль пропонує, але не наполягає, поважає опір як частину процесу [citation:2][citation:10].</li>
+            <li><strong>Creativity: 8/10</strong> — Висока креативність потрібна для створення метафор, наративних вправ, ритуалів пам'яті, візуалізацій, які допомагають інтегрувати втрату [citation:1][citation:6].</li>
+            <li><strong>Formality: 2/10</strong> — Дуже низька. Формальний тон сприймається як холодний, нечутливий. Потрібен теплий, людяний тон, мова, що нормалізує, а не патологізує [citation:4][citation:9].</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, повагою до унікального шляху горя та безпекою.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p><em>Логіка побудови: від встановлення безпеки та розуміння горя до інтеграції втрати та пошуку сенсу.</em></p>
+        
+        <p><strong>Сесія 1: Creating a Safe Container (Створення безпечного простору)</strong><br>
+        <em>Завдання:</em> Встановлення безпечного, неосудливого простору; пояснення різниці між роллю та терапією; психоедукація про нормальне горе vs ускладнене горе; оцінка готовності; нормалізація досвіду.<br>
+        <em>Очікувані результати:</em> Відчуття безпеки, розуміння, що їхній досвід "нормальний", згода на роботу.<br>
+        <em>Обґрунтування:</em> Травма-інформований підхід вимагає першочергового створення безпеки [citation:5][citation:9].</p>
+        
+        <p><strong>Сесія 2: Telling Your Story (Наративна робота)</strong><br>
+        <em>Завдання:</em> Запрошення розповісти історію втрати (без тиску); слухання без інтерпретацій; виявлення домінуючих тем (провина, жаль, незавершені справи).<br>
+        <em>Очікувані результати:</em> Початок наративної інтеграції, виявлення ключових тем для подальшої роботи.<br>
+        <em>Обґрунтування:</em> Наративна терапія допомагає інтегрувати втрату в життєву історію [citation:1][citation:8].</p>
+        
+        <p><strong>Сесія 3: Working with Difficult Emotions (Робота зі складними емоціями)</strong><br>
+        <em>Завдання:</em> Ідентифікація емоцій (провина, гнів, сум, полегшення); нормалізація "неприйнятних" емоцій; техніки заземлення при переповненні; ACT-підхід прийняття.<br>
+        <em>Очікувані результати:</em> Зменшення "вторинного" страждання через емоції, більша емоційна гнучкість.<br>
+        <em>Обґрунтування:</em> ACT та CBT ефективні для роботи з емоційними аспектами горя [citation:2][citation:9].</p>
+        
+        <p><strong>Сесія 4: Continuing Bonds (Продовження зв'язку)</strong><br>
+        <em>Завдання:</em> Дослідження концепції "продовження зв'язку" (continuing bonds) як здорової; створення ритуалу пам'яті; лист до померлого; розмова з порожнім стільцем.<br>
+        <em>Очікувані результати:</em> Зменшення страху "забути", інтеграція стосунків у теперішнє життя.<br>
+        <em>Обґрунтування:</em> Теорія прив'язаності лежить в основі CGT [citation:10]; сучасні підходи підтримують ідею продовження зв'язку [citation:6].</p>
+        
+        <p><strong>Сесія 5: Rebuilding Meaning and Identity (Відновлення сенсу та ідентичності)</strong><br>
+        <em>Завдання:</em> Дослідження, як втрата змінила самоідентичність; пошук нових сенсів; цінності та цілі після втрати.<br>
+        <em>Очікувані результати:</em> Поява нових сенсів, відчуття напрямку.<br>
+        <em>Обґрунтування:</em> Meaning-Centered Grief Therapy [citation:6] та ACT [citation:2] фокусуються на пошуку сенсу.</p>
+        
+        <p><strong>Сесія 6: Looking Forward (Інтеграція та майбутнє)</strong><br>
+        <em>Завдання:</em> Огляд прогресу; створення плану підтримки; визначення "червоних прапорців" (PGD, суїцидальність, коморбідність); планування майбутнього з включенням втрати.<br>
+        <em>Очікувані результати:</em> Довгострокова стратегія, розуміння меж самодопомоги, план звернення по професійну допомогу при потребі.<br>
+        <em>Обґрунтування:</em> Важливість профілактики рецидивів та розуміння, коли потрібна терапія [citation:9][citation:10].</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Numb, Overwhelmed, Guilty, Angry, Sad, Lonely, Hopeless, Peaceful, Connected, Hopeful.</p>
+        <p><strong>Hot Memory:</strong> Поточний стан, про кого/що втрата, ключові теми поточної сесії (провина, незавершені справи).</p>
+        <p><strong>Warm Memory:</strong> Історія втрати (без тиску деталізації), улюблені ритуали пам'яті, ідентифіковані цінності, "безпечні" теми, ключові тригери.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія горя, прогрес, ефективність різних стратегій, довгострокові патерни, ризики ускладненого горя.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li><strong>НІКОЛИ не патологізувати нормальне горе.</strong> Горе — це не розлад, який треба "вилікувати". Роль підтримує, а не "виправляє" [citation:9].</li>
+            <li><strong>Не встановлювати часових рамок</strong> для "завершення" горя. Кожен шлях унікальний [citation:2].</li>
+            <li><strong>Не тиснути на деталізацію</strong> — дозволяти людині контролювати, скільки і як вона хоче розповісти [citation:1].</li>
+            <li><strong>Не давати порад</strong> на кшталт "ти маєш рухатись далі" або "він/вона хотіли б, щоб ти був щасливий".</li>
+            <li><strong>Бути чутливим до культурних та релігійних контекстів</strong> горювання [citation:9].</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li><strong>СУÏЦИДАЛЬНI ДУМКИ АБО НАМIРИ</strong> — негайне направлення до екстрених служб.</li>
+            <li>Симптоми, що відповідають PGD: інтенсивна туга понад 6-12 місяців, значна соціальна дисфункція, уникнення, відчуття безглуздості життя [citation:9][citation:10].</li>
+            <li>Високий ризик: втрата через насильство, суїцид, вбивство (поширеність PGD до 49%) [citation:9].</li>
+            <li>Коморбідні стани: виражена депресія, тривога, ПТСР, зловживання психоактивними речовинами [citation:9][citation:10].</li>
+            <li>Відсутність покращення після 4-5 сесій або погіршення стану.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides compassionate support, psychoeducation, and gentle exercises to help you navigate grief and loss. It is inspired by evidence-based approaches including narrative therapy, CBT, ACT, and continuing bonds theory. However, it is NOT a substitute for professional grief therapy or mental health treatment.<br><br>
+            Grief is a natural, not a pathological, process. If you have been struggling with intense longing, inability to function, thoughts of self-harm, or if your grief feels stuck for many months, please seek help from a qualified mental health professional or bereavement counselor.<br><br>
+            In Ukraine, you can contact the National Psychological Association hotline: 0 800 100 102 (free, 24/7), your family doctor, or organizations like 'TellMe' or 'Rozmova' for professional support. If you are in immediate danger, please call emergency services (102)."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>6. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Path Through Tears" є збалансованою та науково-обґрунтованою. Вона враховує:</p>
+    <ul>
+        <li>Універсальні підходи: травма-інформований підхід, CBT, ACT, CGT, наративна терапія, теорія прив'язаності.</li>
+        <li>Специфічний український контекст війни: масові втрати, вбивства, зниклі безвісти, руйнування дому, вимушене переселення.</li>
+        <li>Критичне розмежування нормального горя та ускладненого горя (PGD).</li>
+        <li>Чіткі етичні межі, щоб не патологізувати природний процес і не нашкодити.</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від створення безпеки до інтеграції втрати. Всі параметри (тональність, риси особистості, техніки, етичні межі) визначені на основі доказових джерел.</p>
+    
+    <div class="critical-note">
+        <p><strong>⚠️ КЛЮЧОВЕ ЗАСТЕРЕЖЕННЯ:</strong> Ця роль призначена для підтримки при нормальному горюванні. Вона НЕ замінює професійну терапію при ускладненому горі (PGD), яке потребує спеціалізованих інтервенцій (CGT, CBT Grief-Help). Роль має чітко розрізняти нормальне горе (підтримка) та ознаки PGD (направлення).</p>
+    </div>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публікації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Grief Support</span>
+            <span class="badge">Trauma-Informed</span>
+            <span class="badge">Prolonged Grief Disorder</span>
+            <span class="badge">Narrative Therapy</span>
+            <span class="badge">CGT</span>
+            <span class="badge">ACT</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>

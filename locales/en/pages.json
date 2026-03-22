@@ -1,0 +1,165 @@
+{
+  "about": {
+    "breadcrumb": "About / Manifesto",
+    "heading": "Infrastructure for the uncertain world.",
+    "civPos": "Civilizational Positioning",
+    "quote": "\"Ukraine creates AI for survival when the world creates AI for entertainment.\"",
+    "p1": "This is not a prompt collection. This is not a chatbot wrapper. This is an open protocol — OpenRML 1.0 — for structuring AI-assisted human support at the scale of civilizational stress.",
+    "p2": "When infrastructure collapses, when displacement becomes normal, when grief is ambient — people don't need inspiration. They need structure. They need protocol. They need something that works at 3am when the power is out and the anxiety is not.",
+    "whyUkraine": "Why Ukraine",
+    "wp1": "Ukraine has been practicing what the rest of the world is only beginning to theorize. Structural adaptation under uncertainty. Maintaining identity under erasure. Building forward when the present is unstable.",
+    "wp2": "This is not a victim narrative. This is a technical advantage. When you have lived in sustained uncertainty, you develop frameworks that those who haven't cannot easily derive. FromUA is the systematization of those frameworks — translated into an open, free, and deployable protocol.",
+    "approach": "Approach",
+    "approachVal": "Structural, not motivational",
+    "model": "Model",
+    "modelVal": "Protocol-first, not prompt-first",
+    "distribution": "Distribution",
+    "distributionVal": "Open, free, no dependency",
+    "whatIsNot": "What This Is Not",
+    "notItems": [
+      { "no": "Startup hype", "yes": "Infrastructure" },
+      { "no": "NGO charity", "yes": "Open protocol" },
+      { "no": "Tech toy", "yes": "Operational tool" }
+    ],
+    "timeline": "Timeline",
+    "ecosystem": "Ecosystem",
+    "fromua": "fromua.life",
+    "fromuaDesc": "Public gallery — this site",
+    "rolesai": "rolesai.life",
+    "rolesaiDesc": "Builder platform — create your own roles"
+  },
+  "standard": {
+    "protocolDoc": "Protocol Documentation",
+    "heading": "The OpenRML Standard.",
+    "sub": "Open Role Markup Language — an open specification for structured AI behavioral roles. Not a prompt format. A protocol.",
+    "whatIsRml": "What is ORML",
+    "p1": "ORML (Open Role Markup Language) is an open protocol for defining structured AI behavioral roles. A role in ORML is not a prompt — it is a complete behavioral specification with identity, architecture layers, session structure, ethics constraints, and versioned identity.",
+    "p2": "OpenOpenRML roles are designed to be LLM-agnostic, language-portable, and freely redistributable. A valid OpenRML role works in any major language model without modification.",
+    "uriDesc": "Standard reference URI format for all OpenOpenRML roles",
+    "roleVsPrompt": "Why Role ≠ Prompt",
+    "promptLabel": "Prompt",
+    "rmlLabel": "ORML Role",
+    "promptItems": [
+      "Single instruction or query",
+      "No persistent identity",
+      "No session arc",
+      "No ethics layer",
+      "No versioning",
+      "Context-dependent behavior"
+    ],
+    "rmlItems": [
+      "Complete behavioral specification",
+      "Unique cryptographic identity",
+      "Defined session structure",
+      "Explicit ethics constraints",
+      "Semantic versioning",
+      "Reproducible behavior"
+    ],
+    "identity": "Identity System",
+    "ip1": "Every OpenRML role has a unique identity string — a deterministic hash derived from the role's content, category, and version. Identity strings are permanent: if a role's content changes, its identity changes. This ensures role integrity across deployments.",
+    "identityFormat": "Identity format:",
+    "identityFormatVal": "ORML/[CATEGORY]/[VERSION]/[ID]/[HASH-A]/[HASH-B]/[HASH-C]",
+    "architecture": "Architecture Layers",
+    "ap1": "Every OpenRML role is composed of eight mandatory architecture layers. Each layer controls a specific dimension of the role's behavior.",
+    "versioning": "Versioning Strategy",
+    "vp1": "RML uses semantic versioning: MAJOR.MINOR.PATCH. Version 0.9.1 is the current public specification. The 0.x prefix indicates the protocol is in active development and may have breaking changes between minor versions. All roles carry their protocol version in their identity string.",
+    "licensing": "Licensing Model",
+    "quickRef": "Quick Reference",
+    "currentVersion": "Current Version",
+    "status": "Status: Public Preview",
+    "archLayers": [
+      { "layer": "Base", "code": "BASE", "description": "Core behavioral mandate and primary function" },
+      { "layer": "Visual", "code": "VIS", "description": "Communication style, tone register, and language patterns" },
+      { "layer": "Tone", "code": "TONE", "description": "Emotional calibration — how the role feels in conversation" },
+      { "layer": "Expertise", "code": "EXP", "description": "Domain knowledge boundary and capability definition" },
+      { "layer": "Journey", "code": "JRNY", "description": "Session arc — how the interaction progresses over time" },
+      { "layer": "Team", "code": "TEAM", "description": "Collaboration model — how the role relates to user agency" },
+      { "layer": "Memory", "code": "MEM", "description": "State management — what the role tracks and retains" },
+      { "layer": "Ethics", "code": "ETH", "description": "Constraints, refusals, and safety boundaries" }
+    ],
+    "versionSegments": [
+      { "segment": "MAJOR", "description": "Breaking protocol changes", "example": "1.0.0" },
+      { "segment": "MINOR", "description": "New capabilities, backwards compatible", "example": "0.10.0" },
+      { "segment": "PATCH", "description": "Bug fixes, clarifications", "example": "0.9.2" }
+    ],
+    "licenses": [
+      { "id": "CC-BY-4.0", "label": "Free with Attribution", "description": "Most roles. Use freely, commercially or not, with attribution." },
+      { "id": "CC-BY-SA-4.0", "label": "Share Alike", "description": "Derivative roles must use the same license." },
+      { "id": "CC-BY-NC-4.0", "label": "Non-Commercial", "description": "Free for personal and research use only." },
+      { "id": "CUSTOM", "label": "Custom", "description": "Specialized roles with specific terms. See individual role." }
+    ],
+    "identityFields": [
+      ["CATEGORY", "PS, EC, FR, RR, SP"],
+      ["VERSION", "Semantic — 0.9.1"],
+      ["ID", "4-digit role number"],
+      ["HASH", "3 × 4-char content hash"]
+    ],
+    "sections": [
+      "What is ORML",
+      "Role vs Prompt",
+      "Identity System",
+      "Architecture Layers",
+      "Versioning Strategy",
+      "Licensing Model"
+    ]
+  },
+  "contribute": {
+    "community": "Community",
+    "heading": "Build the protocol together.",
+    "sub": "FromUA is an open project. The protocol is open, the roles are open, and the gallery is open to contributions from anyone who has built something worth sharing.",
+    "howToSubmit": "How to Submit a Role",
+    "communityVision": "Community Vision",
+    "cvp1": "FromUA is not a platform controlled by any single organization. It is a protocol — and the gallery is a commons. We believe the most valuable roles will come from practitioners: therapists, medics, social workers, displaced persons, veterans, caregivers, and survivors who have built real frameworks under real conditions.",
+    "cvp2": "If you have built something that works — that helped you or someone you know through a genuine crisis — this is the right place to systematize and share it.",
+    "cvQuote": "\"Not charity. Not theory. Operational tools built from real experience.\"",
+    "requirements": "Submission Requirements",
+    "reqItems": [
+      "Valid OpenRML 1.0 format with generated identity string",
+      "Both Ukrainian and English versions (or at minimum English)",
+      "All eight architecture layers defined",
+      "Explicit ethics constraints and safety boundaries",
+      "Minimum 3-session session structure",
+      "Open license (CC-BY-4.0 preferred)",
+      "Author attribution and contact"
+    ],
+    "githubLabel": "GitHub",
+    "githubDesc": "The FromUA repository contains all roles, the RML specification, and contribution guidelines.",
+    "roadmap": "Roadmap",
+    "buildRole": "Build a Role",
+    "buildDesc": "Use the rolesai.life builder to create a properly formatted OpenRML role with automatic identity generation.",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Study the Standard",
+        "description": "Read the OpenRML 1.0 specification carefully. Understand identity, architecture layers, and the role vs. prompt distinction.",
+        "action": { "label": "Read Standard →", "href": "/standard" }
+      },
+      {
+        "number": "02",
+        "title": "Create Your Role",
+        "description": "Use rolesai.life to build your role with the RML builder. The builder generates a valid identity hash automatically.",
+        "action": { "label": "rolesai.life ↗", "href": "https://rolesai.life" }
+      },
+      {
+        "number": "03",
+        "title": "Submit via GitHub",
+        "description": "Open a pull request to the OpenRML repository. Include your .orml.txt file, metadata JSON, and a brief rationale.",
+        "action": { "label": "GitHub ↗", "href": "https://github.com/openrml/openrml-builder/" }
+      },
+      {
+        "number": "04",
+        "title": "Review Process",
+        "description": "Submissions are reviewed for protocol compliance, content quality, and safety. Typical review time is 7-14 days.",
+        "action": null
+      }
+    ],
+    "roadmapItems": [
+      { "phase": "Now", "item": "Public gallery with 29 roles", "status": "active" },
+      { "phase": "Q2 2026", "item": "GitHub-based role submission pipeline", "status": "planned" },
+      { "phase": "Q3 2026", "item": "Community role ratings and reviews", "status": "planned" },
+      { "phase": "Q4 2026", "item": "Direct rolesai.life builder integration", "status": "future" },
+      { "phase": "2027", "item": "Role versioning and changelog system", "status": "future" },
+      { "phase": "2027", "item": "Multi-author collaborative roles", "status": "future" }
+    ]
+  }
+}

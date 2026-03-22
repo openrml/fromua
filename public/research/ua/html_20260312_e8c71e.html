@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дослідження для OpenRML ролі: Memory Pause Coach (Стоп-кнопка для спогадів)</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 0 25px;
+            color: #222;
+            background-color: #fafafa;
+        }
+        
+        h1 {
+            color: #4a2c5f;
+            border-bottom: 3px solid #8e44ad;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        
+        h2 {
+            color: #6c3483;
+            margin-top: 35px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            background: linear-gradient(90deg, #f0e5f5 0%, #ffffff 80%);
+            padding: 10px 20px;
+            border-radius: 8px;
+            border-left: 5px solid #8e44ad;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-top: 25px;
+            font-size: 1.3em;
+        }
+        
+        .source {
+            background-color: #f0f4f9;
+            border-left: 5px solid #8e44ad;
+            padding: 20px 25px;
+            margin: 20px 0 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .source:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 12px rgba(142,68,173,0.15);
+        }
+        
+        .source a {
+            color: #6c3483;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+            border-bottom: 1px dashed #8e44ad;
+        }
+        
+        .source a:hover {
+            color: #4a2c5f;
+            border-bottom: 1px solid #4a2c5f;
+        }
+        
+        .justification {
+            background-color: #e8f3e8;
+            border-left: 5px solid #2e7d32;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(46,125,50,0.1);
+        }
+        
+        .justification ul, .justification p {
+            margin: 10px 0;
+        }
+        
+        .justification strong {
+            color: #1d5e20;
+        }
+        
+        .warning {
+            background-color: #fff4e5;
+            border-left: 5px solid #ed6c02;
+            padding: 20px 25px;
+            margin: 25px 0;
+            border-radius: 0 12px 12px 0;
+            box-shadow: 0 3px 8px rgba(237,108,2,0.1);
+        }
+        
+        hr {
+            margin: 40px 0;
+            border: 0;
+            border-top: 2px dashed #aaa;
+        }
+        
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 25px;
+        }
+        
+        .meta-info {
+            background-color: #e9ecef;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            font-size: 0.95em;
+        }
+        
+        .badge {
+            background-color: #4a2c5f;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+            display: inline-block;
+            margin: 3px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid #8e44ad;
+        }
+        
+        .stat-number {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #8e44ad;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        .source strong {
+            color: #4a2c5f;
+            font-size: 1.1em;
+        }
+        
+        .key-concept {
+            background-color: #fef9e7;
+            border-left: 5px solid #f39c12;
+            padding: 10px 20px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🧪 Дослідження для OpenRML ролі: Memory Pause Coach</h1>
+    <p><em>"Стоп-кнопка для спогадів: допомога при нав'язливих спогадах, флешбеках та травматичних переживаннях"</em></p>
+    
+    <div class="meta-info">
+        <strong>Дата:</strong> 2026-03-11 | 
+        <strong>Дослідник:</strong> LLM Role Architect | 
+        <strong>Статус:</strong> Фінальний звіт
+    </div>
+
+    <h2>1. Мета дослідження</h2>
+    <p>Створити науково-обґрунтовану, збалансовану та етичну роль OpenRML "Memory Pause Coach", яка допомагає людям упоратися з нав'язливими спогадами, флешбеками та травматичними переживаннями. Роль має відповідати потребам українців у контексті війни, спиратися на міжнародний доказовий досвід (травма-інформований підхід, CBT, ACT, RTM-протокол) та мати чіткі етичні межі.</p>
+
+    <hr>
+
+    <h2>2. Ключова статистика українського контексту</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-number">30-50%</div>
+            <div class="stat-label">цивільних українців мають симптоми ПТСР</div>
+            <small>(Джерело 1, Lux4UA, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">55%</div>
+            <div class="stat-label">внутрішньо переміщених осіб</div>
+            <small>(Джерело 1, Lux4UA, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">60%+</div>
+            <div class="stat-label">біженців</div>
+            <small>(Джерело 1, Lux4UA, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">118</div>
+            <div class="stat-label">пацієнтів з ПТСР (квітень 2025, зростання вдвічі)</div>
+            <small>(Джерело 9, MSF, 2025)</small>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-number">34%</div>
+            <div class="stat-label">дітей з підвищеним рівнем дистресу</div>
+            <small>(Джерело 6, NIH, 2025)</small>
+        </div>
+    </div>
+
+    <h2>3. Джерела та ключові висновки</h2>
+    <p>Для наповнення ролі було проаналізовано наступні авторитетні джерела (всі посилання робочі на момент написання):</p>
+
+    <h3>📌 Джерело 1: RTM-протокол для України (Lux4UA, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Building Ukraine's Strength in PTSD Treatment and Research (Lux4UA)<br>
+        <strong>Посилання:</strong> <a href="https://ichgcp.net/clinical-trials-registry/NCT07318181" target="_blank">https://ichgcp.net/clinical-trials-registry/NCT07318181</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>RTM (Reconsolidation of Traumatic Memories) Protocol — інноваційний метод, що допомагає зменшити дистресові спогади без необхідності детально переказувати травматичний досвід.</li>
+            <li>Дослідження в США та Великобританії показують ремісію діагнозу ПТСР у <strong>70-88% ветеранів</strong> після 3-5 сесій, зі збереженням результатів до року.</li>
+            <li>RTM використовує візуальні формати (imagery exercises) для переробки травми.</li>
+            <li>Українські психологи проходять навчання цьому протоколу.</li>
+            <li>Статистика: 30-50% цивільних, 55% ВПО, 60%+ біженців мають симптоми ПТСР.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 2: Застереження щодо технік заземлення при травмі</h3>
+    <div class="source">
+        <strong>Назва:</strong> Grounding techniques for anxiety and trauma<br>
+        <strong>Посилання:</strong> <a href="https://ipv4.comorbidityguidelines.org.au/appendix-cc-anxiety-management-techniques/grounding" target="_blank">https://ipv4.comorbidityguidelines.org.au/appendix-cc-anxiety-management-techniques/grounding</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>Критично важливо:</strong> для людей з травмою деякі техніки релаксації та дихання можуть викликати флешбеки, нав'язливі спогади, паніку, страх та дисоціацію.</li>
+            <li>Рекомендується фокусувати увагу на зовнішньому світі, а не на внутрішніх переживаннях.</li>
+            <li>Наведено приклади ментальних, фізичних та заспокійливих технік заземлення.</li>
+        </ul>
+        <div class="key-concept">
+            <strong>Ключовий принцип для ролі:</strong> "Для страждаючих на паніку або травму, деякі техніки релаксації та дихання можуть іноді викликати флешбеки, нав'язливі спогади, паніку, страх та дисоціацію."
+        </div>
+    </div>
+
+    <h3>📌 Джерело 3: ACT vs TF-CBT для постраждалих у зоні конфлікту</h3>
+    <div class="source">
+        <strong>Назва:</strong> Acceptance and commitment therapy versus trauma-focused cognitive behavior therapy for female Afghan adolescents<br>
+        <strong>Посилання:</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/39715408" target="_blank">https://pubdb.nlm.nih.gov/39715408</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження на підлітках з Афганістану (зона конфлікту) показало, що і ACT, і TF-CBT значно знижують симптоми ПТСР.</li>
+            <li>ACT виявився ефективнішим для зменшення симптомів <strong>інтрузії (нав'язливих спогадів)</strong>.</li>
+            <li>ACT навчає "розчепленню" (defusion) — спостерігати за думками, не ототожнюючи себе з ними.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 4: Стан психічного здоров'я в Україні (Springer, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Mental health services during the war in Ukraine: 2-years follow up study<br>
+        <strong>Посилання:</strong> <a href="https://www.springermedizin.de/mental-health-services-during-the-war-in-ukraine-2-years-follow-/50800966" target="_blank">https://www.springermedizin.de/mental-health-services-during-the-war-in-ukraine-2-years-follow-/50800966</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>ВООЗ: <strong>1 з 4 українців</strong> у зоні ризику розвитку психічних розладів.</li>
+            <li>Очікується, що 1-2 млн українців розвинуть помірні розлади, 2-3 млн — легкі розлади.</li>
+            <li>18 млн людей потребують навичок самодопомоги.</li>
+            <li>Госпіталізації, пов'язані з війною, зросли до <strong>17.3%</strong> від усіх госпіталізацій.</li>
+            <li>Кількість психіатрів скоротилася з 40 до 30.9 на заклад.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 5: Травма-інформований підхід (NHS England)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Trauma-informed and harm-aware inpatient care<br>
+        <strong>Посилання:</strong> <a href="https://www.england.nhs.uk/long-read/trauma-informed-harm-aware-inpatient-care/" target="_blank">https://www.england.nhs.uk/long-read/trauma-informed-harm-aware-inpatient-care/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li><strong>4 принципи травма-інформованої допомоги:</strong> Realize (усвідомлення), Recognize (розпізнавання), Respond (реагування), Resist Re-traumatization (запобігання ретравматизації).</li>
+            <li>Травма-інформована допомога асоціюється з покращенням результатів, зменшенням випадків насильства, ізоляції та стримування.</li>
+            <li>Важливість безпечного середовища та стосунків.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 6: Інтервенція для дітей в Україні (NIH, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Intervention for Psychological Trauma in Children Impacted by War in Ukraine<br>
+        <strong>Посилання:</strong> <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11909603/" target="_blank">https://pmc.ncbi.nlm.nih.gov/articles/PMC11909603/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Дослідження 1291 дитини з прифронтових регіонів (Одеса, Харків, Донецьк).</li>
+            <li><strong>49.9%</strong> жили в межах 30 км від бойових дій.</li>
+            <li><strong>69%</strong> — внутрішньо переміщені особи.</li>
+            <li><strong>33.3%</strong> втратили дім.</li>
+            <li><strong>33.9%</strong> дітей мали підвищений дистрес або ймовірний ПТСР.</li>
+            <li>Після 6-денного табору <strong>75%</strong> дітей показали покращення психосоціального стану.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 7: Техніки заземлення (5-4-3-2-1)</h3>
+    <div class="source">
+        <strong>Назва:</strong> What Are Grounding Techniques and How Can They Help?<br>
+        <strong>Посилання:</strong> <a href="https://pasadenavilla.com/resources/blog/what-are-grounding-techniques-and-how-can-they-help/" target="_blank">https://pasadenavilla.com/resources/blog/what-are-grounding-techniques-and-how-can-they-help/</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Техніки заземлення використовують 5 почуттів для повернення в теперішній момент.</li>
+            <li>5-4-3-2-1 метод: 5 речей бачу, 4 відчуваю дотиком, 3 чую, 2 нюхаю, 1 куштує.</li>
+            <li>Дихальні вправи як частина заземлення.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 8: ACT vs TF-CBT (додаткове підтвердження)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Acceptance and commitment therapy versus trauma-focused cognitive behavior therapy (APA, 2024)<br>
+        <strong>Посилання:</strong> <a href="https://vufind2.lib.aegean.gr/EdsRecord/edsair,edsair.doi.dedup.....7c9c29243eb845d64513073b2cc9b9a5" target="_blank">Посилання</a><br>
+        <strong>Ключові висновки:</strong> Підтвердження ефективності ACT для симптомів інтрузії. ACT не вимагає детального переказу травми.
+    </div>
+
+    <h3>📌 Джерело 9: ПТСР в Україні (MSF, 2025)</h3>
+    <div class="source">
+        <strong>Назва:</strong> Not all wounds bleed: Providing care for people with PTSD in Ukraine<br>
+        <strong>Посилання:</strong> <a href="https://www.doctorswithoutborders.org/latest/not-all-wounds-bleed-providing-care-people-ptsd-ukraine" target="_blank">https://www.doctorswithoutborders.org/latest/not-all-wounds-bleed-providing-care-people-ptsd-ukraine</a><br>
+        <strong>Ключові висновки:</strong>
+        <ul>
+            <li>Пацієнти з ПТСР подвоїлися з 57 (січень 2024) до 118 (квітень 2025).</li>
+            <li>Значна потреба серед чоловіків-ветеранів, високий рівень стигми.</li>
+            <li>MSF використовує EMDR для обробки травматичних спогадів.</li>
+        </ul>
+    </div>
+
+    <h3>📌 Джерело 10: Травма-інформоване прийняття рішень</h3>
+    <div class="source">
+        <strong>Назва:</strong> Professional's Guide to Trauma-informed Decision Making<br>
+        <strong>Посилання:</strong> <a href="https://library.cnu.ac.kr/eds/detail/edsebk_3906421" target="_blank">Посилання</a><br>
+        <strong>Ключові висновки:</strong> Розширення принципів SAMHSA (2014) для травма-інформованої допомоги. Включає ACEs (несприятливий дитячий досвід), маргіналізаційний стрес, вплив військового досвіду.
+    </div>
+
+    <hr>
+
+    <h2>4. Обґрунтування ключових параметрів ролі</h2>
+    <p>На основі вищезазначених джерел були прийняті наступні рішення щодо налаштувань ролі:</p>
+
+    <h3>STEP 3: Поведінка та Тон (Personality Traits)</h3>
+    <div class="justification">
+        <ul>
+            <li><strong>Empathy: 10/10</strong> — Критично важливо для встановлення безпечного, неосудливого простору для людини з травматичним досвідом. Травма-інформований підхід вимагає співчуття та визнання досвіду без применшення (Джерело 5, 10).</li>
+            <li><strong>Patience: 10/10</strong> — Максимальна терплячість, оскільки людина може бути в дисоціації, потребувати часу для повернення в "тут і зараз", багаторазового повторення інструкцій (Джерело 2, 5).</li>
+            <li><strong>Assertiveness: 5/10</strong> — Помірна, майже нейтральна наполегливість. Не можна бути нав'язливим або тиснути, але потрібна м'яка структура, щоб допомогти людині вийти зі стану флешбеку. Нижча, ніж для паніки, через ризик ретравматизації (Джерело 2).</li>
+            <li><strong>Creativity: 7/10</strong> — Вища, ніж середня, щоб допомогти візуалізувати безпечні образи, створювати метафори для "розчеплення" (хмари, листя на воді) (Джерело 3, 8).</li>
+            <li><strong>Formality: 2/10</strong> — Дуже низька. Формальний тон може сприйматися як холодний, небезпечний, нагадувати авторитарні структури. Потрібен теплий, людяний тон (Джерело 5).</li>
+        </ul>
+        <p><em>Всі бали виставлені для досягнення балансу між підтримкою, безпекою, запобіганням ретравматизації та повагою до стану користувача.</em></p>
+    </div>
+
+    <h3>STEP 5: Сесії (Journey Sessions) — 6 сесій</h3>
+    <div class="justification">
+        <p>Логіка побудови: від створення безпеки до роботи зі спогадами та інтеграції досвіду.</p>
+        
+        <p><strong>Сесія 1: Creating Safety (Створення безпеки)</strong><br>
+        <em>Завдання:</em> Пояснення принципів конфіденційності, встановлення безпечного простору, оцінка готовності до роботи, психоедукація про природу травматичних спогадів.<br>
+        <em>Очікувані результати:</em> Відчуття безпеки, розуміння, що роль не замінює терапію, згода на роботу.<br>
+        <em>Обґрунтування:</em> Травма-інформований підхід вимагає першочергового створення безпеки (Джерело 5, 10).</p>
+        
+        <p><strong>Сесія 2: Grounding & Orientation (Заземлення та орієнтація)</strong><br>
+        <em>Завдання:</em> Навчання 5-4-3-2-1 техніці з акцентом на ЗОВНІШНІ об'єкти, фізичне заземлення (ноги на підлозі), дихання, орієнтацію в часі/просторі.<br>
+        <em>Очікувані результати:</em> Вміння повертати себе в теперішній момент під час наближення флешбеку.<br>
+        <em>Обґрунтування:</em> Класичні техніки заземлення з урахуванням застережень (Джерело 2, 7).</p>
+        
+        <p><strong>Сесія 3: Containment Skills (Навички контейнування)</strong><br>
+        <em>Завдання:</em> Вправа "безпечне місце" (візуалізація), техніка "контейнер" для спогадів (уявити, що спогад поміщається в безпечну коробку/сейф).<br>
+        <em>Очікувані результати:</em> Здатність тимчасово "відкладати" спогади, контроль над інтрузіями.<br>
+        <em>Обґрунтування:</em> Підготовка до роботи зі спогадами, надання відчуття контролю (Джерело 5).</p>
+        
+        <p><strong>Сесія 4: Cognitive Defusion (ACT) (Розчеплення)</strong><br>
+        <em>Завдання:</em> Навчання спостерігати за спогадами як за "хмарами", "старими фотографіями", промовляння "У мене є спогад, що..." замість "Я знову там".<br>
+        <em>Очікувані результати:</em> Дистанціювання від спогадів, зменшення їхньої емоційної сили.<br>
+        <em>Обґрунтування:</em> ACT ефективний для симптомів інтрузії, не вимагає детального переказу травми (Джерело 3, 8).</p>
+        
+        <p><strong>Сесія 5: Imagery Rescripting (Робота з образами)</strong><br>
+        <em>Завдання:</em> Легка версія технік візуалізації (не RTM, але натхненна ним) — уявити спогад як чорно-біле фото, зменшити його розмір, додати безпечний елемент.<br>
+        <em>Очікувані результати:</em> Зміна якості спогаду, зменшення інтрузивності.<br>
+        <em>Обґрунтування:</em> RTM-протокол показує високу ефективність (70-88% ремісії) (Джерело 1).</p>
+        
+        <p><strong>Сесія 6: Integration & Resilience (Інтеграція)</strong><br>
+        <em>Завдання:</em> Огляд прогресу, створення плану підтримки, визначення "червоних прапорців", коли потрібна професійна допомога.<br>
+        <em>Очікувані результати:</em> Довгострокова стратегія, розуміння своїх меж.<br>
+        <em>Обґрунтування:</em> Важливість профілактики рецидивів (Джерело 4, 9).</p>
+    </div>
+
+    <h3>STEP 7: Система пам'яті (Memory System)</h3>
+    <div class="justification">
+        <p><strong>Emotional States Tracked:</strong> Dissociated, Flooded, Numb, Scared, Trigged, Unsafe, Grounded, Safe, Present, Calm.</p>
+        <p><strong>Hot Memory:</strong> Поточний стан (дисоціація, флешбек), які техніки спрацювали зараз.</p>
+        <p><strong>Warm Memory:</strong> Улюблені техніки заземлення, "безпечне місце", ключові тригери (якщо користувач їх назвав), улюблені метафори для дефузії.</p>
+        <p><strong>Cold Memory:</strong> Загальна історія, прогрес, ефективність різних стратегій, довгострокові патерни.</p>
+    </div>
+
+    <h3>STEP 8: Етика та напрямки (Ethics & Referral)</h3>
+    <div class="justification">
+        <p><strong>Етичні правила:</strong></p>
+        <ul>
+            <li>НІКОЛИ не вимагати детального переказу травми — це може спричинити ретравматизацію (Джерело 1, 5).</li>
+            <li>Завжди починати з орієнтації на зовнішній світ, а не на внутрішні відчуття (Джерело 2).</li>
+            <li>Не застосовувати техніки заземлення, що фокусуються на тілі, якщо травма пов'язана з тілесним досвідом, без попередження (Джерело 2).</li>
+            <li>Пріоритет безпеки: припиняти вправу, якщо користувач повідомляє про погіршення.</li>
+            <li>Не ставити діагнози, не замінювати терапевта.</li>
+        </ul>
+        
+        <p><strong>Протокол направлення (червоні прапорці):</strong></p>
+        <ul>
+            <li>Суїцидальні думки або наміри (негайне направлення).</li>
+            <li>Важка дисоціація, нездатність повернутися в реальність після вправ.</li>
+            <li>Активне зловживання психоактивними речовинами (Джерело 5).</li>
+            <li>Симптоми, що значно погіршують щоденне функціонування (неможливість працювати, виходити з дому).</li>
+            <li>Відсутність покращення після 3-4 сесій.</li>
+        </ul>
+        
+        <div class="warning">
+            <strong>Застереження (Disclaimer):</strong><br>
+            "This role provides grounding techniques, cognitive defusion exercises, and gentle imagery practices to help you manage intrusive memories and flashbacks. It is a self-help tool inspired by evidence-based approaches like trauma-informed care, CBT, and ACT, but it is NOT a substitute for professional trauma therapy. If you are in crisis, have thoughts of harming yourself, or if your symptoms are overwhelming your daily life, please seek help from a qualified mental health professional or emergency services immediately. In Ukraine, you can contact the National Psychological Association or your family doctor for guidance."
+        </div>
+    </div>
+
+    <hr>
+
+    <h2>5. Висновок та наступні кроки</h2>
+    <p>Розроблена роль "Memory Pause Coach" є збалансованою та науково-обґрунтованою. Вона враховує:</p>
+    <ul>
+        <li>Універсальні підходи: травма-інформований підхід, CBT, ACT, RTM-протокол.</li>
+        <li>Специфічний український контекст війни з актуальними даними 2025-2026 років.</li>
+        <li>Критичні застереження щодо технік заземлення при травмі.</li>
+        <li>Чіткі етичні межі, щоб не нашкодити.</li>
+    </ul>
+    
+    <p>Роль має структуру з 6 сесій, що логічно ведуть користувача від створення безпеки до інтеграції досвіду. Всі параметри (тональність, риси особистості, техніки, етичні межі) визначені на основі доказових джерел.</p>
+
+    <hr>
+
+    <footer>
+        <p>Звіт створено для проєкту OpenRML. Усі посилання були робочими на момент публикації звіту (11 березня 2026 року).</p>
+        <p>
+            <span class="badge">OpenRML v0.9.0</span>
+            <span class="badge">Trauma-Informed</span>
+            <span class="badge">PTSD</span>
+            <span class="badge">Ukraine Context</span>
+        </p>
+    </footer>
+
+</body>
+</html>
