@@ -1,6 +1,6 @@
 {
   "rolesCatalog": {
-    "heading": "29 Structured Roles.",
+    "heading": "33 Structured Roles.",
     "sub": "Each role is a complete protocol — with identity, archetype, session structure, and licensing. Download and insert into any LLM.",
     "galleryLabel": "Gallery",
     "search": "Search",
@@ -39,12 +39,12 @@
     "whoItsFor": "Who It's For",
     "howItWorks": "How It Works",
     "useThisRole": "Use This Role",
-    "downloadEN": "Download .rml.txt (EN)",
-    "downloadUA": "Download .rml.txt (UA)",
+    "downloadEN": "Download .orml.txt (EN)",
+    "downloadUA": "Download .orml.txt (UA)",
     "copyClipboard": "Copy to Clipboard",
     "howToUse": "How to use in 4 steps:",
     "steps": [
-      "Download the .rml.txt file",
+      "Download the .orml.txt file",
       "Open any LLM (ChatGPT, Claude, Gemini)",
       "Paste the role content at the start of a new conversation",
       "Begin your session — the role is now active"
