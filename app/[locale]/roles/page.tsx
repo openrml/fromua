@@ -14,15 +14,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   
   const title = locale === 'uk' ? 'Каталог ролей' : 'Roles Catalog'
   const description = locale === 'uk'
-    ? 'Переглянути всі 29 структурованих AI-ролей на основі відкритого протоколу RML 0.9.1. Фільтрувати за категорією, архетипом або ліцензією.'
-    : 'Browse all 29 structured AI roles built on the RML 0.9.1 open protocol. Filter by category, archetype, or license.'
+    ? 'Переглянути всі структуровані AI-ролі на основі відкритого протоколу RML 0.9.3. Фільтрувати за категорією, архетипом або ліцензією.'
+    : 'Browse all structured AI roles built on the RML 0.9.3 open protocol. Filter by category, archetype, or license.'
   
   return {
     title,
     description,
     keywords: [
       'AI roles catalog',
-      'RML roles',
+      'ORML roles',
       'AI assistants',
       'mental health roles',
       'crisis support roles',
