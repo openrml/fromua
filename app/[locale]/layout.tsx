@@ -22,12 +22,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const title = locale === 'uk' 
-    ? 'FromUA — Галерея цивілізаційних AI-ролей'
-    : 'FromUA — Civilizational AI Roles Gallery'
+    ? 'FromUA — Прототип системи AI-підтримки населення України'
+    : 'FromUA — Prototype of an AI-support system for the population of Ukraine'
     
   const description = locale === 'uk'
-    ? 'Україна навчилась жити в невизначеності. Ми перетворили це на структуровані AI-ролі. Відкритий протокол RML 0.9.1 — безкоштовно назавжди.'
-    : 'Ukraine learned to live in uncertainty. We turned it into structured AI roles. Open protocol RML 0.9.1 — free forever.'
+    ? 'Україна вже має прототип AI-системи підтримки населення. Структуровані ролі, відкритий стандарт OpenRML — рішення, яке може бути використане та масштабоване на рівні держави'
+    : 'Ukraine already has a prototype of an AI-based population support system. Structured roles, open standard OpenRML — a solution that can be used and scaled at the state level'
 
   return {
     title: {
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description,
     keywords: [
       'AI roles',
-      'RML protocol',
+      'ORML protocol',
       'AI assistant',
       'mental health AI',
       'crisis support',
@@ -75,7 +75,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           url: '/og-image.png',
           width: 1200,
           height: 630,
-          alt: 'FromUA - Civilizational AI Roles Gallery',
+          alt: 'FromUA — Prototype of an AI-support system for the population of Ukraine',
         },
       ],
     },
