@@ -9,8 +9,8 @@ export function HomeClient() {
 
   const content = locale === 'uk' ? {
     title: '🧰 AI-АПТЕЧКА ДЛЯ ЖИТТЯ',
-    subtitle: '📚 Це як підручники, 🧠 які вміють «думати», 🤝 розмовляти з тобою, 🧭 і вести тебе крок за кроком',
-    description: 'Ми всі маємо аптечку для тіла. Але мало хто має аптечку для життя.',
+    subtitle: 'Це не просто знання. 📚 Це інтерактивні підручники, які 🧠 думають разом з тобою, 🤝 підтримують у складний момент, 🧭 і ведуть крок за кроком до рішення',
+    description: 'Це практичні інструменти, побудовані на відкритому стандарті OpenRML — з них може складатися національна система підтримки. Ми всі маємо аптечку для тіла. Але у часи випробувань кожному потрібна аптечка для життя.',
     heading: '🏥 СІМ ВІДДІЛЕНЬ',
     subheading: 'Оберіть своє відділення, знайдіть потрібний інструмент',
     or: 'або',
@@ -43,8 +43,8 @@ export function HomeClient() {
     lampLinkText: 'Читати філософію →'
   } : {
     title: '🧰 AI FIRST AID KIT FOR LIFE',
-    subtitle: '📚 They are like textbooks, 🧠 that can "think", 🤝 talk to you, 🧭 guide you step by step',
-    description: 'We all have a first aid kit for the body. But few have a first aid kit for life.',
+    subtitle: 'It\'s not just knowledge. 📚 These are interactive textbooks that 🧠 think with you, 🤝 support you in difficult times, 🧭 and lead you step by step to a solution.',
+    description: 'These are practical tools built on the open standard OpenRML — they can form a national support system. We all have a first aid kit for the body. But in times of trial, everyone needs a first aid kit for life.',
     heading: '🏥 SEVEN DEPARTMENTS',
     subheading: 'Choose your section, find the right tool',
     or: 'or',
