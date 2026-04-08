@@ -50,12 +50,12 @@ export function RoleDetailClient({ role }: RoleDetailClientProps) {
   const disclaimer = locale === 'uk' && role.disclaimerUa ? role.disclaimerUa : role.disclaimer
 
   const breadcrumbItems = [
-    { label: locale === 'uk' ? 'Головна' : 'Home', href: '/' },
+    { label: locale === 'uk' ? 'Головна' : 'Home', href: `/${locale}` },
     ...(deptInfo ? [{ 
       label: `${deptInfo.departmentEmoji} ${locale === 'uk' ? deptInfo.departmentNameUa : deptInfo.departmentName}`, 
-      href: `/?department=${deptInfo.department}` 
+      href: `/${locale}?department=${deptInfo.department}` 
     }] : []),
-    { label: locale === 'uk' && role.titleUa ? role.titleUa : role.title, href: `/roles/${role.slug}` },
+    { label: locale === 'uk' && role.titleUa ? role.titleUa : role.title, href: `/${locale}/roles/${role.slug}` },
   ]
 
   return (

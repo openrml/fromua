@@ -153,7 +153,7 @@ export function HomeClient() {
               {content.lampDescription}
             </p>
             <Link 
-              href={`/${locale}/philosophy`}
+              href={`/${locale}/aladdin`}
               className="inline-flex items-center gap-2 px-6 py-3 bg-foreground text-background rounded-lg hover:bg-foreground/90 transition-colors font-medium"
             >
               {content.lampLinkText}

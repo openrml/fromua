@@ -20,7 +20,7 @@ export function RoleCard({ role, variant = 'default' }: RoleCardProps) {
 
   if (variant === 'compact') {
     return (
-      <Link href={`/roles/${role.slug}`}>
+      <Link href={`/${locale}/roles/${role.slug}`}>
         <Card className="border border-border hover:border-foreground transition-colors h-full">
           <CardHeader className="p-4">
             <div className="flex items-start justify-between">
@@ -74,7 +74,7 @@ export function RoleCard({ role, variant = 'default' }: RoleCardProps) {
       
       <CardFooter className="p-6 pt-0 flex gap-2">
         <Button asChild className="flex-1">
-          <Link href={`/roles/${role.slug}`}>
+          <Link href={`/${locale}/roles/${role.slug}`}>
             {locale === 'uk' ? 'Переглянути' : 'View Details'}
           </Link>
         </Button>
